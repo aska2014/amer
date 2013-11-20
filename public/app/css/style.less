@@ -1,0 +1,80 @@
+@import "../lib/bootstrap/less/bootstrap.less";
+
+@primary-color: #D75803;
+@secondary-color: #025B89;
+@background-color: #CAC7A6;
+//@font-face {
+//    font-family:Hacen Tunisia;
+//    src:  url('../font/Hacen Tunisia.ttf');
+//}
+
+body {
+  background: @background-color;
+  font-family: Arial;
+  font-size: 18px;
+  line-height: 20px;
+
+  direction:rtl;
+}
+
+/* Customize container */
+@media (min-width: @screen-md) {
+  .container {
+    max-width: 960px;
+  }
+}
+
+.container{background:#FFF;}
+
+.body{
+  .make-row();
+
+  padding:0px 10px;
+  @media (max-width: @screen-sm) {
+    padding:0px;
+  }
+
+  .sidebar{
+    .make-xs-column(12);
+    .make-md-column(4);
+    .make-md-column-push(8);
+  }
+
+  .inner-body{
+    .make-xs-column(12);
+    .make-md-column(8);
+    .make-md-column-pull(4);
+
+    padding:0px;
+    padding-right:10px;
+
+    text-align: center;
+    @media(max-width: @screen-md) {
+      margin-top:10px;
+      padding:0px;
+    }
+  }
+
+  .separator{height:10px; clear:both;}
+}
+
+
+
+/**
+ * Common classes
+ */
+.btn-search{width:80px; height:30px; background:url('../img/search-off.png'); border:0px;}
+.btn-search:hover{width:80px; height:30px; background:url('../img/search-on.png');}
+
+.egypt-flag{ background:url('../img/egypt-flag.png'); width:24px; height:24px;}
+.britain-flag{ background:url('../img/britain-flag.png'); width:24px; height:24px;}
+.france-flag{ background:url('../img/france-flag.png'); width:24px; height:24px;}
+
+
+@import 'header.less';
+
+@import 'sidebar.less';
+
+@import "inner-body.less";
+
+@import "footer.less";

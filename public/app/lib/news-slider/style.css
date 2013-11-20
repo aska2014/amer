@@ -1,0 +1,199 @@
+div.jqans-wrapper {
+    color:#666666;
+    float:left;
+    font-size:12px;
+    border-left: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+    border-top: 1px solid #ddd;
+    margin: 0 30px 10px 0;
+    position: relative;
+    overflow: hidden;
+}
+div.jqans-wrapper,
+div.jqans-wrapper .jqans-container {
+    width: 598px;
+}
+div.jqans-wrapper ul {
+    position: relative;
+    left: 0;
+    width: auto;
+    list-style-type: none;
+    overflow: hidden;
+    z-index: 1;
+}
+div.jqans-wrapper li {
+    float: left;
+    display: inline;
+    width: 126px;
+    text-align: right;
+    font-family:Hacen Tunisia;
+}
+div.jqans-wrapper img {
+    border: 0;
+}
+
+div.jqans-wrapper ul,
+div.jqans-wrapper li,
+div.jqans-wrapper h1,
+div.jqans-wrapper p {
+    margin: 0;
+    padding: 0;
+}
+
+
+/* the stories ul and lis must have the same height */
+div.jqans-wrapper .jqans-stories ul,
+div.jqans-wrapper .jqans-stories li {
+    height: 90px;
+}
+
+div.jqans-wrapper .jqans-stories-selector ul,
+div.jqans-wrapper .jqans-stories-selector li {
+    height: 10px;
+}
+
+/*
+	wrapper and the container must have the same width
+	in order to get this value take the width value of
+	of story ".jqans-stories li" and times it by the
+	number of stories you want to initially display.
+
+	107px * 4 = 428px
+
+ */
+
+
+/* default styles */
+div.jqans-wrapper a {
+    text-decoration: none;
+    font-weight: normal;
+    color: #363636;
+    outline: none;
+    font-family:Hacen Tunisia;
+    margin: 0 5px 0 0;
+}
+
+div.jqans-wrapper  strong {
+    color: #000;
+}
+
+/* container */
+div.jqans-wrapper .jqans-container {
+    min-height: 280px;
+    text-align: center;
+    padding-top: 4px;
+}
+
+div.jqans-wrapper .jqans-container a {
+    font-weight: bold;
+    font-family:Hacen Tunisia;
+}
+
+/* headline */
+div.jqans-wrapper .jqans-headline {
+    text-align: right;
+    margin-left: 4px;
+    margin-bottom: 4px;
+}
+
+div.jqans-wrapper .jqans-content h1 {
+    text-align: right;
+    color: #d58700;
+    margin: 8px 4px 4px 4px;
+    font-size: 16px;
+    font-family:Hacen Tunisia;
+
+}
+
+div.jqans-wrapper .jqans-content p {
+    text-align: right;
+    color: #666666;
+    margin: 4px;
+    font-family:Hacen Tunisia;
+}
+
+/* stories */
+div.jqans-wrapper .jqans-stories {
+    background: #f3f3f3;
+    overflow: hidden;
+    text-align: center;
+    font-size: 12px;
+    color: #666;
+}
+
+div.jqans-wrapper .jqans-stories li.selected {
+    background: #7b70eb;
+    color:#fff;
+    padding:0 15px 0 0;
+}
+div.jqans-wrapper .jqans-stories li.selected  a{
+    color:#fff
+}
+div.jqans-wrapper .jqans-stories li img {
+    margin-top: 10px;
+    border: 1px solid #eee;
+    padding: 1px;
+    background-color: #FFFFFF;
+}
+
+div.jqans-wrapper .jqans-stories li p {
+    display: none;
+}
+
+div.jqans-wrapper .jqans-stories li h3 {
+    margin:0;
+    font-size:12px;
+    font-weight:normal;
+    font-family:Hacen Tunisia;
+    text-align: right;
+    overflow: hidden;
+    height:12px;
+}
+
+div.jqans-wrapper .jqans-stories-selector li.selected div {
+    margin:auto;
+    height: 0px;
+    width:0px;
+    line-height:0px;
+    font-size:0px;
+    border-right: 10px solid white;
+    border-bottom: 10px solid #7b70eb;
+    border-left: 10px solid white;
+}
+
+/* pagination */
+div.jqans-wrapper .jqans-pagination {
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    margin: 0;
+    padding: 2px 2px 0 2px;
+    background: #f3f3f3;
+    text-align: right;
+    clear: both;
+    width: 100%;
+    overflow: hidden;
+}
+
+div.jqans-wrapper .jqans-pagination-count {
+    float: right;
+}
+
+div.jqans-wrapper .jqans-pagination-controls {
+    float: right;
+}
+
+div.jqans-wrapper .jqans-pagination-controls a {
+    width: 22px;
+    height: 12px;
+    text-indent: -9999px;
+    background: no-repeat bottom center;
+    *float:right;
+}
+
+div.jqans-wrapper .jqans-pagination-controls-back a {
+    background-image: url(previous.jpg);
+}
+
+div.jqans-wrapper .jqans-pagination-controls-next a {
+    background-image: url(next.jpg);
+}

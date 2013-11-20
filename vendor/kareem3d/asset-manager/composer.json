@@ -1,0 +1,20 @@
+{
+    "name": "kareem3d/asset-manager",
+    "description": "",
+    "authors": [
+        {
+            "name": "Kareem Mohamed",
+            "email": "kareem3d.a@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.0",
+        "illuminate/support": "4.0.x"
+    },
+    "autoload": {
+        "psr-0": {
+            "Kareem3d\\AssetManager": "src/"
+        }
+    },
+    "minimum-stability": "dev"
+}

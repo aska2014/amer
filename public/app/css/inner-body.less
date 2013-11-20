@@ -1,0 +1,192 @@
+.main-title{
+  .make-md-column(12);
+
+  background:@primary-color;
+  a{color:#FFF;}
+  padding:7px 20px;
+  text-align: right;
+  margin-bottom:10px;
+}
+
+.inner-body{
+
+  .jqans-wrapper {
+    position: relative;
+    left:10px;
+    @media(max-width:@screen-md) {
+      left:50px;
+    }
+  }
+
+  /**
+   * Slider in home page
+   */
+  #slider{
+    @media(max-width:@screen-sm) {
+      display: none;
+    }
+  }
+
+  .latest-news-sm {
+    @media(min-width:@screen-sm) {
+      display: none;
+    }
+
+    .make-md-column(12);
+
+
+    .img-div{
+
+      .make-sm-column(12);
+
+      img{ margin: 0 auto;}
+    }
+
+    .info-div{
+      .make-sm-column(12);
+      font-family:tahoma;
+
+      font-size:12px;
+      color:#666;
+      h3 a{font-size:20px;}
+    }
+  }
+
+
+  /**
+   * Special offers
+   */
+
+  .body-specials{
+
+    .make-md-column(12);
+
+    .special{
+      .make-xs-column(12 / 4);
+
+      @media(max-width:@screen-xs) {
+        .make-xs-column(12 / 2);
+      }
+
+      padding:0px;
+
+      .img-div{
+        .make-xs-column(12);
+        padding:0px;
+
+        img{margin:0px auto;}
+      }
+      .info-div{
+        .make-xs-column(12);
+        padding:0px;
+
+        font-size:12px;
+        color:#025b89;
+
+        .city{color:#F00}
+      }
+    }
+
+  }
+
+
+  /**
+   * All estates
+   */
+  .all-estates{
+    .make-xs-column(12);
+    padding:0px;
+
+    .estate{
+      .make-xs-column(12);
+      padding:0px;
+
+
+      .img-div{
+        float:right;
+        padding:0px;
+        width:25%;
+        img{width:100%; padding: 0px 10px; margin: 0px auto;}
+
+
+        @media(max-width:@screen-sm) {
+          width:35%;
+        }
+      }
+
+      .info-div{
+        float:right;
+        padding:0px;
+        width:55%;
+
+        text-align: right;
+
+        h2{font-size:18px; margin:0px;}
+
+        p{color:@primary-color; font-size:14px; margin-top:10px;}
+
+        div span{
+          font-size:14px;
+        }
+
+        // Comments and number of views
+        div{
+
+          @media(max-width:@screen-xs) {
+            display:none;
+          }
+        }
+
+
+        @media(max-width:@screen-sm) {
+          width:65%;
+        }
+      }
+
+      .extra-info-div{
+        float:right;
+        width:20%;
+
+        text-align: right;
+
+        .price{color:@primary-color; font-size:16px; display: block;}
+        .date{font-size:12px; margin-top:5px; display: block;}
+
+
+        @media(max-width:@screen-sm) {
+          display:none;
+        }
+      }
+    }
+  }
+
+
+
+  // One estate
+  .one-estate{
+    .img-div{float:right; width:35%;
+      padding:10px;
+      padding-bottom:20px;
+      background:#DDD;
+      img{width:100%}
+
+      .img-title{font-size:17px; text-align: right; margin-top:10px;}
+    }
+    .info-div{float:right; width:65%;
+
+      padding:10px;
+      text-align: right;
+
+      p{font-size:15px;}
+
+      .key-value{
+        margin-bottom:5px;
+        font-size:15px;
+        .key{float:right; width:30%;}
+        .value{float:right; width:70%; color:#005FA8;}
+        width:100%;
+        display: inline-block;
+      }
+    }
+  }
+}

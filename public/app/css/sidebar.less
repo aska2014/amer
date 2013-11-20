@@ -1,0 +1,39 @@
+
+
+
+
+/**
+ * Sidebar Menu for all screens
+ */
+.sidebar-menu{
+
+  .make-row();
+
+  .menu-item{
+    .make-xs-column(12 / 4);
+    .make-md-column(12);
+
+    @media(min-width: @screen-md) {
+      margin-bottom:10px;
+    }
+
+    background:darken(@secondary-color, 3%);
+    border:1px solid darken(@secondary-color, 7%);
+
+    .item-icon{
+      img{max-height:44px;}
+      .make-md-column(3); .make-md-column-push(9);
+      margin-top:5px;
+    }
+    .item-info{
+      .make-md-column(9); .make-md-column-pull(3);
+      padding:15px;
+    }
+
+    a{font-size:28px; color:#FFF;
+      @media(max-width: @screen-sm) {
+        font-size:16px;
+      }
+    }
+  }
+}

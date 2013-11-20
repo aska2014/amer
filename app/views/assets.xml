@@ -1,0 +1,14 @@
+<assetCollections>
+
+    <assetCollection template="main">
+        <css>app/css/style.css</css>
+        <js>app/lib/jquery.min.js</js>
+    </assetCollection>
+
+    <assetCollection part="inner_body.latest_news">
+        <css>app/lib/news-slider/style.css</css>
+        <js>app/lib/news-slider/jquery.news-slider.js</js>
+        <js>app/js/global.js</js>
+    </assetCollection>
+
+</assetCollections>

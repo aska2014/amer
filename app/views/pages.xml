@@ -1,0 +1,46 @@
+<pages>
+    <default template="main">
+        <header>header.top | header.logo | header.bg_separator</header>
+
+        <upper-body>upper_body.menu</upper-body>
+
+        <sidebar>sidebar.menu | sidebar.advertisement | sidebar.advertisement | sidebar.chat</sidebar>
+
+        <footer>footer.socials | footer.copyrights | footer.contacts</footer>
+    </default>
+
+
+
+    <page name="home">
+        <header>header.top | header.logo | header.advanced_search</header>
+
+        <upper-body>upper_body.latest_news | upper_body.menu | upper_body.offer</upper-body>
+
+        <inner-body>inner_body.advertisement | inner_body.latest_news | inner_body.special_offers</inner-body>
+    </page>
+
+
+    <page name="all-estates">
+        <inner-body>inner_body.all_estates</inner-body>
+    </page>
+
+
+    <page name="one-estate">
+        <inner-body>inner_body.one_estate</inner-body>
+    </page>
+
+
+    <page name="all-news">
+        <inner-body>inner_body.all_news</inner-body>
+    </page>
+
+
+    <page name="one-news">
+        <inner-body>inner_body.one_news</inner-body>
+    </page>
+
+
+    <page name="add-estate">
+        <inner-body>inner_body.add_estate</inner-body>
+    </page>
+</pages>
