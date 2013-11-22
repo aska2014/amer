@@ -6,7 +6,7 @@
 <div class="body-specials">
     <div class="special">
         <div class="img-div">
-            <img class="img-responsive" src="{{ URL::asset('app/img/special_offer.png') }}" alt=""/>
+            <img class="img-responsive" src="{{ URL::asset('app/img/special-offer.png') }}" alt=""/>
         </div>
         <div class="info-div">
 
@@ -25,7 +25,7 @@
     </div>
     <div class="special">
         <div class="img-div">
-            <img class="img-responsive" src="{{ URL::asset('app/img/special_offer.png') }}" alt=""/>
+            <img class="img-responsive" src="{{ URL::asset('app/img/special-offer.png') }}" alt=""/>
         </div>
         <div class="info-div">
 
@@ -44,7 +44,7 @@
     </div>
     <div class="special">
         <div class="img-div">
-            <img class="img-responsive" src="{{ URL::asset('app/img/special_offer.png') }}" alt=""/>
+            <img class="img-responsive" src="{{ URL::asset('app/img/special-offer.png') }}" alt=""/>
         </div>
         <div class="info-div">
 
@@ -63,7 +63,7 @@
     </div>
     <div class="special">
         <div class="img-div">
-            <img class="img-responsive" src="{{ URL::asset('app/img/special_offer.png') }}" alt=""/>
+            <img class="img-responsive" src="{{ URL::asset('app/img/special-offer.png') }}" alt=""/>
         </div>
         <div class="info-div">
 

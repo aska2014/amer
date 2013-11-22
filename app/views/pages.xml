@@ -43,4 +43,19 @@
     <page name="add-estate">
         <inner-body>inner_body.add_estate</inner-body>
     </page>
+
+
+    <page name="register">
+        <inner-body>inner_body.register</inner-body>
+    </page>
+
+
+    <page name="contact-us">
+        <inner-body>inner_body.contact_us</inner-body>
+    </page>
+
+
+    <page name="advanced-search">
+        <inner-body>inner_body.advanced_search</inner-body>
+    </page>
 </pages>

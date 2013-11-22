@@ -1,4 +1,5 @@
 @import "../lib/bootstrap/less/bootstrap.less";
+@import "../lib/elements.less";
 
 @primary-color: #D75803;
 @secondary-color: #025B89;
@@ -66,9 +67,18 @@ body {
 .btn-search{width:80px; height:30px; background:url('../img/search-off.png'); border:0px;}
 .btn-search:hover{width:80px; height:30px; background:url('../img/search-on.png');}
 
-.egypt-flag{ background:url('../img/egypt-flag.png'); width:24px; height:24px;}
-.britain-flag{ background:url('../img/britain-flag.png'); width:24px; height:24px;}
-.france-flag{ background:url('../img/france-flag.png'); width:24px; height:24px;}
+.egypt-flag{ background:url('../img/icons/egypt-flag.png'); width:24px; height:24px;}
+.britain-flag{ background:url('../img/icons/britain-flag.png'); width:24px; height:24px;}
+.france-flag{ background:url('../img/icons/france-flag.png'); width:24px; height:24px;}
+
+
+.btn-primary{
+  .gradient(#428BCA, #01529A, #349ED6);
+}
+
+.btn-success{
+  .gradient(#5CB85C, #458A45, #61C361);
+}
 
 
 @import 'header.less';

@@ -1,5 +1,5 @@
 NameError: .make-row is undefined in D:\Projects\AmerGroup\www\public\app\css\footer.less on line 3, column 3:
 2 
 3   .make-row();
-4   margin:0px -10px;
+4   margin:10px -15px 0px -15px;
 

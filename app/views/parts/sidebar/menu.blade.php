@@ -2,7 +2,7 @@
 
     <div class="menu-item">
         <div class="item-icon">
-            <img class="img-responsive" src="{{ URL::asset('app/img/menu_item_icon1.png') }}" alt=""/>
+            <img class="img-responsive" src="{{ URL::asset('app/img/icons/plus.png') }}" alt=""/>
         </div>
 
         <div class="item-info">
@@ -13,7 +13,7 @@
 
     <div class="menu-item">
         <div class="item-icon">
-            <img class="img-responsive" src="{{ URL::asset('app/img/menu_item_icon2.png') }}" alt=""/>
+            <img class="img-responsive" src="{{ URL::asset('app/img/icons/paper.png') }}" alt=""/>
         </div>
 
         <div class="item-info">
@@ -24,7 +24,7 @@
 
     <div class="menu-item">
         <div class="item-icon">
-            <img class="img-responsive" src="{{ URL::asset('app/img/menu_item_icon3.png') }}" alt=""/>
+            <img class="img-responsive" src="{{ URL::asset('app/img/icons/dolphin.png') }}" alt=""/>
         </div>
 
         <div class="item-info">
@@ -35,7 +35,7 @@
 
     <div class="menu-item">
         <div class="item-icon">
-            <img class="img-responsive" src="{{ URL::asset('app/img/menu_item_icon4.png') }}" alt=""/>
+            <img class="img-responsive" src="{{ URL::asset('app/img/icons/best-offer.png') }}" alt=""/>
         </div>
 
         <div class="item-info">

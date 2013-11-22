@@ -40,3 +40,34 @@
     <a href="#">شقق للإيجار فى القاهرة</a>
 </div>
 
+
+<div class="row">
+    <div class="big-icon-pair">
+        <img class="img-responsive" src="{{ URL::asset('app/img/icons/telephone.png') }}" alt=""/>
+        <a href="#">
+            01127727794
+        </a>
+    </div>
+
+    <div class="big-icon-pair">
+        <img class="img-responsive" src="{{ URL::asset('app/img/icons/message.png') }}" alt=""/>
+        <a href="#">
+            ارسل بريد إلكترونى للمعلن
+        </a>
+    </div>
+</div>
+
+
+<hr />
+
+<div class="row">
+    <div class="small-icon-pair">
+        <img class="img-responsive" src="{{ URL::asset('app/img/icons/star.png') }}" alt=""/>
+        <a href="#">أضف إلى المفضلة</a>
+    </div>
+
+    <div class="small-icon-pair">
+        <img class="img-responsive" src="{{ URL::asset('app/img/icons/stop.png') }}" alt=""/>
+        <a href="#">الإبلاغ عن إساءة</a>
+    </div>
+</div>

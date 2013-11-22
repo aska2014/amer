@@ -34,7 +34,6 @@
 
     .make-md-column(12);
 
-
     .img-div{
 
       .make-sm-column(12);
@@ -48,7 +47,7 @@
 
       font-size:12px;
       color:#666;
-      h3 a{font-size:20px;}
+      h3 a{font-size:16px;}
     }
   }
 
@@ -187,6 +186,117 @@
         width:100%;
         display: inline-block;
       }
+    }
+  }
+
+
+  // Call us and message us box
+  .big-icon-pair{
+    margin-right:30px;
+    float:right;
+    height: 50px;
+    padding:0px 20px;
+    border:1px solid #000;
+    img{float:right; margin-top:7px;}
+    a{font-size:16px; float:right; margin-top:15px; margin-right:10px;}
+  }
+
+  //
+  .small-icon-pair{
+    margin-right:10px;
+    float:right;
+    height: 30px;
+    padding:0px 20px;
+    img{float:right; position: relative; bottom:3px;}
+    a{font-size:16px; float:right; margin-right:5px;}
+  }
+
+  hr{border-color: #999;}
+
+
+  // Four box divider
+  .four-box-divider{
+    .box{
+
+      .make-xs-column(12 / 3);
+      .make-sm-column(12 / 4);
+
+      @media(max-width:400px)
+      {
+        .make-xs-column(12 / 2);
+        padding:0px 2px;
+      }
+
+      @media(max-width:300px)
+      {
+        padding:0px;
+        .make-xs-column(12 / 1);
+      }
+
+      margin-bottom:10px;
+      padding:0px 5px;
+
+      .inner-box{
+        padding:0px;
+        img{width:99%;}
+        border:1px solid #333;
+
+        .date{font-size:11px; color:#003399}
+
+        text-align: right;
+
+        h2{ margin:0px 0px 10px 0px; line-height:16px;
+          a{font-size:14px; font-weight: bold; color:#F00;}
+        }
+      }
+    }
+  }
+
+
+  // one news
+  .one-news{
+    .make-md-column(12);
+    text-align: right;
+
+    h2{ margin: 0px;
+      font-size: 24.5px;
+      line-height: 40px; font-weight: bold;}
+
+    img{margin: 20px auto;}
+
+    p{font-size: 18px;
+      line-height: 35px; text-align: justify}
+
+    .date{font-size:12px; color:#002a80}
+  }
+
+
+  // Add form
+  .form-horizontal{
+
+    .make-xs-column(12);
+
+    label{float:right; width:20%; font-size:16px; text-align: right; font-weight:normal;
+      @media(max-width:@screen-xs) {
+        text-align: center;
+        width:100%;
+      }
+    }
+    .two-inputs, .form-control{float:right; width:50%;
+      font-size:14px;
+      text-align: right;
+      @media(max-width:@screen-sm) {
+        width:80%;
+      }
+      @media(max-width:@screen-xs) {
+        width:100%;
+      }
+    }
+
+    .two-inputs{
+      .form-control:first-child{margin-left:2%}
+
+      .form-control{float:right; width:49%;}
     }
   }
 }

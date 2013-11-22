@@ -2,7 +2,7 @@
 
     <div class="menu-item">
         <div class="item-img">
-            <img class="img-responsive" src="{{ URL::asset('app/img/menu_1.png') }}" alt=""/>
+            <img class="img-responsive" src="{{ URL::asset('app/img/menu1.png') }}" alt=""/>
         </div>
 
         <div class="img-info">شقق تمليك</div>
@@ -18,7 +18,7 @@
 
     <div class="menu-item">
         <div class="item-img">
-            <img class="img-responsive" src="{{ URL::asset('app/img/menu_1.png') }}" alt=""/>
+            <img class="img-responsive" src="{{ URL::asset('app/img/menu1.png') }}" alt=""/>
         </div>
 
         <div class="img-info">شقق تمليك</div>
@@ -26,7 +26,7 @@
 
     <div class="menu-item">
         <div class="item-img">
-            <img class="img-responsive" src="{{ URL::asset('app/img/menu_1.png') }}" alt=""/>
+            <img class="img-responsive" src="{{ URL::asset('app/img/menu1.png') }}" alt=""/>
         </div>
 
         <div class="img-info">شقق تمليك</div>
@@ -34,7 +34,7 @@
 
     <div class="menu-item">
         <div class="item-img">
-            <img class="img-responsive" src="{{ URL::asset('app/img/menu_1.png') }}" alt=""/>
+            <img class="img-responsive" src="{{ URL::asset('app/img/menu1.png') }}" alt=""/>
         </div>
 
         <div class="img-info">شقق تمليك</div>
@@ -42,7 +42,7 @@
 
     <div class="menu-item">
         <div class="item-img">
-            <img class="img-responsive" src="{{ URL::asset('app/img/menu_1.png') }}" alt=""/>
+            <img class="img-responsive" src="{{ URL::asset('app/img/menu1.png') }}" alt=""/>
         </div>
 
         <div class="img-info">شقق تمليك</div>
@@ -50,7 +50,7 @@
 
     <div class="menu-item">
         <div class="item-img">
-            <img class="img-responsive" src="{{ URL::asset('app/img/menu_1.png') }}" alt=""/>
+            <img class="img-responsive" src="{{ URL::asset('app/img/menu1.png') }}" alt=""/>
         </div>
 
         <div class="img-info">شقق تمليك</div>
@@ -59,7 +59,7 @@
 
     <div class="menu-item">
         <div class="item-img">
-            <img class="img-responsive" src="{{ URL::asset('app/img/menu_1.png') }}" alt=""/>
+            <img class="img-responsive" src="{{ URL::asset('app/img/menu1.png') }}" alt=""/>
         </div>
 
         <div class="img-info">شقق تمليك</div>
@@ -67,7 +67,7 @@
 
     <div class="menu-item">
         <div class="item-img">
-            <img class="img-responsive" src="{{ URL::asset('app/img/menu_1.png') }}" alt=""/>
+            <img class="img-responsive" src="{{ URL::asset('app/img/menu1.png') }}" alt=""/>
         </div>
 
         <div class="img-info">شقق تمليك</div>
@@ -75,7 +75,7 @@
 
     <div class="menu-item">
         <div class="item-img">
-            <img class="img-responsive" src="{{ URL::asset('app/img/menu_1.png') }}" alt=""/>
+            <img class="img-responsive" src="{{ URL::asset('app/img/menu1.png') }}" alt=""/>
         </div>
 
         <div class="img-info">شقق تمليك</div>

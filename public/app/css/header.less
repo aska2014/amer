@@ -179,21 +179,26 @@
     .upper-section{
       padding-top:30px;
       .register{background:#FFF; font-size:20px; color:#043572; width:100px; line-height:40px; vertical-align: middle; margin: 0px auto; text-align: center;}
+      @media (max-width: 360px) {
+        display:none;
+      }
     }
 
     .register-form{
       padding:40px 50px;
-      background:url('../img/register_form_bg.png'); width:342px; height:199px;
-      margin:0px auto;
+      @media (min-width: 360px) {
+        background:url('../img/register-form-bg.png'); width:342px; height:199px;
 
-      color:#333;
+        color:#333;
+      }
+      margin:0px auto;
 
       .form-row{
 
         margin-bottom:5px;
         .make-row();
-        .form-control{.make-md-column(8);}
-        label{font-size:14px; .make-md-column(4);}
+        .form-control{.make-sm-column(8); .make-sm-column-pull(4);}
+        label{font-size:14px; .make-sm-column(4); .make-sm-column-push(8);}
       }
 
       a{color:#000; font-size:14px; position: relative; bottom:5px; text-decoration: underline;
@@ -203,7 +208,9 @@
       }
       a:hover{text-decoration: none;}
 
-      .blue-btn{background:url('../img/register_form_btn.png'); width:91px; height:56px; border:0px; color:#FFF; font-size:14px;}
+      .buttons{.make-row()}
+
+      .blue-btn{background:url('../img/register-form-btn.png'); width:91px; height:56px; border:0px; color:#FFF; font-size:14px;}
       .big-btn{width:146px;}
     }
 
@@ -220,10 +227,16 @@
   .make-xs-column(12);
   padding:0px;
 
-  .img-responsive{float:right;}
+  background:@secondary-color;
 
-  .latest-news-text{background:@secondary-color; padding:9px;}
-  a{color:#FFF; font-size:16px;}
+  img{float:right; width:138px; height:42px;}
+
+  .latest-news-text{padding-top:10px;}
+  a{color:#FFF; font-size:14px;}
+
+  @media(max-width:@screen-xs) {
+    display: none;
+  }
 }
 
 
@@ -255,7 +268,7 @@
     .make-sm-column(12/9);
 
     @media (min-width: @screen-md) {
-      background:url('../img/menu_item.png') no-repeat; width:@menu-item-width; height: @menu-item-height + 8;
+      background:url('../img/menu-item.png') no-repeat; width:@menu-item-width; height: @menu-item-height + 8;
     }
 
 
@@ -265,6 +278,7 @@
     .item-drop-down{
       display:none;
       ul{list-style: none;
+        z-index: 1000;
         background:@secondary-color;
         width:@menu-item-width;
         position: absolute;

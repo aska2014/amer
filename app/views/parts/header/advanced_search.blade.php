@@ -35,7 +35,7 @@
         <div class="upper-section">
 
             <div class="offer-image">
-                <img src="{{ URL::asset('app/img/offer_image.png') }}" class="img-responsive" alt=""/>
+                <img src="{{ URL::asset('app/img/offer-image.png') }}" class="img-responsive" alt=""/>
             </div>
 
             <div class="upper-form">
