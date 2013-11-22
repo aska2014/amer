@@ -6911,12 +6911,12 @@ body {
   }
 }
 .large-menu .menu-item {
-  padding: 10px 17px;
   cursor: pointer;
   position: relative;
   min-height: 1px;
   padding-left: 15px;
   padding-right: 15px;
+  padding: 8px 13px;
 }
 @media (min-width: 768px) {
   .large-menu .menu-item {
@@ -6931,14 +6931,15 @@ body {
     height: 114px;
   }
 }
+.large-menu .menu-item img {
+  max-width: 70px;
+  margin: 0px auto;
+}
 .large-menu .menu-item a {
   color: #000;
 }
 .large-menu .menu-item a:hover {
   text-decoration: none;
-}
-.large-menu .menu-item img {
-  max-width: 70px;
 }
 .large-menu .menu-item .img-info {
   font-size: 16px;
@@ -6973,7 +6974,7 @@ body {
 }
 .large-menu .menu-item .item-drop-down a {
   color: #FFF;
-  font-size: 16px;
+  font-size: 14px;
 }
 .large-menu .menu-item .item-drop-down a:hover {
   color: #fc6f11;

@@ -272,18 +272,19 @@
   @menu-item-height:106px;
 
   .menu-item{
-    padding:10px 17px;
     cursor: pointer;
     .make-sm-column(12/9);
+    padding:8px 13px;
 
     @media (min-width: @screen-md) {
       background:url('../img/menu-item.png') no-repeat; width:@menu-item-width; height: @menu-item-height + 8;
     }
 
+    img{max-width:70px; margin: 0px auto;}
+
     a{color:#000;}
     a:hover{text-decoration: none}
 
-    img{max-width:70px;}
 
     .img-info{font-size:16px; text-align: center}
     .img-info:hover{color:@primary-color}
@@ -305,7 +306,7 @@
         padding:10px; margin: 0px;
         li{margin-bottom:5px;}
       }
-      a{color:#FFF; font-size:16px;}
+      a{color:#FFF; font-size:14px;}
       a:hover{color:lighten(@primary-color, 10%); text-decoration: none;}
     }
   }
