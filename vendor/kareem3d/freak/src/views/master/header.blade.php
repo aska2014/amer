@@ -79,7 +79,7 @@
                                             </span>
                                             <span class="details">
                                                 <strong>{{ $fromUser->name }}</strong><br>
-                                                {{ $message->getSubject() }}
+                                                {{ $message->subject }}
                                             </span>
                                         </a>
                                     </li>
