@@ -1,5 +1,5 @@
 <div class="main-title">
-    <a href="#">آخر الأخبار</a>
+    <a href="#">عروض مميزة</a>
 </div>
 
 

@@ -6,7 +6,7 @@
         </div>
 
         <div class="item-info">
-            <a href="#">أضف عقاراً</a>
+            <a href="{{ URL::page('add-estate') }}">أضف عقاراً</a>
         </div>
     </div>
 
@@ -17,7 +17,7 @@
         </div>
 
         <div class="item-info">
-            <a href="#">أضف عقاراً</a>
+            <a href="{{ URL::page('all-news') }}">أخر الأخبار</a>
         </div>
     </div>
 
@@ -28,7 +28,7 @@
         </div>
 
         <div class="item-info">
-            <a href="#">أضف عقاراً</a>
+            <a href="#">خدمات بحرية</a>
         </div>
     </div>
 
@@ -39,7 +39,7 @@
         </div>
 
         <div class="item-info">
-            <a href="#">أضف عقاراً</a>
+            <a href="#">عروض عامر جروب 2</a>
         </div>
     </div>
 

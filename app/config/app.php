@@ -115,7 +115,18 @@ return array(
 		'Illuminate\Workbench\WorkbenchServiceProvider',
 
         'Kareem3d\Eloquent\EloquentServiceProvider',
-        'Kareem3d\Templating\TemplatingServiceProvider'
+
+        'Kareem3d\Marketing\MarketingServiceProvider',
+        'Kareem3d\Images\ImagesServiceProvider',
+
+        'Kareem3d\Freak\FreakServiceProvider',
+        'Kareem3d\FreakImages\FreakImagesServiceProvider',
+        'Kareem3d\FreakSeo\FreakSeoServiceProvider',
+
+        'Kareem3d\Link\LinkServiceProvider',
+        'Kareem3d\Templating\TemplatingServiceProvider',
+
+        'Kareem3d\FreakLink\FreakLinkServiceProvider',
 
 	),
 
@@ -178,7 +189,7 @@ return array(
 		'Seeder'          => 'Illuminate\Database\Seeder',
 		'Session'         => 'Illuminate\Support\Facades\Session',
 		'Str'             => 'Illuminate\Support\Str',
-		'URL'             => 'Illuminate\Support\Facades\URL',
+        'URL'             => 'Kareem3d\Link\URL',
 		'Validator'       => 'Illuminate\Support\Facades\Validator',
 		'View'            => 'Illuminate\Support\Facades\View',
 

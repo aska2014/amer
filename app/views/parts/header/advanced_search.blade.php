@@ -1,27 +1,42 @@
 <div class="advanced-search">
 
     <div class="left-search">
+
+        @if(! $authUser)
         <div class="upper-section">
             <div class="register">تسجيل</div>
         </div>
-
         <div class="register-form">
-            <form role="form">
+            <form role="form" action="{{ URL::route('login') }}" method="POST">
                 <div class="form-row">
                     <label for="input-email">الإيميل</label>
-                    <input type="email" class="form-control" id="input-email" placeholder="الإيميل">
+                    <input type="email" class="form-control" name="Login[email]" id="input-email" placeholder="الإيميل">
                 </div>
                 <div class="form-row">
                     <label for="input-password">كلمة السر</label>
-                    <input type="password" class="form-control" id="input-password" placeholder="كلمة المرور">
+                    <input type="password" class="form-control" name="Login[password]" id="input-password" placeholder="كلمة المرور">
                 </div>
                 <div class="buttons">
                     <button type="submit" class="blue-btn">دخول</button>
-                    <button type="submit" class="blue-btn big-btn">مستخدم جديد</button>
+                    <button type="button" onclick="window.location.href = '{{ URL::page('register') }}'" class="blue-btn big-btn">مستخدم جديد</button>
                 </div>
+
+                @if(! $errors->isEmpty())
+                <div class="errors">
+                    {{ implode($errors->all(':message'), '<br/>') }}
+                </div>
+                @else
                 <a href="#">لإسترجاع كلمة السر</a>
+                @endif
             </form>
         </div>
+        @else
+
+        <div class="welcome-message">
+            مرحبا بك
+            {{ $authUser->name }}
+        </div>
+        @endif
     </div>
 
 

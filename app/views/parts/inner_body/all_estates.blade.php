@@ -1,18 +1,21 @@
 <div class="main-title">
-    <a href="#">شقق للإيجار فى القاهرة</a>
+    <a href="#">{{ $category->title }}</a>
 </div>
 
 <div class="all-estates">
 
+    @foreach($category->estates as $estate)
     <div class="estate">
         <div class="img-div">
-            <img class="img-responsive" src="{{ URL::asset('app/img/estate_demo.png') }}" alt=""/>
+            @if($image = $estate->getImage('main'))
+            <img class="img-responsive" src="{{ $image->getLargest()->url }}" alt=""/>
+            @endif
         </div>
 
         <div class="info-div">
-            <h2><a href="#">بجوار نادى الصيد شقة 170م للايجار تشطيب حديث</a></h2>
+            <h2><a href="#">{{ $estate->title }}</a></h2>
 
-            <p>شقة 170م بالمهندسين غرفتين - ريسبشين 3 قطع - مطبخ - 2 حمام مكيفة بالكامل...</p>
+            <p>{{ Str::limit($estate->description, 80) }}</p>
 
             <div>
                 <span>التعليقات(0)</span>
@@ -21,113 +24,12 @@
         </div>
 
         <div class="extra-info-div">
-            <span class="price">300.600.00جنيه</span>
+            <span class="price">{{ $estate->price }} جنيه</span>
             <span class="date">نشر قبل 2 دقيقه</span>
         </div>
     </div>
 
     <div class="separator"></div>
-
-
-
-    <div class="estate">
-        <div class="img-div">
-            <img class="img-responsive" src="{{ URL::asset('app/img/estate_demo.png') }}" alt=""/>
-        </div>
-
-        <div class="info-div">
-            <h2><a href="#">بجوار نادى الصيد شقة 170م للايجار تشطيب حديث</a></h2>
-
-            <p>شقة 170م بالمهندسين غرفتين - ريسبشين 3 قطع - مطبخ - 2 حمام مكيفة بالكامل...</p>
-
-            <div>
-                <span>التعليقات(0)</span>
-                <span>عدد المشاهدات(0)</span>
-            </div>
-        </div>
-
-        <div class="extra-info-div">
-            <span class="price">300.600.00جنيه</span>
-            <span class="date">نشر قبل 2 دقيقه</span>
-        </div>
-    </div>
-
-    <div class="separator"></div>
-
-
-
-    <div class="estate">
-        <div class="img-div">
-            <img class="img-responsive" src="{{ URL::asset('app/img/estate_demo.png') }}" alt=""/>
-        </div>
-
-        <div class="info-div">
-            <h2><a href="#">بجوار نادى الصيد شقة 170م للايجار تشطيب حديث</a></h2>
-
-            <p>شقة 170م بالمهندسين غرفتين - ريسبشين 3 قطع - مطبخ - 2 حمام مكيفة بالكامل...</p>
-
-            <div>
-                <span>التعليقات(0)</span>
-                <span>عدد المشاهدات(0)</span>
-            </div>
-        </div>
-
-        <div class="extra-info-div">
-            <span class="price">300.600.00جنيه</span>
-            <span class="date">نشر قبل 2 دقيقه</span>
-        </div>
-    </div>
-
-    <div class="separator"></div>
-
-
-
-    <div class="estate">
-        <div class="img-div">
-            <img class="img-responsive" src="{{ URL::asset('app/img/estate_demo.png') }}" alt=""/>
-        </div>
-
-        <div class="info-div">
-            <h2><a href="#">بجوار نادى الصيد شقة 170م للايجار تشطيب حديث</a></h2>
-
-            <p>شقة 170م بالمهندسين غرفتين - ريسبشين 3 قطع - مطبخ - 2 حمام مكيفة بالكامل...</p>
-
-            <div>
-                <span>التعليقات(0)</span>
-                <span>عدد المشاهدات(0)</span>
-            </div>
-        </div>
-
-        <div class="extra-info-div">
-            <span class="price">300.600.00جنيه</span>
-            <span class="date">نشر قبل 2 دقيقه</span>
-        </div>
-    </div>
-
-    <div class="separator"></div>
-
-
-
-    <div class="estate">
-        <div class="img-div">
-            <img class="img-responsive" src="{{ URL::asset('app/img/estate_demo.png') }}" alt=""/>
-        </div>
-
-        <div class="info-div">
-            <h2><a href="#">بجوار نادى الصيد شقة 170م للايجار تشطيب حديث</a></h2>
-
-            <p>شقة 170م بالمهندسين غرفتين - ريسبشين 3 قطع - مطبخ - 2 حمام مكيفة بال- 2 حمام مكيفة بال- 2 حمام مكيفة بال- 2 حمام مكيفة بالكامل...</p>
-
-            <div>
-                <span>التعليقات(0)</span>
-                <span>عدد المشاهدات(0)</span>
-            </div>
-        </div>
-
-        <div class="extra-info-div">
-            <span class="price">300.600.00جنيه</span>
-            <span class="date">نشر قبل 2 دقيقه</span>
-        </div>
-    </div>
+    @endforeach
 
 </div>

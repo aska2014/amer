@@ -6,9 +6,19 @@
 	"require": {
 		"laravel/framework": "4.0.*",
 
-        "kareem3d/link": "dev-master",
+        "kareem3d/freak": "dev-master",
+        "kareem3d/eloquent": "dev-master",
 
-        "kareem3d/templating": "dev-master"
+        "kareem3d/link": "dev-master",
+        "kareem3d/freak-link": "dev-master",
+
+        "kareem3d/templating": "dev-master",
+
+        "kareem3d/images": "dev-master",
+        "kareem3d/freak-images": "dev-master",
+
+        "kareem3d/marketing": "dev-master",
+        "kareem3d/freak-seo": "dev-master"
 	},
 	"autoload": {
 		"classmap": [

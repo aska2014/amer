@@ -51,7 +51,7 @@ abstract class Model extends \Illuminate\Database\Eloquent\Model {
      *
      * @var array
      */
-    protected static $dontDuplicate = array();
+    protected $dontDuplicate = array();
 
     /**
      * If this model has specifications table associated with..
@@ -235,8 +235,6 @@ abstract class Model extends \Illuminate\Database\Eloquent\Model {
     {
         // Check before save method
         if($this->beforeSave() === false) return false;
-
-
 
         // If this model has specification table then create a query with this specsTable
         if($this->hasSpecsTable())
@@ -505,9 +503,9 @@ abstract class Model extends \Illuminate\Database\Eloquent\Model {
      */
     public function getDuplicate( $query )
     {
-        if(empty(static::$dontDuplicate)) return null;
+        if(empty($this->dontDuplicate)) return null;
 
-        $dontDuplicate = static::$dontDuplicate;
+        $dontDuplicate = $this->dontDuplicate;
         $that = $this;
 
         return $query->where('id', '!=', (int) $this->id)->where(function($query) use($dontDuplicate, $that)

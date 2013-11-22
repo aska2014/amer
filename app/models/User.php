@@ -1,52 +1,39 @@
 <?php
 
-use Illuminate\Auth\UserInterface;
-use Illuminate\Auth\Reminders\RemindableInterface;
+use Kareem3d\Membership\User as Kareem3dUser;
 
-class User extends Eloquent implements UserInterface, RemindableInterface {
+class User extends Kareem3dUser {
 
-	/**
-	 * The database table used by the model.
-	 *
-	 * @var string
-	 */
-	protected $table = 'users';
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function getCreatedEstates()
+    {
+        return $this->getRecipients(Estate::getClass());
+    }
 
-	/**
-	 * The attributes excluded from the model's JSON form.
-	 *
-	 * @var array
-	 */
-	protected $hidden = array('password');
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function getCreatedServices()
+    {
+        return $this->getRecipients(Service::getClass());
+    }
 
-	/**
-	 * Get the unique identifier for the user.
-	 *
-	 * @return mixed
-	 */
-	public function getAuthIdentifier()
-	{
-		return $this->getKey();
-	}
+    /**
+     * @param Auction $auction
+     * @return mixed
+     */
+    public function getCreatedAuctionOffers( Auction $auction )
+    {
+        return $this->auctionOffers()->where('auction_id', $auction->id);
+    }
 
-	/**
-	 * Get the password for the user.
-	 *
-	 * @return string
-	 */
-	public function getAuthPassword()
-	{
-		return $this->password;
-	}
-
-	/**
-	 * Get the e-mail address where password reminders are sent.
-	 *
-	 * @return string
-	 */
-	public function getReminderEmail()
-	{
-		return $this->email;
-	}
-
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function auctionOffers()
+    {
+        return $this->hasMany(AuctionOffer::getClass());
+    }
 }

@@ -184,6 +184,13 @@
       }
     }
 
+    .welcome-message{background:#FFF; font-size:18px; color:#043572; line-height:40px; vertical-align: middle; margin: 0px auto; text-align: center; margin-top:110px;
+      @media(max-width:@screen-md) {
+        margin-top:40px;
+      }
+
+    }
+
     .register-form{
       padding:40px 50px;
       @media (min-width: 360px) {
@@ -209,6 +216,8 @@
       a:hover{text-decoration: none;}
 
       .buttons{.make-row()}
+
+      .errors{font-size:12px; color:#F00; margin: 0px;}
 
       .blue-btn{background:url('../img/register-form-btn.png'); width:91px; height:56px; border:0px; color:#FFF; font-size:14px;}
       .big-btn{width:146px;}
@@ -271,6 +280,10 @@
       background:url('../img/menu-item.png') no-repeat; width:@menu-item-width; height: @menu-item-height + 8;
     }
 
+    a{color:#000;}
+    a:hover{text-decoration: none}
+
+    img{max-width:70px;}
 
     .img-info{font-size:16px; text-align: center}
     .img-info:hover{color:@primary-color}

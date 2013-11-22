@@ -20,7 +20,7 @@ class Link extends Model {
     /**
      * @var array
      */
-    protected static $dontDuplicate = array('url');
+    protected $dontDuplicate = array('url');
 
     /**
      * @var array

@@ -1,34 +1,56 @@
 <div class="main-title">
-    <a href="#">شقق للإيجار فى القاهرة</a>
+    <a href="#">{{ $estate->title }}</a>
 </div>
 
 
 <div class="one-estate">
 
     <div class="img-div">
-        <img src="{{ URL::asset('app/img/estate_demo.png') }}" alt=""/>
+        @if($image = $estate->getImage('main'))
+        <img class="img-responsive" src="{{ $image->getLargest()->url }}" alt=""/>
+        @endif
 
-        <div class="img-title">3,500.00 جنيه</div>
+        <div class="img-title">{{ $estate->price }} جنيه</div>
     </div>
 
     <div class="info-div">
         <p class="description">
-            شقة للايجار بالمهندسين بجوار نادى 150م غرفتين - ريسبيشن - حمام - مطبخ هاى لوكس بالدور ال 2 - اسانسير فيو نادى الصيد بسعر 3500ج للاستعلام 01007124627
+            {{ $estate->description }}
         </p>
 
         <div class="key-value">
             <span class="key">الخدمة المطلوبة:-</span>
-            <span class="value">معرض</span>
+            <span class="value">{{ $estate->getTypeString() }}</span>
         </div>
 
         <div class="key-value">
-            <span class="key">الالمطلوبة:-</span>
-            <span class="value">معرض</span>
+            <span class="key">عدد الغرف:-</span>
+            <span class="value">{{ $estate->number_of_rooms }}</span>
         </div>
 
         <div class="key-value">
-            <span class="key">الخدمة المطلوبة:-</span>
-            <span class="value">معرض</span>
+            <span class="key">المساحة:-</span>
+            <span class="value">{{ $estate->area }}</span>
+        </div>
+
+        <div class="key-value">
+            <span class="key">المنطقة/الحى:-</span>
+            <span class="value">{{ $estate->region }}</span>
+        </div>
+
+        <div class="key-value">
+            <span class="key">السعر:-</span>
+            <span class="value">{{ $estate->price }}</span>
+        </div>
+
+        <div class="key-value">
+            <span class="key">رقم الهاتف:-</span>
+            <span class="value">{{ $estate->ownerInfo->telephone_number }}</span>
+        </div>
+
+        <div class="key-value">
+            <span class="key">رقم الجوال:-</span>
+            <span class="value">{{ $estate->ownerInfo->mobile_number }}</span>
         </div>
     </div>
 
@@ -37,7 +59,7 @@
 <div class="separator"></div>
 
 <div class="main-title">
-    <a href="#">شقق للإيجار فى القاهرة</a>
+    <a href="#">مراسلة المعلن</a>
 </div>
 
 
@@ -45,13 +67,13 @@
     <div class="big-icon-pair">
         <img class="img-responsive" src="{{ URL::asset('app/img/icons/telephone.png') }}" alt=""/>
         <a href="#">
-            01127727794
+            {{ $estate->ownerInfo->mobile_number }}
         </a>
     </div>
 
     <div class="big-icon-pair">
         <img class="img-responsive" src="{{ URL::asset('app/img/icons/message.png') }}" alt=""/>
-        <a href="#">
+        <a href="mailto:{{ $estate->ownerInfo->contact_email }}" target="_top">
             ارسل بريد إلكترونى للمعلن
         </a>
     </div>

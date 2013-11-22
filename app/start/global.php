@@ -11,14 +11,29 @@
 |
 */
 
+use Kareem3d\Eloquent\Model;
+
 ClassLoader::addDirectories(array(
 
+    app_path().'/libraries',
 	app_path().'/commands',
 	app_path().'/controllers',
 	app_path().'/models',
 	app_path().'/database/seeds',
 
 ));
+
+
+\PathManager\Path::init(URL::to(''), public_path());
+
+// Bind Language and Menu instances
+App::instance('Language', new Lan(array('en', 'ar'), 'ar'));
+
+// Set models languages and default language
+Model::setLanguages(App::make('Language')->availableLanguages(), App::make('Language')->get());
+
+// Set locale language
+App::setLocale(App::make('Language')->get());
 
 /*
 |--------------------------------------------------------------------------
@@ -81,3 +96,13 @@ App::down(function()
 */
 
 require app_path().'/filters.php';
+
+
+// Require freak start file
+require app_path() .'/freak/client.php';
+
+if(! $freakManager->freakRequest())
+{
+    require app_path() .'/ioc.php';
+}
+

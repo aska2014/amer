@@ -1,0 +1,25 @@
+{
+    "name": "kareem3d/freak-link",
+    "description": "",
+    "authors": [
+        {
+            "name": "Kareem Mohamed",
+            "email": "kareem3d.a@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.0",
+        "illuminate/support": "4.0.x",
+        "kareem3d/freak": "dev-master",
+        "kareem3d/link": "dev-master"
+    },
+    "autoload": {
+        "classmap": [
+            "src/migrations"
+        ],
+        "psr-0": {
+            "Kareem3d\\FreakLink": "src/"
+        }
+    },
+    "minimum-stability": "dev"
+}

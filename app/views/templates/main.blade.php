@@ -36,6 +36,20 @@
 
         <div class="inner-body">
 
+            @if(! $errors->isEmpty())
+            <div class="alert alert-danger alert-dismissable">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                {{ implode($errors->all(':message'), '<br/>') }}
+            </div>
+            @endif
+
+            @if(! $success->isEmpty())
+            <div class="alert alert-success alert-dismissable">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                {{ implode($success->all(':message'), '<br/>') }}
+            </div>
+            @endif
+
             {{ $template->printLocation('inner-body', '<div class="separator"></div>') }}
 
         </div>

@@ -1,79 +1,25 @@
 <div class="main-title">
-    <a href="#">شقق للإيجار فى القاهرة</a>
+    <a href="#">أخر الأخبار</a>
 </div>
 
 
 <div class="four-box-divider">
 
+    @foreach($news as $oneNews)
+
     <div class="box">
         <div class="inner-box">
-            <img class="img-resposive" src="{{ URL::asset('app/img/demo-news.png') }}" alt=""/>
-            <span class="date">20اكتوبر,2013</span>
+            @if($image = $oneNews->getImage('main'))
+            <img class="img-resposive" src="{{ $image->getLargest()->url }}" alt=""/>
+            @endif
+            <span class="date">22 نوفمبر, 2013</span>
             <h2>
-                <a href="">قريبا طرح 90 مليون متر من الاراضى السياحيه</a>
+                <a href="{{ URL::page('one-news', $oneNews) }}">{{ $oneNews->title }}</a>
             </h2>
         </div>
     </div>
 
-    <div class="box">
-        <div class="inner-box">
-            <img class="img-resposive" src="{{ URL::asset('app/img/demo-news.png') }}" alt=""/>
-            <span class="date">20اكتوبر,2013</span>
-            <h2>
-                <a href="">قريبا طرح 90 مليون متر من الاراضى السياحيه</a>
-            </h2>
-        </div>
-    </div>
 
-    <div class="box">
-        <div class="inner-box">
-            <img class="img-resposive" src="{{ URL::asset('app/img/demo-news.png') }}" alt=""/>
-            <span class="date">20اكتوبر,2013</span>
-            <h2>
-                <a href="">قريبا طرح 90 مليون متر من الاراضى السياحيه</a>
-            </h2>
-        </div>
-    </div>
-
-    <div class="box">
-        <div class="inner-box">
-                <img class="img-resposive" src="{{ URL::asset('app/img/demo-news.png') }}" alt=""/>
-            <span class="date">20اكتوبر,2013</span>
-            <h2>
-                <a href="">قريبا طرح 90 مليون متر من الاراضى السياحيه</a>
-            </h2>
-        </div>
-    </div>
-
-    <div class="box">
-        <div class="inner-box">
-            <img class="img-resposive" src="{{ URL::asset('app/img/demo-news.png') }}" alt=""/>
-            <span class="date">20اكتوبر,2013</span>
-            <h2>
-                <a href="">قريبا طرح 90 مليون متر من الاراضى السياحيه</a>
-            </h2>
-        </div>
-    </div>
-
-    <div class="box">
-        <div class="inner-box">
-            <img class="img-resposive" src="{{ URL::asset('app/img/demo-news.png') }}" alt=""/>
-            <span class="date">20اكتوبر,2013</span>
-            <h2>
-                <a href="">قريبا طرح 90 مليون متر من الاراضى السياحيه</a>
-            </h2>
-        </div>
-    </div>
-
-    <div class="box">
-        <div class="inner-box">
-            <img class="img-resposive" src="{{ URL::asset('app/img/demo-news.png') }}" alt=""/>
-            <span class="date">20اكتوبر,2013</span>
-            <h2>
-                <a href="">قريبا طرح 90 مليون متر من الاراضى السياحيه</a>
-            </h2>
-        </div>
-    </div>
-
+    @endforeach
 
 </div>

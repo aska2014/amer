@@ -16,7 +16,7 @@
     <div class="navbar">
 
         <ul>
-            <li><a href="#">الرئيسية</a></li>
+            <li><a href="{{ URL::page('home') }}">الرئيسية</a></li>
             <li><a href="#">نبذه عن الشركة</a></li>
             <li><a href="#">خدمتنا</a></li>
             <li><a href="#">إتصل بنا</a></li>

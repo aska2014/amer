@@ -1,91 +1,31 @@
 <div class="large-menu">
 
-    <div class="menu-item">
-        <div class="item-img">
-            <img class="img-responsive" src="{{ URL::asset('app/img/menu1.png') }}" alt=""/>
-        </div>
+    <?php $i = 0; ?>
 
-        <div class="img-info">شقق تمليك</div>
+    @foreach($estateCategories as $category)
 
-
-        <div class="item-drop-down">
-            <ul>
-                <li><a href="#">إيجار قديم</a></li>
-                <li><a href="#">إيجار قديم</a></li>
-            </ul>
-        </div>
-    </div>
+    <?php $i++; ?>
 
     <div class="menu-item">
-        <div class="item-img">
-            <img class="img-responsive" src="{{ URL::asset('app/img/menu1.png') }}" alt=""/>
-        </div>
+        <a href="{{ URL::page('all-estates', $category) }}">
+            <div class="item-img">
+                @if($image = $category->getImage('main'))
+                <img class="img-responsive" src="{{ $image->getLargest()->url }}" alt=""/>
+                @endif
+            </div>
 
-        <div class="img-info">شقق تمليك</div>
+            <div class="img-info">{{ $category->title }}</div>
+        </a>
     </div>
 
-    <div class="menu-item">
-        <div class="item-img">
-            <img class="img-responsive" src="{{ URL::asset('app/img/menu1.png') }}" alt=""/>
-        </div>
-
-        <div class="img-info">شقق تمليك</div>
-    </div>
-
-    <div class="menu-item">
-        <div class="item-img">
-            <img class="img-responsive" src="{{ URL::asset('app/img/menu1.png') }}" alt=""/>
-        </div>
-
-        <div class="img-info">شقق تمليك</div>
-    </div>
-
-    <div class="menu-item">
-        <div class="item-img">
-            <img class="img-responsive" src="{{ URL::asset('app/img/menu1.png') }}" alt=""/>
-        </div>
-
-        <div class="img-info">شقق تمليك</div>
-    </div>
-
-    <div class="menu-item">
-        <div class="item-img">
-            <img class="img-responsive" src="{{ URL::asset('app/img/menu1.png') }}" alt=""/>
-        </div>
-
-        <div class="img-info">شقق تمليك</div>
-    </div>
-
-
-    <div class="menu-item">
-        <div class="item-img">
-            <img class="img-responsive" src="{{ URL::asset('app/img/menu1.png') }}" alt=""/>
-        </div>
-
-        <div class="img-info">شقق تمليك</div>
-    </div>
-
-    <div class="menu-item">
-        <div class="item-img">
-            <img class="img-responsive" src="{{ URL::asset('app/img/menu1.png') }}" alt=""/>
-        </div>
-
-        <div class="img-info">شقق تمليك</div>
-    </div>
-
-    <div class="menu-item">
-        <div class="item-img">
-            <img class="img-responsive" src="{{ URL::asset('app/img/menu1.png') }}" alt=""/>
-        </div>
-
-        <div class="img-info">شقق تمليك</div>
-    </div>
+    @endforeach
 </div>
 
 
 <div class="large-menu-dropdown">
-    <select name="" class="form-control">
-        <option value="">شقق تمليك</option>
+    <select class="form-control change-redirect">
+        @foreach($estateCategories as $category)
+        <option value="{{ URL::page('category', $category) }}">{{ $category->title }}</option>
+        @endforeach
     </select>
-
 </div>
