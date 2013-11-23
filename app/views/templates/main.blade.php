@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Amer group</title>
 
+    <script src="{{ URL::asset('app/lib/respond.min.js') }}"></script>
+
     {{ $template->printAssets('css') }}
 
 </head>
