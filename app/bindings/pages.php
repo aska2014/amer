@@ -40,4 +40,6 @@ PageRepository::share('one-news', function($view)
 PageRepository::share('one-slider', function($view)
 {
     $view->slider = $view->link->getModel();
+
+    ! $view->slider AND App::abort(404);
 });
