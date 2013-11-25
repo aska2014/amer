@@ -11,4 +11,7 @@ public/albums
 
 vendor/*
 !vendor/kareem3d/
+!vendor/composer/
+
+
 www.zip
