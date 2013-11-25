@@ -18,7 +18,9 @@
         "kareem3d/freak-images": "dev-master",
 
         "kareem3d/marketing": "dev-master",
-        "kareem3d/freak-seo": "dev-master"
+        "kareem3d/freak-seo": "dev-master",
+
+        "kareem3d/tracking": "dev-master"
 	},
 	"autoload": {
 		"classmap": [

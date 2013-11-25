@@ -15,31 +15,6 @@ class UserInfo extends Model {
 	 */
 	protected $table = 'ka_user_info';
 
-    /**
-     * Validations rules
-     *
-     * @var array
-     */
-    protected $rules = array(
-        'ip'       => 'required|ip',
-    );
-
-    /**
-     * @return mixed|void
-     */
-    public function beforeSave()
-    {
-        // Don't duplicate all except ip
-        if(empty($this->dontDuplicate))
-        {
-            $keys = array_keys($this->getAttributes());
-
-            unset($keys['ip']);
-
-            $this->dontDuplicate = array($keys);
-        }
-    }
-
 
     /**
      * @return void

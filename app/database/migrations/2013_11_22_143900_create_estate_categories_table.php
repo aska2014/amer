@@ -17,8 +17,8 @@ class CreateEstateCategoriesTable extends Migration {
 			$table->increments('id');
 
             // Parent categroy
-            $table->integer('estate_category_id')->unsigned()->nullable();
-            $table->foreign('estate_category_id')->references('id')->on('estate_categories')->onDelete('CASCADE');
+            $table->integer('parent_id')->unsigned()->nullable();
+            $table->foreign('parent_id')->references('id')->on('estate_categories')->onDelete('CASCADE');
 
 			$table->timestamps();
 		});

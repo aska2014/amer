@@ -5,19 +5,47 @@ use Kareem3d\Membership\UserInfo as Kareem3dUserInfo;
 class UserInfo extends Kareem3dUserInfo {
 
     /**
-     * @param array $attributes
+     * Validations rules
+     *
+     * @var array
      */
-    public function __construct(array $attributes = array())
+    protected $rules = array(
+
+        'ip'            => 'required|ip',
+        'first_name'    => 'required',
+    );
+
+    /**
+     * @var array
+     */
+    protected $arCustomMessages = array(
+        'first_name.required'    => 'يجب إدخال الأسم بالكامل'
+    );
+
+    /**
+     * @param UserInfo $userInfo
+     */
+    public function merge(UserInfo $userInfo)
     {
-        parent::__construct($attributes);
+        foreach($userInfo->getAttributes() as $key => $value)
+        {
+            if(! $this->getAttribute($key))
+            {
+                $this->setAttribute($key, $value);
+            }
+        }
 
-        // Rules for the user information
-        $this->rules = array_merge($this->rules, array(
+        // Update ip
+        $this->ip = $userInfo->ip;
 
-            'first_name' => 'required',
-            'contact_email' => 'required',
-            'telephone_number' => 'required',
-            'mobile_number' => 'required'
-        ));
+        $this->save();
+    }
+
+    /**
+     * @return string
+     */
+    public function getContactNumberAttribute()
+    {
+        return $this->telephone_number ?: $this->mobile_number;
     }
 }

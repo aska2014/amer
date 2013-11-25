@@ -45,7 +45,7 @@ class News extends \Kareem3d\Eloquent\Model {
      */
     public function getSlug()
     {
-        return Str::slug(Str::words($this->en('title'), 3, ''));
+        return 'news-' . $this->id . '.html';
     }
 
 }

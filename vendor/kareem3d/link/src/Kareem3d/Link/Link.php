@@ -331,6 +331,7 @@ class Link extends Model {
 
     /**
      * @param $key
+     * @return string
      */
     public function getArgument( $key )
     {

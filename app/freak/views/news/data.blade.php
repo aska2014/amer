@@ -4,8 +4,7 @@
 <thead>
 <tr>
     <th>Id</th>
-    <th>English Title</th>
-    <th>Arabic Title</th>
+    <th>Title</th>
     <th>Tools</th>
 </tr>
 </thead>
@@ -13,7 +12,6 @@
 @foreach($news as $oneNews)
 <tr>
     <td>{{ $oneNews->id }}</td>
-    <td>{{ $oneNews->en('title') }}</td>
     <td>{{ $oneNews->ar('title') }}</td>
 
     @include('freak::elements.tools', array('id' => $oneNews->id))
@@ -23,8 +21,7 @@
 <tfoot>
 <tr>
     <th>Id</th>
-    <th>English Title</th>
-    <th>Arabic Title</th>
+    <th>Title</th>
     <th>Tools</th>
 </tr>
 </tfoot>

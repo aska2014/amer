@@ -15,9 +15,10 @@ class ApplicationClient extends Freak\Core\Client {
     public function elements()
     {
         return array(
-//            Element::withDefaults('product', new Product()),
+            Element::withDefaults('estate', new Estate()),
             Element::withDefaults('category', new EstateCategory()),
             Element::withDefaults('news', new News()),
+            Element::withDefaults('slider', new Slider())
         );
     }
 
@@ -32,10 +33,16 @@ class ApplicationClient extends Freak\Core\Client {
         ClassLoader::addDirectories(__DIR__ . '/Controllers');
         View::addNamespace('panel', __DIR__ . '/views');
 
-//        $freak->modifyElement('product', function(Element $element)
-//        {
-//            $element->setController('FreakProductController');
-//        });
+        $freak->modifyElement('estate', function(Element $element)
+        {
+            $element->setController('FreakEstateController');
+
+            $element->setMenuItem(Item::make(
+                'Estate', '', Icon::make('icon-archive')
+            )->addChildren(array(
+                    Item::make('Display all estates', $element->getUri(), Icon::make('icol-inbox'))
+                )));
+        });
 
         $freak->modifyElement('category', function(Element $element)
         {
@@ -45,6 +52,11 @@ class ApplicationClient extends Freak\Core\Client {
         $freak->modifyElement('news', function(Element $element)
         {
             $element->setController('FreakNewsController');
+        });
+
+        $freak->modifyElement('slider', function(Element $element)
+        {
+            $element->setController('FreakSliderController');
         });
     }
 

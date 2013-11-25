@@ -10,15 +10,14 @@
     <div class="box">
         <div class="inner-box">
             @if($image = $oneNews->getImage('main'))
-            <img class="img-resposive" src="{{ $image->getLargest()->url }}" alt=""/>
+            <a href="{{ URL::page('one-news', $oneNews) }}"><img class="img-resposive" src="{{ $image->getNearest(143, 105) }}" alt="{{ $oneNews->title }}"/></a>
             @endif
-            <span class="date">22 نوفمبر, 2013</span>
+            <span class="date">{{ $date->date('d F Y', $oneNews->created_at) }}</span>
             <h2>
                 <a href="{{ URL::page('one-news', $oneNews) }}">{{ $oneNews->title }}</a>
             </h2>
         </div>
     </div>
-
 
     @endforeach
 

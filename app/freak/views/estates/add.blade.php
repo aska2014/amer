@@ -6,18 +6,13 @@
         <div class="widget">
             <div class="widget-header">
                 <span class="title">Estate</span>
-                <div class="toolbar">
-                    <ul class="nav nav-pills">
-                        <li class="active"><a href="#tab-02" data-toggle="tab">Arabic</a></li>
-                    </ul>
-                </div>
             </div>
             <div class="tab-content widget-content form-container">
                 <div class="tab-pane active" id="tab-01">
                     <form class="form-horizontal form-editor" method="POST">
 
                         <div class="control-group">
-                            <label class="control-label" for="input05">Category</label>
+                            <label class="control-label" for="input05">عنوان الإعلان</label>
                             <div class="controls">
                                 <select name="Estate[category_id]" required>
                                     <option value="">Select category</option>

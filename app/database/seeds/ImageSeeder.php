@@ -14,18 +14,6 @@ class ImageSeeder extends \Illuminate\Database\Seeder {
 
 
 
-        $group = Group::create(array(
-            'name' => 'Estate.Gallery'
-        ));
-
-        $group->specs()->create(array(
-            'directory' => 'albums/estates/gallery'
-        ));
-
-
-
-
-
 
 
         $group = Group::create(array(
@@ -33,9 +21,15 @@ class ImageSeeder extends \Illuminate\Database\Seeder {
         ));
 
         $group->specs()->create(array(
-            'directory' => 'albums/estates/xx103'
+            'directory' => 'albums/estates/200x150'
         ))->setCode(new Code(array(
-                'code' => '$image->resize(null, 103, true); return $image;'
+                'code' => '$image->grab(200, 150, true); return $image;'
+            )));
+
+        $group->specs()->create(array(
+            'directory' => 'albums/estates/145x145'
+        ))->setCode(new Code(array(
+                'code' => '$image->grab(145, 145, true); return $image;'
             )));
 
         $group->specs()->create(array(
@@ -51,9 +45,15 @@ class ImageSeeder extends \Illuminate\Database\Seeder {
         ));
 
         $group->specs()->create(array(
-            'directory' => 'albums/news/xx103'
+            'directory' => 'albums/news/143x105'
         ))->setCode(new Code(array(
-                'code' => '$image->resize(null, 103, true); return $image;'
+                'code' => '$image->grab(143, 105, true); return $image;'
+            )));
+
+        $group->specs()->create(array(
+            'directory' => 'albums/news/450x268'
+        ))->setCode(new Code(array(
+                'code' => '$image->grab(450, 268, true); return $image;'
             )));
 
         $group->specs()->create(array(
@@ -64,6 +64,21 @@ class ImageSeeder extends \Illuminate\Database\Seeder {
 
 
 
+        $group = Group::create(array(
+            'name' => 'Slider.Main'
+        ));
+
+        $group->specs()->create(array(
+            'directory' => 'albums/sliders/596x210'
+        ))->setCode(new Code(array(
+                'code' => '$image->resize(596, 210, true); return $image;'
+            )));
+
+        $group->specs()->create(array(
+            'directory' => 'albums/sliders/normal'
+        ));
+
+
 
 
         $group = Group::create(array(
@@ -71,9 +86,9 @@ class ImageSeeder extends \Illuminate\Database\Seeder {
         ));
 
         $group->specs()->create(array(
-            'directory' => 'albums/categories/main'
+            'directory' => 'albums/categories/70x70'
         ))->setCode(new Code(array(
-                'code' => '$image->grab(114, 115); return $image;'
+                'code' => '$image->grab(70, 70); return $image;'
             )));
     }
 }

@@ -14,7 +14,11 @@
                     <ul>
                     	@foreach($users as $user)
                         <li>
+                            @if($authUser->isAccess($user::HIGH_ACCESS))
+                            <a href="{{ freakUrl('permissions/user/'.$user->id) }}">
+                            @else
                             <a href="#">
+                            @endif
 
                                 <span class="thumbnail">
                                     {{ $user->getImage('profile')->html() }}

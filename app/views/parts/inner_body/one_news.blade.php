@@ -1,15 +1,17 @@
 <div class="main-title">
-    <a href="#">{{ $oneNews->title }}</a>
+    <a href="#">تفاصيل الخبر</a>
 </div>
 
 <div class="one-news">
 
     <h2><a href="#">{{ $oneNews->title }}</a></h2>
 
-    <span class="date">السبت، 19 أكتوبر 2013 - 08:26</span>
+    <span class="date">
+        {{ $date->date('l, d F Y - H:m', $oneNews->created_at) }}
+    </span>
 
     @if($image = $oneNews->getImage('main'))
-    <img class="img-responsive" src="{{ $image->getLargest()->url }}" alt=""/>
+    <img class="img-responsive" src="{{ $image->getNearest(450, 268) }}" alt=""/>
     @endif
 
     <p>

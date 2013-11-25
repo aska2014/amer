@@ -11,6 +11,17 @@
         <th>Arabic Title</th>
         <td>{{ $category->ar('title') }}</td>
     </tr>
+
+    @if($category->parent)
+    <tr>
+        <th>Parent</th>
+        <td>
+            <a href="{{ freakUrl('element/category/show/'.$category->parent->id) }}">
+            {{ $category->parent->en('title') ?: $category->parent->ar('title') }}
+            </a>
+        </td>
+    </tr>
+    @endif
     </tbody>
 </table>
 @stop

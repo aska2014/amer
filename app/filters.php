@@ -11,15 +11,21 @@
 |
 */
 
-App::before(function($request)
+use Tracking\Tracker;
+
+App::before(function(\Illuminate\Http\Request $request)
 {
-	//
+    // Not freak request
+    if($request->getMethod() === 'GET' && !App::make('FreakManager')->freakRequest())
+    {
+        Tracker::instance()->save();
+    }
 });
 
 
 App::after(function($request, $response)
 {
-	//
+    Tracker::instance()->done();
 });
 
 /*
@@ -35,7 +41,7 @@ App::after(function($request, $response)
 
 Route::filter('auth', function()
 {
-	if (Auth::guest()) return Redirect::guest('login');
+	if (Auth::guest()) return Redirect::to(URL::page('login-register'))->withErrors('يجب عليك التسجيل او الدخول لحسابك الشخصى اولاً');
 });
 
 
@@ -57,7 +63,7 @@ Route::filter('auth.basic', function()
 
 Route::filter('guest', function()
 {
-	if (Auth::check()) return Redirect::to('/');
+	if (Auth::check()) return Redirect::to(URL::page('home'));
 });
 
 /*

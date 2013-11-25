@@ -2,84 +2,110 @@
     <a href="#">شقق للإيجار فى القاهرة</a>
 </div>
 
-<form role="form" class="form-horizontal" method="POST" action="{{ URL::route('add-estate') }}">
+<form enctype="multipart/form-data" role="form" class="form-horizontal" method="POST" action="{{ URL::route('add-estate') }}" ng-controller="AddEstateController">
     <div class="form-group">
-        <label for="text">عنوان الأعلان</label>
-        <input class="form-control" type="text" id="text" name="Estate[title]"
-               placeholder="هذا الحقل لعنوان نص الاعلان وليس لعنوان المكان">
+        <label for="title-input">عنوان الأعلان</label>
+        <input class="form-control" type="text" id="title-input" name="Estate[title]" value="{{ Input::old('Estate.title') }}"
+               placeholder="هذا الحقل لعنوان نص الاعلان وليس لعنوان المكان" required>
     </div>
     <div class="form-group">
-        <label for="text">المكان</label>
-        <input class="form-control" type="text" id="text" name="Estate[place]">
+        <label for="city-input">المدينة</label>
+        <input class="form-control" type="text" id="city-input" name="Estate[city]" value="{{ Input::old('Estate.city') }}" required>
     </div>
     <div class="form-group">
-        <label for="text">الحى \ المنطقه</label>
-        <input class="form-control" type="text" id="text" name="Estate[region]">
+        <label for="region-input">الحى \ المنطقه</label>
+        <input class="form-control" type="text" id="region-input" name="Estate[region]" value="{{ Input::old('Estate.region') }}" required>
     </div>
-    <div class="form-group">
-        <label for="text">نوع العقار</label>
-        <select class="form-control" name="Estate[estate_category_id]">
+
+    <hr/>
+
+    <div class="form-group" ng-init="estate.category_id={{ Input::old('Estate.estate_category_id', 0) }}">
+        <label for="category-input">نوع العقار</label>
+        <div class="two-inputs">
+
+            <select id="category-input" class="form-control" ng-model="estate.parent_category_id" required>
+                <option value="">اختر نوع العقار</option>
+                @foreach($estateCategories as $category)
+                <option value="{{ $category->id }}">{{ $category->title }}</option>
+                @endforeach
+            </select>
+
             @foreach($estateCategories as $category)
-            <option value="{{ $category->id }}">{{ $category->title }}</option>
+            @if(! $category->children->isEmpty())
+            <select class="form-control" id="child-category-input" ng-model="estate.child_category_id" ng-show="estate.parent_category_id == {{ $category->id }}">
+                @foreach($category->children as $childCategory)
+                <option value="{{ $childCategory->id }}">{{ $childCategory->title }}</option>
+                @endforeach
+            </select>
+            @endif
             @endforeach
-        </select>
+        </div>
+
+        <input type="hidden" name="Estate[estate_category_id]" value="{{ angular('getCategoryId()') }}"/>
     </div>
     <div class="form-group">
-        <label for="text">عدد الغرف</label>
-        <select class="form-control" name="Estate[number_of_rooms]">
+        <label for="auction-input">مزاد ؟</label>
+        <input type="checkbox" id="auction-input" name="estate-has-auction" ng-init="estate.auction={{ Input::old('estate-has-auction') ? 'true' : 'false' }}" ng-model="estate.auction">
+    </div>
+    <div class="form-group">
+        <label for="price-input">السعر</label>
+        <div ng-if="! estate.auction">
+            <input class="form-control" type="text" id="price-input" name="Estate[price]" value="{{ Input::old('Estate.price') }}" required>
+        </div>
+        <div class="two-inputs" ng-if="estate.auction" ng-cloak>
+            <input class="form-control" type="text" name="Auction[start_price]" value="{{ Input::old('Auction.start_price') }}" placeholder="الأدنى" required>
+            <input class="form-control" type="text" name="Auction[end_price]" value="{{ Input::old('Auction.end_price') }}" placeholder="الأعلى" required>
+        </div>
+    </div>
+
+    <hr/>
+
+    <div class="form-group">
+        <label for="image-input">صورة الاعلان</label>
+        <div class="two-inputs">
+            <input type="file" id="image-input" name="estate-img"/>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="description-input">نص الاعلان</label>
+        <textarea class="form-control" id="description-input" name="Estate[description]">{{ Input::old('Estate.description') }}</textarea>
+    </div>
+    <div class="form-group">
+        <label for="number-of-rooms-input">عدد الغرف</label>
+        <select class="form-control" id="number-of-rooms-input" name="Estate[number_of_rooms]" ng-init="estate.number_of_rooms={{ Input::old('Estate.number_of_rooms', 1) }}" ng-model="estate.number_of_rooms" required>
+
             <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>
             <option value="4">4</option>
             <option value="5">5</option>
             <option value="6">6</option>
+
         </select>
     </div>
     <div class="form-group">
-        <label for="text">الخدمة المطلوبه</label>
-        <select class="form-control" name="Estate[type]">
-            @foreach($estateTypes as $key => $value)
-            <option value="{{ $key }}">{{ $value }}</option>
-            @endforeach
-        </select>
+        <label for="area-input">المساحة</label>
+        <input class="form-control" type="text" id="area-input" name="Estate[area]" value="{{ Input::old('Estate.area') }}" required>
+    </div>
+
+    <hr/>
+
+    <div class="form-group">
+        <label for="user-name-input">اسم صاحب الاعلان</label>
+        <input class="form-control" type="text" id="user-name-input" name="UserInfo[name]" value="{{ Input::old('UserInfo.name') ?: $authUser->name }}" required>
     </div>
     <div class="form-group">
-        <label for="text">المساحة</label>
-        <input class="form-control" type="text" id="text" name="Estate[area]" >
+        <label for="user-mobile-input">رقم الموبيل</label>
+        <input class="form-control" type="text" id="user-mobile-input" name="UserInfo[mobile_number]" value="{{ Input::old('UserInfo.mobile_number') ?: $authUser->mobile_number }}">
     </div>
     <div class="form-group">
-        <label for="text">نص الاعلان</label>
-        <textarea class="form-control" name="Estate[description]"></textarea>
+        <label for="user-telephone-input">رقم الهاتف</label>
+        <input class="form-control" type="text" id="user-telephone-input" name="UserInfo[telephone_number]" value="{{ Input::old('UserInfo.telephone_number') ?: $authUser->telephone_number }}">
     </div>
     <div class="form-group">
-        <label for="text">صورة الاعلان</label>
-        <div class="two-inputs">
-            <input type="file" name="estate-img"/>
-        </div>
-    </div>
-    <div class="form-group">
-        <label for="text">السعر</label>
-        <input class="form-control" type="text" id="text" name="Estate[price]" >
-<!--        <div class="two-inputs">-->
-<!--            <input class="form-control" type="text" id="text" name="text"  placeholder="الأدنى">-->
-<!--            <input class="form-control" type="text" id="text" name="text"  placeholder="الأعلى">-->
-<!--        </div>-->
-    </div>
-    <div class="form-group">
-        <label for="text">اسم صاحب الاعلان</label>
-        <input class="form-control" type="text" id="text" name="UserInfo[name]" >
-    </div>
-    <div class="form-group">
-        <label for="text">رقم الموبيل</label>
-        <input class="form-control" type="text" id="text" name="UserInfo[mobile_number]" >
-    </div>
-    <div class="form-group">
-        <label for="text">رقم الهاتف</label>
-        <input class="form-control" type="text" id="text" name="UserInfo[telephone_number]" >
-    </div>
-    <div class="form-group">
-        <label for="text">البريد الإلكترونى</label>
-        <input class="form-control" type="email" id="text" name="UserInfo[contact_email]" >
+        <label for="user-email-input">البريد الإلكترونى</label>
+        <input class="form-control" type="email" id="user-email-input" name="UserInfo[contact_email]" value="{{ Input::old('UserInfo.contact_email') ?: $authUser->contact_email }}" required>
     </div>
 
     <div class="buttons">

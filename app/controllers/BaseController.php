@@ -2,7 +2,7 @@
 
 use Illuminate\Support\MessageBag;
 
-class BaseController extends Controller {
+class BaseController extends \Kareem3d\Link\DynamicController {
 
     /**
      * @var \Illuminate\Support\MessageBag

@@ -172,6 +172,17 @@ abstract class Model extends \Illuminate\Database\Eloquent\Model {
     {
         if($this->validator) return $this->validator;
 
+        if(empty($this->customMessages))
+        {
+            // Check if language custom messages are set
+            $customMessagesString = static::getCurrentLanguage() . 'CustomMessages';
+
+            if(! empty($this->$customMessagesString))
+            {
+                $this->customMessages = $this->$customMessagesString;
+            }
+        }
+
         $this->validator = Validator::make($this->getAttributes(), $this->rules, $this->customMessages);
 
         return $this->validator;
@@ -189,10 +200,12 @@ abstract class Model extends \Illuminate\Database\Eloquent\Model {
         // Will reset validator to validate the model again
         $this->resetValidator();
 
+
         if($this->getValidator()->passes()) {
 
             return true;
         }
+
 
         return false;
     }
@@ -668,7 +681,7 @@ abstract class Model extends \Illuminate\Database\Eloquent\Model {
      */
     public function same( Model $model )
     {
-        return ($model->id == $this->id);
+        return ($model->getClass() == $this->getClass()) and ($model->id == $this->id);
     }
 
     /**

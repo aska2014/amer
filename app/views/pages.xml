@@ -16,7 +16,12 @@
 
         <upper-body>upper_body.latest_news | upper_body.menu | upper_body.offer</upper-body>
 
-        <inner-body>inner_body.advertisement | inner_body.latest_news | inner_body.special_offers</inner-body>
+        <inner-body>inner_body.advertisement | inner_body.slider | inner_body.special_offers</inner-body>
+    </page>
+
+
+    <page name="one-slider">
+        <inner-body>inner_body.one_slider</inner-body>
     </page>
 
 
@@ -45,8 +50,8 @@
     </page>
 
 
-    <page name="register">
-        <inner-body>inner_body.register</inner-body>
+    <page name="login-register">
+        <inner-body>inner_body.login_register</inner-body>
     </page>
 
 

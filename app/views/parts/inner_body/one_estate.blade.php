@@ -7,10 +7,10 @@
 
     <div class="img-div">
         @if($image = $estate->getImage('main'))
-        <img class="img-responsive" src="{{ $image->getLargest()->url }}" alt=""/>
+        <img class="img-responsive" src="{{ $image->getNearest(200, 150)->url }}" alt=""/>
         @endif
 
-        <div class="img-title">{{ $estate->price }} جنيه</div>
+        <div class="img-title">{{ $estate->price->format() }}</div>
     </div>
 
     <div class="info-div">
@@ -19,8 +19,22 @@
         </p>
 
         <div class="key-value">
-            <span class="key">الخدمة المطلوبة:-</span>
-            <span class="value">{{ $estate->getTypeString() }}</span>
+            <span class="key">المدينة:-</span>
+            <span class="value">{{ $estate->city }}</span>
+        </div>
+
+        <div class="key-value">
+            <span class="key">المنطقة/الحى:-</span>
+            <span class="value">{{ $estate->region }}</span>
+        </div>
+
+        <div class="key-value">
+            <span class="key">نوع العقار:-</span>
+            <span class="value">
+                <a href="{{ URL::page('all-estates', $estate->category) }}">
+                {{ $estate->category->title }}
+                </a>
+            </span>
         </div>
 
         <div class="key-value">
@@ -34,24 +48,23 @@
         </div>
 
         <div class="key-value">
-            <span class="key">المنطقة/الحى:-</span>
-            <span class="value">{{ $estate->region }}</span>
-        </div>
-
-        <div class="key-value">
             <span class="key">السعر:-</span>
             <span class="value">{{ $estate->price }}</span>
         </div>
 
+        @if($estate->ownerInfo->telephone_number)
         <div class="key-value">
             <span class="key">رقم الهاتف:-</span>
             <span class="value">{{ $estate->ownerInfo->telephone_number }}</span>
         </div>
+        @endif
 
+        @if($estate->ownerInfo->mobile_number)
         <div class="key-value">
             <span class="key">رقم الجوال:-</span>
             <span class="value">{{ $estate->ownerInfo->mobile_number }}</span>
         </div>
+        @endif
     </div>
 
 </div>
@@ -64,12 +77,14 @@
 
 
 <div class="row">
+    @if($estate->ownerInfo->contact_number)
     <div class="big-icon-pair">
         <img class="img-responsive" src="{{ URL::asset('app/img/icons/telephone.png') }}" alt=""/>
         <a href="#">
-            {{ $estate->ownerInfo->mobile_number }}
+            {{ $estate->ownerInfo->contact_number }}
         </a>
     </div>
+    @endif
 
     <div class="big-icon-pair">
         <img class="img-responsive" src="{{ URL::asset('app/img/icons/message.png') }}" alt=""/>

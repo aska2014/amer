@@ -1,6 +1,6 @@
 <?php
 
-use Kareem3d\Membership\UserInfo;
+use Helper\Helper;
 
 class RegisterController extends BaseController {
 
@@ -40,7 +40,9 @@ class RegisterController extends BaseController {
 
         $user->setInfo($userInfo);
 
-        return Redirect::to(URL::page('home'))->with('success', 'لقد تم التسجيل بنجاح');
+        Auth::login($user, false);
+
+        return Redirect::to(URL::page('home'))->with('success', trans('messages.success.register'))->withInput();
     }
 
     /**
@@ -70,6 +72,8 @@ class RegisterController extends BaseController {
 
         $userInfo = $this->usersInfo->newInstance($userInfoInputs);
 
+
+
         if(! $userInfo->validate()) {
 
             $this->addErrors($userInfo->getValidatorMessages());
@@ -83,14 +87,21 @@ class RegisterController extends BaseController {
      */
     protected function getUserInputs()
     {
-        return Input::get('User');
+        return Helper::instance()->arrayGetKeys(Input::get('Register'), array('email', 'password'));
     }
 
     /**
+     * Get rest of keys which are supposed to be the user info as far as we know
+     *
      * @return mixed
      */
     protected function getUserInfoInputs()
     {
-        return Input::get('UserInfo');
+        $userInfoInputs = array_diff_key(Input::get('Register'), $this->getUserInputs());
+
+        // Contact email is the same email he registered with.
+        $userInfoInputs['contact_email'] = Input::get('Register.email');
+
+        return $userInfoInputs;
     }
 }

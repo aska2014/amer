@@ -8,6 +8,16 @@
   margin-bottom:10px;
 }
 
+.main-title-bright{
+  .make-md-column(12);
+
+  background:#EEE;
+  a{color:#333;}
+  padding:7px 20px;
+  text-align: right;
+  margin-bottom:10px;
+}
+
 .inner-body{
 
   .jqans-wrapper {
@@ -73,7 +83,7 @@
         .make-xs-column(12);
         padding:0px;
 
-        img{margin:0px auto;}
+        img{margin:0px auto; max-width:130px; border:3px solid @secondary-color;}
       }
       .info-div{
         .make-xs-column(12);
@@ -275,6 +285,11 @@
   .form-horizontal{
 
     .make-xs-column(12);
+    .make-md-column(11);
+
+    hr{.make-md-column(12); border-color: #DDD;}
+
+    input[type=checkbox]{float: right;}
 
     label{float:right; width:20%; font-size:16px; text-align: right; font-weight:normal;
       @media(max-width:@screen-xs) {

@@ -5,19 +5,39 @@ use Kareem3d\Templating\Part;
 use Kareem3d\Templating\PartRepository;
 
 /**
- * Top menu in the header
+ * Upper body parts
  */
 PartRepository::share('upper_body.menu', function($view)
 {
-    $view->estateCategories = EstateCategory::all()->take(9);
+    $view->estateCategories = App::make('EstateCategory')->parentCategories()->take(9);
+
+    // Don't show if categories are empty
+    $view->dontShowIf($view->estateCategories->isEmpty());
+});
+
+PartRepository::share('upper_body.latest_news', function($view)
+{
+    $view->latestNews = App::make('News')->first();
+
+    // Dont show if latest news is null
+    $view->dontShowIf($view->latestNews == null);
 });
 
 
+
 /**
- * Inner body
+ * Inner body parts
  */
-PartRepository::share('inner_body.add_estate', function($view)
+PartRepository::share('inner_body.special_offers', function($view)
 {
-    $view->estateCategories = EstateCategory::all();
-    $view->estateTypes      = App::make('Estate')->getTypes();
+    $view->specials = App::make('EstateAlgorithm')->specials()->take(4)->get();
+
+    $view->dontShowIf($view->specials->isEmpty());
+});
+
+PartRepository::share('inner_body.slider', function($view)
+{
+    $view->sliders = App::make('Slider')->get();
+
+    $view->dontShowIf($view->sliders->isEmpty());
 });

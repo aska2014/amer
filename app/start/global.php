@@ -12,6 +12,7 @@
 */
 
 use Kareem3d\Eloquent\Model;
+use Tracking\Tracker;
 
 ClassLoader::addDirectories(array(
 
@@ -23,6 +24,12 @@ ClassLoader::addDirectories(array(
 
 ));
 
+require app_path('libraries/helpers.php');
+
+Tracker::instance()->setMechanism(function()
+{
+   return Request::url();
+});
 
 \PathManager\Path::init(URL::to(''), public_path());
 

@@ -1,11 +1,8 @@
 <!DOCTYPE HTML>
-<html lang="en">
+<html lang="en" ng-app="amer">
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Amer group</title>
-
-    <script src="{{ URL::asset('app/lib/respond.min.js') }}"></script>
 
     {{ $template->printAssets('css') }}
 

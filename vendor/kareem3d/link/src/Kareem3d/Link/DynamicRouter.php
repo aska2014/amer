@@ -97,6 +97,8 @@ class DynamicRouter {
                 });
             }
 
+            App::instance('CurrentRoute', $route);
+
             $route->routeToLink($currentLink);
         }
     }

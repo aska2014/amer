@@ -62,9 +62,11 @@ class FreakCategoryController extends FreakController {
     {
         $category = $this->categories;
 
+        $estateCategories = $this->categories->parentCategories();
+
         $this->setPackagesData($category);
 
-        return View::make('panel::categories.add', compact('category'));
+        return View::make('panel::categories.add', compact('category', 'estateCategories'));
     }
 
     /**
@@ -77,9 +79,11 @@ class FreakCategoryController extends FreakController {
     {
         $category = $this->categories->find( $id );
 
+        $estateCategories = $this->categories->parentCategories($category);
+
         $this->setPackagesData($category);
 
-        return View::make('panel::categories.add', compact('category'));
+        return View::make('panel::categories.add', compact('category', 'estateCategories'));
     }
 
     /**
@@ -89,7 +93,7 @@ class FreakCategoryController extends FreakController {
      */
     public function postCreate()
     {
-        $category = $this->categories->findOrNew(Input::get('insert_id'))->fill(Input::get('Category'));
+        $category = $this->categories->findOrNew(Input::get('insert_id'))->fill($this->getInputs());
 
         $category->save();
 
@@ -108,14 +112,30 @@ class FreakCategoryController extends FreakController {
     {
         $category = $this->categories->find($id);
 
-        $category->fill(Input::get('Category'));
+        $category->fill($this->getInputs());
 
         try{
-        return $this->jsonValidateResponse($category);
+
+            return $this->jsonValidateResponse($category);
 
         }catch(Exception $e){
             dd(Input::get('Category'), $id, $e->getMessage());
         }
+    }
+
+    /**
+     * @return array
+     */
+    protected function getInputs()
+    {
+        $categoryInputs = Input::get('Category');
+
+        if(isset($categoryInputs['parent_id']) && ! $categoryInputs['parent_id'])
+        {
+            $categoryInputs['parent_id'] = NULL;
+        }
+
+        return $categoryInputs;
     }
 
     /**
@@ -128,6 +148,6 @@ class FreakCategoryController extends FreakController {
     {
         $this->categories->find($id)->delete();
 
-        return $this->redirectBack('EstateCategory deleted successfully.');
+        return Redirect::to(freakUrl('element/category'))->with('success', 'Estate category deleted successfully.');
     }
 }

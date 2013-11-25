@@ -5,10 +5,10 @@ use Kareem3d\Link\Link;
 
 class Estate extends \Kareem3d\Eloquent\Model {
 
-    const FOR_SALE = 0;
-    const FOR_RENT = 1;
-    const FOR_BUY = 2;
-    const AUCTION = 3;
+    const FOR_SALE = 'for-sale';
+    const FOR_RENT = 'for-rent';
+    const PURCHASE = 'purchase';
+    const AUCTION = 'auction';
 
     /**
      * @var array
@@ -23,19 +23,69 @@ class Estate extends \Kareem3d\Eloquent\Model {
     /**
      * @var array
      */
-    protected static $specs = array( 'title', 'place', 'region', 'description' );
+    protected static $specs = array( 'title', 'city', 'region', 'description' );
 
     /**
      * @var array
      */
     protected $rules = array(
         'title' => 'required',
-        'place' => 'required',
+        'city' => 'required',
         'region' => 'required',
         'estate_category_id' => 'required|exists:estate_categories,id',
         'number_of_rooms' => 'required|integer',
-        'type' => 'required|in:0,1,2'
     );
+
+    /**
+     * @var array
+     */
+    protected $arCustomMessages = array(
+        'title.required' => 'يجب إدخال عنوان العقار',
+        'city.required' => 'يجب إدخال المدينة',
+        'region.required' => 'يجد إدخال الحى او المنطقة',
+        'estate_category_id.required' => 'يجب إختيار نوع العقار',
+        'estate_category_id.exists' => 'يجب إختيار نوع العقار',
+        'number_of_rooms.required' => 'يجب إدخال عدد الغرف',
+        'number_of_rooms.integer' => 'يجب إدخال عدد الغرف',
+    );
+
+    /**
+     * @var array
+     */
+    protected $enCustomMessages = array(
+        'title.required' => '',
+        'city.required' => '',
+        'region.required' => '',
+        'estate_category_id.required' => '',
+        'estate_category_id.exists' => '',
+        'number_of_rooms.required' => '',
+        'number_of_rooms.integer' => '',
+        'type.required' => ''
+    );
+
+    /**
+     * Get estate service types...
+     *
+     * @return array
+     */
+    public function getTypes()
+    {
+        return array(
+            self::FOR_SALE,
+            self::FOR_RENT,
+            self::PURCHASE,
+            self::AUCTION
+        );
+    }
+
+    /**
+     * @param $value
+     * @return string
+     */
+    public function getPriceAttribute( $value )
+    {
+        return $this->getCurrentLanguage() === 'en' ? new Price($value, 'EGP') : new Price($value, 'جنيه', 'value currency');
+    }
 
     /**
      * Create link and attach to it after saving.
@@ -44,7 +94,7 @@ class Estate extends \Kareem3d\Eloquent\Model {
      */
     public function afterSave()
     {
-        // If link doesn't exist for this product then create new one..
+        // If link doesn't exist for this estate then create new one..
         Link::getByPageAndModel('one-estate', $this) or Link::create(array(
 
             'relative_url' => $this->getSlug(),
@@ -54,25 +104,23 @@ class Estate extends \Kareem3d\Eloquent\Model {
     }
 
     /**
+     * @return bool|null|void
+     */
+    public function delete()
+    {
+        $link = Link::getByPageAndModel('one-estate', $this);
+
+        $link and $link->delete();
+
+        return parent::delete();
+    }
+
+    /**
      * @return string
      */
     public function getSlug()
     {
-        return Str::slug(Str::words($this->en('title'), 3, ''));
-    }
-
-    /**
-     * @return array
-     */
-    public function getTypes()
-    {
-        return array(
-
-            self::FOR_SALE => 'للبيع',
-            self::FOR_RENT => 'للإيجار',
-            self::FOR_BUY => 'للشراء',
-            self::AUCTION => 'المزاد',
-        );
+        return rtrim($this->category->getSlug(), '.html') . '/estate-' . $this->id . '.html';
     }
 
     /**
@@ -111,7 +159,7 @@ class Estate extends \Kareem3d\Eloquent\Model {
     /**
      * @return \Illuminate\Support\Collection
      */
-    public function getUser()
+    public function getUserAttribute()
     {
         return User::getByCreation( $this )->first();
     }
@@ -129,7 +177,7 @@ class Estate extends \Kareem3d\Eloquent\Model {
      */
     public function category()
     {
-        return $this->belongsTo(EstateCategory::getClass());
+        return $this->belongsTo(EstateCategory::getClass(), 'estate_category_id');
     }
 
     /**

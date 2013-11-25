@@ -1,6 +1,6 @@
 <?php
 
-use Illuminate\Support\MessageBag;
+use Tracking\Tracker;
 
 class LoginController extends BaseController {
 
@@ -15,6 +15,16 @@ class LoginController extends BaseController {
     public function __construct(User $users)
     {
         $this->users = $users;
+
+        $this->beforeFilter('guest');
+    }
+
+    /**
+     * @return mixed
+     */
+    public function show()
+    {
+        return $this->page()->printMe();
     }
 
     /**
@@ -25,12 +35,22 @@ class LoginController extends BaseController {
         // Attempt to login with user inputs
         if(Auth::attempt($this->getLoginInputs(), Input::has('Login.remember')))
         {
-            return Redirect::back()->with('success', 'لقد تم الدخول بنجاح.');
+            // If the previous url is equal to the register-login url
+            if(URL::previous() === URL::page('login-register'))
+            {
+                $redirectUrl = Tracker::instance()->getBefore(URL::previous());
+            }
+
+            // Else which means he might have logged in from the home page..
+            else
+            {
+                $redirectUrl = URL::previous();
+            }
+
+            return Redirect::to($redirectUrl)->with('success', trans('messages.success.login'));
         }
 
-        $this->addErrors(array('الإيميل او الباسورد غير صحيح.'));
-
-        return Redirect::back()->withErrors($this->errors);
+        return Redirect::back()->withErrors(trans('messages.errors.login'))->withInput();
     }
 
     /**
@@ -38,7 +58,7 @@ class LoginController extends BaseController {
      */
     protected function getLoginInputs()
     {
-        return Input::get('Login');
+        return Input::get('Login' , array());
     }
 
 }

@@ -43,9 +43,35 @@ class FreakEstateController extends FreakController {
      */
     public function getIndex()
     {
+        Asset::addPlugin('datatables');
+        Asset::addPlugin('ibutton');
+
         $estates = $this->estates->get();
 
         return View::make('panel::estates.data', compact('estates'));
+    }
+
+    /**
+     * @return mixed
+     */
+    public function postMakeSpecial()
+    {
+        $specials = Input::get('Estate.special', array());
+        $specialIds = Input::get('Estate.special_ids', array());
+
+        foreach($specialIds as $id)
+        {
+            // Get estate by id
+            $estate = $this->estates->find($id);
+
+            // Make special
+            $estate->special = isset($specials[$id]);
+
+            // Save to database
+            $estate->save();
+        }
+
+        return Redirect::back()->with('success', 'Estates special updated successfully.');
     }
 
     /**
@@ -70,6 +96,7 @@ class FreakEstateController extends FreakController {
      */
     public function getCreate()
     {
+        return Redirect::to(freakUrl('element/estate'));
         Asset::addPlugin('ckeditor');
 
         $estate = $this->estates;
@@ -89,6 +116,7 @@ class FreakEstateController extends FreakController {
      */
     public function getEdit($id)
     {
+        return Redirect::to(freakUrl('element/estate/show/' . $id));
         $estate = $this->estates->find( $id );
 
         $this->setPackagesData($estate);
@@ -147,6 +175,6 @@ class FreakEstateController extends FreakController {
     {
         $this->estates->find($id)->delete();
 
-        return $this->redirectBack('Estate deleted successfully.');
+        return Redirect::to(freakUrl('element/estate'))->with('success', 'Estate deleted successfully.');
     }
 }

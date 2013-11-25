@@ -132,6 +132,6 @@ class FreakNewsController extends FreakController {
     {
         $this->news->find($id)->delete();
 
-        return $this->redirectBack('News deleted successfully.');
+        return Redirect::to(freakUrl('element/news'))->with('success', 'News deleted successfully.');
     }
 }

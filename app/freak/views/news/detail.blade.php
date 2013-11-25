@@ -4,12 +4,12 @@
 <table class="table table-striped table-detail-view">
     <tbody>
     <tr>
-        <th>English Title</th>
-        <td>{{ $news->en('title') }}</td>
+        <th>Title</th>
+        <td>{{ $news->ar('title') }}</td>
     </tr>
     <tr>
-        <th>Arabic Title</th>
-        <td>{{ $news->ar('title') }}</td>
+        <th>Description</th>
+        <td>{{ $news->ar('description') }}</td>
     </tr>
     </tbody>
 </table>

@@ -215,7 +215,10 @@ abstract class User extends Model implements UserInterface, RemindableInterface 
      */
     public function getInfo()
     {
-        return $this->info()->first();
+        if($this->exists)
+        {
+            return $this->info()->first();
+        }
     }
 
     /**

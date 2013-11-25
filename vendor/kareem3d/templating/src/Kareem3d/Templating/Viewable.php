@@ -16,6 +16,11 @@ abstract class Viewable {
     protected $assetCollection;
 
     /**
+     * @var bool
+     */
+    protected $show = true;
+
+    /**
      * @return AssetCollection
      */
     public function getAssetCollection()
@@ -109,9 +114,13 @@ abstract class Viewable {
      */
     public function printMe(array $args = array())
     {
-        $this->share($args);
+        // If only allowed to show this.
+        if($this->show)
+        {
+            $this->share($args);
 
-        return $this->getView()->__toString();
+            return $this->getView()->__toString();
+        }
     }
 
     /**
@@ -126,6 +135,23 @@ abstract class Viewable {
      * @return string
      */
     public abstract function getViewName();
+
+    /**
+     * @param $condition
+     * @return void
+     */
+    public function dontShowIf( $condition )
+    {
+        $this->show = ! ((bool) $condition);
+    }
+
+    /**
+     * @return void
+     */
+    public function showIf( $condition )
+    {
+        $this->show = (bool) $condition;
+    }
 
     /**
      * @param $property

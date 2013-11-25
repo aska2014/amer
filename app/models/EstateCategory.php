@@ -25,6 +25,19 @@ class EstateCategory extends \Kareem3d\Eloquent\Model {
     protected static $specs = array('title');
 
     /**
+     * @param EstateCategory $except
+     * @return \Illuminate\Database\Eloquent\Collection
+     */
+    public static function parentCategories( EstateCategory $except = null )
+    {
+        $query = static::where('parent_id', NULL);
+
+        if($except) $query->where('id', '!=', $except->id);
+
+        return $query->get();
+    }
+
+    /**
      * Create link and attach to it after saving.
      *
      * @return mixed|void
@@ -45,7 +58,7 @@ class EstateCategory extends \Kareem3d\Eloquent\Model {
      */
     public function getSlug()
     {
-        return Str::slug(Str::words($this->en('title'), 3, ''));
+        return 'estate-category-' . $this->id . '.html';
     }
 
     /**
@@ -53,7 +66,7 @@ class EstateCategory extends \Kareem3d\Eloquent\Model {
      */
     public function children()
     {
-        return $this->hasMany(EstateCategory::getClass());
+        return $this->hasMany(EstateCategory::getClass(), 'parent_id');
     }
 
     /**
@@ -61,7 +74,7 @@ class EstateCategory extends \Kareem3d\Eloquent\Model {
      */
     public function parent()
     {
-        return $this->belongsTo(EstateCategory::getClass());
+        return $this->belongsTo(EstateCategory::getClass(), 'parent_id');
     }
 
     /**

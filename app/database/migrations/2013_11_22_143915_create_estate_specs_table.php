@@ -17,7 +17,7 @@ class CreateEstateSpecsTable extends Migration {
 			$table->increments('id');
 
             $table->string('title');
-            $table->string('place');
+            $table->string('city');
             $table->string('region');
             $table->text('description');
 

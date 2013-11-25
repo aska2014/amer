@@ -6004,6 +6004,11 @@ td.visible-print {
     A set of useful LESS mixins
     More info at: http://lesselements.com
   ---------------------------------------------------*/
+[ng\:cloak],
+[ng-cloak],
+.ng-cloak {
+  display: none !important;
+}
 body {
   background: #cac7a6;
   font-family: Arial;
@@ -6723,6 +6728,14 @@ body {
     margin-top: 40px;
   }
 }
+.advanced-search .left-search .welcome-message a {
+  margin-right: 10px;
+  color: #F00;
+  text-decoration: underline;
+}
+.advanced-search .left-search .welcome-message a:hover {
+  text-decoration: none;
+}
 .advanced-search .left-search .register-form {
   padding: 40px 50px;
   margin: 0px auto;
@@ -6878,6 +6891,8 @@ body {
 }
 .latest-news .latest-news-text {
   padding-top: 10px;
+  width: 500px;
+  float: right;
 }
 .latest-news a {
   color: #FFF;
@@ -7145,6 +7160,25 @@ body {
 .main-title a {
   color: #FFF;
 }
+.main-title-bright {
+  position: relative;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  background: #EEE;
+  padding: 7px 20px;
+  text-align: right;
+  margin-bottom: 10px;
+}
+@media (min-width: 992px) {
+  .main-title-bright {
+    float: left;
+    width: 100%;
+  }
+}
+.main-title-bright a {
+  color: #333;
+}
 .inner-body {
   /**
    * Slider in home page
@@ -7265,6 +7299,8 @@ body {
 }
 .inner-body .body-specials .special .img-div img {
   margin: 0px auto;
+  max-width: 130px;
+  border: 3px solid #025b89;
 }
 .inner-body .body-specials .special .info-div {
   position: relative;
@@ -7527,12 +7563,34 @@ body {
   color: #002a80;
 }
 .inner-body .form-horizontal {
-  position: relative;
   float: left;
   width: 100%;
+  position: relative;
   min-height: 1px;
   padding-left: 15px;
   padding-right: 15px;
+}
+@media (min-width: 992px) {
+  .inner-body .form-horizontal {
+    float: left;
+    width: 91.66666666666666%;
+  }
+}
+.inner-body .form-horizontal hr {
+  position: relative;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  border-color: #DDD;
+}
+@media (min-width: 992px) {
+  .inner-body .form-horizontal hr {
+    float: left;
+    width: 100%;
+  }
+}
+.inner-body .form-horizontal input[type=checkbox] {
+  float: right;
 }
 .inner-body .form-horizontal label {
   float: right;

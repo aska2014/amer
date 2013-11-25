@@ -17,12 +17,13 @@ class CreateEstatesTable extends Migration {
 			$table->increments('id');
 
             $table->smallInteger('number_of_rooms');
-            $table->smallInteger('type')->default(Estate::FOR_SALE);
 
             // This will be null in case of auction
             $table->float('price')->nullable();
 
             $table->float('area');
+
+            $table->boolean('special');
 
             $table->integer('owner_info_id')->unsigned();
             $table->foreign('owner_info_id')->references('id')->on('ka_user_info')->onDelete('CASCADE');

@@ -188,7 +188,7 @@ class Image extends Model {
      * @param bool $lowerSize
      * @return Version
      */
-    public function getNearest( $width, $height, $lowerSize = false )
+    public function getNearest( $width, $height, $lowerSize = true )
     {
         return $this->getVersionAlgorithm()->nearestDim($width, $height, $lowerSize)->byImage($this)->first();
     }
