@@ -12,6 +12,9 @@ public/albums
 vendor/*
 !vendor/kareem3d/
 !vendor/composer/
+!vendor/classpreloader/
+!vendor/bin/
+!vendor/autoload.php
 
 
 www.zip
