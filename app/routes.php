@@ -33,7 +33,9 @@ Route::get('/convert-images', function()
 
         if(count($pieces) > 1)
         {
-            echo $file . '<br />';
+            $newFile .= '\\' . $pieces[0] . '\\' . $pieces[1];
+
+            echo $newFile . '<br />';
         }
     }
 });
