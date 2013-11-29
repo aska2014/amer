@@ -32,10 +32,13 @@ Route::get('/test', function()
             ->where('email', $estate->ownerInfo->contact_email)->first(array('ka_user_accounts.id'));
 
 
-        dd($id);
+        var_dump($id);
 
-        $estate->user_id = $id;
+        echo '<BR />';
+        echo '<BR />';
 
-        $estate->save();
+//        $estate->user_id = $id;
+//
+//        $estate->save();
     }
 });
