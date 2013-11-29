@@ -21,3 +21,12 @@ Route::get('/logout', array('as' => 'logout', function()
 
 Route::model('estate', \Estate\Estate::getClass());
 Route::model('auction', \Auction\Auction::getClass());
+
+
+Route::get('/test', function()
+{
+    foreach(\Estate\Estate::all() as $estate)
+    {
+        var_dump($estate->ownerInfo->email);
+    }
+});
