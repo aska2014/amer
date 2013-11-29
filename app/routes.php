@@ -29,9 +29,6 @@ Route::get('/convert-images', function()
 
     foreach(scandir($path) as $file)
     {
-        if(is_file($file))
-        {
             echo $file . PHP_EOL;
-        }
     }
 });
