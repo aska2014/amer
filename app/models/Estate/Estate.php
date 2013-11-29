@@ -2,6 +2,7 @@
 
 use Auction\Auction;
 use Illuminate\Support\Str;
+use Kareem3d\Images\Image;
 use Kareem3d\Link\Link;
 use Price;
 use Special\Special;
@@ -68,11 +69,11 @@ class Estate extends \Kareem3d\Eloquent\Model {
     /**
      * @param $type
      */
-    public function getImage($type)
+    public function getImage($type = '')
     {
         $image = parent::getImage($type);
 
-        return $image->exists ? $image : parent::getImage('estate-default');
+        return $image->exists ? $image : Image::where('type', 'estate-default')->first();
     }
 
     /**
