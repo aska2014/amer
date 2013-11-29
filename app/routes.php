@@ -33,7 +33,7 @@ Route::get('/convert-images', function()
 
         if(count($pieces) > 1)
         {
-            $newFile = $path . '\\' . $pieces[0] . '\\' . $pieces[1];
+            $newFile = realpath($path . '\\' . $pieces[0] . '\\' . $pieces[1]);
 
             echo $newFile . '<br />';
         }
