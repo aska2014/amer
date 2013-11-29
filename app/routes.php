@@ -21,13 +21,3 @@ Route::get('/logout', array('as' => 'logout', function()
 
 Route::model('estate', \Estate\Estate::getClass());
 Route::model('auction', \Auction\Auction::getClass());
-
-
-Route::get('create-default', function()
-{
-    $versions = \Kareem3d\Images\Version::generate('http://www.amergroup2.com/app/img/estate-default.png');
-
-    \Kareem3d\Images\Image::create(array(
-        'title' => 'Estate default image',
-    ))->add($versions);
-});
