@@ -14,7 +14,7 @@ class ModifyEstatesTable extends Migration {
 	{
 		Schema::table('estates', function(Blueprint $table)
 		{
-
+            $table->engine = 'InnoDB';
             $table->dropColumn('special');
 
             $table->boolean('accepted')->default(false);

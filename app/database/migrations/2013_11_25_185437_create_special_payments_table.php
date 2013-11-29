@@ -14,6 +14,7 @@ class CreateSpecialPaymentsTable extends Migration {
 	{
 		Schema::create('special_payments', function(Blueprint $table)
 		{
+            $table->engine = 'InnoDB';
 			$table->increments('id');
 
             $table->boolean('received')->default(false);

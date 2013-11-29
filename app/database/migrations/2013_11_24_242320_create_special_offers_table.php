@@ -14,6 +14,7 @@ class CreateSpecialOffersTable extends Migration {
 	{
 		Schema::create('special_offers', function(Blueprint $table)
 		{
+            $table->engine = 'InnoDB';
 			$table->increments('id');
 
             $table->float('price');

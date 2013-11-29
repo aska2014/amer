@@ -14,6 +14,7 @@ class CreateSliderSpecsTable extends Migration {
 	{
 		Schema::create('slider_specs', function(Blueprint $table)
 		{
+            $table->engine = 'InnoDB';
 			$table->increments('id');
 
             $table->string('title');

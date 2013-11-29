@@ -14,6 +14,7 @@ class CreateSpecialsTable extends Migration {
 	{
 		Schema::create('specials', function(Blueprint $table)
 		{
+            $table->engine = 'InnoDB';
 			$table->increments('id');
 
             $table->dateTime('from');
