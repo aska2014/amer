@@ -27,10 +27,12 @@ Route::get('/test', function()
 {
     foreach(\Estate\Estate::all() as $estate)
     {
-        var_dump(DB::table('ka_user_accounts')
+        $id = DB::table('ka_user_accounts')
             ->join('ka_user_info', 'ka_user_accounts.user_info_id', '=', 'ka_user_info.id')
-            ->where('email', $estate->ownerInfo->contact_email)->first(array('ka_user_accounts.id')));
+            ->where('email', $estate->ownerInfo->contact_email)->first(array('ka_user_accounts.id'))->id;
 
-        echo PHP_EOL;
+        $estate->user_id = $id;
+
+        $estate->save();
     }
 });
