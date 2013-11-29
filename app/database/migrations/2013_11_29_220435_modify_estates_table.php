@@ -15,10 +15,8 @@ class ModifyEstatesTable extends Migration {
 		Schema::table('estates', function(Blueprint $table)
 		{
             $table->engine = 'InnoDB';
-            $table->dropColumn('special');
 
             $table->boolean('accepted')->default(false);
-
 
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('ka_user_accounts')->onDelete('CASCADE');
