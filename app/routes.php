@@ -29,6 +29,11 @@ Route::get('/convert-images', function()
 
     foreach(scandir($path) as $file)
     {
-            echo $file . PHP_EOL;
+        $pieces = explode('\\', $file);
+
+        if($pieces > 1)
+        {
+            echo $file . '<br />';
+        }
     }
 });
