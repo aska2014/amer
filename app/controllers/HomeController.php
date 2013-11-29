@@ -7,7 +7,6 @@ class HomeController extends BaseController {
      */
     public function index()
     {
-        dd('asdf');
         return $this->page()->printMe();
     }
 }
