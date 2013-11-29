@@ -11,11 +11,6 @@ PartRepository::share('upper_body.menu', function($view)
 {
     $view->estateCategories = App::make('Estate\EstateCategory')->parentCategories()->take(9);
 
-    foreach($view->estateCategories as $category)
-    {
-        dd($category->getImage('main')->getLargest());
-    }
-
     // Don't show if categories are empty
     $view->dontShowIf($view->estateCategories->isEmpty());
 });
