@@ -14,7 +14,7 @@ Route::post('/add-auction-offer-{auction}', array('as' => 'add-auction', 'uses' 
 Route::get('/logout', array('as' => 'logout', function()
 {
     Auth::logout();
-
+    
     try{ return Redirect::back();}catch(Exception $e){return Redirect::to(URL::page('home'));}
 }));
 
