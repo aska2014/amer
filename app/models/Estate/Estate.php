@@ -67,6 +67,16 @@ class Estate extends \Kareem3d\Eloquent\Model {
     );
 
     /**
+     * @param $type
+     */
+    public function getImage($type = '')
+    {
+        $image = parent::getImage($type);
+
+        return $image->exists ? $image : Image::where('type', 'estate-default')->first();
+    }
+
+    /**
      * @return bool
      */
     public function hasPayments()
