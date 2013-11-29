@@ -18,7 +18,7 @@ class ModifyEstatesTable extends Migration {
 
             $table->boolean('accepted')->default(false);
 
-            $table->integer('user_id')->unsigned();
+            $table->integer('user_id')->unsigned()->nullable();
             $table->foreign('user_id')->references('id')->on('ka_user_accounts')->onDelete('CASCADE');
 
 		});
@@ -33,8 +33,6 @@ class ModifyEstatesTable extends Migration {
 	{
 		Schema::table('estates', function(Blueprint $table)
 		{
-            $table->boolean('special')->default(false);
-
             $table->dropForeign('user_id');
 
             $table->dropColumn('accepted');
