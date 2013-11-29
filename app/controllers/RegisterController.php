@@ -22,6 +22,8 @@ class RegisterController extends BaseController {
     {
         $this->users = $users;
         $this->usersInfo = $usersInfo;
+
+        $this->beforeFilter('guest');
     }
 
     /**
@@ -71,7 +73,6 @@ class RegisterController extends BaseController {
         $userInfoInputs = $this->getUserInfoInputs();
 
         $userInfo = $this->usersInfo->newInstance($userInfoInputs);
-
 
 
         if(! $userInfo->validate()) {

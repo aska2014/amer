@@ -1,4 +1,4 @@
-<?php
+<?php namespace Estate;
 
 use Illuminate\Database\Query\Builder;
 
@@ -7,9 +7,29 @@ class EstateAlgorithm extends \Kareem3d\Eloquent\Algorithm {
     /**
      * @return $this
      */
+    public function notAccepted()
+    {
+        $this->getQuery()->where('accepted', false);
+
+        return $this;
+    }
+
+    /**
+     * @return $this
+     */
+    public function accepted()
+    {
+        $this->getQuery()->where('accepted', true);
+
+        return $this;
+    }
+
+    /**
+     * @return $this
+     */
     public function specials()
     {
-        $this->getQuery()->where('special', true);
+//        $this->getQuery()->whereIn('id', $ids);
 
         return $this;
     }

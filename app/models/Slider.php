@@ -24,28 +24,4 @@ class Slider extends \Kareem3d\Eloquent\Model {
      */
     protected static $specs = array('title' , 'small_description', 'large_description');
 
-    /**
-     * Create link and attach to it after saving.
-     *
-     * @return mixed|void
-     */
-    public function afterSave()
-    {
-        // If link doesn't exist for this product then create new one..
-        Link::getByPageAndModel('one-slider', $this) or Link::create(array(
-
-            'relative_url' => $this->getSlug(),
-            'page' => 'one-slider',
-            'model' => $this
-        ));
-    }
-
-    /**
-     * @return string
-     */
-    public function getSlug()
-    {
-        return 'slider-' . $this->id . '.html';
-    }
-
 }

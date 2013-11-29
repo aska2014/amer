@@ -18,7 +18,7 @@
                 </div>
                 <div class="buttons">
                     <button type="submit" class="blue-btn">دخول</button>
-                    <button type="button" onclick="window.location.href = '{{ URL::page('login-register') }}'" class="blue-btn big-btn">مستخدم جديد</button>
+                    <button type="button" onclick="window.location.href = '{{ URL::page('login/show') }}'" class="blue-btn big-btn">مستخدم جديد</button>
                 </div>
 
                 @if(! $errors->isEmpty())

@@ -14,13 +14,13 @@
     <tr>
         <th>Page</th>
         <td>
-            {{ $link->page }}
+            {{ $link->page_name }}
         </td>
     </tr>
     <tr>
-        <th>Arguments</th>
+        <th>Model</th>
         <td>
-            {{ $link->getArgumentsString() }}
+            {{ $link->linkable_type . ' ' . $link->linkable_id }}
         </td>
     </tr>
     </tbody>

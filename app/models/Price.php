@@ -30,6 +30,28 @@ class Price {
     }
 
     /**
+     * @param $value
+     * @return Price
+     */
+    public static function make($value)
+    {
+        $price = null;
+
+        switch(App::make('Language')->get())
+        {
+            case 'en':
+                $price = new Price($value, 'EGP');
+                break;
+
+            case 'ar':
+                $price = new Price($value, 'جنيه', 'value currency');
+                break;
+        }
+
+        return $price ?: new Price($value, 'EGP');
+    }
+
+    /**
      * @return string
      */
     public function value()

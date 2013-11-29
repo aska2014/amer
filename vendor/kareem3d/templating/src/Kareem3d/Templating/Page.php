@@ -10,19 +10,42 @@ class Page {
     public $identifier;
 
     /**
+     * @var string
+     */
+    protected $type;
+
+    /**
      * @var Template
      */
     protected $template;
 
     /**
      * @param $identifier
+     * @param $type
      * @param Template $template
      * @return \Kareem3d\Templating\Page
      */
-    public function __construct($identifier, Template $template)
+    public function __construct($identifier, $type, Template $template)
     {
         $this->identifier = $identifier;
+        $this->type       = $type;
         $this->template  = $template;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isDynamic()
+    {
+        return strtolower($this->type) == 'dynamic';
+    }
+
+    /**
+     * @return bool
+     */
+    public function isStatic()
+    {
+        return strtolower($this->type) == 'static';
     }
 
     /**

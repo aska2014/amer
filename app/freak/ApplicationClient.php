@@ -1,11 +1,16 @@
 <?php
 
+use Estate\Estate;
+use Estate\EstateCategory;
 use Illuminate\Support\Str;
 use Kareem3d\Ecommerce\Order;
 use Kareem3d\Freak;
 use Kareem3d\Freak\Core\Element;
 use Kareem3d\Freak\Menu\Icon;
 use Kareem3d\Freak\Menu\Item;
+use Special\Special;
+use Special\SpecialOffer;
+use Special\SpecialPayment;
 
 class ApplicationClient extends Freak\Core\Client {
 
@@ -18,7 +23,9 @@ class ApplicationClient extends Freak\Core\Client {
             Element::withDefaults('estate', new Estate()),
             Element::withDefaults('category', new EstateCategory()),
             Element::withDefaults('news', new News()),
-            Element::withDefaults('slider', new Slider())
+            Element::withDefaults('slider', new Slider()),
+            Element::withDefaults('offer', new SpecialOffer()),
+            Element::withDefaults('payment', new SpecialPayment()),
         );
     }
 
@@ -35,28 +42,24 @@ class ApplicationClient extends Freak\Core\Client {
 
         $freak->modifyElement('estate', function(Element $element)
         {
-            $element->setController('FreakEstateController');
-
             $element->setMenuItem(Item::make(
                 'Estate', '', Icon::make('icon-archive')
             )->addChildren(array(
-                    Item::make('Display all estates', $element->getUri(), Icon::make('icol-inbox'))
+                    Item::make('Display new estates', $element->getUri('not-accepted'), Icon::make('icol-award-star-gold')),
+                    Item::make('Display accepted estates', $element->getUri('accepted'), Icon::make('icol-accept')),
+                    Item::make('Display all estates', $element->getUri(), Icon::make('icol-inbox')),
                 )));
         });
 
-        $freak->modifyElement('category', function(Element $element)
-        {
-            $element->setController('FreakCategoryController');
-        });
 
-        $freak->modifyElement('news', function(Element $element)
+        $freak->modifyElement('payment', function(Element $element)
         {
-            $element->setController('FreakNewsController');
-        });
+            $element->setMenuItem(Item::make(
+                'Payments', '', Icon::make('icon-archive')
+            )->addChildren(array(
+                    Item::make('Display all payments', $element->getUri(), Icon::make('icol-inbox')),
+                )));
 
-        $freak->modifyElement('slider', function(Element $element)
-        {
-            $element->setController('FreakSliderController');
         });
     }
 

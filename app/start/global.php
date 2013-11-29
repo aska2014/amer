@@ -26,6 +26,11 @@ ClassLoader::addDirectories(array(
 
 require app_path('libraries/helpers.php');
 
+\Symfony\Component\Translation\PluralizationRules::set(function( $number )
+{
+    return ($number == 1) ? 0 : 1;
+}, 'ar');
+
 Tracker::instance()->setMechanism(function()
 {
    return Request::url();
@@ -113,3 +118,5 @@ if(! $freakManager->freakRequest())
     require app_path() .'/ioc.php';
 }
 
+// Require bindings files
+require app_path('parts.php');

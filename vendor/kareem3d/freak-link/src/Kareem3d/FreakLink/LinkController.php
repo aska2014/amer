@@ -4,19 +4,19 @@ use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\View;
 use Kareem3d\Controllers\FreakController;
-use Kareem3d\Link\Link;
+use Kareem3d\Link\DynamicLink;
 
 class LinkController extends FreakController {
 
     /**
-     * @var Link
+     * @var DynamicLink
      */
     protected $links;
 
     /**
-     * @var Link
+     * @var DynamicLink
      */
-    public function __construct( Link $links )
+    public function __construct( DynamicLink $links )
     {
         $this->links = $links;
     }
@@ -28,7 +28,7 @@ class LinkController extends FreakController {
      */
     public function getIndex()
     {
-        $links = $this->links->get();
+        $links = $this->links->all();
 
         return View::make('freak-link::link.data', compact('links'));
     }
@@ -102,16 +102,6 @@ class LinkController extends FreakController {
     protected function getInputs()
     {
         $inputs = Input::get('Link');
-
-        if($inputs['arguments'])
-        {
-            parse_str($inputs['arguments'], $inputs['arguments']);
-        }
-        else
-        {
-            $inputs['arguments'] = array();
-        }
-
         return $inputs;
     }
 

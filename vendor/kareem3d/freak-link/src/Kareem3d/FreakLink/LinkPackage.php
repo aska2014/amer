@@ -1,5 +1,7 @@
 <?php namespace Kareem3d\FreakLink;
 
+use Helper\EmptyClass;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\View;
 use Kareem3d\Eloquent\Model;
@@ -7,6 +9,7 @@ use Kareem3d\Freak\Core\Package;
 use Kareem3d\Freak;
 use Kareem3d\Freak\Core\PackageData;
 use Kareem3d\Link\Link;
+use Kareem3d\Link\LinkRepository;
 
 class LinkPackage extends Package {
 
@@ -65,9 +68,9 @@ class LinkPackage extends Package {
      */
     protected function getLink()
     {
-        $link = Link::getByPageAndModel($this->getExtra('link-page'), $this->getElementData()->getModel());
+        $link = App::make('Kareem3d\Link\DynamicLink')->getByPageAndModel($this->getExtra('link-page'), $this->getElementData()->getModel());
 
-        return $link ?: new Link();
+        return $link ?: App::make('Kareem3d\Link\DynamicLink');
     }
 
     /**
@@ -83,20 +86,22 @@ class LinkPackage extends Package {
      */
     public function store()
     {
-        $link = $this->getLink();
+        $model = $this->getElementData()->getModel();
 
-        $link->update(array(
-            'relative_url' => Input::get('Link.relative_url'),
-            'page_name' => $this->getExtraRequired('link-page'),
-            'arguments' => $this->getExtra('link-arguments', array())
+        if(! $model) return;
+
+        $link = App::make('Kareem3d\Link\DynamicLink')->create(array(
+
+            'page_name'     => $this->getExtraRequired('link-page'),
+            'url'           => Input::get('Link.url'),
+            'linkable_type' => $model->getClass(),
+            'linkable_id'   => $model->getKey()
         ));
-
-        $link->attachTo($this->getElementData()->getModel());
 
         return $this->jsonSuccess(array(
             'packageData' => array(
                 'model_type' => $link->getClass(),
-                'model_id'   => $link->id,
+                'model_id'   => $link->getKey(),
                 'from'       => 'link',
             )
         ));

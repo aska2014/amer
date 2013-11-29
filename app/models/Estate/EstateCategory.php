@@ -1,4 +1,4 @@
-<?php
+<?php namespace Estate;
 
 use Kareem3d\Link\Link;
 
@@ -35,30 +35,6 @@ class EstateCategory extends \Kareem3d\Eloquent\Model {
         if($except) $query->where('id', '!=', $except->id);
 
         return $query->get();
-    }
-
-    /**
-     * Create link and attach to it after saving.
-     *
-     * @return mixed|void
-     */
-    public function afterSave()
-    {
-        // If link doesn't exist for this product then create new one..
-        Link::getByPageAndModel('all-estates', $this) or Link::create(array(
-
-            'relative_url' => $this->getSlug(),
-            'page' => 'all-estates',
-            'model' => $this
-        ));
-    }
-
-    /**
-     * @return string
-     */
-    public function getSlug()
-    {
-        return 'estate-category-' . $this->id . '.html';
     }
 
     /**

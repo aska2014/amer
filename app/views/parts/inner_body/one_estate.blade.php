@@ -1,13 +1,19 @@
+@if($showNotAcceptedMessage)
+<div class="alert alert-danger alert-dismissable">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+    {{ trans('messages.errors.estate_not_accepted') }}
+</div>
+@endif
+
 <div class="main-title">
     <a href="#">{{ $estate->title }}</a>
 </div>
-
 
 <div class="one-estate">
 
     <div class="img-div">
         @if($image = $estate->getImage('main'))
-        <img class="img-responsive" src="{{ $image->getNearest(200, 150)->url }}" alt=""/>
+        <img class="img-responsive" src="{{ $image->getNearest(200, 150) }}" alt=""/>
         @endif
 
         <div class="img-title">{{ $estate->price->format() }}</div>
@@ -17,6 +23,21 @@
         <p class="description">
             {{ $estate->description }}
         </p>
+
+        @if($estate->auction)
+        <div class="key-value">
+            <span class="key">المزاد يبدأ من:-</span>
+            <span class="value">{{ $estate->auction->start_price->format() }}</span>
+        </div>
+        <div class="key-value">
+            <span class="key">المزاد ينتهى عند:-</span>
+            <span class="value">{{ $estate->auction->end_price->format() }}</span>
+        </div>
+        <div class="key-value">
+            <span class="key">أعلى عرض حتى الأن:-</span>
+            <span class="value">{{ $estate->auction->highest_offer_price->format() }}</span>
+        </div>
+        @endif
 
         <div class="key-value">
             <span class="key">المدينة:-</span>
@@ -31,7 +52,7 @@
         <div class="key-value">
             <span class="key">نوع العقار:-</span>
             <span class="value">
-                <a href="{{ URL::page('all-estates', $estate->category) }}">
+                <a href="{{ URL::page('estate/all', $estate->category) }}">
                 {{ $estate->category->title }}
                 </a>
             </span>
@@ -108,3 +129,26 @@
         <a href="#">الإبلاغ عن إساءة</a>
     </div>
 </div>
+
+@if($showAddAuctionOffer)
+<hr />
+<div class="main-title" id="login-form-title">
+    <a href="#login-form-title">اضف عرضك</a>
+</div>
+
+<form role="form" class="form-horizontal" action="{{ URL::route('add-auction', $estate->auction->id) }}" method="POST">
+    <div class="form-group">
+        <label for="text">السعر</label>
+        <input class="form-control" type="text" id="text" name="AuctionOffer[price]" placeholder="المزاد يبدأ من
+        {{ $estate->auction->start_price->format() }}" value="{{ Input::old('AuctionOffer.price') }}">
+    </div>
+    <div class="form-group">
+        <label for="text">تفاصيل إضافية</label>
+        <textarea class="form-control" rows="4" id="text" name="AuctionOffer[description]">{{ Input::old('AuctionOffer.description') }}</textarea>
+    </div>
+
+    <div class="buttons">
+        <button type="submit" class="btn btn-default">أضف عرضك</button>
+    </div>
+</form>
+@endif

@@ -23,8 +23,6 @@ class CreateEstatesTable extends Migration {
 
             $table->float('area');
 
-            $table->boolean('special');
-
             $table->integer('owner_info_id')->unsigned();
             $table->foreign('owner_info_id')->references('id')->on('ka_user_info')->onDelete('CASCADE');
 

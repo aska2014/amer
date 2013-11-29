@@ -70,6 +70,18 @@ class PageRepository {
     }
 
     /**
+     * @param $array
+     * @return Page
+     */
+    public static function multiFind($array)
+    {
+        foreach($array as $value)
+        {
+            if($page = static::find($value)) return $page;
+        }
+    }
+
+    /**
      * @param string $identifier
      * @param $args
      */

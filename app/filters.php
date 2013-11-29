@@ -41,7 +41,7 @@ App::after(function($request, $response)
 
 Route::filter('auth', function()
 {
-	if (Auth::guest()) return Redirect::to(URL::page('login-register'))->withErrors('يجب عليك التسجيل او الدخول لحسابك الشخصى اولاً');
+	if (Auth::guest()) return Redirect::to(URL::page('login/show'))->withErrors('يجب عليك التسجيل او الدخول لحسابك الشخصى اولاً');
 });
 
 
@@ -63,7 +63,7 @@ Route::filter('auth.basic', function()
 
 Route::filter('guest', function()
 {
-	if (Auth::check()) return Redirect::to(URL::page('home'));
+	if (Auth::check()) return Redirect::to(URL::page('home/index'));
 });
 
 /*

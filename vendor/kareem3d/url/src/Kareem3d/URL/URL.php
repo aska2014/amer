@@ -19,6 +19,11 @@ class URL extends Model {
     protected $dontDuplicate = array('url');
 
     /**
+     * @var bool
+     */
+    public $timestamps = false;
+
+    /**
      * @param $url
      * @return \Kareem3d\URL\URL
      */

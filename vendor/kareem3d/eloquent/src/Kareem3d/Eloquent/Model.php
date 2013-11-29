@@ -249,6 +249,9 @@ abstract class Model extends \Illuminate\Database\Eloquent\Model {
         // Check before save method
         if($this->beforeSave() === false) return false;
 
+        // If the key isset then this should exists right ?
+        $this->exists = (bool) $this->getKey();
+
         // If this model has specification table then create a query with this specsTable
         if($this->hasSpecsTable())
         {
@@ -301,17 +304,6 @@ abstract class Model extends \Illuminate\Database\Eloquent\Model {
         $this->afterSave();
 
         return $result;
-    }
-
-    /**
-     * Update the model in the database.
-     *
-     * @param  array  $attributes
-     * @return mixed
-     */
-    public function update(array $attributes = array())
-    {
-        return $this->fill($attributes)->save();
     }
 
     /**
@@ -376,6 +368,21 @@ abstract class Model extends \Illuminate\Database\Eloquent\Model {
     public function useDefaultLanguage()
     {
         $this->useLanguage( static::$defaultLanguage );
+    }
+
+    /**
+     * Merge default language attributes with the current attributes
+     *
+     * @return void
+     */
+    public function mergeDefaultLanguage()
+    {
+        if(! $this->isUsingLanguage( static::$defaultLanguage ))
+        {
+            $this->useLanguage( static::$defaultLanguage );
+        }
+
+        $this->attributes = array_merge($this->attributes, $this->languagesAttributes[static::$defaultLanguage]);
     }
 
     /**

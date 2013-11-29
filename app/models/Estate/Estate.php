@@ -1,19 +1,20 @@
-<?php
+<?php namespace Estate;
 
+use Auction\Auction;
 use Illuminate\Support\Str;
 use Kareem3d\Link\Link;
+use Price;
+use Special\Special;
+use Special\SpecialPayment;
+use User;
+use UserInfo;
 
 class Estate extends \Kareem3d\Eloquent\Model {
-
-    const FOR_SALE = 'for-sale';
-    const FOR_RENT = 'for-rent';
-    const PURCHASE = 'purchase';
-    const AUCTION = 'auction';
 
     /**
      * @var array
      */
-    protected $extensions = array('Images');
+    protected $extensions = array('Images', 'Acceptable');
 
     /**
      * @var string
@@ -31,6 +32,7 @@ class Estate extends \Kareem3d\Eloquent\Model {
     protected $rules = array(
         'title' => 'required',
         'city' => 'required',
+        'price' => 'required|numeric',
         'region' => 'required',
         'estate_category_id' => 'required|exists:estate_categories,id',
         'number_of_rooms' => 'required|integer',
@@ -64,18 +66,11 @@ class Estate extends \Kareem3d\Eloquent\Model {
     );
 
     /**
-     * Get estate service types...
-     *
-     * @return array
+     * @return bool
      */
-    public function getTypes()
+    public function hasPayments()
     {
-        return array(
-            self::FOR_SALE,
-            self::FOR_RENT,
-            self::PURCHASE,
-            self::AUCTION
-        );
+        return $this->specialPayments()->count() > 0;
     }
 
     /**
@@ -84,67 +79,9 @@ class Estate extends \Kareem3d\Eloquent\Model {
      */
     public function getPriceAttribute( $value )
     {
-        return $this->getCurrentLanguage() === 'en' ? new Price($value, 'EGP') : new Price($value, 'جنيه', 'value currency');
-    }
+        if(! $value && $this->auction) return $this->auction->start_price;
 
-    /**
-     * Create link and attach to it after saving.
-     *
-     * @return mixed|void
-     */
-    public function afterSave()
-    {
-        // If link doesn't exist for this estate then create new one..
-        Link::getByPageAndModel('one-estate', $this) or Link::create(array(
-
-            'relative_url' => $this->getSlug(),
-            'page' => 'one-estate',
-            'model' => $this
-        ));
-    }
-
-    /**
-     * @return bool|null|void
-     */
-    public function delete()
-    {
-        $link = Link::getByPageAndModel('one-estate', $this);
-
-        $link and $link->delete();
-
-        return parent::delete();
-    }
-
-    /**
-     * @return string
-     */
-    public function getSlug()
-    {
-        return rtrim($this->category->getSlug(), '.html') . '/estate-' . $this->id . '.html';
-    }
-
-    /**
-     * @return bool
-     */
-    public function forBuy()
-    {
-        return $this->type == static::FOR_BUY;
-    }
-
-    /**
-     * @return bool
-     */
-    public function forRent()
-    {
-        return $this->type == static::FOR_RENT;
-    }
-
-    /**
-     * @return bool
-     */
-    public function forSale()
-    {
-        return $this->type == static::FOR_SALE;
+        return Price::make($value);
     }
 
     /**
@@ -153,15 +90,15 @@ class Estate extends \Kareem3d\Eloquent\Model {
     public function hasAuction()
     {
         // If it's for sale or for rent and has an auction attached to it
-        return ($this->forSale() or $this->forRent()) and $this->auction()->count() > 0;
+        return $this->auction()->count() > 0;
     }
 
     /**
-     * @return \Illuminate\Support\Collection
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function getUserAttribute()
+    public function user()
     {
-        return User::getByCreation( $this )->first();
+        return $this->belongsTo(User::getClass());
     }
 
     /**
@@ -186,5 +123,21 @@ class Estate extends \Kareem3d\Eloquent\Model {
     public function auction()
     {
         return $this->hasOne(Auction::getClass());
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function specialPayments()
+    {
+        return $this->hasMany(SpecialPayment::getClass());
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function special()
+    {
+        return $this->hasOne(Special::getClass());
     }
 }

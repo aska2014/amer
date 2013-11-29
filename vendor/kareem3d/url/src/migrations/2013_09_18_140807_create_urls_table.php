@@ -18,7 +18,7 @@ class CreateUrlsTable extends Migration {
 
             $table->string('url');
 
-			$table->timestamps();
+            $table->unique('url');
 		});
 	}
 

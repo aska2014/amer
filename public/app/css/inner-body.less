@@ -20,6 +20,10 @@
 
 .inner-body{
 
+  font-size:16px; text-align: right; line-height: 24px;
+
+  ol li{text-align: right;}
+
   .jqans-wrapper {
     position: relative;
     left:10px;
@@ -191,8 +195,8 @@
       .key-value{
         margin-bottom:5px;
         font-size:15px;
-        .key{float:right; width:30%;}
-        .value{float:right; width:70%; color:#005FA8;}
+        .key{float:right; width:40%;}
+        .value{float:right; width:60%; color:#005FA8;}
         width:100%;
         display: inline-block;
       }
@@ -314,4 +318,25 @@
       .form-control{float:right; width:49%;}
     }
   }
+
+
+  .upgrade-estate{
+    text-align: right;
+    span{font-size:14px;}
+
+    .upgrade-box{
+      .make-xs-column(3);
+      .make-md-column(2);
+      .make-md-column-offset(1);
+      margin-top:20px; background:#D5D5D5; border:1px solid #999; border-radius: 10px;
+      padding:5px 0px;
+      text-align: center;
+      h5{font-size:20px;}
+      .price{color:#FF0000}
+      input{width:100%;}
+    }
+
+    .buttons{margin-top:10px;}
+  }
+
 }

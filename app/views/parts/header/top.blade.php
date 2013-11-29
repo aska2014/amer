@@ -19,7 +19,7 @@
             <li><a href="{{ URL::page('home') }}">الرئيسية</a></li>
             <li><a href="#">نبذه عن الشركة</a></li>
             <li><a href="#">خدمتنا</a></li>
-            <li><a href="#">إتصل بنا</a></li>
+            <li><a href="{{ URL::page('contact-us') }}">إتصل بنا</a></li>
         </ul>
 
     </div>

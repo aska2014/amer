@@ -1,8 +1,12 @@
 <?php
 
+use Estate\Estate;
+use Estate\EstateAlgorithm;
+use Estate\EstateCategory;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\View;
 use Kareem3d\Controllers\FreakController;
+use Special\Special;
 
 class FreakEstateController extends FreakController {
 
@@ -12,19 +16,35 @@ class FreakEstateController extends FreakController {
     protected $estates;
 
     /**
+     * @var EstateAlgorithm
+     */
+    protected $estatesAlgorithm;
+
+    /**
      * @var EstateCategory
      */
     protected $categories;
 
     /**
-     * @param Estate $estates
-     * @param EstateCategory $categories
+     * @var Special
      */
-    public function __construct( Estate $estates, EstateCategory $categories )
+    protected $specials;
+
+    /**
+     * @param Estate $estates
+     * @param EstateAlgorithm $estatesAlgorithm
+     * @param EstateCategory $categories
+     * @param Special $specials
+     */
+    public function __construct( Estate $estates, EstateAlgorithm $estatesAlgorithm, EstateCategory $categories, Special $specials )
     {
         $this->estates = $estates;
 
+        $this->estatesAlgorithm = $estatesAlgorithm;
+
         $this->categories = $categories;
+
+        $this->specials = $specials;
 
         $this->usePackages( 'Images', 'Image' );
 
@@ -54,24 +74,46 @@ class FreakEstateController extends FreakController {
     /**
      * @return mixed
      */
-    public function postMakeSpecial()
+    public function getAccepted()
     {
-        $specials = Input::get('Estate.special', array());
-        $specialIds = Input::get('Estate.special_ids', array());
+        Asset::addPlugin('datatables');
+        Asset::addPlugin('ibutton');
 
-        foreach($specialIds as $id)
+        $estates = $this->estatesAlgorithm->accepted()->get();
+
+        return View::make('panel::estates.data', compact('estates'));
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getNotAccepted()
+    {
+        Asset::addPlugin('datatables');
+        Asset::addPlugin('ibutton');
+
+        $estates = $this->estatesAlgorithm->notAccepted()->get();
+
+        return View::make('panel::estates.data', compact('estates'));
+    }
+
+    /**
+     * @return mixed
+     */
+    public function postAcceptMany()
+    {
+        $accepted = Input::get('Estate.accepted', array());
+        $acceptedIds = Input::get('Estate.accepted_ids', array());
+
+        foreach($acceptedIds as $id)
         {
             // Get estate by id
             $estate = $this->estates->find($id);
 
-            // Make special
-            $estate->special = isset($specials[$id]);
-
-            // Save to database
-            $estate->save();
+            isset($accepted[$id]) ? $estate->accept() : $estate->unaccept();
         }
 
-        return Redirect::back()->with('success', 'Estates special updated successfully.');
+        return Redirect::back()->with('success', 'Estates accepted states updated successfully.');
     }
 
     /**
@@ -122,6 +164,31 @@ class FreakEstateController extends FreakController {
         $this->setPackagesData($estate);
 
         return $this->getCreate()->with('estate', $estate);
+    }
+
+    /**
+     * @param $id
+     */
+    public function getMakeSpecial( $id )
+    {
+        $estate = $this->estates->findOrFail($id);
+
+        return View::make('panel::estates.special', compact('estate'));
+    }
+
+    /**
+     * @param $id
+     */
+    public function postMakeSpecial( $id )
+    {
+        $estate = $this->estates->findOrFail($id);
+
+        $special = $this->specials->newInstance(Input::get('Special'));
+
+        // Make this estate special
+        $estate->special()->save($special);
+
+        return Redirect::to(freakUrl('element/estate/show'.$estate->id))->with('success', 'Estate is now special.');
     }
 
     /**

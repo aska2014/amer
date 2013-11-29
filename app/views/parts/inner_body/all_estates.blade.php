@@ -13,7 +13,7 @@
         </div>
 
         <div class="info-div">
-            <h2><a href="{{ URL::page('one-estate', $estate) }}">{{ $estate->title }}</a></h2>
+            <h2><a href="{{ URL::page('estate/show', $estate) }}">{{ $estate->title }}</a></h2>
 
             <p>{{ Str::limit($estate->description, 80) }}</p>
 
@@ -24,10 +24,22 @@
         </div>
 
         <div class="extra-info-div">
+            @if($authUser)
+
+            <div class="user-tools">
+                <a href="{{ URL::page('estate/edit', $estate) }}">تعديل العقار</a>
+                <a href="{{ URL::page('estate/upgrade', $estate) }}">تمييز العقار</a>
+                <a href="{{ URL::page('estate/remove', $estate) }}">مسح العقار</a>
+            </div>
+
+            @else
+
             <span class="price">{{ $estate->price->format() }}</span>
             <span class="date">
                 {{ $date->since($estate->created_at) }}
             </span>
+
+            @endif
         </div>
     </div>
 

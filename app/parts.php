@@ -9,7 +9,7 @@ use Kareem3d\Templating\PartRepository;
  */
 PartRepository::share('upper_body.menu', function($view)
 {
-    $view->estateCategories = App::make('EstateCategory')->parentCategories()->take(9);
+    $view->estateCategories = App::make('Estate\EstateCategory')->parentCategories()->take(8);
 
     // Don't show if categories are empty
     $view->dontShowIf($view->estateCategories->isEmpty());
@@ -30,7 +30,7 @@ PartRepository::share('upper_body.latest_news', function($view)
  */
 PartRepository::share('inner_body.special_offers', function($view)
 {
-    $view->specials = App::make('EstateAlgorithm')->specials()->take(4)->get();
+    $view->specials = App::make('Estate\EstateAlgorithm')->specials()->accepted()->take(4)->get();
 
     $view->dontShowIf($view->specials->isEmpty());
 });

@@ -16,14 +16,13 @@ class CreateLinksTable extends Migration {
         {
             $table->increments('id');
 
-            $table->string('url');
-
             $table->string('page_name');
-
-            $table->unique('url');
 
             $table->string('linkable_type');
             $table->integer('linkable_id')->unsigned();
+
+            $table->integer('url_id')->unsigned();
+            $table->foreign('url_id')->references('id')->on('ka_urls')->onDelete('CASCADE');
         });
 	}
 

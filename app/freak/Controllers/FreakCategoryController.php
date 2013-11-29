@@ -1,5 +1,6 @@
 <?php
 
+use Estate\EstateCategory;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\View;
 use Kareem3d\Controllers\FreakController;
@@ -18,11 +19,12 @@ class FreakCategoryController extends FreakController {
     {
         $this->categories = $categories;
 
-        $this->usePackages( 'Image' );
+        $this->usePackages( 'Image', 'Link' );
 
         $this->setExtra(array(
             'image-group-name'  => 'EstateCategory.Main',
             'image-type'        => 'main',
+            'link-page'         => 'estate/all'
         ));
     }
 
@@ -33,7 +35,7 @@ class FreakCategoryController extends FreakController {
      */
     public function getIndex()
     {
-        $categories = $this->categories->get();
+        $categories = $this->categories->parentCategories();
 
         return View::make('panel::categories.data', compact('categories'));
     }

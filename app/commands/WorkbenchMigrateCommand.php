@@ -68,7 +68,7 @@ class WorkbenchMigrateCommand extends Command {
         {
 
             $this->call('wmigrate', array(
-                'bench' => 'kareem3d/[code,link,marketing,membership,messaging,notification,images,interaction,freak,ecommerce,templating]'
+                'bench' => 'kareem3d/[code,url,link,marketing,membership,messaging,notification,images,interaction,freak,ecommerce,templating]'
             ));
         }
 

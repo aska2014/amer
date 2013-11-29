@@ -7,7 +7,7 @@ use Kareem3d\Templating\XMLFactory;
 class Generator {
 
     /**
-     * @var Link
+     * @var LinkRepository
      */
     protected $links;
 
@@ -22,10 +22,10 @@ class Generator {
     protected $xmlFactory;
 
     /**
-     * @param Link $links
+     * @param \Kareem3d\Link\LinkRepository $links
      * @param XMLFactory $xmlFactory
      */
-    public function __construct( Link $links, XMLFactory $xmlFactory )
+    public function __construct( LinkRepository $links, XMLFactory $xmlFactory )
     {
         $this->links = $links;
         $this->xmlFactory = $xmlFactory;
@@ -43,31 +43,11 @@ class Generator {
             App::instance('CurrentLink', $currentLink);
 
             // Push this page to repository
-            $page = $this->xmlFactory->pushPageToRepositories($currentLink->page_name, $currentLink->url);
-
-            $page->share(array('link' => $currentLink));
+            $this->xmlFactory->pushPageToRepositories($currentLink->getPageName(), $currentLink->getUrl());
         }
 
         // Return singleton instance of dynamic router giving current link
         return DynamicRouter::instance($currentLink);
-    }
-
-    /**
-     * Seed generator
-     */
-    public function seed()
-    {
-        $pages = $this->xmlFactory->generatePages();
-
-        $this->links->query()->delete();
-
-        foreach($pages as $page)
-        {
-            $this->links->create(array(
-                'relative_url' => $page->getIdentifier(),
-                'page_name'    => $page->getIdentifier()
-            ));
-        }
     }
 
 }

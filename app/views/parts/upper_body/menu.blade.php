@@ -7,7 +7,7 @@
     <?php $i++; ?>
 
     <div class="menu-item">
-        <a href="{{ URL::page('all-estates', $category) }}">
+        <a href="{{ URL::page('estate/all', $category) }}">
             <div class="item-img">
                 @if($image = $category->getImage('main'))
                 <img class="img-responsive" src="{{ $image->getLargest()->url }}" alt="{{ $category->title }}"/>
@@ -21,7 +21,7 @@
         <div class="item-drop-down">
             <ul>
                 @foreach($category->children as $childCategory)
-                <li><a href="{{ URL::page('all-estates', $childCategory) }}">{{ $childCategory->title }}</a></li>
+                <li><a href="{{ URL::page('estate/all', $childCategory) }}">{{ $childCategory->title }}</a></li>
                 @endforeach
             </ul>
         </div>
@@ -31,14 +31,13 @@
     @endforeach
 </div>
 
-
 <div class="large-menu-dropdown">
     <select class="form-control" onchange="window.location.href=this.value;">
         @foreach($estateCategories as $category)
-            @if($link->getModel() and $link->getModel()->same($category))
-            <option value="{{ URL::page('all-estates', $category) }}" selected="selected">{{ $category->title }}</option>
+            @if($model AND $model->same($category))
+            <option value="{{ URL::page('estate/all', $category) }}" selected="selected">{{ $category->title }}</option>
             @else
-            <option value="{{ URL::page('all-estates', $category) }}">{{ $category->title }}</option>
+            <option value="{{ URL::page('estate/all', $category) }}">{{ $category->title }}</option>
             @endif
         @endforeach
     </select>

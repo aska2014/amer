@@ -1,12 +1,24 @@
 <div class="sidebar-menu">
 
+    @if($authUser)
+    <div class="menu-item">
+        <div class="item-icon">
+            <img class="img-responsive" src="{{ URL::asset('app/img/icons/control-panel.png') }}" alt=""/>
+        </div>
+
+        <div class="item-info">
+            <a href="{{ URL::page('user/estates') }}">عقاراتى</a>
+        </div>
+    </div>
+    @endif
+
     <div class="menu-item">
         <div class="item-icon">
             <img class="img-responsive" src="{{ URL::asset('app/img/icons/plus.png') }}" alt=""/>
         </div>
 
         <div class="item-info">
-            <a href="{{ URL::page('add-estate') }}">أضف عقاراً</a>
+            <a href="{{ URL::page('estate/create') }}">أضف عقاراً</a>
         </div>
     </div>
 
@@ -17,7 +29,7 @@
         </div>
 
         <div class="item-info">
-            <a href="{{ URL::page('all-news') }}">أخر الأخبار</a>
+            <a href="{{ URL::page('news/all') }}">أخر الأخبار</a>
         </div>
     </div>
 

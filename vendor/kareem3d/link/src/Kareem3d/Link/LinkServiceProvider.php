@@ -1,5 +1,6 @@
 <?php namespace Kareem3d\Link;
 
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\ServiceProvider;
 
 class LinkServiceProvider extends ServiceProvider {
@@ -11,13 +12,23 @@ class LinkServiceProvider extends ServiceProvider {
 	 */
 	protected $defer = false;
 
+    /**
+     *
+     */
+    public function register()
+    {
+    }
+
 	/**
 	 * Register the service provider.
 	 *
 	 * @return void
 	 */
-	public function register()
+	public function boot()
 	{
+        $this->package('kareem3d/link');
+
+        $this->app->make('Kareem3d\Link\LinkRepository')->addStaticLinks(Config::get('link::links'));
 	}
 
 	/**

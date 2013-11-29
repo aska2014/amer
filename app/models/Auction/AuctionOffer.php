@@ -1,11 +1,31 @@
-<?php 
+<?php namespace Auction;
 
 class AuctionOffer extends \Kareem3d\Eloquent\Model {
+
+    /**
+     * @var array
+     */
+    protected $extensions = array('Acceptable');
 
     /**
      * @var string
      */
     protected $table = 'auction_offers';
+
+    /**
+     * @var array
+     */
+    protected $rules = array(
+        'price' => 'required|numeric'
+    );
+
+    /**
+     * @var array
+     */
+    protected $arCustomMessages = array(
+        'price.required' => 'يجب إدخال سعر العرض',
+        'price.numeric' => 'سعر العرض يجب ان يكون ارقام فقط.'
+    );
 
     /**
      * @param User $user

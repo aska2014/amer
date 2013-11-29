@@ -9,9 +9,9 @@
         @foreach($sliders as $slider)
         <li>
             @if($image = $slider->getImage('main'))
-            <a href="{{ URL::page('one-slider', $slider) }}"><img src="{{ $image->getNearest(596, 210) }}" width="82" height="30" alt="{{ $slider->title }}" /></a>
+            <a href="{{ URL::page('slider/show', $slider) }}"><img src="{{ $image->getNearest(596, 210) }}" width="82" height="30" alt="{{ $slider->title }}" /></a>
             @endif
-            <h3><a href="{{ URL::page('one-slider', $slider) }}">{{ $slider->title }}</a></h3>
+            <h3><a href="{{ URL::page('slider/show', $slider) }}">{{ $slider->title }}</a></h3>
             {{ $slider->small_description }}<br />
         </li>
         @endforeach
@@ -30,9 +30,9 @@
     </div>
 
     <div class="info-div">
-        <h3><a href="{{ URL::page('one-slider', $slider) }}">{{ $slider->title }}</a></h3>
+        <h3><a href="{{ URL::page('slider/show', $slider) }}">{{ $slider->title }}</a></h3>
         <p>{{ $slider->small_description }}
-            <br /><a href="{{ URL::page('one-slider', $slider) }}"> &raquo; أقرأ المزيد ...</a></p>
+            <br /><a href="{{ URL::page('slider/show', $slider) }}"> &raquo; أقرأ المزيد ...</a></p>
     </div>
 
 </div>

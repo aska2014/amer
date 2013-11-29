@@ -72,10 +72,13 @@ class XMLFactory {
             // Identifier is either the name of url
             $identifier = $this->string($page, 'name') ?: $this->string($page, 'url');
 
+            // Type of the page
+            $type = $this->string($page, 'type') ?: 'static';
+
             // Match either the page name or page url...
             if($identifier == $_pageName || $identifier == $_pageUrl)
             {
-                $page = new Page($_pageName, $this->generateTemplate($page));
+                $page = new Page($_pageName, $type, $this->generateTemplate($page));
 
                 PageRepository::add($page);
 
@@ -103,9 +106,12 @@ class XMLFactory {
             // Identifier is either the name of url
             $identifier = $this->string($page, 'name') ?: $this->string($page, 'url');
 
+            // Type of the page
+            $type = $this->string($page, 'type') ?: 'static';
+
             if($_identifier == $identifier)
             {
-                return new Page($identifier, $this->generateTemplate($page));
+                return new Page($identifier, $type, $this->generateTemplate($page));
             }
         }
     }
@@ -122,7 +128,10 @@ class XMLFactory {
             // Identifier is either the name of url
             $identifier = $this->string($page, 'name') ?: $this->string($page, 'url');
 
-            $pages[] = new Page($identifier, $this->generateTemplate($page));
+            // Type of the page
+            $type = $this->string($page, 'type') ?: 'static';
+
+            $pages[] = new Page($identifier, $type, $this->generateTemplate($page));
         }
 
         return $pages;

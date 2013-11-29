@@ -4,8 +4,7 @@
 <thead>
 <tr>
     <th>Id</th>
-    <th>English Title</th>
-    <th>Arabic Title</th>
+    <th>Title</th>
     <th>Tools</th>
 </tr>
 </thead>
@@ -13,8 +12,15 @@
 @foreach($categories as $category)
 <tr>
     <td>{{ $category->id }}</td>
-    <td>{{ $category->en('title') }}</td>
-    <td>{{ $category->ar('title') }}</td>
+    <td>
+        {{ $category->ar('title') }}
+
+        <ul>
+        @foreach($category->children as $child)
+            <li><a href="{{ freakUrl('element/category/show/'.$child->id) }}">{{ $child->title }}</a></li>
+        @endforeach
+        </ul>
+    </td>
 
     @include('freak::elements.tools', array('id' => $category->id))
 </tr>
@@ -23,8 +29,7 @@
 <tfoot>
 <tr>
     <th>Id</th>
-    <th>English Title</th>
-    <th>Arabic Title</th>
+    <th>Title</th>
     <th>Tools</th>
 </tr>
 </tfoot>

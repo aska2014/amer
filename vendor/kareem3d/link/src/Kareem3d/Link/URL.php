@@ -17,33 +17,23 @@ class URL extends LaravelURL {
      * @param Model $model
      * @return mixed
      */
-    public static function page( $_pageName, Model $model = null )
+    public static function page( $_pageName, $model = null )
     {
         /**
-         * @param \Kareem3d\Link\Link $link
+         * @param \Kareem3d\Link\LinkRepository $link
          */
-        $link = App::make('Kareem3d\Link\Link');
+        $link = App::make('Kareem3d\Link\LinkRepository');
 
-        if($model)
+        if($model == null)
         {
-            // Unique key for this url request
-            $key = $_pageName . $model->getClass() . $model->id;
-
-            // First check if it exists in the temporary urls to speed up the process
-            if(isset(static::$temporaryUrls[$key])) return static::$temporaryUrls[$key];
-
-            // Set up a query to get this url
-            static::$temporaryUrls[$key] = $link->getUrlByPageAndModel( $_pageName, $model );
-
-            $url = static::$temporaryUrls[$key];
+            $url = $link->getUrlByPage($_pageName);
         }
+
         else
         {
-            // Set up a query to get this url
-            $url = $link->getUrlByPage($_pageName);
+            $url = $link->getUrlByPageAndModel($_pageName, $model);
         }
 
         return $url ?: '#';
     }
-
 }

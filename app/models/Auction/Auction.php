@@ -1,20 +1,61 @@
-<?php
+<?php namespace Auction;
+
+use Estate\Estate;
+use Price;
 
 class Auction extends \Kareem3d\Eloquent\Model {
+
+    /**
+     * @var array
+     */
+    protected $rules = array(
+        'start_price' => 'required|numeric',
+        'end_price' => 'required|numeric',
+    );
+
+    /**
+     * @return Price
+     */
+    public function getHighestOfferPriceAttribute()
+    {
+        $offer = $this->getHighestAcceptedOffer();
+
+        return $offer ? $offer->price : Price::make( 0 );
+    }
+
+    /**
+     * @param $value
+     * @return Price
+     */
+    public function getStartPriceAttribute( $value )
+    {
+        return Price::make($value);
+    }
+
+    /**
+     * @param $value
+     * @return Price
+     */
+    public function getEndPriceAttribute( $value )
+    {
+        return Price::make($value);
+    }
 
     /**
      * Return the price this auction should start with.
      * Which is equal to the highest accepted offer price
      *
-     * @return float
+     * @return Price
      */
     public function calculateStartPrice()
     {
-        return $this->getHighestAcceptedOffer()->price;
+        $highestOffer = $this->getHighestAcceptedOffer();
+
+        return $highestOffer ? $highestOffer->price : $this->start_price;
     }
 
     /**
-     * @return StdClass
+     * @return AuctionOffer
      */
     public function getHighestAcceptedOffer()
     {

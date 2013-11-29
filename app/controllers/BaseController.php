@@ -22,6 +22,8 @@ class BaseController extends \Kareem3d\Link\DynamicController {
      */
     public function addErrors( $errors )
     {
+        if(! $errors) return;
+
         $errors = $errors instanceof MessageBag ? $errors->toArray() : $errors;
 
         $this->errors = $this->errors ? $this->errors->merge($errors) : new MessageBag($errors);
@@ -40,4 +42,19 @@ class BaseController extends \Kareem3d\Link\DynamicController {
 		}
 	}
 
+    /**
+     * @return \Kareem3d\Link\Link
+     */
+    public function link()
+    {
+        return App::make('CurrentLink');
+    }
+
+    /**
+     * @return \Kareem3d\Templating\Page
+     */
+    public function page()
+    {
+        return $this->link()->getPage();
+    }
 }

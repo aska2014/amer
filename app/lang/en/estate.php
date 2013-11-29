@@ -6,7 +6,6 @@ return array(
     'for-sale' => 'For sale',
     'purchase' => 'Purchase',
     'for-rent' => 'For rent',
-    'auction'  => 'Auction'
-
+    'auction'  => 'Auction',
 
 );

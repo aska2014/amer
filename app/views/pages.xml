@@ -9,8 +9,6 @@
         <footer>footer.socials | footer.copyrights | footer.contacts</footer>
     </default>
 
-
-
     <page name="home">
         <header>header.top | header.logo | header.advanced_search</header>
 
@@ -19,38 +17,57 @@
         <inner-body>inner_body.advertisement | inner_body.slider | inner_body.special_offers</inner-body>
     </page>
 
+    <page name="auction">
+        <inner-body>inner_body.auctions</inner-body>
+    </page>
 
-    <page name="one-slider">
+
+    <page name="slider/show">
         <inner-body>inner_body.one_slider</inner-body>
     </page>
 
 
-    <page name="all-estates">
+    <page name="user/estates">
         <inner-body>inner_body.all_estates</inner-body>
     </page>
 
 
-    <page name="one-estate">
+    <page name="estate/all">
+        <inner-body>inner_body.all_estates</inner-body>
+    </page>
+
+
+    <page name="estate/show">
         <inner-body>inner_body.one_estate</inner-body>
     </page>
 
 
-    <page name="all-news">
-        <inner-body>inner_body.all_news</inner-body>
+    <page name="estate/upgrade">
+        <inner-body>inner_body.upgrade_estate</inner-body>
     </page>
 
 
-    <page name="one-news">
-        <inner-body>inner_body.one_news</inner-body>
-    </page>
-
-
-    <page name="add-estate">
+    <page name="estate/edit">
         <inner-body>inner_body.add_estate</inner-body>
     </page>
 
 
-    <page name="login-register">
+    <page name="estate/create">
+        <inner-body>inner_body.add_estate</inner-body>
+    </page>
+
+
+    <page name="news/all">
+        <inner-body>inner_body.all_news</inner-body>
+    </page>
+
+
+    <page name="news/one">
+        <inner-body>inner_body.one_news</inner-body>
+    </page>
+
+
+    <page name="login/show">
         <inner-body>inner_body.login_register</inner-body>
     </page>
 

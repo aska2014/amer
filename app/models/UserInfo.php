@@ -1,5 +1,6 @@
 <?php
 
+use Estate\Estate;
 use Kareem3d\Membership\UserInfo as Kareem3dUserInfo;
 
 class UserInfo extends Kareem3dUserInfo {
@@ -47,5 +48,13 @@ class UserInfo extends Kareem3dUserInfo {
     public function getContactNumberAttribute()
     {
         return $this->telephone_number ?: $this->mobile_number;
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function estates()
+    {
+        return $this->hasMany(Estate::getClass(), 'owner_info_id');
     }
 }

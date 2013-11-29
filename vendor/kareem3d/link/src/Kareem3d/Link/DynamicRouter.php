@@ -1,7 +1,7 @@
 <?php namespace Kareem3d\Link;
 
-use Illuminate\Support\Facades\App;
-use Kareem3d\Templating\Page;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Str;
 
 class DynamicRouter {
 
@@ -11,11 +11,11 @@ class DynamicRouter {
     protected $routes = array();
 
     /**
-     * Current currentLink
+     * Link
      *
      * @var Link
      */
-    protected $currentLink;
+    protected $link;
 
     /**
      * @var DynamicRouter
@@ -23,58 +23,42 @@ class DynamicRouter {
     protected static $instance;
 
     /**
-     * @param Link $currentLink
+     * @param Link $link
      */
-    private function __construct(Link $currentLink = null)
+    private function __construct(Link $link = null)
     {
-        $this->currentLink = $currentLink;
+        $this->link = $link;
     }
 
     /**
+     * @param Link $link
      * @return DynamicRouter
      */
-    public static function instance(Link $currentLink = null)
+    public static function instance(Link $link = null)
     {
         if(! static::$instance)
         {
-            static::$instance = new static($currentLink);
+            static::$instance = new static($link);
         }
 
         return static::$instance;
     }
 
     /**
-     * @param  Link $currentLink
+     * @param  Link $link
      * @return void
      */
-    public function setCurrentLink(Link $currentLink)
+    public function setCurrentLink(Link $link)
     {
-        $this->currentLink = $currentLink;
+        $this->link = $link;
     }
 
     /**
-     * @return Link
+     * @return \Kareem3d\Link\Link
      */
-    public function getCurrentLink()
+    public function getLink()
     {
-        return $this->currentLink;
-    }
-
-    /**
-     * @param $_pageName
-     * @param $_route
-     */
-    public function attach( $_pageName, $_route )
-    {
-        if($_route instanceof DynamicRoute)
-        {
-            $this->routes[$_pageName] = $_route;
-        }
-
-        else
-        {
-            $this->routes[$_pageName] = DynamicRoute::factory($_route);
-        }
+        return $this->link;
     }
 
     /**
@@ -82,43 +66,84 @@ class DynamicRouter {
      */
     public function launch()
     {
-        $currentLink = $this->getCurrentLink();
-
-        // If current currentLink is defined and there's a page linking to it...
-        if($currentLink && $currentLink->page)
+        // If current link is defined and there's a page linking to it...
+        if($link = $this->getLink())
         {
-            // If no route defined for this page then create new route to only print the page attached to it..
-            if(! $route = $this->getRouteFor($currentLink->page))
+            $path = str_replace(URL::to(''), '', $link->getUrl());
+
+            // If it has controller route to the controller route
+            if($controller = $this->getController())
             {
-                $route = DynamicRoute::factory(function() use($currentLink)
-                {
-                    // Print the page given it the currentLink arguments
-                    return $currentLink->page->printMe();
-                });
+                Route::get($path, $controller . '@route');
             }
 
-            App::instance('CurrentRoute', $route);
+            else
+            {
+                Route::get($path, function() use($link)
+                {
+                    $arguments = func_get_args();
 
-            $route->routeToLink($currentLink);
+                    // Fetch model passing the first function argument (if exists)
+                    if($model = $this->getLink()->getModel(isset($arguments[0]) ? $arguments[0] : false))
+                    {
+                        // Replace first argument with the models
+                        $arguments[0] = $model;
+                    }
+
+                    return $link->getPage()->printMe(array(
+                        'model' => $model
+                    ));
+                });
+            }
         }
     }
 
     /**
-     * @param $page
-     * @return bool
+     * @return $this
      */
-    public function hasRouteFor( Page $page )
+    protected function getControllerActionString()
     {
-        return isset($this->routes[$page->identifier]);
+        list($controller, $action) = $this->getControllerAndAction();
+
+        return $controller . '@' . $action;
     }
 
     /**
-     * @param \Kareem3d\Templating\Page $page
-     * @return DynamicRoute
+     * @return string
      */
-    public function getRouteFor( Page $page )
+    public function getController()
     {
-        return $this->hasRouteFor($page) ? $this->routes[$page->identifier] : null;
+        list($controller) = $this->getControllerAndAction();
+
+        // If controller exists and is subclass of the dynamic controller
+        return (class_exists($controller) AND is_subclass_of($controller, 'Kareem3d\Link\DynamicController')) ? $controller : null;
     }
 
+    /**
+     * @return string
+     */
+    public function getAction()
+    {
+        list(, $action) = $this->getControllerAndAction();
+
+        return $action;
+    }
+
+
+    /**
+     * @return array
+     */
+    public function getControllerAndAction()
+    {
+        $pageName = $this->getLink()->getPageName();
+
+        $parts = explode('/', $pageName);
+
+        if(count($parts) > 1)
+        {
+            return array(ucfirst(Str::camel($parts[0])) . 'Controller',  Str::camel($parts[1]));
+        }
+
+        return array(ucfirst(Str::camel($parts[0])) . 'Controller', 'index');
+    }
 }
