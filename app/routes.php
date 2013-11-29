@@ -31,7 +31,7 @@ Route::get('/convert-images', function()
     {
         $pieces = explode('\\', $file);
 
-        if($pieces > 1)
+        if(count($pieces) > 1)
         {
             echo $file . '<br />';
         }
