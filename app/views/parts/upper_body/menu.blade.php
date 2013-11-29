@@ -10,7 +10,7 @@
         <a href="{{ URL::page('estate/all', $category) }}">
             <div class="item-img">
                 @if($image = $category->getImage('main'))
-                <img class="img-responsive" src="{{ $image->getLargest()->url }}" alt="{{ $category->title }}"/>
+                <img class="img-responsive" src="{{ $image->getLargest() }}" alt="{{ $category->title }}"/>
                 @endif
             </div>
 
