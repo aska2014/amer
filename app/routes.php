@@ -21,3 +21,17 @@ Route::get('/logout', array('as' => 'logout', function()
 
 Route::model('estate', \Estate\Estate::getClass());
 Route::model('auction', \Auction\Auction::getClass());
+
+
+Route::get('/convert-images', function()
+{
+    $path = public_path('/albums/estates');
+
+    foreach(scandir($path) as $file)
+    {
+        if(is_file($file))
+        {
+            echo $file . PHP_EOL;
+        }
+    }
+});
