@@ -1,7 +1,5 @@
 <?php
 
-dd('asdf');
-
 Route::post('/register', array('as' => 'register', 'uses' => 'RegisterController@store'));
 
 Route::post('/add-estate', array('as' => 'estate.create', 'uses' => 'EstateController@postCreate'));
