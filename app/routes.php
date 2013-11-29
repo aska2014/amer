@@ -29,8 +29,8 @@ Route::get('/test', function()
     {
         var_dump(DB::table('ka_user_accounts')
             ->join('ka_user_info', 'ka_user_accounts.user_info_id', '=', 'ka_user_info.id')
-            ->where('email', $estate->ownerInfo->contact_email)->select(array('ka_user_accounts.id')));
+            ->where('email', $estate->ownerInfo->contact_email)->first(array('ka_user_accounts.id')));
 
-        echo  PHP_EOL;
+        echo PHP_EOL;
     }
 });
