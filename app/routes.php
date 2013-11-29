@@ -21,22 +21,3 @@ Route::get('/logout', array('as' => 'logout', function()
 
 Route::model('estate', \Estate\Estate::getClass());
 Route::model('auction', \Auction\Auction::getClass());
-
-
-Route::get('/test', function()
-{
-    foreach(\Estate\Estate::all() as $estate)
-    {
-        $id = DB::table('ka_user_accounts')
-            ->join('ka_user_info', 'ka_user_accounts.user_info_id', '=', 'ka_user_info.id')
-            ->where('email', $estate->ownerInfo->contact_email)->first(array('ka_user_accounts.id'));
-
-
-        if($id)
-        {
-            $estate->user_id = $id->id;
-
-            $estate->save();
-        }
-    }
-});
