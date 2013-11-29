@@ -29,7 +29,10 @@ Route::get('/test', function()
     {
         $id = DB::table('ka_user_accounts')
             ->join('ka_user_info', 'ka_user_accounts.user_info_id', '=', 'ka_user_info.id')
-            ->where('email', $estate->ownerInfo->contact_email)->first(array('ka_user_accounts.id'))->id;
+            ->where('email', $estate->ownerInfo->contact_email)->first(array('ka_user_accounts.id'));
+
+
+        dd($id);
 
         $estate->user_id = $id;
 
