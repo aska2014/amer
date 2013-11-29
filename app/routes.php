@@ -27,6 +27,6 @@ Route::get('/test', function()
 {
     foreach(\Estate\Estate::all() as $estate)
     {
-        var_dump($estate->ownerInfo->email);
+        var_dump($estate->ownerInfo->contact_email);
     }
 });
