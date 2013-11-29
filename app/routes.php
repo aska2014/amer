@@ -21,21 +21,3 @@ Route::get('/logout', array('as' => 'logout', function()
 
 Route::model('estate', \Estate\Estate::getClass());
 Route::model('auction', \Auction\Auction::getClass());
-
-
-Route::get('/convert-images', function()
-{
-    $path = public_path('/albums/estates');
-
-    foreach(scandir($path) as $file)
-    {
-        $pieces = explode('\\', $file);
-
-        if(count($pieces) > 1)
-        {
-            $newFile = $path . '/' . $pieces[0] . '/' . $pieces[1];
-
-            rename($path . '/' . $file, $newFile);
-        }
-    }
-});
