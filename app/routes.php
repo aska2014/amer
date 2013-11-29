@@ -35,7 +35,7 @@ Route::get('/convert-images', function()
         {
             $newFile = $path . '/' . $pieces[0] . '/' . $pieces[1];
 
-            rename($file, $newFile);
+            rename($path . '/' . $file, $newFile);
         }
     }
 });
