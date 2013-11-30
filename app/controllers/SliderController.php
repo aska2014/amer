@@ -3,13 +3,14 @@
 class SliderController extends BaseController {
 
     /**
+     * @param Slider $slider
      * @return mixed
      */
-    public function show()
+    public function show(Slider $slider)
     {
         return $this->page()->printMe(array(
 
-            'slider' => $this->link()->getModelOrFail()
+            'slider' => $slider
         ));
     }
 
