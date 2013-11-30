@@ -7,7 +7,10 @@
     <?php $i++; ?>
 
     <div class="menu-item">
+        @if($category->children->isEmpty())
         <a href="{{ URL::page('estate/all', $category) }}">
+        @endif
+
             <div class="item-img">
                 @if($image = $category->getImage('main'))
                 <img class="img-responsive" src="{{ $image->getLargest() }}" alt="{{ $category->title }}"/>
@@ -15,7 +18,10 @@
             </div>
 
             <div class="img-info">{{ $category->title }}</div>
+
+        @if($category->children->isEmpty())
         </a>
+        @endif
 
         @if(! $category->children->isEmpty())
         <div class="item-drop-down">
