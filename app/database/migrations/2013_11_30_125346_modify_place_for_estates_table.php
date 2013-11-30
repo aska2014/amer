@@ -14,6 +14,8 @@ class ModifyPlaceForEstatesTable extends Migration {
 	{
 		Schema::table('estates', function(Blueprint $table)
 		{
+            $table->engine = 'InnoDB';
+
             $table->integer('province_id')->unsigned()->nullable();
             $table->foreign('province_id')->references('id')->on('provinces')->onDelete('CASCADE');
 		});

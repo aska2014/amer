@@ -14,6 +14,7 @@ class CreateProvincesSpecsTable extends Migration {
 	{
 		Schema::create('provinces_specs', function(Blueprint $table)
 		{
+            $table->engine = 'InnoDB';
 			$table->increments('id');
 
             $table->string('name');
