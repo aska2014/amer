@@ -24,7 +24,7 @@
         </div>
 
         <div class="extra-info-div">
-            @if($authUser->same($estate->user))
+            @if($authUser and $authUser->same($estate->user))
 
             <div class="user-tools">
                 <a href="{{ URL::page('estate/edit', $estate) }}">تعديل العقار</a>
