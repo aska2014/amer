@@ -7341,6 +7341,18 @@ body {
   padding-right: 15px;
   padding: 0px;
 }
+.inner-body .all-estates .estate .user-tools a {
+  width: 100%;
+  display: block;
+  padding: 5px 10px;
+  background: #EEE;
+  border-bottom: 1px solid #DDD;
+}
+.inner-body .all-estates .estate .user-tools a:hover {
+  background: #d75803;
+  color: #FFF;
+  text-decoration: none;
+}
 .inner-body .all-estates .estate .img-div {
   float: right;
   padding: 0px;
