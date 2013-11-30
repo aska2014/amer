@@ -78,6 +78,7 @@ class PermissionsController extends FreakController {
         $user = $this->getUserById($id);
 
         $user->access = Input::get('Permission.access');
+        $user->elements()->delete();
 
         $user->save();
 

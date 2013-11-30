@@ -162,7 +162,7 @@ class FreakEstateController extends FreakController {
 
         $estate->makeSpecial($from, $to);
 
-        return $this->jsonModelSuccess();
+        return Redirect::back()->with('success', 'Estate has been made special successfully.');
     }
 
     /**

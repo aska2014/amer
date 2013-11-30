@@ -257,6 +257,8 @@ class EstateController extends BaseController {
 
         $this->throwIfNotOwner($estate);
 
+        $estate->specialPayments()->delete();
+
         $specialPayment = $this->specialPayments->newInstance(Input::get('SpecialPayment'));
 
         $specialPayment->user()->associate(Auth::user());

@@ -16,6 +16,7 @@
                         <th>Category</th>
                         <th>Accepted</th>
                         <th>Has payment</th>
+                        <th>Make special</th>
                         <th>Tools</th>
                     </tr>
                     </thead>
@@ -44,6 +45,10 @@
                         <td>{{ $estate->hasPayments() ? 'Yes' : 'No' }}</td>
                         @endif
 
+                        <td>
+                            <a href="{{ freakUrl('element/estate/make-special/'. $estate->id) }}" class="btn btn-info">Make special</a>
+                        </td>
+
                         @include('freak::elements.tools', array('id' => $estate->id))
                     </tr>
                     @endforeach
@@ -55,6 +60,7 @@
                         <th>Category</th>
                         <th>Accepted</th>
                         <th>Has payment</th>
+                        <th>Make special</th>
                         <th>Tools</th>
                     </tr>
                     </tfoot>

@@ -1,14 +1,13 @@
-@extends('freak::elements.empty_add')
+@extends('freak::master.layout1')
 
-@section('form')
-@if($special->exists)
+@section('content')
+@if($special->exists === true)
 
 <div class="row-fluid">
     <div class="span12">
         <blockquote>
             <p>
-                This estate is already set to
-                be special<br />
+                This estate is special<br />
                 from: <b>{{ date('F j, Y, g:i a', strtotime($special->from)) }}</b> , <br />
                 to: <b>{{ date('F j, Y, g:i a', strtotime($special->to)) }}</b>
             </p>
@@ -27,7 +26,6 @@
                 <div class="tab-pane active" id="tab-01">
                     <form class="form-horizontal form-editor" method="POST">
 
-
                         <div class="control-group">
                             <label class="control-label" for="input05">Special from date</label>
                             <div class="controls">
@@ -41,6 +39,11 @@
                                 <input type="text" class="span12 timepicker-date" name="Special[to]" value="{{ date('m/d/Y H:i', strtotime($special->to)) }}">
                             </div>
                         </div>
+
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary">Make estate special</button>
+                            <button class="btn">Cancel</button>
+                        </div>
                     </form>
                 </div>
             </div>
@@ -50,7 +53,6 @@
 @stop
 
 @section('scripts')
-@parent
 
 <script type="text/javascript">
 
