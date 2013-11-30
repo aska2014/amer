@@ -159,18 +159,17 @@ class EstateController extends BaseController {
         $auctionInputs = $this->getAuctionInputs();
 
         // Deleteing auction will delete any auction offers associated with it
-        if(! empty($auctionInputs))
+        if(empty($auctionInputs))
         {
             $estate->auction()->delete();
         }
         else
         {
-            $estate->auction ? $this->auction()->update($auctionInputs) : $estate->auction()->create($auctionInputs);
+            $estate->hasAuction() ? $this->auction()->update($auctionInputs) : $estate->auction()->create($auctionInputs);
         }
 
         // If this estate has auction on it then escape the price required rule
         if($estate->hasAuction()) $estate->escapeRule('price');
-
 
         // Save to database
         if(! $this->validateAndSave($estate, $estate->ownerInfo, $estate->auction))
