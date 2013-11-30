@@ -28,7 +28,7 @@ return array(
 
     // News
     array('news/all', 'all-news.html'),
-    array('news/one', 'news-([0-9]+).html', News::getClass()),
+    array('news/show', 'news-([0-9]+).html', News::getClass()),
 
     // Login and register show
     array('login/show', 'login-register.html'),

@@ -57,4 +57,12 @@ class UserInfo extends Kareem3dUserInfo {
     {
         return $this->hasMany(Estate::getClass(), 'owner_info_id');
     }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function contactUs()
+    {
+        return $this->hasMany(ContactUs::getClass(), 'owner_info_id');
+    }
 }

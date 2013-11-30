@@ -13,6 +13,9 @@ Route::post('/login', array('as' => 'login', 'uses' => 'LoginController@check'))
 
 Route::post('/add-auction-offer-{auction}', array('as' => 'add-auction', 'uses' => 'AuctionController@addOffer'));
 
+Route::post('/contact-us.html', array('as' => 'contact-us', 'uses' => 'ContactUsController@send'));
+
+
 Route::get('/logout', array('as' => 'logout', function()
 {
     Auth::logout();

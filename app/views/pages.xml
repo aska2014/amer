@@ -62,7 +62,7 @@
     </page>
 
 
-    <page name="news/one">
+    <page name="news/show">
         <inner-body>inner_body.one_news</inner-body>
     </page>
 

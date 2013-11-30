@@ -8,7 +8,6 @@ $baseDir = dirname($vendorDir);
 return array(
     'AddAccessUsers' => $vendorDir . '/kareem3d/freak/src/migrations/2013_09_29_092022_add_access_users.php',
     'AddDescriptionToAuctionOfferTable' => $baseDir . '/app/database/migrations/2013_11_29_220823_add_description_to_auction_offer_table.php',
-    'AddSpecialOfferIdToSpecialsTable' => $baseDir . '/app/database/migrations/2013_11_30_074433_add_special_offer_id_to_specials_table.php',
     'Asset\\Asset' => $vendorDir . '/kareem3d/asset/src/Asset/Asset.php',
     'AuctionController' => $baseDir . '/app/controllers/AuctionController.php',
     'Auction\\Auction' => $baseDir . '/app/models/Auction/Auction.php',
@@ -28,6 +27,7 @@ return array(
     'CreateAuctionOffersTable' => $baseDir . '/app/database/migrations/2013_11_22_143938_create_auction_offers_table.php',
     'CreateAuctionsTable' => $baseDir . '/app/database/migrations/2013_11_22_143935_create_auctions_table.php',
     'CreateCodesTable' => $vendorDir . '/kareem3d/code/src/migrations/2013_06_16_135056_create_codes_table.php',
+    'CreateContactUsTable' => $baseDir . '/app/database/migrations/2013_11_30_100331_create_contact_us_table.php',
     'CreateControlpanelTable' => $vendorDir . '/kareem3d/freak/src/migrations/2013_09_28_140507_create_control_panel_table.php',
     'CreateDiscussionsTable' => $vendorDir . '/kareem3d/freak/src/migrations/2013_09_28_140757_create_discussions_table.php',
     'CreateEstateCategoriesTable' => $baseDir . '/app/database/migrations/2013_11_22_143900_create_estate_categories_table.php',

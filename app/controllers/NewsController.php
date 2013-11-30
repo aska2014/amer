@@ -26,12 +26,11 @@ class NewsController extends BaseController {
     }
 
     /**
+     * @param News $oneNews
      * @return mixed
      */
-    public function show()
+    public function show(News $oneNews)
     {
-        $oneNews = $this->link()->getModelOrFail();
-
         return $this->page()->printMe(compact('oneNews'));
     }
 
