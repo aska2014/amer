@@ -13,11 +13,18 @@ class FreakPaymentController extends FreakController {
     protected $payments;
 
     /**
-     * @var SpecialPayment $payments
+     * @var Estate
      */
-    public function __construct( SpecialPayment $payments )
+    protected $estates;
+
+    /**
+     * @var SpecialPayment $payments
+     * @param \Estate\Estate $estates
+     */
+    public function __construct( SpecialPayment $payments, \Estate\Estate $estates )
     {
         $this->payments = $payments;
+        $this->estates  = $estates;
     }
 
     /**
@@ -28,6 +35,19 @@ class FreakPaymentController extends FreakController {
     public function getIndex()
     {
         $payments = $this->payments->all();
+
+        return View::make('panel::payments.table', compact('payments'));
+    }
+
+    /**
+     * @param $id
+     * @return \Response
+     */
+    public function getShowByEstate($id)
+    {
+        $estate = $this->estates->findOrFail($id);
+
+        $payments = $estate->specialPayments;
 
         return View::make('panel::payments.data', compact('payments'));
     }
@@ -48,20 +68,6 @@ class FreakPaymentController extends FreakController {
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return Response
-     */
-    public function getCreate()
-    {
-        $payment = $this->payments;
-
-        $this->setPackagesData($payment);
-
-        return View::make('panel::payments.add', compact('payment'));
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
@@ -69,56 +75,7 @@ class FreakPaymentController extends FreakController {
      */
     public function getEdit($id)
     {
-        $payment = $this->payments->find( $id );
-
-        $this->setPackagesData($payment);
-
-        return View::make('panel::payments.add', compact('payment'));
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @return Response
-     */
-    public function postCreate()
-    {
-        $payment = $this->payments->findOrNew(Input::get('insert_id'))->fill($this->getInputs());
-
-        $payment->save();
-
-        $this->setModel($payment);
-
-        return $this->jsonModelSuccess();
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function postEdit($id)
-    {
-        $payment = $this->payments->find($id);
-
-        $payment->fill($this->getInputs());
-
-        try{
-
-            return $this->jsonValidateResponse($payment);
-
-        }catch(Exception $e){
-            dd(Input::get('SpecialPayment'), $id, $e->getMessage());
-        }
-    }
-
-    /**
-     * @return array
-     */
-    protected function getInputs()
-    {
-        return Input::get('SpecialPayment');
+        return $this->getShow($id);
     }
 
     /**
@@ -130,14 +87,14 @@ class FreakPaymentController extends FreakController {
 
         $payment->received = true;
 
-        return Redirect::to(freakUri('element/estate/make-special/'.$payment->estate->id));
+        return Redirect::to(freakUrl('element/estate/make-special/'.$payment->estate->id));
     }
 
     /**
      * @param $id
      * @return mixed
      */
-    public function getRefuse($id)
+    public function getReject($id)
     {
         $this->payments->find($id)->delete();
 

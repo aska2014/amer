@@ -1,9 +1,22 @@
+
+@if($activeSpecial = $estate->getActiveSpecial())
+
+<div class="alert alert-success alert-dismissable">
+
+    {{ trans('messages.estate.already_special', array(
+    'from' => $date->date('d F Y', $activeSpecial->from),
+    'to' => $date->date('d F Y', $activeSpecial->to))) }}
+</div>
+
+@else
+
 <div class="main-title">
     <a href="#">ميز اعلانك</a>
 </div>
 
 <form action="{{ URL::page('estate/upgrade', $estate) }}" method="POST" ng-controller="UpgradeEstateController">
     <div class="upgrade-estate">
+
         <span>أختر فترة تميز هذا الاعلان</span>
 
         <div class="clearfix"></div>
@@ -17,6 +30,7 @@
         </div>
 
         @endforeach
+
     </div>
 
     <div class="separator"></div>
@@ -27,14 +41,12 @@
         <input type="submit" class="btn btn-success" value="نعم اريد"/>
         <a href="{{ URL::page('estate/show', $estate) }}" class="btn btn-primary">لا شكراً</a>
     </div>
-
-    <input type="hidden" name="SpecialPayment[price]" value="{{ angular('upgrade.price') }}"/>
-    <input type="hidden" name="SpecialPayment[duration]" value="{{ angular('upgrade.duration') }}"/>
-    <input type="hidden" name="SpecialPayment[duration_type]" value="{{ angular('upgrade.duration_type') }}"/>
 </form>
 
 <div class="separator"></div>
 <div class="separator"></div>
+
+@endif
 
 <div class="main-title">
     <a href="#">فوائد الاعلان المميز</a>

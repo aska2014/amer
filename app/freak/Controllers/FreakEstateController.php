@@ -45,15 +45,6 @@ class FreakEstateController extends FreakController {
         $this->categories = $categories;
 
         $this->specials = $specials;
-
-        $this->usePackages( 'Images', 'Image' );
-
-        $this->setExtra(array(
-            'images-group-name' => 'Estate.Gallery',
-            'images-type'       => 'gallery',
-            'image-group-name'  => 'Estate.Main',
-            'image-type'        => 'main',
-        ));
     }
 
     /**
@@ -98,6 +89,19 @@ class FreakEstateController extends FreakController {
     }
 
     /**
+     * @param $id
+     */
+    public function getSpecial()
+    {
+        Asset::addPlugin('datatables');
+        Asset::addPlugin('ibutton');
+
+        $estates = $this->estatesAlgorithm->specials()->get();
+
+        return View::make('panel::estates.data', compact('estates'));
+    }
+
+    /**
      * @return mixed
      */
     public function postAcceptMany()
@@ -132,104 +136,33 @@ class FreakEstateController extends FreakController {
     }
 
     /**
-     * Show the add for creating a new resource.
-     *
-     * @return Response
-     */
-    public function getCreate()
-    {
-        return Redirect::to(freakUrl('element/estate'));
-        Asset::addPlugin('ckeditor');
-
-        $estate = $this->estates;
-
-        $this->setPackagesData($estate);
-
-        $categories = $this->categories->all();
-
-        return View::make('panel::estates.add', compact('estate', 'categories'));
-    }
-
-    /**
-     * Show the add for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function getEdit($id)
-    {
-        return Redirect::to(freakUrl('element/estate/show/' . $id));
-        $estate = $this->estates->find( $id );
-
-        $this->setPackagesData($estate);
-
-        return $this->getCreate()->with('estate', $estate);
-    }
-
-    /**
      * @param $id
      */
     public function getMakeSpecial( $id )
     {
+        Asset::addPlugin('datetime');
+
         $estate = $this->estates->findOrFail($id);
 
-        return View::make('panel::estates.special', compact('estate'));
+        $special  = $estate->getActiveSpecial() ?: new \Helper\EmptyClass();
+
+        return View::make('panel::estates.special', compact('estate', 'special'));
     }
 
     /**
      * @param $id
+     * @return \Illuminate\Http\JsonResponse
      */
     public function postMakeSpecial( $id )
     {
         $estate = $this->estates->findOrFail($id);
 
-        $special = $this->specials->newInstance(Input::get('Special'));
+        $from = date('Y-m-d H:i:s', strtotime(Input::get('Special.from')));
+        $to = date('Y-m-d H:i:s', strtotime(Input::get('Special.to')));
 
-        // Make this estate special
-        $estate->special()->save($special);
+        $estate->makeSpecial($from, $to);
 
-        return Redirect::to(freakUrl('element/estate/show'.$estate->id))->with('success', 'Estate is now special.');
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @return Response
-     */
-    public function postCreate()
-    {
-        // Find or get new instance of the estate
-        $estate = $this->estates->findOrNew(Input::get('insert_id'))->fill(Input::get('Estate'));
-
-        $this->setImageSEO( $estate );
-
-        return $this->jsonValidateResponse( $estate );
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function postEdit($id)
-    {
-        $estate = $this->estates->find($id)->fill(Input::get('Estate'));
-
-        $this->setImageSEO( $estate );
-
-        return $this->jsonValidateResponse( $estate );
-    }
-
-    /**
-     * @param Estate $estate
-     */
-    protected function setImageSEO( Estate $estate )
-    {
-        $this->addExtra('image-title', $estate->en('title'));
-        $this->addExtra('image-alt', $estate->en('title'));
-        $this->addExtra('images-title', $estate->en('title'));
-        $this->addExtra('images-alt'  , $estate->en('title'));
+        return $this->jsonModelSuccess();
     }
 
     /**

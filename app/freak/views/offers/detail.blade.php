@@ -9,7 +9,7 @@
     </tr>
     <tr>
         <th>Duration</th>
-        <td>{{ $specialOffer->getTranslatedDuration }}</td>
+        <td>{{ $specialOffer->getTranslatedDuration() }}</td>
     </tr>
     </tbody>
 </table>

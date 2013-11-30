@@ -8,6 +8,7 @@ $baseDir = dirname($vendorDir);
 return array(
     'AddAccessUsers' => $vendorDir . '/kareem3d/freak/src/migrations/2013_09_29_092022_add_access_users.php',
     'AddDescriptionToAuctionOfferTable' => $baseDir . '/app/database/migrations/2013_11_29_220823_add_description_to_auction_offer_table.php',
+    'AddSpecialOfferIdToSpecialsTable' => $baseDir . '/app/database/migrations/2013_11_30_074433_add_special_offer_id_to_specials_table.php',
     'Asset\\Asset' => $vendorDir . '/kareem3d/asset/src/Asset/Asset.php',
     'AuctionController' => $baseDir . '/app/controllers/AuctionController.php',
     'Auction\\Auction' => $baseDir . '/app/models/Auction/Auction.php',
@@ -1303,6 +1304,7 @@ return array(
     'Slider' => $baseDir . '/app/models/Slider.php',
     'SliderController' => $baseDir . '/app/controllers/SliderController.php',
     'Special\\Special' => $baseDir . '/app/models/Special/Special.php',
+    'Special\\SpecialAlgorithm' => $baseDir . '/app/models/Special/SpecialAlgorithm.php',
     'Special\\SpecialOffer' => $baseDir . '/app/models/Special/SpecialOffer.php',
     'Special\\SpecialPayment' => $baseDir . '/app/models/Special/SpecialPayment.php',
     'Symfony\\Component\\BrowserKit\\Client' => $vendorDir . '/symfony/browser-kit/Symfony/Component/BrowserKit/Client.php',

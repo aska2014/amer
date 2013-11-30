@@ -1,11 +1,13 @@
 <?php namespace Estate;
 
 use Auction\Auction;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Str;
 use Kareem3d\Images\Image;
 use Kareem3d\Link\Link;
 use Price;
 use Special\Special;
+use Special\SpecialOffer;
 use Special\SpecialPayment;
 use User;
 use UserInfo;
@@ -65,6 +67,41 @@ class Estate extends \Kareem3d\Eloquent\Model {
         'number_of_rooms.integer' => '',
         'type.required' => ''
     );
+
+    /**
+     * @return SpecialPayment
+     */
+    public function getLastPayment()
+    {
+        return $this->specialPayments()->orderBy('created_at', 'DESC')->first();
+    }
+
+    /**
+     * @param $from
+     * @param $to
+     */
+    public function makeSpecial($from, $to)
+    {
+        $this->specials()->delete();
+
+        $this->specials()->create(compact('from' ,'to'));
+    }
+
+    /**
+     * @return SpecialOffer|null
+     */
+    public function getActiveSpecial()
+    {
+        return App::make('Special\SpecialAlgorithm')->estate($this)->current()->first();
+    }
+
+    /**
+     * @return bool
+     */
+    public function isSpecial()
+    {
+        return App::make('Special\SpecialAlgorithm')->estate($this)->current()->count() > 0;
+    }
 
     /**
      * @param $type
@@ -145,10 +182,10 @@ class Estate extends \Kareem3d\Eloquent\Model {
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function special()
+    public function specials()
     {
-        return $this->hasOne(Special::getClass());
+        return $this->hasMany(Special::getClass());
     }
 }

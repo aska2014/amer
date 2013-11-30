@@ -16,5 +16,9 @@ return array(
             'update' => 'لقد تم تعديل الإعلان بنجاح.',
             'create' =>  'تم إضافة العقار بنجاح.',
         )
+    ),
+
+    'estate' => array(
+        'already_special' => 'هذا العقار تم تمييزه بالفعل<br/> من :from <br/>إلى: :to'
     )
 );

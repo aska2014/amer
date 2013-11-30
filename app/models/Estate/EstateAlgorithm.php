@@ -1,6 +1,7 @@
 <?php namespace Estate;
 
 use Illuminate\Database\Query\Builder;
+use Illuminate\Support\Facades\App;
 
 class EstateAlgorithm extends \Kareem3d\Eloquent\Algorithm {
 
@@ -29,7 +30,9 @@ class EstateAlgorithm extends \Kareem3d\Eloquent\Algorithm {
      */
     public function specials()
     {
-//        $this->getQuery()->whereIn('id', $ids);
+        $ids = App::make('Special\SpecialAlgorithm')->current()->get(array('estate_id'));
+
+        $this->getQuery()->whereIn('id', $ids->lists('estate_id'));
 
         return $this;
     }

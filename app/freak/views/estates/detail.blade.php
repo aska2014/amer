@@ -25,7 +25,7 @@
         <td>
             @if($category = $estate->category)
             <a href="{{ freakUrl('element/category/show/' . $category->id) }}">
-                {{ $category->en('title') }}
+                {{ $category->ar('title') }}
             </a>
             @endif
         </td>

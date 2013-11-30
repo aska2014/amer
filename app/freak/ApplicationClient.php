@@ -45,6 +45,7 @@ class ApplicationClient extends Freak\Core\Client {
             $element->setMenuItem(Item::make(
                 'Estate', '', Icon::make('icon-archive')
             )->addChildren(array(
+                    Item::make('Display special estates', $element->getUri('special'), Icon::make('icol-coins')),
                     Item::make('Display new estates', $element->getUri('not-accepted'), Icon::make('icol-award-star-gold')),
                     Item::make('Display accepted estates', $element->getUri('accepted'), Icon::make('icol-accept')),
                     Item::make('Display all estates', $element->getUri(), Icon::make('icol-inbox')),

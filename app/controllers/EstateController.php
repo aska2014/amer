@@ -229,10 +229,10 @@ class EstateController extends BaseController {
         AND
         Auth::user()->getInfo()->merge($ownerInfo);
 
+        // If operation is success then try to save estate image
         if($operationStatus)
         {
-            // Now try to save estate image
-            $operationStatus = $this->saveEstateImage($estate, $file);
+            $this->saveEstateImage($estate, $file);
         }
 
         ///////////////////////////////////////////////////////////////////////////////////
@@ -261,27 +261,16 @@ class EstateController extends BaseController {
      */
     protected function saveEstateImage(Estate $estate, \Symfony\Component\HttpFoundation\File\UploadedFile $file = null)
     {
-        if($file)
-        {
-            $versions = ImageFacade::versions('Estate.Main', 'estate-', $file, false);
+        if(! $file) return false;
 
-            $image = $this->images->create(array(
-                'title' => $estate->title,
-                'alt'   => $estate->description,
-            ))->add($versions);
+        $versions = ImageFacade::versions('Estate.Main', 'estate', $file, false);
 
-            $estate->replaceImage($image, 'main');
-        }
+        $image = $this->images->create(array(
+            'title' => $estate->title,
+            'alt'   => $estate->description,
+        ))->add($versions);
 
-        // Get main image from the estate.. If found then that means the image has been saved successfully...
-        if(! $estate->getImage('main')->exists)
-        {
-            $this->addErrors(array(trans('messages.errors.image')));
-
-            return false;
-        }
-
-        return true;
+        return $estate->replaceImage($image, 'main');
     }
 
     /**
@@ -330,13 +319,11 @@ class EstateController extends BaseController {
     }
 
     /**
-     * @param int $estateId
+     * @param \Estate\Estate $estate
      * @return mixed
      */
-    public function postUpgrade( $estateId )
+    public function postUpgrade( Estate $estate )
     {
-        $estate = $this->estates->findOrFail($estateId);
-
         $specialPayment = $this->specialPayments->newInstance(Input::get('SpecialPayment'));
 
         $specialPayment->user()->associate(Auth::user());
