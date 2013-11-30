@@ -332,7 +332,7 @@ class EstateController extends BaseController {
 
         $specialPayment->save();
 
-        return Redirect::to(URL::page('one-estate', $estate))->with('success', trans('messages.success.upgrade'));
+        return Redirect::to(URL::page('estate/show', $estate))->with('success', trans('messages.success.upgrade'));
     }
 
     /**
