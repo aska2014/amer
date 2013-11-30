@@ -34,7 +34,11 @@ class EstateAlgorithm extends \Kareem3d\Eloquent\Algorithm {
 
         $estates_ids = $ids->lists('estate_id');
 
-        if(!empty($estates_ids))
+        if(empty($estates_ids))
+        {
+            $this->getQuery()->where('id', 0);
+        }
+        else
         {
             $this->getQuery()->whereIn('id', $ids->lists('estate_id'));
         }
