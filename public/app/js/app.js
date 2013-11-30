@@ -18,7 +18,6 @@ angular.module('amer.controllers', []).
             return $elem.find("option[value='" + value + "']").length > 0;
         }
 
-
         $scope.$watch('estate.category_id', function(category_id)
         {
             // If it exists in the parent category select then directly set it
@@ -33,11 +32,19 @@ angular.module('amer.controllers', []).
                 {
                     if(selectHasValue($(this), category_id))
                     {
-                        $scope.estate.child_category_id  = category_id;
                         $scope.estate.parent_category_id = $(this).attr('parent-category-id');
+                        $scope.estate.child_category_id  = category_id;
                     }
                 });
             }
+        });
+
+        var first = true;
+
+        $scope.$watch('estate.parent_category_id', function()
+        {
+            if(! first) $scope.estate.child_category_id = 0;
+            first = false;
         });
 
         $scope.getCategoryId = function()

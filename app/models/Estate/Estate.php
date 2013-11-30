@@ -69,6 +69,18 @@ class Estate extends \Kareem3d\Eloquent\Model {
     );
 
     /**
+     * @return mixed|void
+     */
+    public function beforeValidate()
+    {
+        // If there's child for this estate category then set it to this estate_category_id
+        if($id = EstateCategory::getFirstChildrenId($this->estate_category_id))
+        {
+            $this->estate_category_id = $id;
+        }
+    }
+
+    /**
      * @return SpecialPayment
      */
     public function getLastPayment()

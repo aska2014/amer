@@ -25,6 +25,17 @@ class EstateCategory extends \Kareem3d\Eloquent\Model {
     protected static $specs = array('title');
 
     /**
+     * @param $id
+     * @return int|null
+     */
+    public static function getFirstChildrenId($id)
+    {
+        $id = static::where('parent_id', $id)->first(array('id'));
+
+        return $id ? $id->id : null;
+    }
+
+    /**
      * @param EstateCategory $except
      * @return \Illuminate\Database\Eloquent\Collection
      */

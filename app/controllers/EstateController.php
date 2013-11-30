@@ -99,19 +99,19 @@ class EstateController extends BaseController {
      */
     public function show(Estate $estate)
     {
-        $isOwnerUser = Auth::user() AND Auth::user()->same($estate->user);
+        $isOwnerUser = Auth::user() && Auth::user()->same($estate->user);
 
         // If it's not accepted and the authenticated user not the owner then throw not accepted exception
-        if(! $estate->accepted AND ! $isOwnerUser)
+        if(! $estate->accepted && ! $isOwnerUser)
         {
             throw new NotAcceptedException;
         }
 
         // If it's auction and not the owner user
-        $showAddAuctionOffer = $estate->auction AND ! $isOwnerUser;
+        $showAddAuctionOffer = $estate->auction && ! $isOwnerUser;
 
         // Show not accepted message if estate is not accepted and is the owner user
-        $showNotAcceptedMessage = !$estate->accepted AND $isOwnerUser;
+        $showNotAcceptedMessage = !$estate->accepted && $isOwnerUser;
 
         return $this->page()->printMe(compact('estate', 'showAddAuctionOffer', 'showNotAcceptedMessage'));
     }
@@ -125,7 +125,7 @@ class EstateController extends BaseController {
     {
         $this->beforeFilter('auth');
 
-        if($estate->exists AND ! Auth::user()->same($estate->user))
+        if($estate->exists && ! Auth::user()->same($estate->user))
         {
             throw new Exception("You can't edit this estate");
         }
@@ -265,9 +265,9 @@ class EstateController extends BaseController {
      */
     protected function validate(Estate $estate, UserInfo $ownerInfo, Auction $auction = null)
     {
-        $estate->validate() AND $this->addErrors($estate->getValidatorMessages());
-        $estate->validate() AND $this->addErrors($ownerInfo->getValidatorMessages());
-        $auction AND $auction->validate() AND $this->addErrors($auction->getValidatorMessages());
+        $estate->validate() && $this->addErrors($estate->getValidatorMessages());
+        $estate->validate() && $this->addErrors($ownerInfo->getValidatorMessages());
+        $auction && $auction->validate() && $this->addErrors($auction->getValidatorMessages());
     }
 
     /**
@@ -282,53 +282,31 @@ class EstateController extends BaseController {
         ///////////////////////////////////////////////////////////////////////////////////
         // Creation process
         ///////////////////////////////////////////////////////////////////////////////////
-        $operationStatus =
 
         // 1. Save owner info
-        $ownerInfo->save()
+        $ownerInfo->save();
 
-        AND
         // 2. Associate estate with the owner info (this might be not equal to the user information)
-        $estate->ownerInfo()->associate($ownerInfo)
+        $estate->ownerInfo()->associate($ownerInfo);
 
-        AND
         // 3. Associate estate with the authenticated user
-        $estate->user()->associate(Auth::user())
+        $estate->user()->associate(Auth::user());
 
-        AND
         // 4. Now save estate
-        $estate->save()
+        $estate->save();
 
-        AND
         // 5. If auction is defined for this estate then save it else then delete any associated auction
-        ($auction ? $estate->auction()->save($auction) : $estate->auction()->delete())
+        ($auction ? $estate->auction()->save($auction) : $estate->auction()->delete());
 
-        AND
+        // 6. Merge authenticated user with the given owner information
         Auth::user()->getInfo()->merge($ownerInfo);
 
-        // If operation is success then try to save estate image
-        if($operationStatus)
-        {
-            $this->saveEstateImage($estate, $file);
-        }
+        // 7. Save estate image
+        $this->saveEstateImage($estate, $file);
 
         ///////////////////////////////////////////////////////////////////////////////////
         // END creation process
         ///////////////////////////////////////////////////////////////////////////////////
-
-
-        // If creation process hasn't succeed then roll back all creations
-        if($operationStatus !== true)
-        {
-            // Roll back all creations (estate, ownerInfo and auction)
-            $estate->delete();
-            $ownerInfo->delete();
-            $auction AND $auction->delete();
-
-            return false;
-        }
-
-        return true;
     }
 
     /**
@@ -338,7 +316,7 @@ class EstateController extends BaseController {
      */
     protected function saveEstateImage(Estate $estate, \Symfony\Component\HttpFoundation\File\UploadedFile $file = null)
     {
-        if(! $file) return false;
+        if($file == null) return false;
 
         $versions = ImageFacade::versions('Estate.Main', 'estate', $file, false);
 
@@ -354,14 +332,18 @@ class EstateController extends BaseController {
      * @param Estate $estate
      * @param UserInfo $ownerInfo
      * @param Auction $auction
-     * @return mixed
+     * @return boolean
      */
     protected function validateAndSave(Estate $estate, UserInfo $ownerInfo, Auction $auction = null)
     {
         $this->validate($estate, $ownerInfo, $auction);
 
-        // return empty errors and the return of the save mehtod
-        return $this->emptyErrors() AND $this->save($estate, $ownerInfo, Input::file('estate-img', null));
+        // If errors are not empty then return false
+        if(! $this->emptyErrors()) return false;
+
+        $this->save($estate, $ownerInfo, Input::file('estate-img', null));
+
+        return true;
     }
 
     /**
