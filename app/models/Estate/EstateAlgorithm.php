@@ -54,11 +54,6 @@ class EstateAlgorithm extends \Kareem3d\Eloquent\Algorithm {
     {
         $this->getQuery()->where('estate_category_id', $category->id);
 
-        foreach($category->children as $child)
-        {
-            $this->getQuery()->orWhere('estate_category_id', $child->id);
-        }
-
         return $this;
     }
 
