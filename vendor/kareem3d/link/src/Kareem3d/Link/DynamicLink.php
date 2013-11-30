@@ -1,6 +1,7 @@
 <?php namespace Kareem3d\Link;
 
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\DB;
 use Kareem3d\Eloquent\Model;
 use Kareem3d\Templating\Page;
 
