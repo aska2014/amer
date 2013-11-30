@@ -2,5 +2,7 @@
 
 return array(
 
-    'amer_specials' => 'عروض عامر جروب'
+    'amer_specials' => 'عروض عامر جروب',
+    'my_estates' => 'إعلاناتى'
+
 );

@@ -2,7 +2,7 @@
 
     <?php $i = 0; ?>
 
-    @foreach($estateCategories as $category)
+    @foreach($estateCategories->take(9) as $category)
 
     <?php $i++; ?>
 

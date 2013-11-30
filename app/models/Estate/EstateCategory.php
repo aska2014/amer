@@ -49,6 +49,14 @@ class EstateCategory extends \Kareem3d\Eloquent\Model {
     }
 
     /**
+     * @return mixed|string
+     */
+    public function getDescriptiveTitle()
+    {
+        return $this->parent ? "{$this->parent->title} > {$this->title}" : $this->title;
+    }
+
+    /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function children()

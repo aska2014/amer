@@ -40,9 +40,16 @@
         @endif
 
         <div class="key-value">
+            <span class="key">المحافظة</span>
+            <span class="value">{{ $estate->province }}</span>
+        </div>
+
+        @if($estate->city)
+        <div class="key-value">
             <span class="key">المدينة:-</span>
             <span class="value">{{ $estate->city }}</span>
         </div>
+        @endif
 
         <div class="key-value">
             <span class="key">المنطقة/الحى:-</span>
@@ -53,7 +60,7 @@
             <span class="key">نوع العقار:-</span>
             <span class="value">
                 <a href="{{ URL::page('estate/all', $estate->category) }}">
-                {{ $estate->category->title }}
+                {{ $estate->category->getDescriptiveTitle() }}
                 </a>
             </span>
         </div>

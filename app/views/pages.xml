@@ -82,8 +82,9 @@
     </page>
 
 
-    <page name="advanced-search">
-        <inner-body>inner_body.advanced_search</inner-body>
+    <page name="search">
+        <header>header.top | header.logo | header.advanced_search</header>
+        <inner-body>inner_body.all_estates</inner-body>
     </page>
 
 

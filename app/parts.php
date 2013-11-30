@@ -5,12 +5,21 @@ use Kareem3d\Templating\Part;
 use Kareem3d\Templating\PartRepository;
 
 /**
+ * Shared across all parts
+ */
+PartRepository::shareToAll(function($view)
+{
+    $view->estateCategories = App::make('Estate\EstateCategory')->parentCategories();
+
+    $view->provinces = App::make('Place\Province')->all();
+});
+
+
+/**
  * Upper body parts
  */
 PartRepository::share('upper_body.menu', function($view)
 {
-    $view->estateCategories = App::make('Estate\EstateCategory')->parentCategories()->take(9);
-
     // Don't show if categories are empty
     $view->dontShowIf($view->estateCategories->isEmpty());
 });

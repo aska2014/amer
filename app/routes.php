@@ -26,3 +26,22 @@ Route::get('/logout', array('as' => 'logout', function()
 
 Route::model('estate', \Estate\Estate::getClass());
 Route::model('auction', \Auction\Auction::getClass());
+
+
+Route::get('/create-provinces', function()
+{
+    if(! \Place\Province::all()->isEmpty()) return;
+
+    $arProvinces = 'الاسكندرية , اسوان , اسيوط , البحيرة , بنى سويف , القاهرة , الدقهلية , دمياط , الفيوم , الغربية , الجيزة , الاسماعيلية , كفر الشيخ , مطروح , المنيا , المنوفية , الوادى الجديد , شمال سيناء , بورسعيد , القليوبية , قنا , البحر الاحمر , الشرقية , سوهاج , جنوب سيناء , السويس , الاقصر';
+
+    $pieces = explode(',', $arProvinces);
+
+    foreach($pieces as $piece)
+    {
+        $piece = trim($piece);
+
+        $provice = new \Place\Province(array('language' => 'ar', 'name' => $piece));
+
+        $provice->save();
+    }
+});

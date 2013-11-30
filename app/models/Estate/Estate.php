@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\App;
 use Illuminate\Support\Str;
 use Kareem3d\Images\Image;
 use Kareem3d\Link\Link;
+use Place\Province;
 use Price;
 use Special\Special;
 use Special\SpecialOffer;
@@ -34,7 +35,7 @@ class Estate extends \Kareem3d\Eloquent\Model {
      */
     protected $rules = array(
         'title' => 'required',
-        'city' => 'required',
+        'province_id' => 'required|exists:provinces,id',
         'price' => 'required|numeric',
         'region' => 'required',
         'estate_category_id' => 'required|exists:estate_categories,id',
@@ -46,7 +47,7 @@ class Estate extends \Kareem3d\Eloquent\Model {
      */
     protected $arCustomMessages = array(
         'title.required' => 'يجب إدخال عنوان العقار',
-        'city.required' => 'يجب إدخال المدينة',
+        'provinces.required' => 'يجب إدخال المحافظة',
         'region.required' => 'يجد إدخال الحى او المنطقة',
         'estate_category_id.required' => 'يجب إختيار نوع العقار',
         'estate_category_id.exists' => 'يجب إختيار نوع العقار',
@@ -199,5 +200,13 @@ class Estate extends \Kareem3d\Eloquent\Model {
     public function specials()
     {
         return $this->hasMany(Special::getClass());
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function province()
+    {
+        return $this->belongsTo(Province::getClass());
     }
 }

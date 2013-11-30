@@ -13,6 +13,10 @@
         <td>{{ $estate->ar('title') }}</td>
     </tr>
     <tr>
+        <th>Province</th>
+        <td>{{ $estate->province }}</td>
+    </tr>
+    <tr>
         <th>City</th>
         <td>{{ $estate->city }}</td>
     </tr>

@@ -108,7 +108,7 @@ class EstateController extends BaseController {
      */
     public function all(EstateCategory $category)
     {
-        $estatesTitle = $category->parent ? "{$category->parent->title} > {$category->title}" : $category->title;
+        $estatesTitle = $category->getDescriptiveTitle();
 
         $estates = $this->estatesAlgorithm->orderByDate()->underCategory($category)->accepted()->get();
 
@@ -183,7 +183,7 @@ class EstateController extends BaseController {
         }
         else
         {
-            $estate->hasAuction() ? $this->auction()->update($auctionInputs) : $estate->auction()->create($auctionInputs);
+            $estate->hasAuction() ? $estate->auction()->update($auctionInputs) : $estate->auction()->create($auctionInputs);
 
             $estate->escapeRule('price');
         }
@@ -365,7 +365,7 @@ class EstateController extends BaseController {
         // If errors are not empty then return false
         if(! $this->emptyErrors()) return false;
 
-        $this->save($estate, $ownerInfo, Input::file('estate-img', null));
+        $this->save($estate, $ownerInfo, Input::file('estate-img', null), $auction);
 
         return true;
     }

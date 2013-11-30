@@ -2,9 +2,19 @@
 
 class UserController extends BaseController {
 
-    public function __construct()
+    /**
+     * @var Estate\EstateAlgorithm
+     */
+    protected $estatesAlgorithm;
+
+    /**
+     * @param \Estate\EstateAlgorithm $estatesAlgorithm
+     */
+    public function __construct(\Estate\EstateAlgorithm $estatesAlgorithm)
     {
         $this->beforeFilter('auth');
+
+        $this->estatesAlgorithm = $estatesAlgorithm;
     }
 
     /**
@@ -12,9 +22,9 @@ class UserController extends BaseController {
      */
     public function estates()
     {
-        $estatesTitle = trans('words.my_estates');
+        $estatesTitle = trans('titles.my_estates');
 
-        $estates = Auth::user()->estates;
+        $estates = $this->estatesAlgorithm->byUser(Auth::user())->orderByDate()->get();
 
         return $this->page()->printMe(compact('estatesTitle', 'estates'));
     }

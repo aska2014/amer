@@ -11,8 +11,21 @@
                placeholder="" required>
     </div>
     <div class="form-group">
+        <label for="city-input">المحافظة</label>
+        <select class="form-control" name="Estate[province_id]" required>
+            <option value="">اختر المحافظة</option>
+            @foreach($provinces as $province)
+                @if($eFiller->get('province_id') == $province->id)
+                <option value="{{ $province->id }}" selected="selected">{{ $province->name }}</option>
+                @else
+                <option value="{{ $province->id }}">{{ $province->name }}</option>
+                @endif
+            @endforeach
+        </select>
+    </div>
+    <div class="form-group">
         <label for="city-input">المدينة</label>
-        <input class="form-control" type="text" id="city-input" name="Estate[city]" value="{{ $eFiller->get('city') }}" required>
+        <input class="form-control" type="text" id="city-input" name="Estate[city]" value="{{ $eFiller->get('city') }}">
     </div>
     <div class="form-group">
         <label for="region-input">الحى \ المنطقه</label>

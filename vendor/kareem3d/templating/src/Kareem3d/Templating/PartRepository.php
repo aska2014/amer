@@ -65,4 +65,15 @@ class PartRepository {
             $part->share($args);
         }
     }
+
+    /**
+     * @param $args
+     */
+    public static function shareToAll($args)
+    {
+        foreach(static::get() as $part)
+        {
+            $part->share($args);
+        }
+    }
 }

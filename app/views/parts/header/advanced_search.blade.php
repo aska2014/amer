@@ -71,66 +71,99 @@
 
         <div class="clearfix"></div>
 
-        <div class="lower-section">
-            <div class="row">
-                <div class="left">
-                    <label for="search-in2">المساحة</label>
-                    <div class="two-inputs form-inputs">
-                        <input type="text" id="search-in2" class="form-control" placeholder="من"/>
-                        <input type="text" class="form-control" placeholder="إلى"/>
+        <form action="{{ URL::page('search') }}" method="GET">
+            <div class="lower-section">
+                <div class="row">
+                    <div class="left">
+                        <label for="search-in2">المساحة</label>
+                        <div class="two-inputs form-inputs">
+                            <input name="search_area_low" value="{{ Input::get('search_area_low') }}" type="text" id="search-in2" class="form-control" placeholder="من"/>
+                            <input name="search_area_high" value="{{ Input::get('search_area_high') }}" type="text" class="form-control" placeholder="إلى"/>
+                        </div>
                     </div>
-                </div>
-                <div class="right">
-                    <label for="search-in1">أختر القسم</label>
-                    <div class="form-inputs">
-                        <select id="search-in1" class="form-control">
-                            <option value="">من الأحدث للأقدم</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="left">
-                    <label for="search-in2">المدينة</label>
-                    <div class="form-inputs">
-                        <select id="search-in1" class="form-control">
-                            <option value="">القاهرة</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="right">
-                    <label for="search-in1">المنطقة</label>
-                    <div class="form-inputs">
-                        <select id="search-in1" class="form-control">
-                            <option value="">القاهرة</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="left">
-                    <label for="search-in2">السعر</label>
-                    <div class="two-inputs form-inputs">
-                        <input type="text" id="search-in2" class="form-control" placeholder="من"/>
-                        <input type="text" class="form-control" placeholder="إلى"/>
-                    </div>
-                </div>
-                <div class="right">
-                    <label for="search-in1">الدولة</label>
-                    <div class="form-inputs">
-                        <select id="search-in1" class="form-control">
-                            <option value="">مصر</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
+                    <div class="right">
+                        <label for="search-in1">نوع العقار</label>
+                        <div class="form-inputs">
 
-            <div class="clearfix"></div>
+                            <select name="search_category" id="category-input" class="form-control">
+                                <option value="">اختر نوع العقار</option>
 
-            <div class="buttons">
-                <button class="btn-search" type="submit"></button>
+                                @foreach($estateCategories as $category)
+
+                                @if($category->children->isEmpty())
+
+                                    @if(Input::get('search_category') == $category->id)
+                                    <option value="{{ $category->id }}" selected="selected">{{ $category->title }}</option>
+                                    @else
+                                    <option value="{{ $category->id }}">{{ $category->title }}</option>
+                                    @endif
+
+                                @else
+                                <optgroup label="{{ $category->title }}">
+
+                                    @foreach($category->children as $childCategory)
+
+                                        @if(Input::get('search_category') == $childCategory->id)
+                                        <option value="{{ $childCategory->id }}" selected="selected">{{ $childCategory->title }}</option>
+                                        @else
+                                        <option value="{{ $childCategory->id }}">{{ $childCategory->title }}</option>
+                                        @endif
+
+                                    @endforeach
+
+                                </optgroup>
+                                @endif
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="left">
+                        <label for="search-in1">المدينة</label>
+                        <div class="form-inputs">
+                            <input name="search_city" value="{{ Input::get('search_city') }}" type="text" id="search-in2" class="form-control"/>
+                        </div>
+                    </div>
+                    <div class="right">
+                        <label for="search-in2">المحافظة</label>
+                        <div class="form-inputs">
+                            <select id="search-in1" name="search_province" class="form-control">
+                                <option value="">اختر المحافظة</option>
+                                @foreach($provinces as $province)
+                                @if(Input::get('search_province') == $province->id)
+                                <option value="{{ $province->id }}" selected="selected">{{ $province->name }}</option>
+                                @else
+                                <option value="{{ $province->id }}">{{ $province->name }}</option>
+                                @endif
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="left">
+                        <label for="search-in2">السعر</label>
+                        <div class="two-inputs form-inputs">
+                            <input name="search_price_low" value="{{ Input::get('search_price_low') }}" type="text" id="search-in2" class="form-control" placeholder="من"/>
+                            <input name="search_price_high" value="{{ Input::get('search_price_high') }}" type="text" class="form-control" placeholder="إلى"/>
+                        </div>
+                    </div>
+                    <div class="right">
+                        <label for="search-in1">المنطقة</label>
+                        <div class="form-inputs">
+                            <input name="search_region" value="{{ Input::get('search_region') }}" type="text" id="search-in2" class="form-control"/>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="clearfix"></div>
+
+                <div class="buttons">
+                    <button class="btn-search" type="submit"></button>
+                </div>
             </div>
         </div>
-    </div>
+    </form>
 
 </div>
