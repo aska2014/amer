@@ -52,12 +52,15 @@ class EstateAlgorithm extends \Kareem3d\Eloquent\Algorithm {
      */
     public function underCategory(EstateCategory $category)
     {
-        $this->getQuery()->where('estate_category_id', $category->id);
-
-        foreach($category->children as $child)
+        $this->getQuery()->where(function( $query ) use ($category)
         {
-            $this->getQuery()->orWhere('estate_category_id', $child->id);
-        }
+            $query->where('estate_category_id', $category->id);
+
+            foreach($category->children as $child)
+            {
+                $query->orWhere('estate_category_id', $child->id);
+            }
+        });
 
         return $this;
     }
