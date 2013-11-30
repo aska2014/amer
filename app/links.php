@@ -21,6 +21,8 @@ return array(
     array('estate/all', 'estates-([0-9]+).html', EstateCategory::getClass()),
     array('estate/show', 'estate-([0-9]+).html', Estate::getClass()),
 
+    array('estate/amer-group-specials', 'amer-group-specials.html'),
+
     // Estate operations
     array('estate/create', 'create-estate.html'),
     array('estate/edit', 'edit-estate/([0-9]+)', Estate::getClass()),

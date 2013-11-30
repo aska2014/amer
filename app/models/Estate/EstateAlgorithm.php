@@ -6,6 +6,19 @@ use Illuminate\Support\Facades\App;
 class EstateAlgorithm extends \Kareem3d\Eloquent\Algorithm {
 
     /**
+     * @param $user
+     * @return $this
+     */
+    public function byUser( $user )
+    {
+        $id = $user instanceof User ? $user->id : $user;
+
+        $this->getQuery()->where('user_id', $id);
+
+        return $this;
+    }
+
+    /**
      * @return $this
      */
     public function notAccepted()

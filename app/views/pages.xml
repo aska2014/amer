@@ -32,6 +32,11 @@
     </page>
 
 
+    <page name="estate/amer-group-specials">
+        <inner-body>inner_body.all_estates</inner-body>
+    </page>
+
+
     <page name="estate/all">
         <inner-body>inner_body.all_estates</inner-body>
     </page>

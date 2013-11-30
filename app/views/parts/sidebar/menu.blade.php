@@ -7,7 +7,7 @@
         </div>
 
         <div class="item-info">
-            <a href="{{ URL::page('user/estates') }}">عقاراتى</a>
+            <a href="{{ URL::page('user/estates') }}"> اعلاناتي</a>
         </div>
     </div>
     @endif
@@ -51,7 +51,7 @@
         </div>
 
         <div class="item-info">
-            <a href="#">عروض عامر جروب 2</a>
+            <a href="{{ URL::page('estate/amer-group-specials') }}">عروض عامر جروب 2</a>
         </div>
     </div>
 

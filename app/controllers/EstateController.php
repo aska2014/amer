@@ -55,6 +55,11 @@ class EstateController extends BaseController {
     protected $estatesAlgorithm;
 
     /**
+     * @var UserAlgorithm
+     */
+    protected $usersAlgorithm;
+
+    /**
      * @param Estate $estates
      * @param EstateCategory $estateCategories
      * @param Auction $auctions
@@ -63,10 +68,11 @@ class EstateController extends BaseController {
      * @param SpecialPayment $specialPayments
      * @param SpecialOffer $specialOffers
      * @param EstateAlgorithm $estatesAlgorithm
+     * @param UserAlgorithm $usersAlgorithm
      */
     public function __construct( Estate $estates, EstateCategory $estateCategories, Auction $auctions,
                                  UserInfo $usersInfo, Image $images, SpecialPayment $specialPayments, SpecialOffer $specialOffers,
-                                 EstateAlgorithm $estatesAlgorithm)
+                                 EstateAlgorithm $estatesAlgorithm, UserAlgorithm $usersAlgorithm)
     {
         $this->estates = $estates;
         $this->estateCategories = $estateCategories;
@@ -76,6 +82,24 @@ class EstateController extends BaseController {
         $this->images = $images;
         $this->specialPayments = $specialPayments;
         $this->specialOffers = $specialOffers;
+        $this->usersAlgorithm = $usersAlgorithm;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function amerGroupSpecials()
+    {
+        $estatesTitle = trans('titles.amer_specials');
+
+        // Get amer group user
+        $amerGroupUser = $this->usersAlgorithm->byEmail('info@amergroup2.com')->first(array('id'));
+
+        if(! $amerGroupUser) return Redirect::to(URL::page('home'));
+
+        $estates = $amerGroupUser->estates;
+
+        return $this->page()->printMe(compact('estates', 'estatesTitle'));
     }
 
     /**

@@ -45,7 +45,7 @@
     <div class="separator"></div>
 
 
-    <h3 class="search-link"><a href="#">أبحث عن عقار</a></h3>
+    <h3 class="search-link"><a href="#">أبحث عن إعلان</a></h3>
 
     <div class="right-search">
 
