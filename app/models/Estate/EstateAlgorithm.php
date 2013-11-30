@@ -32,7 +32,12 @@ class EstateAlgorithm extends \Kareem3d\Eloquent\Algorithm {
     {
         $ids = App::make('Special\SpecialAlgorithm')->current()->get(array('estate_id'));
 
-        $this->getQuery()->whereIn('id', $ids->lists('estate_id'));
+        $estates_ids = $ids->lists('estate_id');
+
+        if(!empty($estates_ids))
+        {
+            $this->getQuery()->whereIn('id', $ids->lists('estate_id'));
+        }
 
         return $this;
     }
