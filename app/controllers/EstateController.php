@@ -133,7 +133,7 @@ class EstateController extends BaseController {
      */
     public function edit($estate)
     {
-        if(! Auth::user()->same($estate->user))
+        if($estate->exists AND ! Auth::user()->same($estate->user))
         {
             throw new Exception("You can't edit this estate");
         }
