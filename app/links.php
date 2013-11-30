@@ -25,7 +25,6 @@ return array(
     array('estate/create', 'create-estate.html'),
     array('estate/edit', 'edit-estate/([0-9]+)', Estate::getClass()),
     array('estate/upgrade', 'upgrade-estate/([0-9]+)', Estate::getClass()),
-    array('estate/remove', '234eZSCAD34eXZC2W3reds/([0-9]+)', Estate::getClass()),
 
     // News
     array('news/all', 'all-news.html'),
