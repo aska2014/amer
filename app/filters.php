@@ -25,6 +25,13 @@ App::before(function(\Illuminate\Http\Request $request)
 
 App::after(function($request, $response)
 {
+    // Make the authenticated user online
+    if(Auth::user())
+    {
+        Auth::user()->makeOnline();
+    }
+
+
     Tracker::instance()->done();
 });
 
