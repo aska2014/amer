@@ -26,6 +26,7 @@ class ApplicationClient extends Freak\Core\Client {
             Element::withDefaults('slider', new Slider()),
             Element::withDefaults('offer', new SpecialOffer()),
             Element::withDefaults('payment', new SpecialPayment()),
+            Element::withDefaults('contactUs', new ContactUs()),
         );
     }
 
@@ -59,6 +60,17 @@ class ApplicationClient extends Freak\Core\Client {
                 'Payments', '', Icon::make('icon-archive')
             )->addChildren(array(
                     Item::make('Display all payments', $element->getUri(), Icon::make('icol-inbox')),
+                )));
+
+        });
+
+
+        $freak->modifyElement('contactus', function(Element $element)
+        {
+            $element->setMenuItem(Item::make(
+                'Contact Us', '', Icon::make('icon-archive')
+            )->addChildren(array(
+                    Item::make('Display all messages', $element->getUri(), Icon::make('icol-inbox')),
                 )));
 
         });
