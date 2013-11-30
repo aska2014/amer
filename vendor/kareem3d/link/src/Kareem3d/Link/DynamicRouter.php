@@ -84,7 +84,7 @@ class DynamicRouter {
                     $arguments = func_get_args();
 
                     // Fetch model passing the first function argument (if exists)
-                    if($model = $this->getLink()->getModel(isset($arguments[0]) ? $arguments[0] : false))
+                    if($model = $link->getModel(isset($arguments[0]) ? $arguments[0] : false))
                     {
                         // Replace first argument with the models
                         $arguments[0] = $model;
