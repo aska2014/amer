@@ -7702,6 +7702,24 @@ body {
 .inner-body .pretty-text strong {
   color: #025b89;
 }
+.inner-body .pagination ul {
+  list-style: none;
+}
+.inner-body .pagination ul .disabled {
+  display: none;
+}
+.inner-body .pagination ul li {
+  float: right;
+  font-size: 12px;
+}
+.inner-body .pagination ul li a,
+.inner-body .pagination ul li span {
+  display: block;
+  padding: 2px 7px;
+  margin-left: 7px;
+  background: #EEE;
+  border-radius: 5px;
+}
 .footer {
   margin-left: -15px;
   margin-right: -15px;

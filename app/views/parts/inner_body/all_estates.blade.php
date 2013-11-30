@@ -46,4 +46,6 @@
     <div class="separator"></div>
     @endforeach
 
+    {{ $estates->links() }}
+
 </div>
