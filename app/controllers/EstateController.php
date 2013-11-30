@@ -128,10 +128,16 @@ class EstateController extends BaseController {
 
     /**
      * @param \Estate\Estate $estate
+     * @throws Exception
      * @return mixed
      */
     public function edit($estate)
     {
+        if(! Auth::user()->same($estate->user))
+        {
+            throw new Exception("You can't edit this estate");
+        }
+
         $estateCategories = $this->estateCategories->parentCategories();
 
         $eFiller = new Filler($estate, Input::old('Estate'));
