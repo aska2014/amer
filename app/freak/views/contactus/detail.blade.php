@@ -11,6 +11,9 @@
         <th>Body</th>
         <td>{{ $contactUs->body }}</td>
     </tr>
+
     </tbody>
 </table>
+
+@include('panel::userinfo.detail_table', array('userInfo' => $contactUs->ownerInfo))
 @stop

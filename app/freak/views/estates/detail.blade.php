@@ -54,47 +54,7 @@
 </table>
 
 
-
-<table class="table table-striped table-detail-view">
-    <thead>
-    <tr>
-        <th colspan="2"><li class="icol-flag-blue"></li> User information</th>
-    </tr>
-    </thead>
-    <tbody>
-    @if($estate->user)
-    <tr>
-        <th>User id</th>
-        <td>
-            <a href="{{ freakUrl('/elements/user/' . $estate->user->id) }}">
-                {{ $estate->user->id }}
-            </a>
-        </td>
-    </tr>
-    @endif
-    <tr>
-        <th>User full name</th>
-        <td>{{ $estate->ownerInfo->name }}</td>
-    </tr>
-    <tr>
-        <th>User mobile number</th>
-        <td>{{ $estate->ownerInfo->mobile_number }}</td>
-    </tr>
-    <tr>
-        <th>User telephone number</th>
-        <td>{{ $estate->ownerInfo->telephone_number }}</td>
-    </tr>
-    <tr>
-        <th>User email</th>
-        <td>
-            <a href="mailto:{{ $estate->ownerInfo->contact_email }}" target="_top">
-            {{ $estate->ownerInfo->contact_email }}
-            </a>
-        </td>
-    </tr>
-    </tbody>
-</table>
-
+@include('panel::userinfo.detail_table', array('userInfo' => $estate->ownerInfo))
 
 
 @if($auction = $estate->auction)

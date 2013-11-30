@@ -5,6 +5,7 @@
 <tr>
     <th>Id</th>
     <th>Subject</th>
+    <th>User email</th>
     <th>Tools</th>
 </tr>
 </thead>
@@ -14,6 +15,9 @@
     <td>{{ $oneContactUs->id }}</td>
     <td>
         {{ $oneContactUs->subject }}
+    </td>
+    <td>
+        {{ $oneContactUs->ownerInfo->contact_email }}
     </td>
     <td class="action-col" width="10%">
         <span class="btn-group">
@@ -28,6 +32,7 @@
 <tr>
     <th>Id</th>
     <th>Subject</th>
+    <th>User email</th>
     <th>Tools</th>
 </tr>
 </tfoot>
