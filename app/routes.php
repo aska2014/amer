@@ -26,12 +26,3 @@ Route::get('/logout', array('as' => 'logout', function()
 
 Route::model('estate', \Estate\Estate::getClass());
 Route::model('auction', \Auction\Auction::getClass());
-
-
-Route::get('/convert-estates', function()
-{
-    foreach(\Estate\Estate::all() as $estate)
-    {
-        $estate->save();
-    }
-});
