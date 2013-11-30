@@ -37,5 +37,12 @@ return array(
     array('contact-us', 'contact-us.html'),
 
     // Advanced search
-    array('advanced-search', 'advanced-search.html')
+    array('advanced-search', 'advanced-search.html'),
+
+
+    // About us page
+    array('about-us', 'about-company.html'),
+
+    // About us page
+    array('services', 'services.html'),
 );

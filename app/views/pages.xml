@@ -80,4 +80,14 @@
     <page name="advanced-search">
         <inner-body>inner_body.advanced_search</inner-body>
     </page>
+
+
+    <page name="about-us">
+        <inner-body>inner_body.about_us</inner-body>
+    </page>
+
+
+    <page name="services">
+        <inner-body>inner_body.services</inner-body>
+    </page>
 </pages>

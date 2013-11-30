@@ -7693,6 +7693,15 @@ body {
 .inner-body .upgrade-estate .buttons {
   margin-top: 10px;
 }
+.inner-body .pretty-text {
+  text-align: right;
+}
+.inner-body .pretty-text h4 {
+  color: #d75803;
+}
+.inner-body .pretty-text strong {
+  color: #025b89;
+}
 .footer {
   margin-left: -15px;
   margin-right: -15px;
