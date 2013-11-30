@@ -402,4 +402,22 @@ class EstateController extends BaseController {
         return Input::has('estate-has-auction') ? Input::get('Auction') : array();
     }
 
+    /**
+     * @param Estate $estate
+     * @throws Exception
+     */
+    public function remove(Estate $estate)
+    {
+        if(! Auth::user()->same($estate->user))
+        {
+            throw new Exception("You can't access this page");
+        }
+        else
+        {
+            $estate->delete();
+
+            return Redirect::to(URL::page('user/estates'))->with('success', trans('messages.success.estate.deleted'));
+        }
+    }
+
 }
