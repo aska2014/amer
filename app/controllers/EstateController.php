@@ -86,7 +86,7 @@ class EstateController extends BaseController {
     {
         $estatesTitle = $category->parent ? "{$category->parent->title} > {$category->title}" : $category->title;
 
-        $estates = $this->estatesAlgorithm->underCategory($category)->accepted()->get();
+        $estates = $this->estatesAlgorithm->orderByDate()->underCategory($category)->accepted()->get();
 
         return $this->page()->printMe(compact('estates', 'estatesTitle'));
     }
