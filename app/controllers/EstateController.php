@@ -416,7 +416,7 @@ class EstateController extends BaseController {
         {
             $estate->delete();
 
-            return Redirect::to(URL::page('user/estates'))->with('success', trans('messages.success.estate.deleted'));
+            return Redirect::to(URL::page('user/estates'))->with('success', trans('messages.success.estate.delete'));
         }
     }
 
