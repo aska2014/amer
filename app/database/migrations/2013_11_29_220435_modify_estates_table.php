@@ -18,7 +18,7 @@ class ModifyEstatesTable extends Migration {
 
             $table->boolean('accepted')->default(false);
 
-            $table->integer('user_id')->unsigned()->nullable();
+            $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('ka_user_accounts')->onDelete('CASCADE');
 
 		});
