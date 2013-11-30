@@ -6952,12 +6952,13 @@ body {
 }
 .large-menu .menu-item a {
   color: #000;
+  font-size: 13px;
 }
 .large-menu .menu-item a:hover {
   text-decoration: none;
 }
 .large-menu .menu-item .img-info {
-  font-size: 16px;
+  font-size: 14px;
   text-align: center;
 }
 .large-menu .menu-item .img-info:hover {
