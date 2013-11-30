@@ -166,10 +166,9 @@ class EstateController extends BaseController {
         else
         {
             $estate->hasAuction() ? $this->auction()->update($auctionInputs) : $estate->auction()->create($auctionInputs);
-        }
 
-        // If this estate has auction on it then escape the price required rule
-        if($estate->hasAuction()) $estate->escapeRule('price');
+            $estate->escapeRule('price');
+        }
 
         // Save to database
         if(! $this->validateAndSave($estate, $estate->ownerInfo, $estate->auction))
