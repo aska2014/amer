@@ -9,6 +9,11 @@ use Kareem3d\Templating\PartRepository;
  */
 PartRepository::shareToAll(function($view)
 {
+    // Get the get inputs with the page
+    $array = $_GET; unset($array['page']);
+
+    $view->getArrayWithoutPage = $array;
+
     $view->estateCategories = App::make('Estate\EstateCategory')->parentCategories();
 
     $view->provinces = App::make('Place\Province')->all();

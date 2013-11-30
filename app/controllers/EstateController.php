@@ -14,7 +14,7 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class EstateController extends BaseController {
 
-    const ESTATES_PER_PAGE = 12;
+    const ESTATES_PER_PAGE = 10;
 
     /**
      * @var Estate

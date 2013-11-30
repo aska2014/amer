@@ -46,6 +46,6 @@
     <div class="separator"></div>
     @endforeach
 
-    {{ $estates->links() }}
+    {{ $estates->appends($getArrayWithoutPage)->links() }}
 
 </div>
