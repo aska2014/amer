@@ -107,19 +107,19 @@
 
     <div class="form-group">
         <label for="user-name-input">اسم صاحب الاعلان</label>
-        <input class="form-control" type="text" id="user-name-input" name="UserInfo[name]" value="{{ $uFiller->get('name', $authUser->name) }}" required>
+        <input class="form-control" type="text" id="user-name-input" name="UserInfo[name]" value="{{ $uFiller->get('name', $authUser ? $authUser->name : '') }}" required>
     </div>
     <div class="form-group">
         <label for="user-mobile-input">رقم الموبيل</label>
-        <input class="form-control" type="text" id="user-mobile-input" name="UserInfo[mobile_number]" value="{{ $uFiller->get('mobile_number', $authUser->mobile_number) }}">
+        <input class="form-control" type="text" id="user-mobile-input" name="UserInfo[mobile_number]" value="{{ $uFiller->get('mobile_number', $authUser ? $authUser->mobile_number : '') }}">
     </div>
     <div class="form-group">
         <label for="user-telephone-input">رقم الهاتف</label>
-        <input class="form-control" type="text" id="user-telephone-input" name="UserInfo[telephone_number]" value="{{ $uFiller->get('telephone_number', $authUser->telephone_number) }}">
+        <input class="form-control" type="text" id="user-telephone-input" name="UserInfo[telephone_number]" value="{{ $uFiller->get('telephone_number', $authUser ? $authUser->telephone_number : '') }}">
     </div>
     <div class="form-group">
         <label for="user-email-input">البريد الإلكترونى</label>
-        <input class="form-control" type="email" id="user-email-input" name="UserInfo[contact_email]" value="{{ $uFiller->get('contact_email', $authUser->contact_email) }}" required>
+        <input class="form-control" type="email" id="user-email-input" name="UserInfo[contact_email]" value="{{ $uFiller->get('contact_email', $authUser ? $authUser->contact_email : '') }}" required>
     </div>
 
     <div class="buttons">
