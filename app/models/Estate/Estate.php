@@ -79,6 +79,8 @@ class Estate extends \Kareem3d\Eloquent\Model {
         {
             $this->estate_category_id = $id;
         }
+
+        $this->cleanXSS();
     }
 
     /**

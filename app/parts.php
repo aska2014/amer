@@ -19,6 +19,14 @@ PartRepository::shareToAll(function($view)
     $view->provinces = App::make('Place\Province')->all();
 });
 
+/**
+ * header parts
+ */
+PartRepository::share('header.top', function($view)
+{
+    $view->menuPages = App::make('Website\Page')->get();
+});
+
 
 /**
  * Upper body parts
@@ -54,4 +62,14 @@ PartRepository::share('inner_body.slider', function($view)
     $view->sliders = App::make('Slider')->get();
 
     $view->dontShowIf($view->sliders->isEmpty());
+});
+
+/**
+ * Footer parts
+ */
+
+PartRepository::share('footer.contacts', function($view)
+{
+    $view->mobileNumbers = App::make('Website\ContactInfo')->getMobileNumbers(2);
+    $view->contactEmail = App::make('Website\ContactInfo')->getMainEmail();
 });

@@ -40,12 +40,4 @@ return array(
 
     // Advanced search
     array('search', 'search.html'),
-
-
-
-    // About us page
-    array('about-us', 'about-company.html'),
-
-    // About us page
-    array('services', 'services.html'),
 );

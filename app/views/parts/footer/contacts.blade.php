@@ -1,10 +1,10 @@
 <div class="footer-contacts section">
 
     لأي إستفسارات راسلنا على:-<br />
-    <b>info@Amer-Group2.com</b><br />
+    <b>{{ $contactEmail }}</b><br />
     أو إتصل بنا على:-<br />
-    <b>00201208666180</b><br />
-    <b>00201127727794</b>
+    <b>{{ isset($mobileNumbers[0]) ? $mobileNumbers[0] : '' }}</b><br />
+    <b>{{ isset($mobileNumbers[1]) ? $mobileNumbers[1] : '' }}</b>
 
 
 </div>

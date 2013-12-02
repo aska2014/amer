@@ -43,13 +43,19 @@ class DynamicLink extends Model implements Link {
         {
             $duplicate->associateUrl($url);
 
-            $this->query()->where('id', $duplicate->id)->update($duplicate->getAttributes());
+            // If url id isset then update it
+            if($duplicate->url_id)
+            {
+                $this->query()->where('id', $duplicate->id)->update($duplicate->getAttributes());
+            }
 
             // Stop saving this
             return false;
         }
 
         $this->associateUrl($url);
+
+        if(! $this->url_id) return false;
     }
 
     /**

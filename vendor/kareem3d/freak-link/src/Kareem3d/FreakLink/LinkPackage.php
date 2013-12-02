@@ -43,7 +43,7 @@ class LinkPackage extends Package {
 
         return View::make('freak-link::link.package.form', array(
             'link' => $link
-        ));
+        ))->__toString();
     }
 
     /**

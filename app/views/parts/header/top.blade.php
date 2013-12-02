@@ -17,8 +17,11 @@
 
         <ul>
             <li><a href="{{ URL::page('home') }}">الرئيسية</a></li>
-            <li><a href="{{ URL::page('about-us') }}">نبذه عن الشركة</a></li>
-            <li><a href="{{ URL::page('services') }}">خدمتنا</a></li>
+
+            @foreach($menuPages as $page)
+            <li><a href="{{ URL::page('page', $page) }}">{{ $page->title }}</a></li>
+            @endforeach
+
             <li><a href="{{ URL::page('contact-us') }}">إتصل بنا</a></li>
         </ul>
 

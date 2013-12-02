@@ -24,6 +24,14 @@ class URL extends Model {
     public $timestamps = false;
 
     /**
+     * @return mixed|void
+     */
+    public function beforeSave()
+    {
+        if(! $this->url) return false;
+    }
+
+    /**
      * @param $url
      * @return \Kareem3d\URL\URL
      */
@@ -105,6 +113,6 @@ class URL extends Model {
      */
     public function __toString()
     {
-        return $this->url;
+        return (string)$this->url;
     }
 }
