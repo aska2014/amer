@@ -26,3 +26,9 @@ Route::get('/logout', array('as' => 'logout', function()
 
 Route::model('estate', \Estate\Estate::getClass());
 Route::model('auction', \Auction\Auction::getClass());
+
+
+Route::get('/send-me-error', function()
+{
+    throw new Exception("Testing the send me error..");
+});

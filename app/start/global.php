@@ -11,6 +11,7 @@
 |
 */
 
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Kareem3d\Eloquent\Model;
 use Tracking\Tracker;
 
@@ -77,7 +78,28 @@ Log::useDailyFiles(storage_path().'/logs/'.$logFile);
 
 App::error(function(Exception $exception, $code)
 {
-	Log::error($exception);
+    $data = array(
+        'errorTitle' => get_class($exception) . ' <br />' . $exception->getMessage(),
+        'errorDescription' => 'In file:' . $exception->getFile() . ', In line:'.$exception->getLine(),
+        'errorPage' => Request::url()
+    );
+
+    Mail::send('emails.error', $data, function($message)
+    {
+        $message->to('kareem3d.a@gmail.com', 'Kareem Mohamed')->subject('Error from amergroup');
+    });
+});
+
+
+App::error(function(ModelNotFoundException $e)
+{
+    return Redirect::route('home');
+});
+
+
+App::missing(function($exception)
+{
+    return 'Sorry the page you are looking for not found. go to <a href="'.URL::to('').'">Amer Group home page</a>';
 });
 
 /*
