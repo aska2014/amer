@@ -5,7 +5,7 @@
 <div class="all-estates">
 
     @foreach($estates as $estate)
-    <div class="estate">
+    <div class="estate {{ $estate->isSpecial() ? 'estate-special' : '' }}">
         <div class="img-div">
             @if($image = $estate->getImage('main'))
             <img class="img-responsive" src="{{ $image->getNearest(200, 150) }}" alt="{{ $estate->title }}"/>

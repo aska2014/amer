@@ -7339,7 +7339,8 @@ body {
   min-height: 1px;
   padding-left: 15px;
   padding-right: 15px;
-  padding: 0px;
+  padding: 15px 5px 15px 5px;
+  border-bottom: 1px solid #DDD;
 }
 .inner-body .all-estates .estate .user-tools a {
   width: 100%;
@@ -7399,7 +7400,7 @@ body {
 .inner-body .all-estates .estate .extra-info-div {
   float: right;
   width: 20%;
-  text-align: right;
+  text-align: center;
 }
 .inner-body .all-estates .estate .extra-info-div .price {
   color: #d75803;
@@ -7415,6 +7416,18 @@ body {
   .inner-body .all-estates .estate .extra-info-div {
     display: none;
   }
+}
+.inner-body .all-estates .estate-special {
+  background: #eeeeee;
+  background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #eeeeee), color-stop(1, #ffffff));
+  background: -ms-linear-gradient(bottom, #eeeeee, #ffffff);
+  background: -moz-linear-gradient(center bottom, #eeeeee 0%, #ffffff 100%);
+  background: -o-linear-gradient(#ffffff, #eeeeee);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#eeeeee', GradientType=0);
+  border: 1px solid #AAA;
+  -webkit-box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
 }
 .inner-body .one-estate .img-div {
   float: right;
