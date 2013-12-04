@@ -12,6 +12,7 @@
 */
 
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Kareem3d\Eloquent\Extensions\Acceptable\NotAcceptedException;
 use Kareem3d\Eloquent\Model;
 use Tracking\Tracker;
 
@@ -94,6 +95,12 @@ App::error(function(Exception $exception, $code)
 App::error(function(ModelNotFoundException $e)
 {
     return Redirect::route('home');
+});
+
+
+App::error(function(NotAcceptedException $e)
+{
+    return 'هذا الإعلان لم يتم قبوله بعد.';
 });
 
 
