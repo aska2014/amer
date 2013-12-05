@@ -4,7 +4,7 @@
 
         <upper-body>upper_body.menu</upper-body>
 
-        <sidebar>sidebar.menu | sidebar.advertisement | sidebar.advertisement | sidebar.chat</sidebar>
+        <sidebar>sidebar.menu | sidebar.advertisement | sidebar.chat</sidebar>
 
         <footer>footer.socials | footer.copyrights | footer.contacts</footer>
     </default>
@@ -85,6 +85,11 @@
     <page name="search">
         <header>header.top | header.logo | header.advanced_search</header>
         <inner-body>inner_body.all_estates</inner-body>
+    </page>
+
+
+    <page name="banner/request">
+        <inner-body>inner_body.request_banner</inner-body>
     </page>
 
 

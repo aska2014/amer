@@ -30,6 +30,8 @@ class ApplicationClient extends Freak\Core\Client {
             Element::withDefaults('user', new User()),
             Element::withDefaults('contactInfo'),
             Element::withDefaults('page'),
+            Element::withDefaults('bannerRequest'),
+            Element::withDefaults('banner'),
         );
     }
 
@@ -83,7 +85,15 @@ class ApplicationClient extends Freak\Core\Client {
             )->addChildren(array(
                     Item::make('Display contact information', $element->getUri(), Icon::make('icol-inbox')),
                 )));
+        });
 
+        $freak->modifyElement('bannerRequest', function(Element $element)
+        {
+            $element->setMenuItem(Item::make(
+                'Banner Requests', '', Icon::make('icon-archive')
+            )->addChildren(array(
+                    Item::make('Display banner requests', $element->getUri(), Icon::make('icol-coins')),
+                )));
         });
 
         $freak->modifyElement('user', function(Element $element)

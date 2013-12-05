@@ -40,4 +40,7 @@ return array(
 
     // Advanced search
     array('search', 'search.html'),
+
+    // Request banner
+    array('banner/request', 'request-banner.html'),
 );

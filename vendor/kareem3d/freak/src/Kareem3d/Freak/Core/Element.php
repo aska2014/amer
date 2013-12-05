@@ -128,6 +128,22 @@ class Element implements DefaultInterface {
     }
 
     /**
+     * @return bool
+     */
+    public function hasMenuItem()
+    {
+        return $this->menuItem != null;
+    }
+
+    /**
+     * Remove any menu item
+     */
+    public function noMenuItem()
+    {
+        $this->menuItem = null;
+    }
+
+    /**
      * @param \Kareem3d\Freak\Core\Package $package
      */
     public function addPackage($package)

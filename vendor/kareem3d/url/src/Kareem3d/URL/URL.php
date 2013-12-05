@@ -3,6 +3,7 @@
 use Illuminate\Database\Query\Builder;
 use Illuminate\Support\Facades\Request;
 use Kareem3d\Eloquent\Model;
+use Illuminate\Support\Facades\URL as LaravelURL;
 
 class URL extends Model {
 
@@ -29,6 +30,11 @@ class URL extends Model {
     public function beforeSave()
     {
         if(! $this->url) return false;
+
+        if(strpos($this->url, LaravelURL::to('')) === false)
+        {
+            $this->url = LaravelURL::to($this->url);
+        }
     }
 
     /**

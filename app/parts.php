@@ -64,6 +64,18 @@ PartRepository::share('inner_body.slider', function($view)
     $view->dontShowIf($view->sliders->isEmpty());
 });
 
+PartRepository::share('inner_body.advertisement', function($view)
+{
+    $view->bodyBanner = App::make('Website\BannerAlgorithm')->active()->place('body')->recent()->first();
+});
+
+PartRepository::share('sidebar.advertisement', function($view)
+{
+    $view->maximumSideBanners = 2;
+
+    $view->sideBanners = App::make('Website\BannerAlgorithm')->active()->place('sidebar')->recent()->take(2)->get();
+});
+
 /**
  * Footer parts
  */

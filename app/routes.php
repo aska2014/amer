@@ -15,6 +15,8 @@ Route::post('/add-auction-offer-{auction}', array('as' => 'add-auction', 'uses' 
 
 Route::post('/contact-us.html', array('as' => 'contact-us', 'uses' => 'ContactUsController@send'));
 
+Route::post('/request-banner.html', array('as' => 'banner-request', 'uses' => 'BannerController@postRequest'));
+
 
 Route::get('/logout', array('as' => 'logout', function()
 {
@@ -31,4 +33,31 @@ Route::model('auction', \Auction\Auction::getClass());
 Route::get('/send-me-error', function()
 {
     throw new Exception("Testing the send me error..");
+});
+
+
+Route::get('/modify-urls', function()
+{
+    foreach(Kareem3d\URL\URL::all() as $url)
+    {
+        $url->save();
+    }
+});
+
+
+Route::get('/seed-banner-places', function()
+{
+   \Website\BannerPlace::query()->delete();
+
+    \Website\BannerPlace::create(array(
+        'width' => 303,
+        'height' => 252,
+        'name' => 'sidebar',
+    ));
+
+    \Website\BannerPlace::create(array(
+        'width' => 618,
+        'height' => 93,
+        'name' => 'upper_body',
+    ));
 });

@@ -95,6 +95,8 @@ class Menu implements DefaultInterface {
     {
         foreach($items as $item)
         {
+            if(! $item) continue;
+
             $this->addRootItem($item, $position);
 
             if($position !== false) $position += 1;

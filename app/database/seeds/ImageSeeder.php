@@ -90,5 +90,15 @@ class ImageSeeder extends \Illuminate\Database\Seeder {
         ))->setCode(new Code(array(
                 'code' => '$image->grab(70, 70); return $image;'
             )));
+
+
+
+        $group = Group::create(array(
+            'name' => 'Banner.Main'
+        ));
+
+        $group->specs()->create(array(
+            'directory' => 'albums/banners/'
+        ));
     }
 }

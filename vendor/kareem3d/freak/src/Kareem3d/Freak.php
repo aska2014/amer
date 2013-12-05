@@ -216,7 +216,7 @@ class Freak implements DefaultInterface {
         {
             // Check if the menu item for this element is active and that means
             // that this element is the current active element.
-            if($this->getMenu()->isActive($element->getMenuItem()))
+            if($element->hasMenuItem() && $this->getMenu()->isActive($element->getMenuItem()))
             {
                 return $element;
             }
@@ -232,9 +232,10 @@ class Freak implements DefaultInterface {
     {
         foreach($this->getElements() as $element)
         {
-            if(strpos(freakUri(), $element->getUri()) === 0)
-
+            if($element->hasMenuItem() && strpos(freakUri(), $element->getUri()) === 0)
+            {
                 $element->getMenuItem()->makeActive();
+            }
         }
     }
 
