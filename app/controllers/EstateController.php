@@ -62,6 +62,11 @@ class EstateController extends BaseController {
     protected $usersAlgorithm;
 
     /**
+     * @var Comment
+     */
+    protected $comments;
+
+    /**
      * @param Estate $estates
      * @param EstateCategory $estateCategories
      * @param Auction $auctions
@@ -71,10 +76,12 @@ class EstateController extends BaseController {
      * @param SpecialOffer $specialOffers
      * @param EstateAlgorithm $estatesAlgorithm
      * @param UserAlgorithm $usersAlgorithm
+     * @param Comment $comments
      */
     public function __construct( Estate $estates, EstateCategory $estateCategories, Auction $auctions,
                                  UserInfo $usersInfo, Image $images, SpecialPayment $specialPayments, SpecialOffer $specialOffers,
-                                 EstateAlgorithm $estatesAlgorithm, UserAlgorithm $usersAlgorithm)
+                                 EstateAlgorithm $estatesAlgorithm, UserAlgorithm $usersAlgorithm,
+                                 Comment $comments)
     {
         $this->estates = $estates;
         $this->estateCategories = $estateCategories;
@@ -85,6 +92,7 @@ class EstateController extends BaseController {
         $this->specialPayments = $specialPayments;
         $this->specialOffers = $specialOffers;
         $this->usersAlgorithm = $usersAlgorithm;
+        $this->comments = $comments;
     }
 
     /**
@@ -139,7 +147,9 @@ class EstateController extends BaseController {
         // Show not accepted message if estate is not accepted and is the owner user
         $showNotAcceptedMessage = !$estate->accepted && $isOwnerUser;
 
-        return $this->page()->printMe(compact('estate', 'showAddAuctionOffer', 'showNotAcceptedMessage'));
+        $showAddComment = ! $showAddAuctionOffer && ! Auth::guest();
+
+        return $this->page()->printMe(compact('estate', 'showAddAuctionOffer', 'showNotAcceptedMessage', 'showAddComment'));
     }
 
     /**
@@ -285,6 +295,26 @@ class EstateController extends BaseController {
         return Redirect::to(URL::page('user/estates'))->with('success', trans('messages.success.estate.delete'));
     }
 
+    /**
+     * @param Estate $estate
+     */
+    public function addComment(Estate $estate)
+    {
+        $comment = $this->comments->newInstance(Input::get('Comment'));
+
+        $comment->user()->associate(Auth::user());
+
+        $comment->attachTo($estate);
+
+        if($comment->validate())
+        {
+            $comment->save();
+
+            return Redirect::back()->with('success', trans('messages.success.comment'));
+        }
+
+        return Redirect::back()->withErrors($comment->getValidatorMessages())->withInput();
+    }
 
     /**
      * @param Estate $estate

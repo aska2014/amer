@@ -18,7 +18,7 @@
             <p>{{ Str::limit($estate->description, 80) }}</p>
 
             <div>
-                <span>التعليقات(0)</span>
+                <span>التعليقات({{ $estate->getNumberOfComments() }})</span>
                 <span>عدد المشاهدات(0)</span>
             </div>
         </div>

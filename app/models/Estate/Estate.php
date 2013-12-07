@@ -211,4 +211,20 @@ class Estate extends \Kareem3d\Eloquent\Model {
     {
         return $this->belongsTo(Province::getClass());
     }
+
+    /**
+     * @return int
+     */
+    public function getNumberOfComments()
+    {
+        return $this->comments()->count();
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\MorphMany
+     */
+    public function comments()
+    {
+        return $this->morphMany(\Comment::getClass(), 'commentable');
+    }
 }

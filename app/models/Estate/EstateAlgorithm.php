@@ -2,9 +2,28 @@
 
 use Illuminate\Database\Query\Builder;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\DB;
 use Kareem3d\Eloquent\Model;
 
 class EstateAlgorithm extends \Kareem3d\Eloquent\Algorithm {
+
+    /**
+     * @return $this
+     */
+    public function orderBySpecial()
+    {
+        $this->getQuery()->leftJoin('specials', function($join)
+        {
+            $join->on('specials.estate_id', '=', 'estates.id')
+                ->on('specials.from', '<', DB::raw('NOW()'))
+                ->on('specials.to', '>', DB::raw('NOW()'));
+
+        })->select(array('estates.*', 'estate_specs.*'))
+            ->orderBy('specials.estate_id', 'DESC')
+            ->orderBy('estates.id', 'DESC');
+
+        return $this;
+    }
 
     /**
      * @param $city

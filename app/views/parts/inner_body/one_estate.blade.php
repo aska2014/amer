@@ -123,19 +123,18 @@
 </div>
 
 
-<hr />
-
-<div class="row">
-    <div class="small-icon-pair">
-        <img class="img-responsive" src="{{ URL::asset('app/img/icons/star.png') }}" alt=""/>
-        <a href="#">أضف إلى المفضلة</a>
-    </div>
-
-    <div class="small-icon-pair">
-        <img class="img-responsive" src="{{ URL::asset('app/img/icons/stop.png') }}" alt=""/>
-        <a href="#">الإبلاغ عن إساءة</a>
-    </div>
-</div>
+<!--<hr />-->
+<!--<div class="row">-->
+<!--    <div class="small-icon-pair">-->
+<!--        <img class="img-responsive" src="{{ URL::asset('app/img/icons/star.png') }}" alt=""/>-->
+<!--        <a href="#">أضف إلى المفضلة</a>-->
+<!--    </div>-->
+<!---->
+<!--    <div class="small-icon-pair">-->
+<!--        <img class="img-responsive" src="{{ URL::asset('app/img/icons/stop.png') }}" alt=""/>-->
+<!--        <a href="#">الإبلاغ عن إساءة</a>-->
+<!--    </div>-->
+<!--</div>-->
 
 @if($showAddAuctionOffer)
 <hr />
@@ -156,6 +155,47 @@
 
     <div class="buttons">
         <button type="submit" class="btn btn-default">أضف عرضك</button>
+    </div>
+</form>
+@endif
+
+<hr />
+<div class="main-title" id="login-form-title">
+    <a href="#login-form-title">التعليقات</a>
+</div>
+
+<div class="comments">
+    @foreach($estate->comments as $comment)
+    <div class="comment">
+        @if($comment->user)
+        <div class="user-name">
+            {{ $comment->user->name }}
+        </div>
+        @endif
+
+        <div class="comment-body">
+            {{ $comment->body }}
+        </div>
+    </div>
+    @endforeach
+</div>
+
+<div class="clearfix"></div>
+
+@if($showAddComment)
+<hr />
+<div class="main-title" id="login-form-title">
+    <a href="#login-form-title">اضف تعليق</a>
+</div>
+
+<form role="form" class="form-horizontal" action="{{ URL::route('add-comment', $estate->id) }}" method="POST">
+    <div class="form-group">
+        <label for="text">نص التعليق</label>
+        <textarea class="form-control" rows="4" id="text" name="Comment[body]">{{ Input::old('Comment.body') }}</textarea>
+    </div>
+
+    <div class="buttons">
+        <button type="submit" class="btn btn-default">أضف</button>
     </div>
 </form>
 @endif

@@ -13,6 +13,8 @@ Route::post('/login', array('as' => 'login', 'uses' => 'LoginController@check'))
 
 Route::post('/add-auction-offer-{auction}', array('as' => 'add-auction', 'uses' => 'AuctionController@addOffer'));
 
+Route::post('/add-comment-{estate}', array('as' => 'add-comment', 'uses' => 'EstateController@addComment'));
+
 Route::post('/contact-us.html', array('as' => 'contact-us', 'uses' => 'ContactUsController@send'));
 
 Route::post('/request-banner.html', array('as' => 'banner-request', 'uses' => 'BannerController@postRequest'));
@@ -60,4 +62,10 @@ Route::get('/seed-banner-places', function()
         'height' => 93,
         'name' => 'upper_body',
     ));
+});
+
+
+Route::get('/test-specials', function()
+{
+    dd(\Estate\EstateAlgorithm::make()->orderBySpecial()->orderByDate()->get(array('id'))->fetch('id'));
 });
