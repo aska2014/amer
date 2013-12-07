@@ -5950,6 +5950,9 @@ td.visible-print {
 .ng-cloak {
   display: none !important;
 }
+img {
+  margin: 0px auto;
+}
 body {
   background: #cac7a6;
   font-family: Arial;
@@ -7041,6 +7044,31 @@ body {
 @media (max-width: 480px) {
   .sidebar-menu .menu-item a {
     font-size: 18px;
+  }
+}
+.sidebar-menu .big-if-small {
+  position: relative;
+  float: left;
+  width: 100%;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+@media (min-width: 992px) {
+  .sidebar-menu .big-if-small {
+    float: left;
+    width: 100%;
+  }
+}
+@media (min-width: 768px) {
+  .sidebar-menu .big-if-small {
+    float: left;
+    width: 100%;
+  }
+}
+@media (max-width: 992px) {
+  .sidebar .advertisement {
+    display: none;
   }
 }
 .main-title {

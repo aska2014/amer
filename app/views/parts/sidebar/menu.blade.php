@@ -1,7 +1,7 @@
 <div class="sidebar-menu">
 
     @if($authUser)
-    <div class="menu-item">
+    <div class="menu-item big-if-small">
         <div class="item-icon">
             <img class="img-responsive" src="{{ URL::asset('app/img/icons/control-panel.png') }}" alt=""/>
         </div>
