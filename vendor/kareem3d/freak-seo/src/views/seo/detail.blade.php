@@ -6,8 +6,8 @@
     <tr>
         <th>URL</th>
         <td>
-            <a href="{{ $seo->link }}">
-            {{ $seo->link }}
+            <a href="{{ $seo->url }}">
+            {{ $seo->url }}
             </a>
         </td>
     </tr>

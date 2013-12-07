@@ -61,3 +61,15 @@ Route::get('/seed-banner-places', function()
         'name' => 'upper_body',
     ));
 });
+
+Route::get('/drop-seo-migration', function()
+{
+    DB::statement('drop table ka_seo');
+
+    DB::statement('DELETE FROM migrations WHERE migration like ?', array('%create_seo_table'));
+
+    DB::statement('INSERT INTO migrations(migration, batch) VALUES(?, ?)', array(
+        '2013_09_18_140807_create_urls_table',
+        1
+    ));
+});

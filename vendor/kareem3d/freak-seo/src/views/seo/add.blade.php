@@ -5,7 +5,7 @@
     <div class="control-group">
         <label class="control-label">URL</label>
         <div class="controls">
-            <input type="text" name="SEO[link]" value="{{ $seo->link }}" class="span12" required/>
+            <input type="text" name="SEO[url]" value="{{ $seo->url }}" class="span12" required/>
         </div>
     </div>
     <div class="control-group">

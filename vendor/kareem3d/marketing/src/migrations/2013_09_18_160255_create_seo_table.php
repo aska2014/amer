@@ -14,14 +14,15 @@ class CreateSeoTable extends Migration {
 	{
 		Schema::create('ka_seo', function(Blueprint $table)
 		{
+            $table->engine = 'InnoDB';
 			$table->increments('id');
 
             $table->string('title');
             $table->text('keywords');
             $table->text('description');
 
-            $table->integer('link_id')->unsigned();
-            $table->foreign('link_id')->references('id')->on('ka_links')->onDelete('CASCADE');
+            $table->integer('url_id')->unsigned();
+            $table->foreign('url_id')->references('id')->on('ka_urls')->onDelete('CASCADE');
 
 			$table->timestamps();
 		});

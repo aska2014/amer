@@ -15,8 +15,8 @@
     <td>{{ $oneSeo->id }}</td>
     <td>{{ $oneSeo->title }}</td>
     <th>
-        <a href="{{ $oneSeo->link }}">
-            {{ $oneSeo->link }}
+        <a href="{{ $oneSeo->url }}">
+            {{ $oneSeo->url }}
         </a>
     </th>
 

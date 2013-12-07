@@ -25,7 +25,7 @@ class SEOPackage extends Package {
     public function formView()
     {
         return View::make('freak-seo::seo.package.form', array(
-            'seo' => SEO::getByLink($this->getPackageData('Link')->getModel()) ?: new SEO()
+            'seo' => SEO::getByUrl($this->getPackageData('Link')->getModel()->url) ?: new SEO()
         ));
     }
 
@@ -35,7 +35,7 @@ class SEOPackage extends Package {
     public function detailView()
     {
         return View::make('freak-seo::seo.package.detail', array(
-            'seo' => SEO::getByLink($this->getPackageData('Link')->getModel())
+            'seo' => SEO::getByUrl($this->getPackageData('Link')->getModel()->url)
         ));
     }
 
@@ -55,7 +55,7 @@ class SEOPackage extends Package {
         if($link = $this->getPackageData('link')->getModel())
         {
             // Get by link or create new seo with the link id
-            $seo = SEO::getByLink( $link ) ?: new SEO(array('link_id' => $link->id));
+            $seo = SEO::getByUrl( $link->url ) ?: new SEO(array('url_id' => $link->url->id));
 
             $seo->update(Input::get('SEO'));
 

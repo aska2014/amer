@@ -18,20 +18,23 @@ class SEO extends Model {
     /**
      * @var array
      */
-    protected $dontDuplicate = array('link_id');
+    protected $dontDuplicate = array('url_id');
 
     /**
      * @param $value
      * @return mixed
      */
-    public function setLinkAttribute( $value )
+    public function setUrlAttribute( $value )
     {
-        if(is_object($value) and
-            get_class($value) == App::make('Kareem3d\Link\Link')->getClass())
+        if(is_object($value) and get_class($value) == App::make('Kareem3d\URL\URL')->getClass())
+        {
+            return $this->url()->save($value);
+        }
 
-            return $this->link()->save($value);
-
-        return $this->Link()->associate(App::make('Kareem3d\Link\Link')->create(array('url' => $value)));
+        else
+        {
+            return $this->url()->associate(App::make('Kareem3d\URL\URL')->create(array('url' => $value)));
+        }
     }
 
     /**
@@ -48,9 +51,9 @@ class SEO extends Model {
      */
     public static function createOrUpdate( $inputs )
     {
-        if(! isset($inputs['link_id'])) return null;
+        if(! isset($inputs['url_id'])) return null;
 
-        if($seo = static::getByLinkId($inputs['link_id']))
+        if($seo = static::getByUrlId($inputs['url_id']))
         {
             $seo->update($inputs);
 
@@ -63,28 +66,28 @@ class SEO extends Model {
     }
 
     /**
-     * @param \Kareem3d\Link\Link $link
+     * @param \Kareem3d\URL\URL $url
      * @return SEO
      */
-    public static function getByLink( Link $link )
+    public static function getByUrl( Url $url )
     {
-        return static::getByLinkId($link->id);
+        return static::getByUrlId($url->id);
     }
 
     /**
      * @param $id
      * @return SEO
      */
-    public static function getByLinkId( $id )
+    public static function getByUrlId( $id )
     {
-        return static::where('link_id', $id)->first();
+        return static::where('url_id', $id)->first();
     }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function link()
+    public function url()
     {
-        return $this->belongsTo(App::make('Kareem3d\Link\Link')->getClass());
+        return $this->belongsTo(App::make('Kareem3d\URL\URL')->getClass());
     }
 }
