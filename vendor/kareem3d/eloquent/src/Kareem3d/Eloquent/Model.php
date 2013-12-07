@@ -722,6 +722,14 @@ abstract class Model extends \Illuminate\Database\Eloquent\Model {
     }
 
     /**
+     * @return bool
+     */
+    public static function sameClass($object)
+    {
+        return is_object($object) && static::getClass() === get_class($object);
+    }
+
+    /**
      * @param $value
      */
     public static function encrypt( $value )

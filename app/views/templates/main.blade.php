@@ -2,7 +2,12 @@
 <html lang="en" ng-app="amer">
 <head>
     <meta charset="utf-8">
-    <title>Amer group</title>
+
+    @if(isset($seo))
+        {{ $seo->toHtml() }}
+    @else
+        <title>Amer Group 2</title>
+    @endif
 
     {{ $template->printAssets('css') }}
 

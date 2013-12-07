@@ -92,4 +92,15 @@ class PageRepository {
             $page->share($args);
         }
     }
+
+    /**
+     * @param array $args
+     */
+    public static function shareToAll($args)
+    {
+        foreach(static::get() as $page)
+        {
+            $page->share($args);
+        }
+    }
 }

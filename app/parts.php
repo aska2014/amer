@@ -1,8 +1,17 @@
 <?php
 
 use Illuminate\Support\Facades\App;
+use Kareem3d\Templating\PageRepository;
 use Kareem3d\Templating\Part;
 use Kareem3d\Templating\PartRepository;
+
+PageRepository::shareToAll(function($view)
+{
+    if($seo = App::make('Kareem3d\Marketing\SEO')->getByUrl(App::make('CurrentLink')->getUrl()))
+    {
+        $view->seo = $seo;
+    }
+});
 
 /**
  * Shared across all parts

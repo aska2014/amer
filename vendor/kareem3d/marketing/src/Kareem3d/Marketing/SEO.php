@@ -26,7 +26,8 @@ class SEO extends Model {
      */
     public function setUrlAttribute( $value )
     {
-        if(is_object($value) and get_class($value) == App::make('Kareem3d\URL\URL')->getClass())
+        // If it's an instance of url then save it
+        if(App::make('Kareem3d\URL\URL')->sameClass($value))
         {
             return $this->url()->save($value);
         }
@@ -69,9 +70,23 @@ class SEO extends Model {
      * @param \Kareem3d\URL\URL $url
      * @return SEO
      */
-    public static function getByUrl( Url $url )
+    public static function getByUrl( $url )
     {
-        return static::getByUrlId($url->id);
+        // If it's an instance of url
+        if(App::make('Kareem3d\URL\URL')->sameClass($url))
+        {
+            return static::getByUrlId($url->id);
+        }
+
+        else
+        {
+            return static::join('ka_urls', 'ka_urls.id', '=', 'ka_seo.url_id')
+                    ->select(array('ka_seo.*'))
+                    // Search by trimmed and by non trimmed
+                    ->where('ka_urls.url', trim($url, '/'))
+                    ->orWhere('ka_urls.url', trim($url, '/') . '/')
+                    ->first();
+        }
     }
 
     /**
