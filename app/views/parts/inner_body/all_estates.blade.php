@@ -19,7 +19,7 @@
 
             <div>
                 <span>التعليقات({{ $estate->getNumberOfComments() }})</span>
-                <span>عدد المشاهدات(0)</span>
+                <span>عدد المشاهدات({{ $estate->getNumberOfViews() }})</span>
             </div>
         </div>
 

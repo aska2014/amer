@@ -84,6 +84,14 @@ class Estate extends \Kareem3d\Eloquent\Model {
     }
 
     /**
+     * @return int
+     */
+    public function getNumberOfViews()
+    {
+        return $this->number_of_views ?: 0;
+    }
+
+    /**
      * This will increment the number of views by one and push it to the database
      */
     public function incrementViews()

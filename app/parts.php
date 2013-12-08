@@ -98,4 +98,6 @@ PartRepository::share('footer.contacts', function($view)
 PartRepository::share('footer.special', function($view)
 {
     $view->footerSpecial = App::make('Estate\EstateAlgorithm')->specials()->random()->first();
+
+    $view->dontShowIf($view->footerSpecial == null);
 });
