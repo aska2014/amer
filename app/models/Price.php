@@ -3,6 +3,11 @@
 class Price {
 
     /**
+     * @var array
+     */
+    protected static $default;
+
+    /**
      * @var float
      */
     protected $value;
@@ -30,25 +35,27 @@ class Price {
     }
 
     /**
+     * @param $currency
+     * @param $format
+     */
+    public static function init( $currency, $format )
+    {
+        static::$default = compact('currency', 'format');
+    }
+
+    /**
      * @param $value
+     * @throws Exception
      * @return Price
      */
-    public static function make($value)
+    public static function make( $value )
     {
-        $price = null;
-
-        switch(App::make('Language')->get())
+        if(! isset(static::$default['currency']))
         {
-            case 'en':
-                $price = new Price($value, 'EGP');
-                break;
-
-            case 'ar':
-                $price = new Price($value, 'جنيه', 'value currency');
-                break;
+            throw new Exception("Price class hasn't been initialized");
         }
 
-        return $price ?: new Price($value, 'EGP');
+        return new Price($value, static::$default['currency'], static::$default['format']);
     }
 
     /**

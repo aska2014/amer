@@ -40,7 +40,7 @@
         </div>
 
         <div class="item-info">
-            <a href="#">خدمات بحرية</a>
+            <a href="{{ URL::page('under-construction') }}">خدمات بحرية</a>
         </div>
     </div>
 

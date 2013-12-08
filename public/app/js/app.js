@@ -11,6 +11,12 @@ angular.module('amer.controllers', []).
     {
     }]).
 
+
+    controller('SpecialFooterController', ['$scope', function($scope)
+    {
+        $(".footer-special").hide().slideDown(1000);
+    }]).
+
     controller('AddEstateController', ['$scope', function($scope)
     {
         var selectHasValue = function($elem, value)

@@ -235,6 +235,8 @@ class XMLFactory {
             {
                 $partName = trim($partName);
 
+                if($partName == '') continue;
+
                 $part = new Part($partName, $this->generateAssetCollectionForPart($partName));
 
                 $location->addPart($part);

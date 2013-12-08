@@ -43,4 +43,7 @@ return array(
 
     // Request banner
     array('banner/request', 'request-banner.html'),
+
+    // Under construction page
+    array('under-construction', 'under-construction.html')
 );

@@ -38,6 +38,7 @@ Tracker::instance()->setMechanism(function()
    return Request::url();
 });
 
+
 \PathManager\Path::init(URL::to(''), public_path());
 
 // Bind Language and Menu instances
@@ -48,6 +49,9 @@ Model::setLanguages(App::make('Language')->availableLanguages(), App::make('Lang
 
 // Set locale language
 App::setLocale(App::make('Language')->get());
+
+// Initialize price class
+Price::init(trans('units.EGP'), App::make('Language')->get() === 'ar' ? 'value currency' : 'currency value');
 
 /*
 |--------------------------------------------------------------------------

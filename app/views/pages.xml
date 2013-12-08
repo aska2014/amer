@@ -6,7 +6,7 @@
 
         <sidebar>sidebar.menu | sidebar.advertisement | sidebar.chat</sidebar>
 
-        <footer>footer.socials | footer.copyrights | footer.contacts</footer>
+        <footer>footer.socials | footer.copyrights | footer.contacts | footer.special</footer>
     </default>
 
     <page name="home">
@@ -95,5 +95,16 @@
 
     <page name="page">
         <inner-body>inner_body.page</inner-body>
+    </page>
+
+
+    <page name="under-construction">
+        <header>header.top | header.logo | header.bg_separator</header>
+
+        <upper-body>inner_body.under_construction</upper-body>
+
+        <sidebar></sidebar>
+
+        <inner-body></inner-body>
     </page>
 </pages>

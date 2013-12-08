@@ -15,4 +15,11 @@
         <js>app/js/global.js</js>
     </assetCollection>
 
+    <assetCollection part="inner_body.under_construction">
+        <js>app/lib/countdown/jquery.countdown.js</js>
+        <js>app/lib/countdown/script.js</js>
+        <css>app/lib/countdown/jquery.countdown.css</css>
+        <css>http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300</css>
+    </assetCollection>
+
 </assetCollections>

@@ -7687,7 +7687,7 @@ body {
   margin: 10px -10px 0px -15px;
   background: #d75803;
   margin-top: 20px;
-  padding: 15px 0px 5px 0px;
+  padding: 15px 0px 40px 0px;
 }
 .footer:before,
 .footer:after {
@@ -7784,4 +7784,25 @@ body {
 .footer .footer-contacts b {
   font-weight: normal;
   color: #fff600;
+}
+.footer .footer-special {
+  position: fixed;
+  bottom: 0px;
+  right: 0px;
+  background: #706E5C;
+  width: 100%;
+  z-index: 10000;
+}
+.footer .footer-special .special-title {
+  float: right;
+  background: url('../img/footer_special.png');
+  width: 150px;
+  height: 42px;
+}
+.footer .footer-special a {
+  display: block;
+  color: #FFF;
+  font-size: 16px;
+  float: right;
+  padding: 10px;
 }

@@ -158,6 +158,15 @@ class Estate extends \Kareem3d\Eloquent\Model {
     }
 
     /**
+     * @param $value
+     * @return \Area
+     */
+    public function getAreaAttribute( $value )
+    {
+        return \Area::make($value, trans('units.metre'));
+    }
+
+    /**
      * @return bool
      */
     public function hasAuction()

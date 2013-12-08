@@ -48,7 +48,7 @@ PartRepository::share('upper_body.menu', function($view)
 
 PartRepository::share('upper_body.latest_news', function($view)
 {
-    $view->latestNews = App::make('News')->first();
+    $view->latestNews = App::make('News')->orderBy('created_at', 'DESC')->first();
 
     // Dont show if latest news is null
     $view->dontShowIf($view->latestNews == null);
@@ -93,4 +93,9 @@ PartRepository::share('footer.contacts', function($view)
 {
     $view->mobileNumbers = App::make('Website\ContactInfo')->getMobileNumbers(2);
     $view->contactEmail = App::make('Website\ContactInfo')->getMainEmail();
+});
+
+PartRepository::share('footer.special', function($view)
+{
+    $view->footerSpecial = App::make('Estate\EstateAlgorithm')->specials()->random()->first();
 });

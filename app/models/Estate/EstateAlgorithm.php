@@ -10,6 +10,16 @@ class EstateAlgorithm extends \Kareem3d\Eloquent\Algorithm {
     /**
      * @return $this
      */
+    public function random()
+    {
+        $this->getQuery()->orderBy(DB::raw('rand()'));
+
+        return $this;
+    }
+
+    /**
+     * @return $this
+     */
     public function orderBySpecial()
     {
         $this->getQuery()->leftJoin('specials', function($join)
@@ -149,18 +159,13 @@ class EstateAlgorithm extends \Kareem3d\Eloquent\Algorithm {
      */
     public function specials()
     {
-        $ids = App::make('Special\SpecialAlgorithm')->current()->get(array('estate_id'));
-
-        $estates_ids = $ids->lists('estate_id');
-
-        if(empty($estates_ids))
+        $this->getQuery()->join('specials', function($join)
         {
-            $this->getQuery()->where('estates.id', 0);
-        }
-        else
-        {
-            $this->getQuery()->whereIn('estates.id', $ids->lists('estate_id'));
-        }
+            $join->on('specials.estate_id', '=', 'estates.id')
+                ->on('specials.from', '<', DB::raw('NOW()'))
+                ->on('specials.to', '>', DB::raw('NOW()'));
+
+        })->select(array('estates.*', 'estate_specs.*'));
 
         return $this;
     }
