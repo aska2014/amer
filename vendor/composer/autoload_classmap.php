@@ -8,6 +8,7 @@ $baseDir = dirname($vendorDir);
 return array(
     'AddAccessUsers' => $vendorDir . '/kareem3d/freak/src/migrations/2013_09_29_092022_add_access_users.php',
     'AddDescriptionToAuctionOfferTable' => $baseDir . '/app/database/migrations/2013_11_29_220823_add_description_to_auction_offer_table.php',
+    'AddVisitorsToEstate' => $baseDir . '/app/database/migrations/2013_12_08_090515_add_visitors_to_estate.php',
     'Asset\\Asset' => $vendorDir . '/kareem3d/asset/src/Asset/Asset.php',
     'AuctionController' => $baseDir . '/app/controllers/AuctionController.php',
     'Auction\\Auction' => $baseDir . '/app/models/Auction/Auction.php',

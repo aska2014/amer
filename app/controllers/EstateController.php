@@ -133,6 +133,9 @@ class EstateController extends BaseController {
      */
     public function show(Estate $estate)
     {
+        // Increment number of views
+        $estate->incrementViews();
+
         $isOwnerUser = Auth::user() && Auth::user()->same($estate->user);
 
         // If it's not accepted and the authenticated user not the owner then throw not accepted exception
