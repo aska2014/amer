@@ -1,5 +1,5 @@
 <div class="main-title">
-    <a href="#">تفاصيل الخبر</a>
+    <a href="#">{{ trans('titles.one_news') }}</a>
 </div>
 
 <div class="one-news">

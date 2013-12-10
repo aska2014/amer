@@ -146,6 +146,7 @@ abstract class Viewable {
     }
 
     /**
+     * @param $condition
      * @return void
      */
     public function showIf( $condition )

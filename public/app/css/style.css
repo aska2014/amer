@@ -6056,13 +6056,13 @@ body {
 .btn-search {
   width: 80px;
   height: 30px;
-  background: url('../img/search-off.png');
+  background: url('../img/ar/search-off.png');
   border: 0px;
 }
 .btn-search:hover {
   width: 80px;
   height: 30px;
-  background: url('../img/search-on.png');
+  background: url('../img/ar/search-on.png');
 }
 .egypt-flag {
   background: url('../img/icons/egypt-flag.png');
@@ -6252,7 +6252,7 @@ body {
   clear: both;
 }
 .logo .right-logo {
-  background: url('../img/logo-right.png') no-repeat;
+  background: url('../img/ar/logo-right.png') no-repeat;
   width: 234px;
   height: 148px;
   float: left;
@@ -7795,7 +7795,7 @@ body {
 }
 .footer .footer-special .special-title {
   float: right;
-  background: url('../img/footer_special.png');
+  background: url('../img/ar/footer_special.png');
   width: 150px;
   height: 42px;
 }

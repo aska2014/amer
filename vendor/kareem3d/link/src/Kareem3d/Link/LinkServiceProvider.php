@@ -29,6 +29,17 @@ class LinkServiceProvider extends ServiceProvider {
         $this->package('kareem3d/link');
 
         $this->app->make('Kareem3d\Link\LinkRepository')->addStaticLinks(Config::get('link::links'));
+
+        // Make the generator singleton
+        $this->app->singleton('Kareem3d\Link\Generator');
+
+        // Launch dynamic router
+        try{
+
+            // Launch dynamic router
+            $this->app->make('Kareem3d\Link\Generator')->dynamicRouter()->launch();
+
+        }catch(\Exception $e){ echo $e->getMessage(); }
 	}
 
 	/**

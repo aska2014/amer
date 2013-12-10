@@ -18,8 +18,8 @@
             <p>{{ Str::limit($estate->description, 80) }}</p>
 
             <div>
-                <span>التعليقات({{ $estate->getNumberOfComments() }})</span>
-                <span>عدد المشاهدات({{ $estate->getNumberOfViews() }})</span>
+                <span>{{ trans('words.number_of_comments') }} ({{ $estate->getNumberOfComments() }})</span>
+                <span>{{ trans('words.number_of_views') }} ({{ $estate->getNumberOfViews() }})</span>
             </div>
         </div>
 
@@ -27,9 +27,9 @@
             @if($authUser and $authUser->same($estate->user))
 
             <div class="user-tools">
-                <a href="{{ URL::page('estate/edit', $estate) }}">تعديل العقار</a>
-                <a href="{{ URL::page('estate/upgrade', $estate) }}">تمييز العقار</a>
-                <a href="{{ URL::page('estate/remove', $estate) }}">مسح العقار</a>
+                <a href="{{ URL::page('estate/edit', $estate) }}">{{ trans('tools.estate.edit') }}</a>
+                <a href="{{ URL::page('estate/upgrade', $estate) }}">{{ trans('tools.estate.upgrade') }}</a>
+                <a href="{{ URL::page('estate/remove', $estate) }}">{{ trans('tools.estate.delete') }}</a>
             </div>
 
             @else

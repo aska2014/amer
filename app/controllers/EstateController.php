@@ -107,7 +107,7 @@ class EstateController extends BaseController {
 
         if(! $amerGroupUser) return Redirect::to(URL::page('home'));
 
-        $estates = $amerGroupUser->estates()->paginate(self::ESTATES_PER_PAGE);
+        $estates = $this->estatesAlgorithm->byUser($amerGroupUser)->language()->paginate(self::ESTATES_PER_PAGE);
 
         return $this->page()->printMe(compact('estates', 'estatesTitle'));
     }
@@ -120,7 +120,7 @@ class EstateController extends BaseController {
     {
         $estatesTitle = $category->getDescriptiveTitle();
 
-        $estates = $this->estatesAlgorithm->orderByDate()->underCategory($category)->accepted()->paginate(self::ESTATES_PER_PAGE);
+        $estates = $this->estatesAlgorithm->language()->orderByDate()->underCategory($category)->accepted()->paginate(self::ESTATES_PER_PAGE);
 
         return $this->page()->printMe(compact('estates', 'estatesTitle'));
     }

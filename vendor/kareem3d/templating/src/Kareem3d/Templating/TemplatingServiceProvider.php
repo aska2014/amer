@@ -21,20 +21,10 @@ class TemplatingServiceProvider extends ServiceProvider {
 	{
         $this->package('kareem3d/templating');
 
-
-            $this->app->singleton('Kareem3d\Templating\XMLFactory', function()
-            {
-                return XMLFactory::instance(Config::get('templating::xml.pages'), Config::get('templating::xml.assets'));
-            });
-
-
-        // Launch dynamic router
-        try{
-
-            // Launch dynamic router
-            $this->app->make('Kareem3d\Link\Generator')->dynamicRouter()->launch();
-
-        }catch(\Exception $e){ echo $e->getMessage(); }
+        $this->app->singleton('Kareem3d\Templating\XmlFactory', function()
+        {
+            return XMLFactory::instanceFromConfig();
+        });
 	}
 
 	/**

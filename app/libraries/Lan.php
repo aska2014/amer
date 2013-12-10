@@ -51,7 +51,7 @@ class Lan {
      */
     public function get()
     {
-        if($this->language) return $this->language;
+        if($this->language != null) return $this->language;
 
         $language = Session::get( self::KEY_NAME );
 
@@ -71,9 +71,13 @@ class Lan {
 
     /**
      * @param $lan
+     * @throws Exception
      */
     public function change( $lan )
     {
+        if(! in_array($lan, $this->available))
+            throw new Exception("This language is not available");
+
         Session::put(self::KEY_NAME, $lan);
     }
 

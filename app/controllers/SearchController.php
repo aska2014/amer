@@ -30,9 +30,9 @@ class SearchController extends BaseController {
 
         $this->searchByPrice();
 
-        $estates = $this->estatesAlgorithm->accepted()->orderBySpecial()->orderByDate()->paginate(EstateController::ESTATES_PER_PAGE);
+        $estates = $this->estatesAlgorithm->language()->accepted()->orderBySpecial()->orderByDate()->paginate(EstateController::ESTATES_PER_PAGE);
 
-        $estatesTitle = 'بحث عن عقار';
+        $estatesTitle = trans('titles.search_result');
 
         return $this->page()->printMe(compact('estates', 'estatesTitle'));
     }

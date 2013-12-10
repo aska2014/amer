@@ -48,7 +48,8 @@ App::after(function($request, $response)
 
 Route::filter('auth', function()
 {
-	if (Auth::guest()) return Redirect::to(URL::page('login/show'))->withErrors('يجب عليك التسجيل او الدخول لحسابك الشخصى اولاً');
+	if (Auth::guest())
+        return Redirect::to(URL::page('login/show'))->withErrors(trans('messages.errors.must_register'));
 });
 
 

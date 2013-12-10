@@ -8,9 +8,6 @@ return array(
     // Home page
     array('home', 'home.html'),
 
-    // Auction page
-    array('auction', 'auctions.html'),
-
     // Slider show
     array('slider/show', 'slider-([0-9]+).html', Slider::getClass()),
 

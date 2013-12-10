@@ -4,21 +4,21 @@
 
         @if(! $authUser)
         <div class="upper-section">
-            <div class="register">تسجيل</div>
+            <div class="register">{{ trans('titles.short_login') }}</div>
         </div>
         <div class="register-form">
             <form role="form" action="{{ URL::route('login') }}" method="POST">
                 <div class="form-row">
-                    <label for="input-email">الإيميل</label>
-                    <input type="email" class="form-control" name="Login[email]" id="input-email" placeholder="الإيميل">
+                    <label for="input-email">{{ trans('form.login.email') }}</label>
+                    <input type="email" class="form-control" name="Login[email]" id="input-email" placeholder="{{ trans('form.login.email') }}">
                 </div>
                 <div class="form-row">
-                    <label for="input-password">كلمة السر</label>
-                    <input type="password" class="form-control" name="Login[password]" id="input-password" placeholder="كلمة المرور">
+                    <label for="input-password">{{ trans('form.login.password') }}</label>
+                    <input type="password" class="form-control" name="Login[password]" id="input-password" placeholder="{{ trans('form.login.password') }}">
                 </div>
                 <div class="buttons">
-                    <button type="submit" class="blue-btn">دخول</button>
-                    <button type="button" onclick="window.location.href = '{{ URL::page('login/show') }}'" class="blue-btn big-btn">مستخدم جديد</button>
+                    <button type="submit" class="blue-btn">{{ trans('form.login.submit') }}</button>
+                    <button type="button" onclick="window.location.href = '{{ URL::page('login/show') }}'" class="blue-btn big-btn">{{ trans('words.new_user') }}</button>
                 </div>
 
                 @if(! $errors->isEmpty())
@@ -26,17 +26,17 @@
                     {{ implode($errors->all(':message'), '<br/>') }}
                 </div>
                 @else
-                <a href="#">لإسترجاع كلمة السر</a>
+<!--                <a href="#">لإسترجاع كلمة السر</a>-->
                 @endif
             </form>
         </div>
         @else
 
         <div class="welcome-message">
-            مرحبا بك
-            {{ $authUser->name }}
 
-            <a href="{{ URL::route('logout') }}">خروج</a>
+            {{ trans('words.welcome') }} {{ $authUser->name }}
+
+            <a href="{{ URL::route('logout') }}">{{ trans('words.logout') }}</a>
         </div>
         @endif
     </div>
@@ -45,27 +45,24 @@
     <div class="separator"></div>
 
 
-    <h3 class="search-link"><a href="#">أبحث عن إعلان</a></h3>
+    <h3 class="search-link"><a href="#">{{ trans('titles.search_estates') }}</a></h3>
 
     <div class="right-search">
 
         <div class="upper-section">
 
             <div class="offer-image">
-                <img src="{{ URL::asset('app/img/offer-image.png') }}" class="img-responsive" alt=""/>
+                <img src="{{ URL::asset('app/img/{lan}/offer-image.png') }}" class="img-responsive" alt=""/>
             </div>
 
             <div class="upper-form">
 
-                <h3>أبحث عن عقار</h3>
+                <h3>{{ trans('titles.search_estates') }}</h3>
 
                 <select name="" class="form-control">
-                    <option value="">من الأحدث للأقدم</option>
+                    <option value="">{{ trans('form.search.order_old') }}</option>
+                    <option value="">{{ trans('form.search.order_new') }}</option>
                 </select>
-                <div class="buttons">
-                    <div class="form-btn"><a href="">للبيع</a></div>
-                    <div class="form-btn"><a href="">للإيجار</a></div>
-                </div>
             </div>
         </div>
 
@@ -75,18 +72,18 @@
             <div class="lower-section">
                 <div class="row">
                     <div class="left">
-                        <label for="search-in2">المساحة</label>
+                        <label for="search-in2">{{ trans('form.search.area') }}</label>
                         <div class="two-inputs form-inputs">
-                            <input name="search_area_low" value="{{ Input::get('search_area_low') }}" type="text" id="search-in2" class="form-control" placeholder="من"/>
-                            <input name="search_area_high" value="{{ Input::get('search_area_high') }}" type="text" class="form-control" placeholder="إلى"/>
+                            <input name="search_area_low" value="{{ Input::get('search_area_low') }}" type="text" id="search-in2" class="form-control" placeholder="{{ trans('form.search.from') }}"/>
+                            <input name="search_area_high" value="{{ Input::get('search_area_high') }}" type="text" class="form-control" placeholder="{{ trans('form.search.to') }}"/>
                         </div>
                     </div>
                     <div class="right">
-                        <label for="search-in1">نوع العقار</label>
+                        <label for="search-in1">{{ trans('form.search.category') }}</label>
                         <div class="form-inputs">
 
                             <select name="search_category" id="category-input" class="form-control">
-                                <option value="">اختر نوع العقار</option>
+                                <option value="">{{ trans('form.search.choose_category') }}</option>
 
                                 @foreach($estateCategories as $category)
 
@@ -120,16 +117,16 @@
                 </div>
                 <div class="row">
                     <div class="left">
-                        <label for="search-in1">المدينة</label>
+                        <label for="search-in1">{{ trans('form.search.city') }}</label>
                         <div class="form-inputs">
                             <input name="search_city" value="{{ Input::get('search_city') }}" type="text" id="search-in2" class="form-control"/>
                         </div>
                     </div>
                     <div class="right">
-                        <label for="search-in2">المحافظة</label>
+                        <label for="search-in2">{{ trans('form.search.province') }}</label>
                         <div class="form-inputs">
                             <select id="search-in1" name="search_province" class="form-control">
-                                <option value="">اختر المحافظة</option>
+                                <option value="">{{ trans('form.search.choose_province') }}</option>
                                 @foreach($provinces as $province)
                                 @if(Input::get('search_province') == $province->id)
                                 <option value="{{ $province->id }}" selected="selected">{{ $province->name }}</option>
@@ -143,14 +140,14 @@
                 </div>
                 <div class="row">
                     <div class="left">
-                        <label for="search-in2">السعر</label>
+                        <label for="search-in2">{{ trans('form.search.price') }}</label>
                         <div class="two-inputs form-inputs">
-                            <input name="search_price_low" value="{{ Input::get('search_price_low') }}" type="text" id="search-in2" class="form-control" placeholder="من"/>
-                            <input name="search_price_high" value="{{ Input::get('search_price_high') }}" type="text" class="form-control" placeholder="إلى"/>
+                            <input name="search_price_low" value="{{ Input::get('search_price_low') }}" type="text" id="search-in2" class="form-control" placeholder="{{ trans('form.search.from') }}"/>
+                            <input name="search_price_high" value="{{ Input::get('search_price_high') }}" type="text" class="form-control" placeholder="{{ trans('form.search.to') }}"/>
                         </div>
                     </div>
                     <div class="right">
-                        <label for="search-in1">المنطقة</label>
+                        <label for="search-in1">{{ trans('form.search.region') }}</label>
                         <div class="form-inputs">
                             <input name="search_region" value="{{ Input::get('search_region') }}" type="text" id="search-in2" class="form-control"/>
                         </div>
@@ -165,5 +162,4 @@
             </div>
         </div>
     </form>
-
 </div>

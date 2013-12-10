@@ -1,1 +1,1 @@
-<img class="img-responsive" src="{{ URL::asset('app/img/offer-banner.png') }}" alt=""/>
+<img class="img-responsive" src="{{ URL::asset('app/img/{lan}/offer-banner.png') }}" alt=""/>

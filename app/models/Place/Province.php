@@ -22,7 +22,7 @@ class Province extends \Kareem3d\Eloquent\Model {
      */
     public function __toString()
     {
-        return $this->name;
+        return (string) $this->name;
     }
 
     /**

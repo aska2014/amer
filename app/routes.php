@@ -38,17 +38,17 @@ Route::get('/send-me-error', function()
 });
 
 
-Route::get('/modify-urls', function()
+Route::get('/change-language/{language}', array('as' => 'change-language', function( $lan )
 {
-    foreach(Kareem3d\URL\URL::all() as $url)
-    {
-        $url->save();
-    }
-});
+    App::make('Language')->change( $lan );
+
+    return Redirect::back();
+}));
 
 
 Route::get('/seed-banner-places', function()
 {
+    exit();
    \Website\BannerPlace::query()->delete();
 
     \Website\BannerPlace::create(array(
@@ -62,10 +62,4 @@ Route::get('/seed-banner-places', function()
         'height' => 93,
         'name' => 'upper_body',
     ));
-});
-
-
-Route::get('/test-specials', function()
-{
-    dd(\Estate\EstateAlgorithm::make()->orderBySpecial()->orderByDate()->get(array('id'))->fetch('id'));
 });

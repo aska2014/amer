@@ -7,7 +7,7 @@
         </div>
 
         <div class="item-info">
-            <a href="{{ URL::page('user/estates') }}"> اعلاناتي</a>
+            <a href="{{ URL::page('user/estates') }}">{{ trans('menu.my_estates') }}</a>
         </div>
     </div>
     @endif
@@ -18,7 +18,7 @@
         </div>
 
         <div class="item-info">
-            <a href="{{ URL::page('estate/create') }}">أضف عقاراً</a>
+            <a href="{{ URL::page('estate/create') }}">{{ trans('menu.create_estate') }}</a>
         </div>
     </div>
 
@@ -29,7 +29,7 @@
         </div>
 
         <div class="item-info">
-            <a href="{{ URL::page('news/all') }}">أخر الأخبار</a>
+            <a href="{{ URL::page('news/all') }}">{{ trans('menu.latest_news') }}</a>
         </div>
     </div>
 
@@ -40,7 +40,7 @@
         </div>
 
         <div class="item-info">
-            <a href="{{ URL::page('under-construction') }}">خدمات بحرية</a>
+            <a href="{{ URL::page('under-construction') }}">{{ trans('menu.sea_services') }}</a>
         </div>
     </div>
 
@@ -51,7 +51,7 @@
         </div>
 
         <div class="item-info">
-            <a href="{{ URL::page('estate/amer-group-specials') }}">عروض عامر جروب 2</a>
+            <a href="{{ URL::page('estate/amer-group-specials') }}">{{ trans('menu.amer_group_specials') }}</a>
         </div>
     </div>
 

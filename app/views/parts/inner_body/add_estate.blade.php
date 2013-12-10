@@ -1,19 +1,19 @@
 <div class="main-title">
-    <a href="#">شقق للإيجار فى القاهرة</a>
+    <a href="#">{{ trans('titles.add_estate') }}</a>
 </div>
 
 <form action="{{ $estate->exists ? URL::route('estate.update', $estate->id) : URL::route('estate.create') }}" enctype="multipart/form-data" ng-controller="AddEstateController" class="form-horizontal" method="POST">
 
     <div class="form-group">
-        <label for="title-input">عنوان الأعلان</label>
+        <label for="title-input">{{ trans('form.estate.title') }}</label>
 
         <input class="form-control" type="text" id="title-input" name="Estate[title]" value="{{ $eFiller->get('title') }}"
                placeholder="" required>
     </div>
     <div class="form-group">
-        <label for="city-input">المحافظة</label>
+        <label for="city-input">{{ trans('form.estate.province') }}</label>
         <select class="form-control" name="Estate[province_id]" required>
-            <option value="">اختر المحافظة</option>
+            <option value="">{{ trans('form.estate.choose_province') }}</option>
             @foreach($provinces as $province)
                 @if($eFiller->get('province_id') == $province->id)
                 <option value="{{ $province->id }}" selected="selected">{{ $province->name }}</option>
@@ -24,22 +24,22 @@
         </select>
     </div>
     <div class="form-group">
-        <label for="city-input">المدينة</label>
+        <label for="city-input">{{ trans('form.estate.city') }}</label>
         <input class="form-control" type="text" id="city-input" name="Estate[city]" value="{{ $eFiller->get('city') }}">
     </div>
     <div class="form-group">
-        <label for="region-input">الحى \ المنطقه</label>
+        <label for="region-input">{{ trans('form.estate.region') }}</label>
         <input class="form-control" type="text" id="region-input" name="Estate[region]" value="{{ $eFiller->get('region') }}" required>
     </div>
 
     <hr/>
 
     <div class="form-group" ng-init="estate.category_id={{ $eFiller->get('estate_category_id') }}">
-        <label for="category-input">نوع العقار</label>
+        <label for="category-input">{{ trans('form.estate.category') }}</label>
         <div class="two-inputs">
 
             <select id="category-input" class="form-control" ng-model="estate.parent_category_id" required>
-                <option value="">اختر نوع العقار</option>
+                <option value="">{{ trans('form.estate.choose_category') }}</option>
                 @foreach($estateCategories as $category)
                 <option value="{{ $category->id }}">{{ $category->title }}</option>
                 @endforeach
@@ -59,11 +59,11 @@
         <input type="hidden" name="Estate[estate_category_id]" value="{{ angular('getCategoryId()') }}"/>
     </div>
     <div class="form-group">
-        <label for="auction-input">مزاد ؟</label>
+        <label for="auction-input">{{ trans('form.estate.auction') }}</label>
         <input type="checkbox" id="auction-input" name="estate-has-auction" ng-init="estate.auction={{ (Input::old('estate-has-auction') or $estate->hasAuction()) ? 'true' : 'false' }}" ng-model="estate.auction">
     </div>
     <div class="form-group">
-        <label for="price-input">السعر</label>
+        <label for="price-input">{{ trans('form.estate.price') }}</label>
         <div ng-if="! estate.auction">
             <input class="form-control" type="text" id="price-input" name="Estate[price]" value="{{ $eFiller->get('price') }}" required>
         </div>
@@ -76,17 +76,17 @@
     <hr/>
 
     <div class="form-group">
-        <label for="image-input">صورة الاعلان</label>
+        <label for="image-input">{{ trans('form.estate.image') }}</label>
         <div class="two-inputs">
             <input type="file" id="image-input" name="estate-img"/>
         </div>
     </div>
     <div class="form-group">
-        <label for="description-input">نص الاعلان</label>
+        <label for="description-input">{{ trans('form.estate.description') }}</label>
         <textarea class="form-control" id="description-input" name="Estate[description]">{{ $eFiller->get('description') }}</textarea>
     </div>
     <div class="form-group">
-        <label for="number-of-rooms-input">عدد الغرف</label>
+        <label for="number-of-rooms-input">{{ trans('form.estate.number_of_rooms') }}</label>
         <select class="form-control" id="number-of-rooms-input" name="Estate[number_of_rooms]" ng-init="estate.number_of_rooms={{ $eFiller->get('number_of_rooms', 1) }}" ng-model="estate.number_of_rooms" required>
 
             <option value="1">1</option>
@@ -99,31 +99,31 @@
         </select>
     </div>
     <div class="form-group">
-        <label for="area-input">المساحة</label>
+        <label for="area-input">{{ trans('form.estate.area') }}</label>
         <input class="form-control" type="text" id="area-input" name="Estate[area]" value="{{ $eFiller->get('area') }}" required>
     </div>
 
     <hr/>
 
     <div class="form-group">
-        <label for="user-name-input">اسم صاحب الاعلان</label>
+        <label for="user-name-input">{{ trans('form.estate.user.name') }}</label>
         <input class="form-control" type="text" id="user-name-input" name="UserInfo[name]" value="{{ $uFiller->get('name', $authUser ? $authUser->name : '') }}" required>
     </div>
     <div class="form-group">
-        <label for="user-mobile-input">رقم الموبيل</label>
+        <label for="user-mobile-input">{{ trans('form.estate.user.mobile') }}</label>
         <input class="form-control" type="text" id="user-mobile-input" name="UserInfo[mobile_number]" value="{{ $uFiller->get('mobile_number', $authUser ? $authUser->mobile_number : '') }}">
     </div>
     <div class="form-group">
-        <label for="user-telephone-input">رقم الهاتف</label>
+        <label for="user-telephone-input">{{ trans('form.estate.user.telephone') }}</label>
         <input class="form-control" type="text" id="user-telephone-input" name="UserInfo[telephone_number]" value="{{ $uFiller->get('telephone_number', $authUser ? $authUser->telephone_number : '') }}">
     </div>
     <div class="form-group">
-        <label for="user-email-input">البريد الإلكترونى</label>
+        <label for="user-email-input">{{ trans('form.estate.user.email') }}</label>
         <input class="form-control" type="email" id="user-email-input" name="UserInfo[contact_email]" value="{{ $uFiller->get('contact_email', $authUser ? $authUser->contact_email : '') }}" required>
     </div>
 
     <div class="buttons">
-        <button type="submit" class="btn btn-success">التالى</button>
+        <button type="submit" class="btn btn-success">{{ trans('form.estate.next') }}</button>
     </div>
 
 </form>

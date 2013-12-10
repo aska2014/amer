@@ -449,7 +449,7 @@ abstract class Model extends \Illuminate\Database\Eloquent\Model {
      *
      * @return string
      */
-    protected function getCurrentLanguage()
+    public function getCurrentLanguage()
     {
         return $this->language ?: static::$defaultLanguage;
     }

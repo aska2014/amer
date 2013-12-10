@@ -24,7 +24,7 @@ class UserController extends BaseController {
     {
         $estatesTitle = trans('titles.my_estates');
 
-        $estates = $this->estatesAlgorithm->byUser(Auth::user())->orderByDate()->paginate(EstateController::ESTATES_PER_PAGE);
+        $estates = $this->estatesAlgorithm->byUser(Auth::user())->language()->orderByDate()->paginate(EstateController::ESTATES_PER_PAGE);
 
         return $this->page()->printMe(compact('estatesTitle', 'estates'));
     }

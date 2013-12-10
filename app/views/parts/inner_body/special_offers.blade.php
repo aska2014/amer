@@ -1,5 +1,5 @@
 <div class="main-title">
-    <a href="#">عروض مميزة</a>
+    <a href="#">{{ trans('titles.special_offers') }}</a>
 </div>
 
 
@@ -18,12 +18,12 @@
             </div>
 
             <div class="city">
-                المدينة:-
+                {{ trans('estate.titles.city') }}
                 {{ $special->city }}
             </div>
 
             <div class="price">
-                السعر:-
+                {{ trans('estate.titles.price') }}
                 {{ $special->price->format() }}
             </div>
         </div>

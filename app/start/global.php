@@ -53,6 +53,10 @@ App::setLocale(App::make('Language')->get());
 // Initialize price class
 Price::init(trans('units.EGP'), App::make('Language')->get() === 'ar' ? 'value currency' : 'currency value');
 
+Config::set('templating::xml.assets', app_path('views/'.App::make('Language')->get().'_assets.xml'));
+
+App::make('Kareem3d\Link\Generator')->loadXml();
+
 /*
 |--------------------------------------------------------------------------
 | Application Error Logger

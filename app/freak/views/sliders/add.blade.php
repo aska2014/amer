@@ -6,33 +6,66 @@
         <div class="widget">
             <div class="widget-header">
                 <span class="title">Slider</span>
+                <div class="toolbar">
+                    <ul class="nav nav-pills">
+                        <li class="active"><a href="#tab-01" data-toggle="tab">Arabic</a></li>
+                        <li><a href="#tab-02" data-toggle="tab">English</a></li>
+                    </ul>
+                </div>
             </div>
             <div class="tab-content widget-content form-container">
                 <div class="tab-pane active" id="tab-01">
                     <form class="form-horizontal" method="POST">
 
                         <div class="control-group">
-                            <label class="control-label" for="input05">Title</label>
+                            <label class="control-label" for="input05">Arabic Title</label>
                             <div class="controls">
                                 <input type="text" name="Slider[title]" id="input05" class="span12" value="{{ $slider->ar('title') }}" required>
                             </div>
                         </div>
 
                         <div class="control-group">
-                            <label class="control-label">Small Description</label>
+                            <label class="control-label">Arabic Small Description</label>
                             <div class="controls">
                                 <textarea name="Slider[small_description]" id="editor1" class="cleditor">{{ $slider->ar('small_description') }}</textarea>
                             </div>
                         </div>
 
                         <div class="control-group">
-                            <label class="control-label">Large Description</label>
+                            <label class="control-label">Arabic Large Description</label>
                             <div class="controls">
                                 <textarea name="Slider[large_description]" id="editor2" class="cleditor">{{ $slider->ar('large_description') }}</textarea>
                             </div>
                         </div>
 
                         <input type="hidden" name="Slider[language]" value="ar"/>
+                    </form>
+                </div>
+                <div class="tab-pane" id="tab-02">
+                    <form class="form-horizontal" method="POST">
+
+                        <div class="control-group">
+                            <label class="control-label" for="input05">English Title</label>
+                            <div class="controls">
+                                <input type="text" name="Slider[title]" id="input05" class="span12" value="{{ $slider->en('title') }}" required>
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <label class="control-label">English Small Description</label>
+                            <div class="controls">
+                                <textarea name="Slider[small_description]" id="editor3" class="cleditor">{{ $slider->en('small_description') }}</textarea>
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <label class="control-label">English Large Description</label>
+                            <div class="controls">
+                                <textarea name="Slider[large_description]" id="editor4" class="cleditor">{{ $slider->en('large_description') }}</textarea>
+                            </div>
+                        </div>
+
+                        <input type="hidden" name="Slider[language]" value="en"/>
                     </form>
                 </div>
             </div>

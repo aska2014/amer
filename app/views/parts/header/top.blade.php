@@ -4,11 +4,11 @@
 
         <div class="pull-left">
             <div class="flags">
-                <div class="france-flag"></div>
-                <div class="egypt-flag"></div>
-                <div class="britain-flag"></div>
+<!--                <a href=""><div class="france-flag"></div></a>-->
+                <a href="{{ URL::route('change-language', 'ar') }}"><div class="egypt-flag"></div></a>
+                <a href="{{ URL::route('change-language', 'en') }}"><div class="britain-flag"></div></a>
             </div>
-            <span>اختر لغتك</span>
+            <span>{{ trans('words.choose_language') }}</span>
         </div>
 
     </div>
@@ -16,13 +16,13 @@
     <div class="navbar">
 
         <ul>
-            <li><a href="{{ URL::page('home') }}">الرئيسية</a></li>
+            <li><a href="{{ URL::page('home') }}">{{ trans('menu.home') }}</a></li>
 
             @foreach($menuPages as $page)
             <li><a href="{{ URL::page('page', $page) }}">{{ $page->title }}</a></li>
             @endforeach
 
-            <li><a href="{{ URL::page('contact-us') }}">إتصل بنا</a></li>
+            <li><a href="{{ URL::page('contact-us') }}">{{ trans('menu.contact_us') }}</a></li>
         </ul>
 
     </div>

@@ -7,7 +7,7 @@
 @else
 <div class="advertisement">
     <a href="{{ URL::page('banner/request') }}?size=618x93">
-        <img src="{{ URL::asset('app/img/banner618x93.jpg') }}" class="img-responsive" />
+        <img src="{{ URL::asset('app/img/{lan}/banner618x93.jpg') }}" class="img-responsive" />
     </a>
 </div>
 @endif

@@ -1,0 +1,95 @@
+@import "../lib/bootstrap/less/bootstrap.less";
+@import "../lib/elements.less";
+
+@primary-color: #D75803;
+@secondary-color: #025B89;
+@background-color: #CAC7A6;
+[ng\:cloak], [ng-cloak], .ng-cloak {
+  display: none !important;
+}
+
+img{margin:0px auto;}
+//@font-face {
+//    font-family:Hacen Tunisia;
+//    src:  url('../font/Hacen Tunisia.ttf');
+//}
+
+body {
+  background: @background-color;
+  font-family: Arial;
+  font-size: 14px;
+  line-height: 20px;
+
+  direction:ltr;
+}
+
+/* Customize container */
+@media (min-width: @screen-md) {
+  .container {
+    max-width: 960px;
+  }
+}
+
+.container{background:#FFF;}
+
+.body{
+  .make-row();
+
+  padding:0px 10px;
+  @media (max-width: @screen-sm) {
+    padding:0px;
+  }
+
+  .sidebar{
+    .make-xs-column(12);
+    .make-md-column(4);
+  }
+
+  .inner-body{
+    .make-xs-column(12);
+    .make-md-column(8);
+
+    padding:0px;
+    padding-left:10px;
+
+    text-align: center;
+    @media(max-width: @screen-md) {
+      margin-top:10px;
+      padding:0px;
+    }
+  }
+
+  .separator{height:10px; clear:both;}
+}
+
+
+
+/**
+ * Common classes
+ */
+.btn-search{width:80px; height:30px; background:url('../img/en/search-off.png'); border:0px;}
+.btn-search:hover{width:80px; height:30px; background:url('../img/en/search-on.png');}
+
+.egypt-flag{ background:url('../img/icons/egypt-flag.png'); width:24px; height:24px;}
+.britain-flag{ background:url('../img/icons/britain-flag.png'); width:24px; height:24px;}
+.france-flag{ background:url('../img/icons/france-flag.png'); width:24px; height:24px;}
+
+
+.btn-primary{
+  .gradient(#428BCA, #01529A, #349ED6);
+}
+
+.btn-success{
+  .gradient(#5CB85C, #458A45, #61C361);
+}
+
+.alert{font-size:16px; text-align: left}
+
+
+@import 'header.less';
+
+@import 'sidebar.less';
+
+@import "inner-body.less";
+
+@import "footer.less";

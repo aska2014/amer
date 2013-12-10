@@ -1,11 +1,11 @@
 
 @if(! $sliders->isEmpty())
 <div class="main-title">
-    <a href="#">آخر الأخبار</a>
+    <a href="#">{{ trans('titles.latest_news') }}</a>
 </div>
 
-<div id="slider">
-    <ul id="newsslider" dir="ltr">
+<div id="slider" dir="ltr">
+    <ul id="newsslider">
         @foreach($sliders as $slider)
         <li>
             @if($image = $slider->getImage('main'))
@@ -32,7 +32,7 @@
     <div class="info-div">
         <h3><a href="{{ URL::page('slider/show', $slider) }}">{{ $slider->title }}</a></h3>
         <p>{{ $slider->small_description }}
-            <br /><a href="{{ URL::page('slider/show', $slider) }}"> &raquo; أقرأ المزيد ...</a></p>
+            <br /><a href="{{ URL::page('slider/show', $slider) }}">{{ trans('words.read_more') }}</a></p>
     </div>
 
 </div>

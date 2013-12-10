@@ -1,10 +1,10 @@
 <div class="main-title" id="login-form-title">
-    <a href="#login-form-title">طلب إعلان</a>
+    <a href="#login-form-title">{{ trans('titles.request_banner') }}</a>
 </div>
 
 <form role="form" class="form-horizontal" action="{{ URL::route('banner-request') }}" method="POST">
     <div class="form-group">
-        <label for="text2">مساحة الإعلان</label>
+        <label for="text2">{{ trans('form.banner.area') }}</label>
         <select name="BannerRequest[banner_place_id]" class="form-control" id="text2">
             @foreach($bannerPlaces as $bannerPlace)
             @if($bannerPlace->isSize(Input::get('size')))
@@ -16,11 +16,11 @@
         </select>
     </div>
     <div class="form-group">
-        <label for="text">نص الطلب</label>
+        <label for="text">{{ trans('form.banner.description') }}</label>
         <textarea class="form-control" name="BannerRequest[description]" cols="30" rows="10"></textarea>
     </div>
 
     <div class="buttons">
-        <button type="submit" class="btn btn-default">إرسال الطلب</button>
+        <button type="submit" class="btn btn-default">{{ trans('form.banner.submit') }}</button>
     </div>
 </form>

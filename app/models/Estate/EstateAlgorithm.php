@@ -28,7 +28,7 @@ class EstateAlgorithm extends \Kareem3d\Eloquent\Algorithm {
                 ->on('specials.from', '<', DB::raw('NOW()'))
                 ->on('specials.to', '>', DB::raw('NOW()'));
 
-        })->select(array('estates.*', 'estate_specs.*'))
+        })->select(array('estate_specs.*', 'estates.*'))
             ->orderBy('specials.estate_id', 'DESC')
             ->orderBy('estates.id', 'DESC');
 
@@ -165,7 +165,7 @@ class EstateAlgorithm extends \Kareem3d\Eloquent\Algorithm {
                 ->on('specials.from', '<', DB::raw('NOW()'))
                 ->on('specials.to', '>', DB::raw('NOW()'));
 
-        })->select(array('estates.*', 'estate_specs.*'));
+        })->select(array('estate_specs.*', 'estates.*'));
 
         return $this;
     }
@@ -190,11 +190,22 @@ class EstateAlgorithm extends \Kareem3d\Eloquent\Algorithm {
     }
 
     /**
+     *
+     */
+    public function language()
+    {
+        $this->getQuery()->where('estate_specs.language', '=', App::make('Language')->get());
+
+        return $this;
+    }
+
+    /**
      * @return Builder
      */
     public function emptyQuery()
     {
-        return Estate::join('estate_specs', 'estate_specs.estate_id', '=', 'estates.id');
+        return Estate::join('estate_specs', 'estate_specs.estate_id', '=', 'estates.id')
+                      ->select(array('estate_specs.*', 'estates.*'));
     }
 
     /**

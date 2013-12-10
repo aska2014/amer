@@ -1,0 +1,25 @@
+<assetCollections>
+
+    <assetCollection template="main">
+        <css>app/en_css/style.css</css>
+        <js>app/lib/jquery.min.js</js>
+        <js>//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js</js>
+        <js>app/lib/respond.min.js</js>
+        <js>http://code.angularjs.org/1.2.0rc1/angular.min.js</js>
+        <js>app/js/app.js</js>
+    </assetCollection>
+
+    <assetCollection part="inner_body.slider">
+        <css>app/lib/news-slider/style.css</css>
+        <js>app/lib/news-slider/jquery.news-slider.js</js>
+        <js>app/js/global.js</js>
+    </assetCollection>
+
+    <assetCollection part="inner_body.under_construction">
+        <js>app/lib/countdown/jquery.countdown.js</js>
+        <js>app/lib/countdown/script.js</js>
+        <css>app/lib/countdown/jquery.countdown.css</css>
+        <css>http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300</css>
+    </assetCollection>
+
+</assetCollections>

@@ -61,7 +61,7 @@ PartRepository::share('upper_body.latest_news', function($view)
  */
 PartRepository::share('inner_body.special_offers', function($view)
 {
-    $view->specials = App::make('Estate\EstateAlgorithm')->specials()->orderByDate()->accepted()->take(4)->get();
+    $view->specials = App::make('Estate\EstateAlgorithm')->language()->specials()->orderByDate()->accepted()->take(4)->get();
 
     $view->dontShowIf($view->specials->isEmpty());
 });
@@ -97,7 +97,7 @@ PartRepository::share('footer.contacts', function($view)
 
 PartRepository::share('footer.special', function($view)
 {
-    $view->footerSpecial = App::make('Estate\EstateAlgorithm')->specials()->random()->first();
+    $view->footerSpecial = App::make('Estate\EstateAlgorithm')->language()->specials()->random()->first();
 
     $view->dontShowIf($view->footerSpecial == null);
 });

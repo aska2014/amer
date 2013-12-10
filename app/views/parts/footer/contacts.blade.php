@@ -1,10 +1,7 @@
 <div class="footer-contacts section">
-
-    لأي إستفسارات راسلنا على:-<br />
+{{ trans('words.any_questions_contact_us') }}:-<br />
     <b>{{ $contactEmail }}</b><br />
-    أو إتصل بنا على:-<br />
+{{ trans('words.or_contact_us') }}:-<br />
     <b>{{ isset($mobileNumbers[0]) ? $mobileNumbers[0] : '' }}</b><br />
     <b>{{ isset($mobileNumbers[1]) ? $mobileNumbers[1] : '' }}</b>
-
-
 </div>

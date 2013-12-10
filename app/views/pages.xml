@@ -17,10 +17,6 @@
         <inner-body>inner_body.advertisement | inner_body.slider | inner_body.special_offers</inner-body>
     </page>
 
-    <page name="auction">
-        <inner-body>inner_body.auctions</inner-body>
-    </page>
-
 
     <page name="slider/show">
         <inner-body>inner_body.one_slider</inner-body>

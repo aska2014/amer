@@ -189,7 +189,6 @@ return array(
 		'Seeder'          => 'Illuminate\Database\Seeder',
 		'Session'         => 'Illuminate\Support\Facades\Session',
 		'Str'             => 'Illuminate\Support\Str',
-        'URL'             => 'Kareem3d\Link\URL',
 		'Validator'       => 'Illuminate\Support\Facades\Validator',
 		'View'            => 'Illuminate\Support\Facades\View',
 

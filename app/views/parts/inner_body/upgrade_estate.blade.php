@@ -11,13 +11,13 @@
 @else
 
 <div class="main-title">
-    <a href="#">ميز اعلانك</a>
+    <a href="#">{{ trans('titles.upgrade_estate') }}</a>
 </div>
 
 <form action="{{ URL::page('estate/upgrade', $estate) }}" method="POST" ng-controller="UpgradeEstateController">
     <div class="upgrade-estate">
 
-        <span>أختر فترة تميز هذا الاعلان</span>
+        <span>{{ trans('words.choose_upgrade_estate') }}</span>
 
         <div class="clearfix"></div>
 
@@ -38,8 +38,8 @@
     <div class="separator"></div>
 
     <div class="buttons">
-        <input type="submit" class="btn btn-success" value="نعم اريد"/>
-        <a href="{{ URL::page('estate/show', $estate) }}" class="btn btn-primary">لا شكراً</a>
+        <input type="submit" class="btn btn-success" value="{{ trans('words.yes_i_want') }}"/>
+        <a href="{{ URL::page('estate/show', $estate) }}" class="btn btn-primary">{{ trans('words.no_thanks') }}</a>
     </div>
 </form>
 
@@ -48,16 +48,28 @@
 
 @endif
 
+
 <div class="main-title">
-    <a href="#">فوائد الاعلان المميز</a>
+    <a href="#">{{ trans('titles.upgrade_benefits') }}</a>
 </div>
 
+@if(App::make('Language')->is('ar'))
 <p>
     <ol>
         <li>يتم إعطاء الإعلانات المميزه أولويه في الظهور في عمليات البحث</li>
         <li>يحظى العميل بعدد مشاهدات كبير جداً.</li>
         <li>تكون الأولوية في الظهور في القوائم البريدية</li>
-        <li>تكون له الأولوية في الإعلانات ذان الصلة</li>
         <li>يتم تثبيت الإعلانات في أعلى قوائم التصنيفات والتصنيفات الفرعيه بحيث يكون من ضمن أول 7 إعلانات مع تمييزها بلون خلفيه خاص</li>
     </ol>
 </p>
+@else
+
+<p>
+    <ol>
+        <li>Your announcement will be given the priority to show in the search process.</li>
+        <li>Your announcement gets a lot views.</li>
+        <li>Your announcement will be given the priority to show in the mailing list.</li>
+        <li>Your announcement gets a different background to be more visible for public.</li>
+    </ol>
+</p>
+@endif

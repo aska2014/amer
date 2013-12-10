@@ -2,9 +2,8 @@
 
 use Auction\Auction;
 use Illuminate\Support\Facades\App;
-use Illuminate\Support\Str;
+use Kareem3d\Eloquent\Model;
 use Kareem3d\Images\Image;
-use Kareem3d\Link\Link;
 use Place\Province;
 use Price;
 use Special\Special;
@@ -13,7 +12,7 @@ use Special\SpecialPayment;
 use User;
 use UserInfo;
 
-class Estate extends \Kareem3d\Eloquent\Model {
+class Estate extends Model {
 
     /**
      * @var array
@@ -81,6 +80,15 @@ class Estate extends \Kareem3d\Eloquent\Model {
         }
 
         $this->cleanXSS();
+    }
+
+    /**
+     * @param $value
+     */
+    public function setAreaAttribute( $value )
+    {
+        $this->attributes['area'] = trim(str_replace('م', '', $value));
+        $this->attributes['area'] = trim(str_replace('m', '', $value));
     }
 
     /**

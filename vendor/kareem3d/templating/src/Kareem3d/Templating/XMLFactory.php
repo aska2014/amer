@@ -1,5 +1,6 @@
 <?php namespace Kareem3d\Templating;
 
+use Illuminate\Support\Facades\Config;
 use Kareem3d\AssetManager\AssetCollection;
 use Kareem3d\AssetManager\Asset;
 use Kareem3d\Link\Link;
@@ -34,6 +35,7 @@ class XMLFactory {
     private function __construct($pagesXmlFile, $assetsXmlFile)
     {
         $this->pagesXml = simplexml_load_file($pagesXmlFile);
+
         $this->assetsXml = simplexml_load_file($assetsXmlFile);
     }
 

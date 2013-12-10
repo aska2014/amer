@@ -1,5 +1,5 @@
 <div class="main-title">
-    <a href="#">أخر الأخبار</a>
+    <a href="#">{{ trans('titles.latest_news') }}</a>
 </div>
 
 

@@ -31,13 +31,26 @@
 
 
                         <div class="control-group">
-                            <label class="control-label" for="input05">Title</label>
+                            <label class="control-label" for="input05">Arabic Title</label>
                             <div class="controls">
                                 <input type="text" name="Category[title]" id="input05" class="span12" value="{{ $category->ar('title') }}" required>
                             </div>
                         </div>
 
                         <input type="hidden" name="Category[language]" value="ar"/>
+                    </form>
+
+
+                    <form class="form-horizontal" method="POST">
+
+                        <div class="control-group">
+                            <label class="control-label" for="input05">English Title</label>
+                            <div class="controls">
+                                <input type="text" name="Category[title]" id="input05" class="span12" value="{{ $category->en('title') }}" required>
+                            </div>
+                        </div>
+
+                        <input type="hidden" name="Category[language]" value="en"/>
                     </form>
                 </div>
             </div>
