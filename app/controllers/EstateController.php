@@ -353,7 +353,11 @@ class EstateController extends BaseController {
         Auth::user()->getInfo()->merge($ownerInfo);
 
         // 7. Save estate image
-        $this->saveEstateImage($estate, $file);
+        $imageSaved = (bool) $this->saveEstateImage($estate, $file);
+
+        // Accept state if image not saved
+        if(! $imageSaved) $estate->accept();
+
 
         ///////////////////////////////////////////////////////////////////////////////////
         // END creation process
