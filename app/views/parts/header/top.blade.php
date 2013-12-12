@@ -5,8 +5,8 @@
         <div class="pull-left">
             <div class="flags">
 <!--                <a href=""><div class="france-flag"></div></a>-->
-                <a href="{{ URL::route('change-language', 'ar') }}"><div class="egypt-flag"></div></a>
-                <a href="{{ URL::route('change-language', 'en') }}"><div class="britain-flag"></div></a>
+                <a href="{{ URL::route('change-language', 'ar') }}" title="Arabic"><div class="egypt-flag"></div></a>
+                <a href="{{ URL::route('change-language', 'en') }}" title="English"><div class="britain-flag"></div></a>
             </div>
             <span>{{ trans('words.choose_language') }}</span>
         </div>

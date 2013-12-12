@@ -3,7 +3,7 @@
 return array(
     'my_estates' => ' اعلاناتي',
 
-    'create_estate' => 'أضف عقاراً',
+    'create_estate' => 'أضف إعلاناً',
 
     'latest_news' => 'أخر الأخبار',
 

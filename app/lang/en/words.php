@@ -25,6 +25,8 @@ return array(
     'copyrights' => 'all rights reserved for amer group2',
 
     'no_thanks' => 'No thanks',
-    'yes_i_want' => 'Yes I want'
+    'yes_i_want' => 'Yes I want',
+
+    'add_estate_alert' => 'Alert: Please make sure of the given information because the site is only responsible for Amer group2 specials'
 
 );

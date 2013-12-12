@@ -1,3 +1,8 @@
+<div class="alert alert-danger alert-dismissable">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+    {{ trans('words.add_estate_alert') }}
+</div>
+
 <div class="main-title">
     <a href="#">{{ trans('titles.add_estate') }}</a>
 </div>
