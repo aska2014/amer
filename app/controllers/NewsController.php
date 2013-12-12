@@ -18,7 +18,7 @@ class NewsController extends BaseController {
     /**
      * @return mixed
      */
-    public function all()
+    public function dynamicAll()
     {
         $news = $this->news->all();
 
@@ -29,7 +29,7 @@ class NewsController extends BaseController {
      * @param News $oneNews
      * @return mixed
      */
-    public function show(News $oneNews)
+    public function dynamicShow(News $oneNews)
     {
         return $this->page()->printMe(compact('oneNews'));
     }

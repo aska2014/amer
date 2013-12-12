@@ -5,7 +5,7 @@ class HomeController extends BaseController {
     /**
      * @return mixed
      */
-    public function index()
+    public function dynamicIndex()
     {
         return $this->page()->printMe();
     }

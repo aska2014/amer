@@ -5,26 +5,32 @@ use Illuminate\Routing\Controllers\Controller;
 class DynamicController extends Controller {
 
     /**
-     * @return mixed
+     * @param string $method
+     * @param array $arguments
+     * @return mixed|void
      */
-    public function route()
+    public function __call($method, $arguments = array())
     {
-        $router = DynamicRouter::instance();
+        $dynamicMethod = 'dynamic' . ucfirst($method);
 
-        $arguments = func_get_args();
-
-        // Fetch model passing the first function argument (if exists)
-        if($model = $router->getLink()->getModel(isset($arguments[0]) ? $arguments[0] : false))
+        if(method_exists($this, $dynamicMethod))
         {
-            // Replace first argument with the models
-            $arguments[0] = $model;
+            $router = DynamicRouter::instance();
+
+            // Fetch model passing the first function argument (if exists)
+            if($model = $router->getLink()->getModel(isset($arguments[0]) ? $arguments[0] : false))
+            {
+                // Replace first argument with the models
+                $arguments[0] = $model;
+            }
+
+            $router->getLink()->getPage()->share(array(
+                'model' => $model
+            ));
+
+            return call_user_func_array(array($this, $dynamicMethod), $arguments);
         }
 
-        $router->getLink()->getPage()->share(array(
-            'model' => $model
-        ));
-
-        return call_user_func_array(array($this, $router->getAction()), $arguments);
+        return parent::__call($method, $arguments);
     }
-
 }

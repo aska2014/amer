@@ -131,6 +131,22 @@ class StaticLink implements Link {
     }
 
     /**
+     * @return string
+     */
+    public function getFirstArgumentFormat()
+    {
+        $i = 0;
+        $array = array();
+
+        preg_replace_callback('(\(([^\)]+)\))', function() use(&$i, &$array)
+        {
+            $array[] = 'arg'.++$i;
+        }, $this->regexUrl);
+
+        return !empty($array) ? $array[0] : '';
+    }
+
+    /**
      * @param int|bool $id
      * @return Model
      */

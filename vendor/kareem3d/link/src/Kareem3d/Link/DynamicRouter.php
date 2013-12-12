@@ -74,7 +74,7 @@ class DynamicRouter {
             // If it has controller route to the controller route
             if($controller = $this->getController())
             {
-                Route::get($path, $controller . '@route');
+                Route::get($path, $this->getControllerActionString());
             }
 
             else

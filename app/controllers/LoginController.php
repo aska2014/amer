@@ -22,7 +22,7 @@ class LoginController extends BaseController {
     /**
      * @return mixed
      */
-    public function show()
+    public function dynamicShow()
     {
         return $this->page()->printMe();
     }

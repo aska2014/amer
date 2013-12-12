@@ -15,12 +15,14 @@ class UserController extends BaseController {
         $this->beforeFilter('auth');
 
         $this->estatesAlgorithm = $estatesAlgorithm;
+
+        $this->beforeFilter('auth');
     }
 
     /**
      * @return mixed
      */
-    public function estates()
+    public function dynamicEstates()
     {
         $estatesTitle = trans('titles.my_estates');
 

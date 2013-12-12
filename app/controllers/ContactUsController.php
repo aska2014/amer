@@ -20,7 +20,7 @@ class ContactUsController extends BaseController {
     /**
      * @return mixed
      */
-    public function index()
+    public function dynamicIndex()
     {
         return $this->page()->printMe();
     }
@@ -28,7 +28,7 @@ class ContactUsController extends BaseController {
     /**
      * @return mixed
      */
-    public function send()
+    public function postCreate()
     {
         $contactUs = $this->contactUs->newInstance(Input::get('ContactUs'));
 

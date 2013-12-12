@@ -23,12 +23,16 @@ class AuctionController extends BaseController {
     {
         $this->auctions = $auctions;
         $this->auctionOffers = $auctionOffers;
+
+        $this->beforeFilter('auth', array(
+            'only' => array('postAddOffer')
+        ));
     }
 
     /**
      * @return mixed
      */
-    public function index()
+    public function dynamicIndex()
     {
         return $this->page()->printMe(array(
             'auctions' => $this->auctions->all()
@@ -39,10 +43,8 @@ class AuctionController extends BaseController {
      * @param \Auction\Auction $auction
      * @return mixed
      */
-    public function addOffer( Auction $auction )
+    public function postAddOffer( Auction $auction )
     {
-        $this->beforeFilter('auth');
-
         $auctionOffer = $this->auctionOffers->newInstance(Input::get('AuctionOffer'));
 
         // If auction offer is not valid

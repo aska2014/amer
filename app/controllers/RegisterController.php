@@ -29,7 +29,7 @@ class RegisterController extends BaseController {
     /**
      * @return mixed
      */
-    public function store()
+    public function postCreate()
     {
         $user     = $this->newUser();
         $userInfo = $this->newUserInfo();

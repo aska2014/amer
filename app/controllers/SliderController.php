@@ -6,7 +6,7 @@ class SliderController extends BaseController {
      * @param Slider $slider
      * @return mixed
      */
-    public function show(Slider $slider)
+    public function dynamicShow(Slider $slider)
     {
         return $this->page()->printMe(array(
 

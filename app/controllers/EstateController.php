@@ -93,12 +93,16 @@ class EstateController extends BaseController {
         $this->specialOffers = $specialOffers;
         $this->usersAlgorithm = $usersAlgorithm;
         $this->comments = $comments;
+
+        $this->beforeFilter('auth', array(
+            'except' => array('amerGroupSpecials', 'all', 'show')
+        ));
     }
 
     /**
      * @return mixed
      */
-    public function amerGroupSpecials()
+    public function dynamicAmerGroupSpecials()
     {
         $estatesTitle = trans('titles.amer_specials');
 
@@ -116,7 +120,7 @@ class EstateController extends BaseController {
      * @param \Estate\EstateCategory $category
      * @return mixed
      */
-    public function all(EstateCategory $category)
+    public function dynamicAll(EstateCategory $category)
     {
         $estatesTitle = $category->getDescriptiveTitle();
 
@@ -131,7 +135,7 @@ class EstateController extends BaseController {
      * @throws Kareem3d\Eloquent\Extensions\Acceptable\NotAcceptedException
      * @return mixed
      */
-    public function show(Estate $estate)
+    public function dynamicShow(Estate $estate)
     {
         // Increment number of views
         $estate->incrementViews();
@@ -160,10 +164,8 @@ class EstateController extends BaseController {
      * @throws Exception
      * @return mixed
      */
-    public function edit($estate)
+    public function dynamicEdit($estate)
     {
-        $this->beforeFilter('auth');
-
         if($estate->exists && ! Auth::user()->same($estate->user))
         {
             throw new Exception("You can't edit this estate");
@@ -184,8 +186,6 @@ class EstateController extends BaseController {
      */
     public function postEdit(Estate $estate)
     {
-        $this->beforeFilter('auth');
-
         $estate->fill($this->getEstateInputs());
         $estate->ownerInfo->fill($this->getUserInfoInputs());
 
@@ -216,10 +216,8 @@ class EstateController extends BaseController {
     /**
      * @return mixed
      */
-    public function create()
+    public function dynamicCreate()
     {
-        $this->beforeFilter('auth');
-
         return $this->edit($this->estates->newInstance());
     }
 
@@ -228,8 +226,6 @@ class EstateController extends BaseController {
      */
     public function postCreate()
     {
-        $this->beforeFilter('auth');
-
         // New instance without saving to database yet
         $auction   = $this->newAuction();
         $estate    = $this->newEstate( $auction != null );
@@ -249,10 +245,8 @@ class EstateController extends BaseController {
      * @param \Estate\Estate $estate
      * @return mixed
      */
-    public function upgrade( Estate $estate )
+    public function dynamicUpgrade( Estate $estate )
     {
-        $this->beforeFilter('auth');
-
         $this->throwIfNotOwner($estate);
 
         $offers = $this->specialOffers->all();
@@ -266,8 +260,6 @@ class EstateController extends BaseController {
      */
     public function postUpgrade( Estate $estate )
     {
-        $this->beforeFilter('auth');
-
         $this->throwIfNotOwner($estate);
 
         $estate->specialPayments()->delete();
@@ -289,8 +281,6 @@ class EstateController extends BaseController {
      */
     public function remove(Estate $estate)
     {
-        $this->beforeFilter('auth');
-
         $this->throwIfNotOwner($estate);
 
         $estate->delete();
@@ -301,7 +291,7 @@ class EstateController extends BaseController {
     /**
      * @param Estate $estate
      */
-    public function addComment(Estate $estate)
+    public function postAddComment(Estate $estate)
     {
         $comment = $this->comments->newInstance(Input::get('Comment'));
 

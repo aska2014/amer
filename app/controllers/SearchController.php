@@ -20,7 +20,7 @@ class SearchController extends BaseController {
     /**
      * @return mixed
      */
-    public function index()
+    public function dynamicIndex()
     {
         $this->searchByCategory();
 

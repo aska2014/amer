@@ -8,7 +8,7 @@ class PageController extends BaseController {
      * @param Page $page
      * @return mixed
      */
-    public function index(Page $page)
+    public function dynamicIndex(Page $page)
     {
         return $this->page()->printMe(compact('page'));
     }

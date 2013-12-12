@@ -27,7 +27,7 @@ class BannerController extends BaseController {
     /**
      * @return mixed
      */
-    public function request()
+    public function dynamicRequest()
     {
         $bannerPlaces = $this->bannerPlaces->all();
 
