@@ -6835,7 +6835,7 @@ body {
   min-height: 1px;
   padding-left: 15px;
   padding-right: 15px;
-  padding: 8px 13px;
+  padding: 8px 0px;
 }
 @media (min-width: 768px) {
   .large-menu .menu-item {
@@ -6862,7 +6862,7 @@ body {
   text-decoration: none;
 }
 .large-menu .menu-item .img-info {
-  font-size: 14px;
+  font-size: 9px;
   text-align: center;
 }
 .large-menu .menu-item .img-info:hover {
@@ -6894,7 +6894,7 @@ body {
 }
 .large-menu .menu-item .item-drop-down a {
   color: #FFF;
-  font-size: 14px;
+  font-size: 12px;
 }
 .large-menu .menu-item .item-drop-down a:hover {
   color: #fc6f11;
