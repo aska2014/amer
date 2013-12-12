@@ -30,11 +30,25 @@ class SearchController extends BaseController {
 
         $this->searchByPrice();
 
-        $estates = $this->estatesAlgorithm->language()->accepted()->orderBySpecial()->orderByDate()->paginate(EstateController::ESTATES_PER_PAGE);
+        $this->searchOrder();
+
+        $estates = $this->estatesAlgorithm->language()->accepted()->orderBySpecial()->paginate(EstateController::ESTATES_PER_PAGE);
 
         $estatesTitle = trans('titles.search_result');
 
         return $this->page()->printMe(compact('estates', 'estatesTitle'));
+    }
+
+    protected function searchOrder()
+    {
+        if(Input::get('search_order') === 'order_old')
+        {
+            $this->estatesAlgorithm->orderByDate('asc');
+        }
+        else
+        {
+            $this->estatesAlgorithm->orderByDate('desc');
+        }
     }
 
     /**

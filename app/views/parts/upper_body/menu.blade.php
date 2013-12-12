@@ -38,13 +38,9 @@
 </div>
 
 <div class="large-menu-dropdown">
-    <select class="form-control" onchange="window.location.href=this.value;">
+    <select class="form-control" onchange="window.location.href=this.value;" select-value="{{ Request::url() }}">
         @foreach($estateCategories as $category)
-            @if(isset($model) && $model->same($category))
-            <option value="{{ URL::page('estate/all', $category) }}" selected="selected">{{ $category->title }}</option>
-            @else
             <option value="{{ URL::page('estate/all', $category) }}">{{ $category->title }}</option>
-            @endif
         @endforeach
     </select>
 </div>

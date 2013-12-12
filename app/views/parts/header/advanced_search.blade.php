@@ -49,26 +49,26 @@
 
     <div class="right-search">
 
-        <div class="upper-section">
-
-            <div class="offer-image">
-                <img src="{{ URL::asset('app/img/{lan}/offer-image.png') }}" class="img-responsive" alt=""/>
-            </div>
-
-            <div class="upper-form">
-
-                <h3>{{ trans('titles.search_estates') }}</h3>
-
-                <select name="" class="form-control">
-                    <option value="">{{ trans('form.search.order_old') }}</option>
-                    <option value="">{{ trans('form.search.order_new') }}</option>
-                </select>
-            </div>
-        </div>
-
-        <div class="clearfix"></div>
-
         <form action="{{ URL::page('search') }}" method="GET">
+            <div class="upper-section">
+
+                <div class="offer-image">
+                    <img src="{{ URL::asset('app/img/{lan}/offer-image.png') }}" class="img-responsive" alt=""/>
+                </div>
+
+                <div class="upper-form">
+
+                    <h3>{{ trans('titles.search_estates') }}</h3>
+
+                    <select name="search_order" class="form-control" select-value='{{ Input::get('search_order', 'order_new') }}'>
+                        <option value="order_new">{{ trans('form.search.order_new') }}</option>
+                        <option value="order_old">{{ trans('form.search.order_old') }}</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="clearfix"></div>
+
             <div class="lower-section">
                 <div class="row">
                     <div class="left">
@@ -160,6 +160,6 @@
                     <button class="btn-search" type="submit"></button>
                 </div>
             </div>
-        </div>
-    </form>
+        </form>
+    </div>
 </div>

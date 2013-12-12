@@ -14,7 +14,7 @@
 </head>
 <body>
 
-<div class="container">
+<div class="container" ng-controller="MainController">
 
     <div class="header">
 
