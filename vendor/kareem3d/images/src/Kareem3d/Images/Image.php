@@ -98,7 +98,7 @@ class Image extends Model {
      */
     public function exists()
     {
-        return $this->versions()->count() > 0;
+        return $this->exists && $this->versions()->count() > 0;
     }
 
     /**

@@ -371,12 +371,15 @@ class EstateController extends BaseController {
 
         $versions = ImageFacade::versions('Estate.Main', 'estate', $file, false);
 
-        $image = $this->images->create(array(
-            'title' => $estate->title,
-            'alt'   => $estate->description,
-        ))->add($versions);
+        if($versions)
+        {
+            $image = $this->images->create(array(
+                'title' => $estate->title,
+                'alt'   => $estate->description,
+            ))->add($versions);
 
-        return $estate->replaceImage($image, 'main');
+            return $estate->replaceImage($image, 'main');
+        }
     }
 
     /**
