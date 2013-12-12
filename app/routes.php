@@ -78,6 +78,7 @@ Route::get('/change-urls', function()
 
 Route::get('/seed-default-images', function()
 {
+    exit();
     \Kareem3d\Images\Image::create(array(
         'type' => 'estate-default-ar',
     ))->add(\Kareem3d\Images\Version::generate(URL::to('/app/img/ar/estate-default.png')));
