@@ -151,7 +151,7 @@ class Estate extends Model {
     {
         $image = parent::getImage($type);
 
-        return $image->exists ? $image : Image::where('type', 'estate-default')->first();
+        return $image->exists ? $image : Image::where('type', 'estate-default-' . $this->getCurrentLanguage())->first();
     }
 
     /**

@@ -63,3 +63,26 @@ Route::get('/seed-banner-places', function()
         'name' => 'upper_body',
     ));
 });
+
+
+Route::get('/change-urls', function()
+{
+    foreach(\Kareem3d\URL\URL::all() as $url)
+    {
+        $url->url = str_replace('amergroup2.com', 'amer.loc', $url->url);
+
+        $url->save();
+    }
+});
+
+
+Route::get('/seed-default-images', function()
+{
+    \Kareem3d\Images\Image::create(array(
+        'type' => 'estate-default-ar',
+    ))->add(\Kareem3d\Images\Version::generate(URL::to('/app/img/ar/estate-default.png')));
+
+    \Kareem3d\Images\Image::create(array(
+        'type' => 'estate-default-en',
+    ))->add(\Kareem3d\Images\Version::generate(URL::to('/app/img/en/estate-default.png')));
+});
