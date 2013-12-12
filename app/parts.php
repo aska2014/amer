@@ -68,7 +68,7 @@ PartRepository::share('inner_body.special_offers', function($view)
 
 PartRepository::share('inner_body.slider', function($view)
 {
-    $view->sliders = App::make('Slider')->get();
+    $view->sliders = App::make('Slider')->orderBy('created_at', 'DESC')->take(15)->get();
 
     $view->dontShowIf($view->sliders->isEmpty());
 });
