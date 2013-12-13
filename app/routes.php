@@ -42,7 +42,7 @@ Route::get('/change-language/{language}', array('as' => 'change-language', funct
 {
     App::make('Language')->change( $lan );
 
-    return Redirect::back();
+    try{ return Redirect::back();}catch(Exception $e){return Redirect::to(URL::page('home'));}
 }));
 
 
