@@ -6,7 +6,6 @@ angular.module('amer', ['amer.controllers']);
 
 angular.module('amer.controllers', []).
 
-
     controller('MainController', [function()
     {
         $("select[select-value]").each(function()
