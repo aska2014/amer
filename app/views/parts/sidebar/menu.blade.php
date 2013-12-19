@@ -55,4 +55,16 @@
         </div>
     </div>
 
+    @if($realEstateInvestmentPage)
+    <div class="menu-item">
+        <div class="item-icon">
+            <img class="img-responsive" src="{{ URL::asset('app/img/icons/estate-investment.png') }}" alt=""/>
+        </div>
+
+        <div class="item-info">
+            <a href="{{ URL::page('page', $realEstateInvestmentPage) }}">{{ $realEstateInvestmentPage->title }}</a>
+        </div>
+    </div>
+    @endif
+
 </div>

@@ -67,6 +67,11 @@ class EstateController extends BaseController {
     protected $comments;
 
     /**
+     * @var Bookmark
+     */
+    protected $bookmarks;
+
+    /**
      * @param Estate $estates
      * @param EstateCategory $estateCategories
      * @param Auction $auctions
@@ -77,11 +82,12 @@ class EstateController extends BaseController {
      * @param EstateAlgorithm $estatesAlgorithm
      * @param UserAlgorithm $usersAlgorithm
      * @param Comment $comments
+     * @param Bookmark $bookmarks
      */
     public function __construct( Estate $estates, EstateCategory $estateCategories, Auction $auctions,
                                  UserInfo $usersInfo, Image $images, SpecialPayment $specialPayments, SpecialOffer $specialOffers,
                                  EstateAlgorithm $estatesAlgorithm, UserAlgorithm $usersAlgorithm,
-                                 Comment $comments)
+                                 Comment $comments, Bookmark $bookmarks)
     {
         $this->estates = $estates;
         $this->estateCategories = $estateCategories;
@@ -93,6 +99,7 @@ class EstateController extends BaseController {
         $this->specialOffers = $specialOffers;
         $this->usersAlgorithm = $usersAlgorithm;
         $this->comments = $comments;
+        $this->bookmarks = $bookmarks;
 
         $this->beforeFilter('auth', array(
             'except' => array('amerGroupSpecials', 'all', 'show')
@@ -307,6 +314,24 @@ class EstateController extends BaseController {
         }
 
         return Redirect::back()->withErrors($comment->getValidatorMessages())->withInput();
+    }
+
+    /**
+     * @param Estate $estate
+     * @return mixed
+     */
+    public function addBookmark(Estate $estate)
+    {
+        $this->bookmarks->add(Auth::user(), $estate);
+
+        return Redirect::back()->with('success', trans('messages.success.bookmark'));
+    }
+
+    /**
+     * @param Estate $estate
+     */
+    public function postBlock(Estate $estate)
+    {
     }
 
     /**

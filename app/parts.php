@@ -85,6 +85,11 @@ PartRepository::share('sidebar.advertisement', function($view)
     $view->sideBanners = App::make('Website\BannerAlgorithm')->active()->place('sidebar')->recent()->take(2)->get();
 });
 
+PartRepository::share('sidebar.menu', function($view)
+{
+    $view->realEstateInvestmentPage = App::make('Website\Page')->getRealEstateInvestment();
+});
+
 /**
  * Footer parts
  */

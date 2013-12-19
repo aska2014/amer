@@ -8,6 +8,7 @@ Route::post('/update-estate/{estate}', array('as' => 'estate.update', 'uses' => 
 Route::post('upgrade-estate/{estate}', array('uses' => 'EstateController@postUpgrade'));
 Route::get('234eZSCAD34eXZC2W3reds/{estate}', 'EstateController@remove');
 
+Route::get('bookmark-estate/{estate}', array('uses' => 'EstateController@addBookmark'));
 
 Route::post('/login', array('as' => 'login', 'uses' => 'LoginController@check'));
 
