@@ -53,6 +53,7 @@ class Page extends Model {
      */
     public static function getTopMenu()
     {
-        return static::where('identifier', '!=', 'real_estate_investment')->get();
+        return static::where('identifier', '!=', 'real_estate_investment')
+                     ->orWhereNull('identifier')->get();
     }
 }
