@@ -47,4 +47,12 @@ class Page extends Model {
 
         return $investmentPage;
     }
+
+    /**
+     * @return mixed
+     */
+    public static function getTopMenu()
+    {
+        return static::where('identifier', '!=', 'real_estate_investment')->get();
+    }
 }

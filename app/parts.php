@@ -33,7 +33,7 @@ PartRepository::shareToAll(function($view)
  */
 PartRepository::share('header.top', function($view)
 {
-    $view->menuPages = App::make('Website\Page')->get();
+    $view->menuPages = App::make('Website\Page')->getTopMenu();
 });
 
 
