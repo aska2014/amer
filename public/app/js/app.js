@@ -30,6 +30,9 @@ angular.module('amer.controllers', []).
 
         var makeFooterRequest = function()
         {
+            if($(".footer-special").is(":visible"))
+                $(".footer-special").slideUp(100);
+
             $.ajax({
                 url: '/request/footer-specials',
                 type: 'GET',
@@ -40,10 +43,7 @@ angular.module('amer.controllers', []).
                 {
                     if(typeof response['id'] !== "undefined")
                     {
-                        if($(".footer-special").is(":visible"))
-                            $(".footer-special").slideUp(500).delay(1000).slideDown(1000);
-                        else
-                            $(".footer-special").slideDown(1000);
+                        $(".footer-special").slideDown(1000);
 
                         $scope.special = response;
 
