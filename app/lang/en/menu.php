@@ -11,6 +11,8 @@ return array(
 
     'amer_group_specials' => 'Amer group2 offers',
 
+    'bookmarks' => 'My bookmarks',
+
     'home' => 'Home',
 
     'contact_us' => 'Contact us',

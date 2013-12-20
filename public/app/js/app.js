@@ -22,7 +22,42 @@ angular.module('amer.controllers', []).
 
     controller('SpecialFooterController', ['$scope', function($scope)
     {
-        $(".footer-special").hide().slideDown(1000);
+        var ids = [];
+
+        $scope.special = null;
+
+        $(".footer-special").hide();
+
+        var makeFooterRequest = function()
+        {
+            $.ajax({
+                url: '/request/footer-specials',
+                type: 'GET',
+                data: {
+                    except: ids
+                },
+                success: function(response)
+                {
+                    if(typeof response['id'] !== "undefined")
+                    {
+                        if($(".footer-special").is(":visible"))
+                            $(".footer-special").slideUp(500).delay(1000).slideDown(1000);
+                        else
+                            $(".footer-special").slideDown(1000);
+
+                        $scope.special = response;
+
+                        ids.push($scope.special.id);
+
+                        $scope.$apply();
+                    }
+                }
+            });
+        };
+
+        makeFooterRequest();
+
+        setInterval(makeFooterRequest, 9000);
     }]).
 
     controller('AddEstateController', ['$scope', function($scope)

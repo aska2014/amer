@@ -71,6 +71,11 @@ return array(
     'search' => array(
         'order_new' => 'من الأحدث للأقدم',
         'order_old' => 'من الأقدم للأحدث',
+        'have_image' => 'المحتوية علي صورة اولا',
+        'highest_price' => 'اعلا الاسعار اولا  ',
+        'lowest_price' => 'ادني الاسعار اولا ',
+
+
         'area' => 'المساحة',
         'from' => 'من',
         'to' => 'إلى',
@@ -85,11 +90,6 @@ return array(
         'price' => 'السعر',
 
         'region' => 'المنطقة',
-
-
-
-
-
 
     )
 

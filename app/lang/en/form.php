@@ -71,6 +71,10 @@ return array(
     'search' => array(
         'order_new' => 'from newer to older',
         'order_old' => 'from older to newer',
+        'have_image' => 'Have images first',
+        'highest_price' => 'Highest prices first',
+        'lowest_price' => 'Lowest prices first',
+
         'area' => 'Area',
         'from' => 'From',
         'to' => 'To',

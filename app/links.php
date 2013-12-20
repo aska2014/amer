@@ -13,6 +13,7 @@ return array(
 
     // User estates
     array('user/estates', 'user/estates.html'),
+    array('user/bookmarks', 'user/bookmarks.html'),
 
     // Estates
     array('estate/all', 'estates-([0-9]+).html', EstateCategory::getClass()),

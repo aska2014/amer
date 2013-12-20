@@ -8,6 +8,60 @@ use Kareem3d\Eloquent\Model;
 class EstateAlgorithm extends \Kareem3d\Eloquent\Algorithm {
 
     /**
+     * @param $user
+     * @return $this
+     */
+    public function bookmarks($user)
+    {
+        $this->getQuery()->join('bookmarks', 'bookmarks.estate_id', '=', 'estates.id')
+                        ->where('bookmarks.user_id', $this->extractId($user));
+
+        return $this;
+    }
+
+    /**
+     * @return $this
+     */
+    public function orderByImage()
+    {
+        $array = DB::select('SELECT imageable_id FROM ka_images WHERE imageable_type = ? AND type = ?', array(
+                Estate::getClass(),
+                'main'
+            ));
+
+        foreach($array as $value) $ids[] = $value->imageable_id;
+
+        $this->getQuery()->orderByRaw('field(estates.id,'.implode(',', $ids).') DESC');
+
+        return $this;
+    }
+
+    /**
+     * @param string $order
+     * @return $this
+     */
+    public function orderByPrice($order = 'desc')
+    {
+        $this->getQuery()->orderBy('price', $order);
+
+        return $this;
+    }
+
+    /**
+     * @param $ids
+     * @return $this
+     */
+    public function except($ids)
+    {
+        if(is_array($ids))
+        {
+            $this->getQuery()->whereNotIn('estates.id', $ids);
+        }
+
+        return $this;
+    }
+
+    /**
      * @return $this
      */
     public function random()

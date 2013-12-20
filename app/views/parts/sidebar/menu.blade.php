@@ -10,6 +10,16 @@
             <a href="{{ URL::page('user/estates') }}">{{ trans('menu.my_estates') }}</a>
         </div>
     </div>
+
+    <div class="menu-item big-if-small">
+        <div class="item-icon">
+            <img class="img-responsive" src="{{ URL::asset('app/img/icons/bookmark.png') }}" alt=""/>
+        </div>
+
+        <div class="item-info">
+            <a href="{{ URL::page('user/bookmarks') }}">{{ trans('menu.bookmarks') }}</a>
+        </div>
+    </div>
     @endif
 
     <div class="menu-item">

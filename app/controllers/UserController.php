@@ -30,4 +30,16 @@ class UserController extends BaseController {
 
         return $this->page()->printMe(compact('estatesTitle', 'estates'));
     }
+
+    /**
+     * @return mixed
+     */
+    public function dynamicBookmarks()
+    {
+        $estatesTitle = trans('titles.my_bookmarks');
+
+        $estates = $this->estatesAlgorithm->bookmarks(Auth::user())->language()->orderByDate()->paginate(EstateController::ESTATES_PER_PAGE);
+
+        return $this->page()->printMe(compact('estatesTitle', 'estates'));
+    }
 }

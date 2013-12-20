@@ -20,6 +20,7 @@ return array(
             'delete' =>  'The announcement has been deleted successfully.',
         ),
         'comment' => 'The comment has been added successfully',
+        'bookmark' => 'This estate has been added to the bookmarks successfully.',
         'contact_us' => 'The message has been sent successfully',
         'banner_request' => 'Request has been sent successfully.'
     ),

@@ -39,15 +39,30 @@ class SearchController extends BaseController {
         return $this->page()->printMe(compact('estates', 'estatesTitle'));
     }
 
+    /**
+     * @return void
+     */
     protected function searchOrder()
     {
         if(Input::get('search_order') === 'order_old')
         {
             $this->estatesAlgorithm->orderByDate('asc');
         }
-        else
+        elseif(Input::get('search_order') === 'order_new')
         {
             $this->estatesAlgorithm->orderByDate('desc');
+        }
+        elseif(Input::get('search_order') === 'highest_price')
+        {
+            $this->estatesAlgorithm->orderByPrice('desc');
+        }
+        elseif(Input::get('search_order') === 'lowest_price')
+        {
+            $this->estatesAlgorithm->orderByPrice('asc');
+        }
+        elseif(Input::get('search_order') === 'have_image')
+        {
+            $this->estatesAlgorithm->orderByImage();
         }
     }
 

@@ -11,6 +11,7 @@ return array(
 
     'amer_group_specials' => 'عروض عامر جروب 2',
 
+    'bookmarks' => 'مفضلاتى',
 
     'home' => 'الرئيسية',
 

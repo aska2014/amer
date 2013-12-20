@@ -7047,20 +7047,20 @@ body {
   }
 }
 .sidebar-menu .big-if-small {
-  position: relative;
   float: left;
-  width: 100%;
+  width: 50%;
+  position: relative;
   min-height: 1px;
   padding-left: 15px;
   padding-right: 15px;
 }
-@media (min-width: 992px) {
+@media (min-width: 768px) {
   .sidebar-menu .big-if-small {
     float: left;
-    width: 100%;
+    width: 50%;
   }
 }
-@media (min-width: 768px) {
+@media (min-width: 992px) {
   .sidebar-menu .big-if-small {
     float: left;
     width: 100%;

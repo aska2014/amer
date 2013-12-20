@@ -77,7 +77,7 @@
 
         <div class="key-value">
             <span class="key">{{ trans('estate.titles.price') }}</span>
-            <span class="value">{{ $estate->price }}</span>
+            <span class="value">{{ $estate->price->format() }}</span>
         </div>
 
         @if($estate->ownerInfo->telephone_number)
@@ -123,18 +123,26 @@
 </div>
 
 
-<!--<hr />-->
-<!--<div class="row">-->
-<!--    <div class="small-icon-pair">-->
-<!--        <img class="img-responsive" src="{{ URL::asset('app/img/icons/star.png') }}" alt=""/>-->
-<!--        <a href="#">أضف إلى المفضلة</a>-->
-<!--    </div>-->
-<!---->
+<hr />
+<div class="row">
+
+    <!-- AddThis Button BEGIN -->
+    <!-- AddThis Button BEGIN -->
+    <a class="addthis_button" href="http://www.addthis.com/bookmark.php?v=300&amp;pubid=xa-52b36dee1f22add6"><img src="http://s7.addthis.com/static/btn/v2/lg-share-en.gif" width="125" height="16" alt="Bookmark and Share" style="border:0"/></a>
+    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=xa-52b36dee1f22add6"></script>
+    <!-- AddThis Button END -->
+    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=xa-52a4b0c80e44bc02"></script>
+    <!-- AddThis Button END -->
+    <div class="small-icon-pair">
+        <img class="img-responsive" src="{{ URL::asset('app/img/icons/star.png') }}" alt=""/>
+        <a href="{{ URL::route('add-bookmark', $estate->id) }}">أضف إلى المفضلة</a>
+    </div>
+
 <!--    <div class="small-icon-pair">-->
 <!--        <img class="img-responsive" src="{{ URL::asset('app/img/icons/stop.png') }}" alt=""/>-->
 <!--        <a href="#">الإبلاغ عن إساءة</a>-->
 <!--    </div>-->
-<!--</div>-->
+</div>
 
 @if($showAddAuctionOffer)
 <hr />

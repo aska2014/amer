@@ -4,6 +4,7 @@ return array(
 
     'amer_specials' => 'عروض عامر جروب',
     'my_estates' => 'إعلاناتى',
+    'my_bookmarks' => 'مفضلاتى',
 
     'add_estate' => 'أضف إعلانك',
 

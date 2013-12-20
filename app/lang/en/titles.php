@@ -4,6 +4,7 @@ return array(
 
     'amer_specials' => 'Amer group offers',
     'my_estates' => 'My announcements',
+    'my_bookmarks' => 'My bookmarks',
 
     'add_estate' => 'Add an announcement',
 

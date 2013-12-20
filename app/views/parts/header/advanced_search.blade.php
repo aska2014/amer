@@ -63,6 +63,9 @@
                     <select name="search_order" class="form-control" select-value='{{ Input::get('search_order', 'order_new') }}'>
                         <option value="order_new">{{ trans('form.search.order_new') }}</option>
                         <option value="order_old">{{ trans('form.search.order_old') }}</option>
+                        <option value="have_image">{{ trans('form.search.have_image') }}</option>
+                        <option value="highest_price">{{ trans('form.search.highest_price') }}</option>
+                        <option value="lowest_price">{{ trans('form.search.lowest_price') }}</option>
                     </select>
                 </div>
             </div>
