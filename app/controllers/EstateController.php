@@ -505,7 +505,7 @@ class EstateController extends BaseController {
      */
     protected function getAuctionInputs()
     {
-        return Input::has('estate-has-auction') ? Input::get('Auction') : array();
+        return Input::get('estate-has-auction') == 'true' ? Input::get('Auction') : array();
     }
 
 }

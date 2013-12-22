@@ -39,10 +39,12 @@
         </div>
         @endif
 
+        @if($estate->province)
         <div class="key-value">
             <span class="key">{{ trans('estate.titles.province') }}</span>
             <span class="value">{{ $estate->province }}</span>
         </div>
+        @endif
 
         @if($estate->city)
         <div class="key-value">
@@ -51,11 +53,14 @@
         </div>
         @endif
 
+        @if($estate->region)
         <div class="key-value">
             <span class="key">{{ trans('estate.titles.region') }}</span>
             <span class="value">{{ $estate->region }}</span>
         </div>
+        @endif
 
+        @if($estate->category)
         <div class="key-value">
             <span class="key">{{ trans('estate.titles.category') }}</span>
             <span class="value">
@@ -64,21 +69,28 @@
                 </a>
             </span>
         </div>
+        @endif
 
+        @if($estate->number_of_rooms)
         <div class="key-value">
             <span class="key">{{ trans('estate.titles.number_of_rooms') }}</span>
             <span class="value">{{ $estate->number_of_rooms }}</span>
         </div>
+        @endif
 
+        @if($estate->area->value())
         <div class="key-value">
             <span class="key">{{ trans('estate.titles.area') }}</span>
             <span class="value">{{ $estate->area }}</span>
         </div>
+        @endif
 
+        @if($estate->price)
         <div class="key-value">
             <span class="key">{{ trans('estate.titles.price') }}</span>
             <span class="value">{{ $estate->price->format() }}</span>
         </div>
+        @endif
 
         @if($estate->ownerInfo->telephone_number)
         <div class="key-value">

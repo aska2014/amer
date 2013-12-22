@@ -90,10 +90,12 @@ angular.module('amer.controllers', []).
 
         var first = true;
 
-        $scope.$watch('estate.parent_category_id', function()
+        $scope.$watch('estate.parent_category_id', function(parent_category_id)
         {
             if(! first) $scope.estate.child_category_id = 0;
             first = false;
+
+            showRightForm(parent_category_id);
         });
 
         $scope.getCategoryId = function()
@@ -107,5 +109,57 @@ angular.module('amer.controllers', []).
                 return $scope.estate.parent_category_id;
             }
         };
+
+        var mapper = {
+            1: 'markets',
+            2: 'auctions',
+            4: 'services',
+            6: 'lands'
+        };
+
+        $scope.$watch('show', function(show)
+        {
+            console.log(show);
+
+            $scope.estate.auction = show.auction;
+
+            if(! show.number_of_rooms)
+            {
+                $scope.estate.number_of_rooms = 0;
+            }
+            else
+            {
+                $scope.estate.number_of_rooms = 1;
+            }
+
+            if(! show.area)
+            {
+                $scope.estate.area = 0;
+            }
+        });
+
+        var showRightForm = function(category_id)
+        {
+            $scope.show = { auction: false, number_of_rooms:false, area: false };
+
+            switch(mapper[category_id])
+            {
+                case 'auctions':
+                    $scope.show = { auction:true, number_of_rooms:true, area:true };
+                    break;
+                case 'services':
+                    // All are already false
+                    break;
+                case 'lands':
+                    // All are already false
+                    break;
+                case 'markets':
+                    $scope.show = { number_of_rooms:true, area:true };
+                    break;
+                default:
+                    $scope.show = { number_of_rooms:true, area:true };
+                    break;
+            }
+        }
 
     }]);

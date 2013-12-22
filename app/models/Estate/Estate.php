@@ -38,7 +38,7 @@ class Estate extends Model {
         'price' => 'required|numeric',
         'region' => 'required',
         'estate_category_id' => 'required|exists:estate_categories,id',
-        'number_of_rooms' => 'required|integer',
+        'number_of_rooms' => 'integer',
     );
 
     /**
@@ -50,7 +50,6 @@ class Estate extends Model {
         'region.required' => 'يجد إدخال الحى او المنطقة',
         'estate_category_id.required' => 'يجب إختيار نوع العقار',
         'estate_category_id.exists' => 'يجب إختيار نوع العقار',
-        'number_of_rooms.required' => 'يجب إدخال عدد الغرف',
         'number_of_rooms.integer' => 'يجب إدخال عدد الغرف',
     );
 
@@ -88,7 +87,7 @@ class Estate extends Model {
     public function setAreaAttribute( $value )
     {
         $this->attributes['area'] = trim(str_replace('م', '', $value));
-        $this->attributes['area'] = trim(str_replace('m', '', $value));
+        $this->attributes['area'] = trim(str_replace('m', '', $this->attributes['area']));
     }
 
     /**

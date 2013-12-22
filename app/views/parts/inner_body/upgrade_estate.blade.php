@@ -21,13 +21,19 @@
 
         <div class="clearfix"></div>
 
+        <?php $first = true; ?>
         @foreach($offers as $offer)
 
         <div class="upgrade-box">
             <h5>{{ $offer->getTranslatedDuration() }}</h5>
             <span class="price">{{ $offer->price->format() }}</span>
+            @if($first)
+            <input type="radio" name="SpecialPayment[special_offer_id]" value="{{ $offer->id }}" checked="checked" />
+            @else
             <input type="radio" name="SpecialPayment[special_offer_id]" value="{{ $offer->id }}" />
+            @endif
         </div>
+        <?php $first = false; ?>
 
         @endforeach
 

@@ -16,6 +16,19 @@
                placeholder="" required>
     </div>
     <div class="form-group">
+        <label for="description-input">{{ trans('form.estate.description') }}</label>
+        <textarea class="form-control" id="description-input" name="Estate[description]">{{ $eFiller->get('description') }}</textarea>
+    </div>
+
+    <div class="form-group">
+        <label for="image-input">{{ trans('form.estate.image') }}</label>
+        <div class="two-inputs">
+            <input type="file" id="image-input" name="estate-img"/>
+        </div>
+    </div>
+    <hr/>
+
+    <div class="form-group">
         <label for="city-input">{{ trans('form.estate.province') }}</label>
         <select class="form-control" name="Estate[province_id]" required>
             <option value="">{{ trans('form.estate.choose_province') }}</option>
@@ -64,36 +77,21 @@
         <input type="hidden" name="Estate[estate_category_id]" value="{{ angular('getCategoryId()') }}"/>
     </div>
     <div class="form-group">
-        <label for="auction-input">{{ trans('form.estate.auction') }}</label>
-        <input type="checkbox" id="auction-input" name="estate-has-auction" ng-init="estate.auction={{ (Input::old('estate-has-auction') or $estate->hasAuction()) ? 'true' : 'false' }}" ng-model="estate.auction">
-    </div>
-    <div class="form-group">
         <label for="price-input">{{ trans('form.estate.price') }}</label>
-        <div ng-if="! estate.auction">
+        <div ng-if="! show.auction">
             <input class="form-control" type="text" id="price-input" name="Estate[price]" value="{{ $eFiller->get('price') }}" required>
         </div>
-        <div class="two-inputs" ng-if="estate.auction" ng-cloak>
+        <div class="two-inputs" ng-if="show.auction" ng-cloak>
             <input class="form-control" type="text" name="Auction[start_price]" value="{{ $aFiller->get('start_price') }}" placeholder="الأدنى" required>
             <input class="form-control" type="text" name="Auction[end_price]" value="{{ $aFiller->get('end_price') }}" placeholder="الأعلى" required>
         </div>
     </div>
 
-    <hr/>
-
-    <div class="form-group">
-        <label for="image-input">{{ trans('form.estate.image') }}</label>
-        <div class="two-inputs">
-            <input type="file" id="image-input" name="estate-img"/>
-        </div>
-    </div>
-    <div class="form-group">
-        <label for="description-input">{{ trans('form.estate.description') }}</label>
-        <textarea class="form-control" id="description-input" name="Estate[description]">{{ $eFiller->get('description') }}</textarea>
-    </div>
-    <div class="form-group">
+    <div class="form-group" ng-show="show.number_of_rooms">
         <label for="number-of-rooms-input">{{ trans('form.estate.number_of_rooms') }}</label>
         <select class="form-control" id="number-of-rooms-input" name="Estate[number_of_rooms]" ng-init="estate.number_of_rooms={{ $eFiller->get('number_of_rooms', 1) }}" ng-model="estate.number_of_rooms" required>
 
+            <option value="0">0</option>
             <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>
@@ -103,9 +101,9 @@
 
         </select>
     </div>
-    <div class="form-group">
+    <div class="form-group" ng-show="show.area">
         <label for="area-input">{{ trans('form.estate.area') }}</label>
-        <input class="form-control" type="text" id="area-input" name="Estate[area]" value="{{ $eFiller->get('area') }}" required>
+        <input class="form-control" type="text" id="area-input" ng-model="estate.area" name="Estate[area]" value="{{ $eFiller->get('area') }}" required>
     </div>
 
     <hr/>
@@ -126,6 +124,10 @@
         <label for="user-email-input">{{ trans('form.estate.user.email') }}</label>
         <input class="form-control" type="email" id="user-email-input" name="UserInfo[contact_email]" value="{{ $uFiller->get('contact_email', $authUser ? $authUser->contact_email : '') }}" required>
     </div>
+
+    <input type="hidden"
+           ng-init="estate.auction={{ (Input::old('estate-has-auction') || $estate->hasAuction()) ? 'true' : 'false' }}"
+           name="estate-has-auction" value="{{ angular('estate.auction') }}"/>
 
     <div class="buttons">
         <button type="submit" class="btn btn-success">{{ trans('form.estate.next') }}</button>
