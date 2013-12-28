@@ -2,7 +2,6 @@
 
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Request;
-use Kareem3d\Templating\XMLFactory;
 
 class Generator {
 
@@ -24,12 +23,12 @@ class Generator {
      *
      * @return void
      */
-    public function loadXml()
+    public function loadPage()
     {
         if($link = DynamicRouter::instance()->getLink())
         {
             // Push this page to repository
-            App::make('Kareem3d\Templating\XmlFactory')->pushPageToRepositories($link->getPageName(), $link->getUrl());
+            App::make('Kareem3d\Templating\Factory')->pushPageToRepositories($link->getPageName(), $link->getUrl());
         }
     }
 }

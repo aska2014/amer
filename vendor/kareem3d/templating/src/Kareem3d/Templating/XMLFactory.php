@@ -3,9 +3,8 @@
 use Illuminate\Support\Facades\Config;
 use Kareem3d\AssetManager\AssetCollection;
 use Kareem3d\AssetManager\Asset;
-use Kareem3d\Link\Link;
 
-class XMLFactory {
+class XMLFactory implements Factory {
 
     /**
      * @var \SimpleXMLElement

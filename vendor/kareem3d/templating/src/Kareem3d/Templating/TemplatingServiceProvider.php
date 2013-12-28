@@ -21,9 +21,16 @@ class TemplatingServiceProvider extends ServiceProvider {
 	{
         $this->package('kareem3d/templating');
 
-        $this->app->singleton('Kareem3d\Templating\XmlFactory', function()
+        $this->app->singleton('Kareem3d\Templating\Factory', function()
         {
-            return XMLFactory::instanceFromConfig();
+            if(Config::get('templating::use') === 'xml')
+            {
+                return XMLFactory::instance(Config::get('templating::xml.pages'), Config::get('templating::xml.assets'));
+            }
+            else
+            {
+                return ArrayFactory::instance(Config::get('templating::array.pages'), Config::get('templating::array.assets'));
+            }
         });
 	}
 
