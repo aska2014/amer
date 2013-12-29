@@ -102,7 +102,7 @@ PartRepository::share('footer.contacts', function($view)
 
 PartRepository::share('footer.special', function($view)
 {
-    $view->footerSpecial = App::make('Estate\EstateAlgorithm')->language()->specials()->random()->first();
+    $view->footerSpecials = App::make('Estate\EstateAlgorithm')->language()->specials()->random()->take(4)->get();
 
-    $view->dontShowIf($view->footerSpecial == null);
+    $view->dontShowIf($view->footerSpecials->isEmpty());
 });

@@ -320,6 +320,8 @@ Accessible News Slider
 	};
 })( jQuery );
 
+
+
 // when the DOM is ready, convert the feed anchors into feed content
 $(document).ready(function() {
     $('#newsslider').accessNews();
@@ -336,5 +338,3 @@ $(document).ready(function() {
     });
 
 });
-
-//$(".body-specials")

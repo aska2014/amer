@@ -7822,6 +7822,9 @@ body {
   width: 100%;
   z-index: 10000;
 }
+.footer .footer-special ul.marquee {
+  margin-top: 10px;
+}
 .footer .footer-special .special-title {
   float: right;
   background: url('../img/ar/footer_special.png');
@@ -7834,4 +7837,31 @@ body {
   font-size: 16px;
   float: right;
   padding: 10px;
+}
+ul.marquee {
+  display: block;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  line-height: 1;
+  position: relative;
+  overflow: hidden;
+  width: 80%;
+  height: 22px;
+  float: right;
+  text-align: right;
+}
+ul.marquee li {
+  position: absolute;
+  top: -999em;
+  right: 0;
+  display: block;
+  white-space: nowrap;
+  cursor: pointer;
+  font: 14px Arial, Helvetica, sans-serif;
+  padding: 3px 5px;
+  color: #FFF;
+}
+ul.marquee li em {
+  color: #E5F298;
 }
