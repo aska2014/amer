@@ -118,7 +118,7 @@ Route::get('/fix-image-paths', function()
             $version = \Kareem3d\Images\Version::where('url', 'http://www.amergroup2.com/albums/estates/' . $file)->first();
 
             echo '<pre>';
-            dd($version);
+            dd($version, 'http://www.amergroup2.com/albums/estates/' . $file);
 
             $pieces = explode('\\', $file);
 
