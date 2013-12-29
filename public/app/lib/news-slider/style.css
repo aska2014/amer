@@ -197,3 +197,11 @@ div.jqans-wrapper .jqans-pagination-controls-back a {
 div.jqans-wrapper .jqans-pagination-controls-next a {
     background-image: url(next.jpg);
 }
+
+div.jqans-headline{
+    display:none;
+}
+
+div.jqans-content img{
+    height:210px;
+}

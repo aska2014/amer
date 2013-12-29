@@ -103,3 +103,9 @@ Route::get('/seed-default-images', function()
         'type' => 'estate-default-en',
     ))->add(\Kareem3d\Images\Version::generate(URL::to('/app/img/en/estate-default.png')));
 });
+
+
+Route::get('/fix-image-paths', function()
+{
+    
+});

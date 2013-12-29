@@ -1,1 +1,1 @@
-<img class="img-responsive" src="http://im37.gulfup.com/3y6in.png" alt=""/>
+<img class="img-responsive" src="{{ URL::asset('app/img/{lan}/offer-banner.png') }}" alt=""/>

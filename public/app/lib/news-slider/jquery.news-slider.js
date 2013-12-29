@@ -4,11 +4,11 @@ Accessible News Slider
 (function( $ ){
 	$.fn.accessNews = function(settings){
 	
-		var defaults = {
-			// title for the display
-			title: "TODAY NEWS:",
-			// subtitle for the display
-			subtitle: "November 27 2010",
+            var defaults = {
+                // title for the display
+                title: "TODAY NEWS:",
+                // subtitle for the display
+                subtitle: "November 27 2010",
 			// number of slides to advance when paginating
 			slideBy: 4,
 			// the speed for the pagination
@@ -325,8 +325,10 @@ $(document).ready(function() {
     $('#newsslider').accessNews();
 
     $('#newsslider2').accessNews({
-        title : "BREAKING NEWS:",
-        subtitle:"stories from the internet",
+        // title for the display
+        title: "   ",
+        // subtitle for the display
+        subtitle: "   ",
         speed : "slow",
         slideBy : 4,
         slideShowInterval: 100000,

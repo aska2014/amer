@@ -63,7 +63,7 @@ return array(
     'page' => array('inner-body' => 'inner_body.page'),
 
 
-    'under-construction' => array('header' => 'header.top | header.logo | header.bg_separator',
+    'under-construction' => array('header' => 'header.top | header.n_logo | header.bg_separator',
                                   'upper-body' => 'inner_body.under_construction',
                                   'sidebar' => '',
                                   'inner-body' => '')

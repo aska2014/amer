@@ -76,7 +76,7 @@ class File extends Path {
             $info = pathinfo($this->path);
 
             // Use the directory and file name to form the full path without the extension
-            $name = $info['dirname'] . '\\' . $info['filename'];
+            $name = $info['dirname'] . DIRECTORY_SEPARATOR . $info['filename'];
 
             // Get the extension
             $ext = $info['extension'];

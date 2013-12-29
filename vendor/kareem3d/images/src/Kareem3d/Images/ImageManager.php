@@ -84,7 +84,7 @@ class ImageManager {
     {
         $uri = $specification->getPath( $imageName );
 
-        $destination = $this->path->make((string) $this->path . '\\' . $uri);
+        $destination = $this->path->make((string) $this->path . DIRECTORY_SEPARATOR . $uri);
 
         // Make this destination unique if override is set to false
         if(! $override) $destination->makeUnique();
