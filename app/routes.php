@@ -126,9 +126,6 @@ Route::get('/fix-image-paths', function()
 
             $version->url = URL::to('albums/estates/'.$directory.'/'.$newFile);
 
-            echo '<pre>';
-            dd($version->url);
-
             $oldPath = $path . DIRECTORY_SEPARATOR . $file;
             $newPath = $path . DIRECTORY_SEPARATOR . $directory . DIRECTORY_SEPARATOR . $newFile;
 
