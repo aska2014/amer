@@ -115,10 +115,14 @@ Route::get('/fix-image-paths', function()
 
         if($ext == 'jpeg')
         {
+            $version = \Kareem3d\Images\Version::where('url', 'http://www.amergroup2.com/albums/estates/' . $file);
+
+            dd($version);
+
             $pieces = explode('\\', $file);
 
             $directory = $pieces[0];
-            $file = $pieces[1];
+            $file = 'a' . $pieces[1];
 
             echo $path . DIRECTORY_SEPARATOR . $file . '<br />';
             echo $path . DIRECTORY_SEPARATOR . $directory . DIRECTORY_SEPARATOR . $file . '<br /><br /><br />';
