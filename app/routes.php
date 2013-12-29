@@ -122,6 +122,8 @@ Route::get('/fix-image-paths', function()
 
             $version = \Kareem3d\Images\Version::where('url', 'http://www.amergroup2.com/albums/estates/' . $directory . '/' . $file)->first();
 
+            if(! $version) continue;
+
             $newFile = 'ab-' . $file;
 
             $version->url = URL::to('albums/estates/'.$directory.'/'.$newFile);
