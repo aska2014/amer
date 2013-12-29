@@ -7510,6 +7510,9 @@ body {
 .inner-body .four-box-divider .box .inner-box h2 {
   margin: 0px 0px 10px 0px;
   line-height: 16px;
+  height: 100px;
+  padding: 5px;
+  over-flow: hidden;
 }
 .inner-body .four-box-divider .box .inner-box h2 a {
   font-size: 14px;
