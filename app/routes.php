@@ -122,11 +122,17 @@ Route::get('/fix-image-paths', function()
 
             $version = \Kareem3d\Images\Version::where('url', 'http://www.amergroup2.com/albums/estates/' . $directory . '/' . $file)->first();
 
-            echo '<pre>';
-            dd($version);
+            $newFile = 'ab-' . $file;
 
-            echo $path . DIRECTORY_SEPARATOR . $file . '<br />';
-            echo $path . DIRECTORY_SEPARATOR . $directory . DIRECTORY_SEPARATOR . $file . '<br /><br /><br />';
+            $version->url = URL::to('albums/estates/'.$directory.'/'.$newFile);
+
+            echo '<pre>';
+            dd($version->url);
+
+            $oldPath = $path . DIRECTORY_SEPARATOR . $file;
+            $newPath = $path . DIRECTORY_SEPARATOR . $directory . DIRECTORY_SEPARATOR . $newFile;
+
+            echo $oldPath . '<br />' . $newPath . '<br> <br><br>';
 
 //            rename($path . DIRECTORY_SEPARATOR . $file, $path . DIRECTORY_SEPARATOR . $directory . DIRECTORY_SEPARATOR . $file);
         }
