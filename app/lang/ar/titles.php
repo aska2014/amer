@@ -2,6 +2,8 @@
 
 return array(
 
+    'special_offers' => 'عروض مميزة',
+
     'amer_specials' => 'عروض عامر جروب',
     'my_estates' => 'إعلاناتى',
     'my_bookmarks' => 'مفضلاتى',

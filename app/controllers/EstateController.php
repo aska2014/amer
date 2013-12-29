@@ -102,8 +102,20 @@ class EstateController extends BaseController {
         $this->bookmarks = $bookmarks;
 
         $this->beforeFilter('auth', array(
-            'except' => array('amerGroupSpecials', 'all', 'show')
+            'except' => array('amerGroupSpecials', 'specialOffers' ,'all', 'show')
         ));
+    }
+
+    /**
+     * @return mixed
+     */
+    public function dynamicSpecialOffers()
+    {
+        $estatesTitle = trans('titles.special_offers');
+
+        $estates = $this->estatesAlgorithm->language()->specials()->paginate(self::ESTATES_PER_PAGE);
+
+        return $this->page()->printMe(compact('estates', 'estatesTitle'));
     }
 
     /**

@@ -26,6 +26,9 @@ return array(
     'estate/amer-group-specials' => array('inner-body' => 'inner_body.all_estates'),
 
 
+    'estate/special-offers' => array('inner-body' => 'inner_body.all_estates'),
+
+
     'estate/all' => array('inner-body' => 'inner_body.all_estates'),
 
 

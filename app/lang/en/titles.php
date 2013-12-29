@@ -2,6 +2,8 @@
 
 return array(
 
+    'special_offers' => 'Special offers',
+
     'amer_specials' => 'Amer group offers',
     'my_estates' => 'My announcements',
     'my_bookmarks' => 'My bookmarks',

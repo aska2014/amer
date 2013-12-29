@@ -20,6 +20,7 @@ return array(
     array('estate/show', 'estate-([0-9]+).html', Estate::getClass()),
 
     array('estate/amer-group-specials', 'amer-group-specials.html'),
+    array('estate/special-offers', 'special-offers.html'),
 
     // Estate operations
     array('estate/create', 'create-estate.html'),

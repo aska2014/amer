@@ -7234,6 +7234,7 @@ body {
   min-height: 1px;
   padding-left: 15px;
   padding-right: 15px;
+  margin-bottom: 20px;
   padding: 0px;
 }
 @media (max-width: 480px) {

@@ -1,5 +1,5 @@
 <div class="main-title">
-    <a href="#">{{ trans('titles.special_offers') }}</a>
+    <a href="{{ URL::page('estate/special-offers') }}">{{ trans('titles.special_offers') }}</a>
 </div>
 
 
