@@ -107,13 +107,23 @@ Route::get('/seed-default-images', function()
 
 Route::get('/fix-image-paths', function()
 {
-    foreach(scandir(public_path('albums/estates')) as $file)
+    $path = scandir(public_path('albums/estates'));
+
+    foreach($path as $file)
     {
         $ext = pathinfo($file, PATHINFO_EXTENSION);
 
         if($ext == 'jpeg')
         {
-            echo $file . '<br />';
+            $pieces = explode('\\', $file);
+
+            $directory = $pieces[0];
+            $file = $pieces[1];
+
+            echo $path . DIRECTORY_SEPARATOR . $file . '<br />';
+            echo $path . DIRECTORY_SEPARATOR . $directory . DIRECTORY_SEPARATOR . $file . '<br /><br /><br />';
+
+//            rename($path . DIRECTORY_SEPARATOR . $file, $path . DIRECTORY_SEPARATOR . $directory . DIRECTORY_SEPARATOR . $file);
         }
     }
 
