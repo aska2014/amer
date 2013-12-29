@@ -127,17 +127,12 @@ Route::get('/fix-image-paths', function()
             $newFile = 'ab-' . $file;
 
             $version->url = URL::to('albums/estates/'.$directory.'/'.$newFile);
+            $version->save();
 
             $oldPath = $path . DIRECTORY_SEPARATOR . $directory . '\\' . $file;
             $newPath = $path . DIRECTORY_SEPARATOR . $directory . DIRECTORY_SEPARATOR . $newFile;
 
-            dd(file_exists($oldPath));
-
-            echo $oldPath . '<br />' . $newPath . '<br>' . $version->url . '<br><br>';
-
-//            rename($path . DIRECTORY_SEPARATOR . $file, $path . DIRECTORY_SEPARATOR . $directory . DIRECTORY_SEPARATOR . $file);
+            rename($oldPath, $newPath);
         }
     }
-
-    exit();
 });
