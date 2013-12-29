@@ -126,6 +126,7 @@ Route::get('/fix-image-paths', function()
 });
 
 
+
 Route::get('/seed-banner', function()
 {
     if(\Kareem3d\Images\Group::where('name', 'Banner.Main')->count() > 0) return;
