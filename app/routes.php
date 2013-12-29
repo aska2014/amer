@@ -109,7 +109,9 @@ Route::get('/fix-image-paths', function()
 {
     foreach(scandir(public_path('albums/estates')) as $file)
     {
-        if(is_file($file))
+        $ext = pathinfo($file, PATHINFO_EXTENSION);
+
+        if($ext == 'jpeg')
         {
             echo $file . '<br />';
         }
