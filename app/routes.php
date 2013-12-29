@@ -107,9 +107,9 @@ Route::get('/seed-default-images', function()
 
 Route::get('/fix-image-paths', function()
 {
-    $path = scandir(public_path('albums/estates'));
+    $path = public_path('albums/estates');
 
-    foreach($path as $file)
+    foreach(scandir($path) as $file)
     {
         $ext = pathinfo($file, PATHINFO_EXTENSION);
 
