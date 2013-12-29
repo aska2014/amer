@@ -20,7 +20,7 @@ class NewsController extends BaseController {
      */
     public function dynamicAll()
     {
-        $news = $this->news->orderBy('created_at', 'DESC')->all();
+        $news = $this->news->orderBy('id', 'DESC')->all();
 
         return $this->page()->printMe(compact('news'));
     }
