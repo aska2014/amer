@@ -92,19 +92,6 @@ Route::get('/change-urls', function()
 });
 
 
-Route::get('/seed-default-images', function()
-{
-    exit();
-    \Kareem3d\Images\Image::create(array(
-        'type' => 'estate-default-ar',
-    ))->add(\Kareem3d\Images\Version::generate(URL::to('/app/img/ar/estate-default.png')));
-
-    \Kareem3d\Images\Image::create(array(
-        'type' => 'estate-default-en',
-    ))->add(\Kareem3d\Images\Version::generate(URL::to('/app/img/en/estate-default.png')));
-});
-
-
 Route::get('/fix-image-paths', function()
 {
     exit();
@@ -136,4 +123,18 @@ Route::get('/fix-image-paths', function()
             rename($oldPath, $newPath);
         }
     }
+});
+
+
+Route::get('/seed-banner', function()
+{
+    if(\Kareem3d\Images\Group::where('name', 'Banner.Main')->count() > 0) return;
+
+    $group = \Kareem3d\Images\Group::create(array(
+        'name' => 'Banner.Main'
+    ));
+
+    $group->specs()->create(array(
+        'directory' => 'albums/banners/'
+    ));
 });

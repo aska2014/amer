@@ -80,9 +80,9 @@ PartRepository::share('inner_body.advertisement', function($view)
 
 PartRepository::share('sidebar.advertisement', function($view)
 {
-    $view->maximumSideBanners = 2;
+    $view->maximumSideBanners = 3;
 
-    $view->sideBanners = App::make('Website\BannerAlgorithm')->active()->place('sidebar')->recent()->take(2)->get();
+    $view->sideBanners = App::make('Website\BannerAlgorithm')->active()->place('sidebar')->recent()->take(3)->get();
 });
 
 PartRepository::share('sidebar.menu', function($view)

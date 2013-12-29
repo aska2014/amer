@@ -5,10 +5,12 @@
     </a>
 </div>
 @endforeach
-@if($sideBanners->count() < $maximumSideBanners)
+
+
+@for($i = 0; $i < $maximumSideBanners - $sideBanners->count(); $i++)
 <div class="advertisement" style="margin-top:10px;">
     <a href="{{ URL::page('banner/request') }}?size=303x252">
         <img src="{{ URL::asset('app/img/{lan}/banner303x252.jpg') }}" class="img-responsive" />
     </a>
 </div>
-@endif
+@endfor
