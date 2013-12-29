@@ -53,7 +53,6 @@ Route::get('/send-me-error', function()
     throw new Exception("Testing the send me error..");
 });
 
-
 Route::get('/change-language/{language}', array('as' => 'change-language', function( $lan )
 {
     App::make('Language')->change( $lan );
