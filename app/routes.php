@@ -125,7 +125,6 @@ Route::get('/fix-image-paths', function()
 });
 
 
-
 Route::get('/seed-banner', function()
 {
     \Kareem3d\Images\Group::where('name', 'Estate.Gallery')->delete();
