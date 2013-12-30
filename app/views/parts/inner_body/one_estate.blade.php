@@ -19,7 +19,24 @@
         <div class="img-title">{{ $estate->price->format() }}</div>
     </div>
 
+    @if($images = $estate->getIfHasGalleryImages())
+    <div class="banner" dir="ltr">
+        <ul>
+            @foreach($images as $image)
+            <li>
+                <img src="{{ $image->getNearest(200, 150) }}" alt=""/>
+            </li>
+            @endforeach
+        </ul>
+    </div>
+
+    <div class="clearfix"></div>
+
+    <div class="info-div" style="width:100%">
+    @else
     <div class="info-div">
+    @endif
+
         <p class="description">
             {{ $estate->description }}
         </p>

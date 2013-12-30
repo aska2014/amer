@@ -128,13 +128,16 @@ Route::get('/fix-image-paths', function()
 
 Route::get('/seed-banner', function()
 {
-    if(\Kareem3d\Images\Group::where('name', 'Banner.Main')->count() > 0) return;
+    \Kareem3d\Images\Group::where('name', 'Estate.Gallery')->delete();
+    if(\Kareem3d\Images\Group::where('name', 'Estate.Gallery')->count() > 0) return;
 
     $group = \Kareem3d\Images\Group::create(array(
-        'name' => 'Banner.Main'
+        'name' => 'Estate.Gallery'
     ));
 
     $group->specs()->create(array(
-        'directory' => 'albums/banners/'
-    ));
+        'directory' => 'albums/estates/gallery200x150'
+    ))->setCode(new \Kareem3d\Code\Code(array(
+            'code' => '$image->grab(300, 210, true); return $image;'
+        )));
 });

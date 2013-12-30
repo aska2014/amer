@@ -193,17 +193,24 @@
     }
   }
 
-
-
   // One estate
   .one-estate{
+    .banner { background: #EEE; border-left:6px solid #CCC; width:400px; overflow: auto; }
+    .banner li { list-style: none; right:80px;}
+    .banner ul li { float: left; height: 210px; }
+    .banner img{width:300px; height:210px;}
+
+    @media(max-width: 630px) {
+      .banner{display:none;}
+    }
+
     .img-div{float:right; width:35%;
       padding:10px;
       padding-bottom:20px;
-      background:#DDD;
+      background:#CCC;
       img{width:100%}
 
-      .img-title{font-size:17px; text-align: right; margin-top:10px;}
+      .img-title{font-size:17px; text-align: center; margin-top:10px;}
     }
     .info-div{float:right; width:65%;
 

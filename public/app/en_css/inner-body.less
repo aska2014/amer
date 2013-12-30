@@ -196,6 +196,15 @@
 
   // One estate
   .one-estate{
+    .banner { background: #EEE; border-left:6px solid #CCC; width:400px; overflow: auto; }
+    .banner li { list-style: none; right:80px;}
+    .banner ul li { float: left; height: 210px; }
+    .banner img{width:300px; height:210px;}
+
+    @media(max-width: 630px) {
+      .banner{display:none;}
+    }
+
     .img-div{float:left; width:35%;
       padding:10px;
       padding-bottom:20px;

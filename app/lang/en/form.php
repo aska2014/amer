@@ -13,6 +13,7 @@ return array(
         'auction' => 'Auction ?',
         'price' => 'Price',
         'image' => 'Image of the announcement',
+        'gallery' => 'Announcement images',
         'description' => 'The announcement text',
         'number_of_rooms' => 'Number of rooms',
         'area' => 'area',

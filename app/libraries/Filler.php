@@ -21,7 +21,7 @@ class Filler {
     public function __construct($model, $oldInputs)
     {
         $this->model = $model;
-        $this->oldInputs = $oldInputs;
+        $this->oldInputs = $oldInputs ?: array();
     }
 
     /**
@@ -38,7 +38,7 @@ class Filler {
         }
 
         // If in the model return it
-        if($this->model and $value = $this->model->getAttribute($key))
+        if($this->model and ($value = $this->model->getAttribute($key)))
         {
             return $value;
         }

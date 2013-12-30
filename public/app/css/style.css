@@ -7383,19 +7383,42 @@ body {
   -moz-box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
 }
+.inner-body .one-estate .banner {
+  background: #EEE;
+  border-left: 6px solid #CCC;
+  width: 400px;
+  overflow: auto;
+}
+.inner-body .one-estate .banner li {
+  list-style: none;
+  right: 80px;
+}
+.inner-body .one-estate .banner ul li {
+  float: left;
+  height: 210px;
+}
+.inner-body .one-estate .banner img {
+  width: 300px;
+  height: 210px;
+}
+@media (max-width: 630px) {
+  .inner-body .one-estate .banner {
+    display: none;
+  }
+}
 .inner-body .one-estate .img-div {
   float: right;
   width: 35%;
   padding: 10px;
   padding-bottom: 20px;
-  background: #DDD;
+  background: #CCC;
 }
 .inner-body .one-estate .img-div img {
   width: 100%;
 }
 .inner-body .one-estate .img-div .img-title {
   font-size: 17px;
-  text-align: right;
+  text-align: center;
   margin-top: 10px;
 }
 .inner-body .one-estate .info-div {

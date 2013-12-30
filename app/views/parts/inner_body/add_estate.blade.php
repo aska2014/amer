@@ -26,6 +26,15 @@
             <input type="file" id="image-input" name="estate-img"/>
         </div>
     </div>
+
+
+    <div class="form-group">
+        <label for="image-input">{{ trans('form.estate.gallery') }}</label>
+        <div class="two-inputs">
+
+            <button type="button" class="btn btn-default add-image" ng-click="addImage()">أضف صورة</button>
+        </div>
+    </div>
     <hr/>
 
     <div class="form-group">

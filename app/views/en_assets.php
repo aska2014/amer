@@ -18,6 +18,8 @@ return array(
 
     array('part' => 'inner_body.under_construction',
         'js'   => array('app/lib/countdown/jquery.countdown.js', 'app/lib/countdown/script.js'),
-        'css'  => array('app/lib/countdown/jquery.countdown.css', 'http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300'))
+        'css'  => array('app/lib/countdown/jquery.countdown.css', 'http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300')),
 
+    array('part' => 'inner_body.one_estate',
+        'js'   => 'app/lib/simple-slider/slider.min.js'),
 );

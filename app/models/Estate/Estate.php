@@ -1,6 +1,7 @@
 <?php namespace Estate;
 
 use Auction\Auction;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\App;
 use Kareem3d\Eloquent\Model;
 use Kareem3d\Images\Image;
@@ -79,6 +80,16 @@ class Estate extends Model {
         }
 
         $this->cleanXSS();
+    }
+
+    /**
+     * @return Collection|null
+     */
+    public function getIfHasGalleryImages()
+    {
+        $images = $this->getImages('gallery');
+
+        return $images->isEmpty() ? null : $images;
     }
 
     /**

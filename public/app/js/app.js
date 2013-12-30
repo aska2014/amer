@@ -21,6 +21,18 @@ angular.module('amer.controllers', []).
 
     controller('AddEstateController', ['$scope', function($scope)
     {
+        var no_of_images = 0;
+
+        $scope.addImage = function()
+        {
+            if(no_of_images < 6)
+            {
+                var input = $('<input type="file" id="image-input" name="gallery-imgs[]"/>');
+                $(".add-image").before(input);
+                no_of_images ++;
+            }
+        };
+
         var selectHasValue = function($elem, value)
         {
             return $elem.find("option[value='" + value + "']").length > 0;

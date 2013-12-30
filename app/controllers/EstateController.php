@@ -362,10 +362,11 @@ class EstateController extends BaseController {
      * @param Estate $estate
      * @param UserInfo $ownerInfo
      * @param UploadedFile $file
+     * @param array $files
      * @param Auction $auction
      * @return bool
      */
-    protected function save( Estate $estate, UserInfo $ownerInfo, UploadedFile $file = null, Auction $auction = null )
+    protected function save( Estate $estate, UserInfo $ownerInfo, UploadedFile $file = null, $files = array(), Auction $auction = null )
     {
         ///////////////////////////////////////////////////////////////////////////////////
         // Creation process
@@ -392,9 +393,11 @@ class EstateController extends BaseController {
         // 7. Save estate image
         $imageSaved = (bool) $this->saveEstateImage($estate, $file);
 
-        // Accept state if image not saved
-        if(! $imageSaved) $estate->accept();
+        // 8. Save all estate images (gallery images)
+        $imagesSaved = $this->saveEstateGalleryImages($estate, $files) > 0;
 
+        // Accept state if image not saved
+        if(! $imageSaved && ! $imagesSaved) $estate->accept();
 
         ///////////////////////////////////////////////////////////////////////////////////
         // END creation process
@@ -425,6 +428,37 @@ class EstateController extends BaseController {
 
     /**
      * @param Estate $estate
+     * @param array $files
+     * @return int
+     */
+    protected function saveEstateGalleryImages(Estate $estate, array $files = array())
+    {
+        $numberSaved = 0;
+
+        foreach($files as $file)
+        {
+            if($file == null) continue;
+
+            $versions = ImageFacade::versions('Estate.Gallery', 'estate', $file, false);
+
+            if($versions)
+            {
+                $image = $this->images->create(array(
+                    'title' => $estate->title,
+                    'alt'   => $estate->description,
+                ))->add($versions);
+
+                $estate->addImage($image, 'gallery');
+
+                $numberSaved ++;
+            }
+        }
+
+        return $numberSaved;
+    }
+
+    /**
+     * @param Estate $estate
      * @param UserInfo $ownerInfo
      * @param Auction $auction
      * @return boolean
@@ -436,7 +470,7 @@ class EstateController extends BaseController {
         // If errors are not empty then return false
         if(! $this->emptyErrors()) return false;
 
-        $this->save($estate, $ownerInfo, Input::file('estate-img', null), $auction);
+        $this->save($estate, $ownerInfo, Input::file('estate-img', null), Input::file('gallery-imgs', array()), $auction);
 
         return true;
     }
