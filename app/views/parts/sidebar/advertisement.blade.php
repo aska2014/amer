@@ -1,5 +1,5 @@
 @foreach($sideBanners as $sideBanner)
-<div class="advertisement">
+<div class="advertisement" style="margin-bottom:10px;">
     <a href="{{ $sideBanner->url }}">
         <img src="{{ $sideBanner->getImage('main')->getLargest() }}" class="img-responsive" />
     </a>
@@ -8,7 +8,7 @@
 
 
 @for($i = 0; $i < $maximumSideBanners - $sideBanners->count(); $i++)
-<div class="advertisement" style="margin-top:10px;">
+<div class="advertisement" style="margin-bottom:10px;">
     <a href="{{ URL::page('banner/request') }}?size=303x252">
         <img src="{{ URL::asset('app/img/{lan}/banner303x252.jpg') }}" class="img-responsive" />
     </a>

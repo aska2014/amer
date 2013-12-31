@@ -50,7 +50,7 @@ class RegisterController extends BaseController {
         // Url to retrieve password
         $url = URL::page('register/change-password') . '?user_token=' . $user->getToken();
 
-        
+
         // Send mail to the user to retrieve password
         Mail::send('emails.auth.retrieve', compact('user', 'url'), function($message) use($user)
         {

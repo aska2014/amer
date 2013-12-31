@@ -29,7 +29,7 @@
             <div class="user-tools">
                 <a href="{{ URL::page('estate/edit', $estate) }}">{{ trans('tools.estate.edit') }}</a>
                 <a href="{{ URL::page('estate/upgrade', $estate) }}">{{ trans('tools.estate.upgrade') }}</a>
-                <a href="{{ URL::page('estate/remove', $estate) }}">{{ trans('tools.estate.delete') }}</a>
+                <a href="{{ URL::route('estate.remove', $estate->id) }}">{{ trans('tools.estate.delete') }}</a>
             </div>
 
             @else

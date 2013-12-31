@@ -6,7 +6,7 @@ Route::post('/add-estate', array('as' => 'estate.create', 'uses' => 'EstateContr
 Route::post('/update-estate/{estate}', array('as' => 'estate.update', 'uses' => 'EstateController@postEdit'));
 
 Route::post('upgrade-estate/{estate}', array('uses' => 'EstateController@postUpgrade'));
-Route::get('234eZSCAD34eXZC2W3reds/{estate}', 'EstateController@remove');
+Route::get('234eZSCAD34eXZC2W3reds/{estate}', array('as' => 'estate.remove', 'uses' => 'EstateController@remove'));
 
 Route::get('bookmark-estate/{estate}', array('as' => 'add-bookmark', 'uses' => 'EstateController@addBookmark'));
 
@@ -32,21 +32,6 @@ Route::get('/logout', array('as' => 'logout', function()
 
     try{ return Redirect::back();}catch(Exception $e){return Redirect::to(URL::page('home'));}
 }));
-
-
-Route::get('/request/footer-specials', function()
-{
-    $special = App::make('Estate\EstateAlgorithm')->specials()->random()->except(Input::get('except'))->first();
-
-    if($special)
-    {
-        return array(
-            'title' => $special->title,
-            'url' => URL::page('estate/show', $special),
-            'id' => $special->id
-        );
-    }
-});
 
 
 Route::model('estate', \Estate\Estate::getClass());
