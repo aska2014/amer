@@ -2,6 +2,9 @@
 
 return array(
 
+    'change_password' => 'Change your password',
+    'forget_password' => 'Forget your password',
+
     'special_offers' => 'Special offers',
 
     'amer_specials' => 'Amer group offers',

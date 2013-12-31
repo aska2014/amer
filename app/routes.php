@@ -20,6 +20,11 @@ Route::post('/contact-us.html', array('as' => 'contact-us', 'uses' => 'ContactUs
 
 Route::post('/request-banner.html', array('as' => 'banner-request', 'uses' => 'BannerController@postRequest'));
 
+// Forget password steps
+Route::post('/password-retrieve.html', array('as' => 'password.retrieve', 'uses' => 'RegisterController@postRetrievePassword'));
+Route::post('/change-password/{token}', array('as' => 'password.change', 'uses' => 'RegisterController@postChangePassword'));
+
+
 
 Route::get('/logout', array('as' => 'logout', function()
 {

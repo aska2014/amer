@@ -2,6 +2,9 @@
 
 return array(
 
+    'change_password' => 'تغيير كلمة السر',
+    'forget_password' => 'إستعادة كلمة السر',
+
     'special_offers' => 'عروض مميزة',
 
     'amer_specials' => 'عروض عامر جروب',

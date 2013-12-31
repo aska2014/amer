@@ -52,6 +52,9 @@ return array(
 
     'login/show' => array('inner-body' => 'inner_body.login_register'),
 
+    'register/forget-password' => array('inner-body' => 'inner_body.forget_password'),
+    'register/change-password' => array('inner-body' => 'inner_body.change_password'),
+
 
     'contact-us' => array('inner-body' => 'inner_body.contact_us'),
 

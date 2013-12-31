@@ -7,7 +7,10 @@ use Illuminate\Support\MessageBag;
  */
 View::share('success', new MessageBag((array) Session::get('success', array())));
 
-//View::share('errors', new MessageBag((array) Session::get('errors', array())));
+if(! Session::get('errors') instanceof MessageBag)
+{
+    View::share('errors', new MessageBag((array) Session::get('errors', array())));
+}
 
 View::share('authUser', Auth::user());
 

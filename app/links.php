@@ -34,6 +34,10 @@ return array(
     // Login and register show
     array('login/show', 'login-register.html'),
 
+    // Forget password
+    array('register/forget-password', 'forget-password.html'),
+    array('register/change-password', 'change-password.html'),
+
     // Contact us page
     array('contact-us', 'contact-us.html'),
 

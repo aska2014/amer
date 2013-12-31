@@ -5,8 +5,9 @@ return array(
         'login' => 'The email of password you have been enterd is incorrect',
         'image' => 'An error occurred while keeping the image. Please make sure the picture that came with the property',
         'estate_not_accepted' => 'This announcement has not been accepted by the administration yet,the announcement owner only can view it',
-        'must_register' => 'You must register or login to your profile first
-ً'
+        'must_register' => 'You must register or login to your profile first',
+        'email_not_exists' => 'This email doesn\'t exists',
+        'password_not_match' => 'Password doesn\'t match'
     ),
 
     'success' => array(
@@ -22,7 +23,9 @@ return array(
         'comment' => 'The comment has been added successfully',
         'bookmark' => 'This estate has been added to the bookmarks successfully.',
         'contact_us' => 'The message has been sent successfully',
-        'banner_request' => 'Request has been sent successfully.'
+        'banner_request' => 'Request has been sent successfully.',
+        'retrieve_password_mail_sent' => 'Please check your Email to continue the retrieving password process.',
+        'password_changed' => 'Password has changed successfully',
     ),
 
     'estate' => array(

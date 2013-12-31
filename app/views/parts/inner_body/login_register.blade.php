@@ -12,6 +12,10 @@
         <input class="form-control" type="password" id="text" name="Login[password]">
     </div>
 
+    <a href="{{ URL::page('register/forget-password') }}" style="float:right;">{{ trans('form.login.forget_password') }}</a>
+
+    <div class="clearfix"></div>
+
     <div class="buttons">
         <button type="submit" class="btn btn-default">{{ trans('form.login.submit') }}</button>
     </div>

@@ -35,7 +35,11 @@ return array(
     'login' => array(
         'email' => 'الإيميل',
         'password' => 'كلمة المرور',
-        'submit' => 'الدخول'
+        'submit' => 'الدخول',
+        'submit_retrieve' => 'إستعادة كلمة السر',
+        'submit_change' => 'تغيير كلمة السر',
+        'forget_password' => 'نسيت كلمة السر',
+        'password_again' => 'ادخل كلمة المرور مرة آخرى'
     ),
 
     'register' => array(

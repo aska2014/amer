@@ -27,6 +27,78 @@ class RegisterController extends BaseController {
     }
 
     /**
+     * User clicks forgets password
+     */
+    public function dynamicForgetPassword()
+    {
+        return $this->page()->printMe();
+    }
+
+    /**
+     * User enters his email and click to retrieve password
+     */
+    public function postRetrievePassword()
+    {
+        $email = Input::get('Retrieve.email');
+
+        // User exists then send him the retrieve password email
+        if(! $user = $this->users->getByEmail($email))
+        {
+            return Redirect::back()->with('errors', trans('messages.errors.email_not_exists'));
+        }
+
+        // Url to retrieve password
+        $url = URL::page('register/change-password') . '?user_token=' . $user->getToken();
+
+        dd($url);
+
+        // Send mail to the user to retrieve password
+        Mail::send('emails.auth.retrieve', compact('user', 'url'), function($message) use($user)
+        {
+            $message->to($user->email, $user->name)->subject('AmerGroup2 forgot password');
+        });
+
+        return Redirect::back()->with('success', trans('messages.success.retrieve_password_mail_sent'));
+    }
+
+    /**
+     * @throws Kareem3d\Membership\NoAccessException
+     * @internal param $token
+     * @return mixed
+     */
+    public function dynamicChangePassword()
+    {
+        $userToken = Input::get('user_token');
+
+        if(! $user = $this->users->getByToken($userToken)) throw new \Kareem3d\Membership\NoAccessException();
+
+        return $this->page()->printMe(compact('userToken'));
+    }
+
+    /**
+     * @param $token
+     * @throws Kareem3d\Membership\NoAccessException
+     * @return mixed
+     */
+    public function postChangePassword($token)
+    {
+        $newPassword = Input::get('Retrieve.new_password');
+        $newPasswordAgain = Input::get('Retrieve.new_password_again');
+
+        if($newPassword !== $newPasswordAgain)
+        {
+            return Redirect::back()->with('errors', trans('messages.errors.password_not_match'));
+        }
+
+        if(! $user = $this->users->getByToken($token)) throw new \Kareem3d\Membership\NoAccessException();
+
+        if($user->changePassword($newPassword))
+        {
+            return Redirect::to(URL::page('login/show'))->with('success', trans('messages.success.password_changed'));
+        }
+    }
+
+    /**
      * @return mixed
      */
     public function postCreate()

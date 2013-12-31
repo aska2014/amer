@@ -39,7 +39,7 @@ class ContactUsController extends BaseController {
 
         Auth::user()->getInfo()->contactUs()->save($contactUs);
 
-        return Redirect::to(URL::page('home'))->with('success', trans('messages.success.contact_us'));
+        return Redirect::back()->with('success', trans('messages.success.contact_us'));
     }
 
 }

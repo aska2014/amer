@@ -35,7 +35,11 @@ return array(
     'login' => array(
         'email' => 'Email',
         'password' => 'Password',
-        'submit' => 'Login'
+        'submit' => 'Login',
+        'submit_retrieve' => 'Retrieve your password',
+        'submit_change' => 'Change your password',
+        'forget_password' => 'Forget password',
+        'password_again' => 'Enter the password again'
     ),
 
     'register' => array(
