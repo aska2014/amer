@@ -27,8 +27,8 @@ class News extends \Kareem3d\Eloquent\Model {
     /**
      * @return News
      */
-    public static function getRandomLatest()
+    public static function getRandomLatest($num)
     {
-        return static::orderBy(DB::raw('RAND()'))->first();
+        return static::orderBy('created_at', 'DESC')->take($num)->get();
     }
 }

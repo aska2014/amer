@@ -48,7 +48,7 @@ PartRepository::share('upper_body.menu', function($view)
 
 PartRepository::share('upper_body.latest_news', function($view)
 {
-    $view->latestNews = App::make('News')->getRandomLatest();
+    $view->latestNews = App::make('News')->getRandomLatest(5);
 
     // Dont show if latest news is null
     $view->dontShowIf($view->latestNews == null);
