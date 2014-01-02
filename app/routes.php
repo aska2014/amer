@@ -25,7 +25,6 @@ Route::post('/password-retrieve.html', array('as' => 'password.retrieve', 'uses'
 Route::post('/change-password/{token}', array('as' => 'password.change', 'uses' => 'RegisterController@postChangePassword'));
 
 
-
 Route::get('/logout', array('as' => 'logout', function()
 {
     Auth::logout();
