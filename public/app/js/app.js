@@ -139,5 +139,6 @@ angular.module('amer.controllers', []).
 
 $(document).ready(function (){
     $("#news-marquee").marquee({yScroll: "top", pauseSpeed: 10000});
+    
     $("#footer-marquee").marquee({yScroll: "top", pauseSpeed: 5000});
 });
