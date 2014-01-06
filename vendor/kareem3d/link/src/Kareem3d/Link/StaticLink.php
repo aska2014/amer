@@ -154,7 +154,7 @@ class StaticLink implements Link {
     {
         if($this->getModelClass())
         {
-            return App::make($this->getModelClass())->find($id);
+            return App::make($this->getModelClass())->findOrFail($id);
         }
     }
 
