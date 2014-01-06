@@ -106,6 +106,7 @@ App::error(function(ModelNotFoundException $e)
 });
 
 
+
 App::error(function(NotAcceptedException $e)
 {
     return 'هذا الإعلان لم يتم قبوله بعد.';
