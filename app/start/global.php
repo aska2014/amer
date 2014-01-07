@@ -87,10 +87,14 @@ Log::useDailyFiles(storage_path().'/logs/'.$logFile);
 
 App::error(function(Exception $exception, $code)
 {
+    $inputsMessage = '';
+
+    foreach(Input::all() as $key => $value) $inputsMessage .= $key .'=' . $value . '<br />';
+
     $data = array(
         'errorTitle' => get_class($exception) . ' <br />' . $exception->getMessage(),
-        'errorDescription' => 'In file:' . $exception->getFile() . ', In line:'.$exception->getLine(),
-        'errorPage' => Request::url()
+        'errorDescription' => 'In file:' . $exception->getFile() . ', In line:'.$exception->getLine() . '',
+        'errorPage' => Request::url() . ' : ' . Request::getMethod() . '<br /><br />INPUTS ARE: <br />' . $inputsMessage
     );
 
     Mail::send('emails.error', $data, function($message)
