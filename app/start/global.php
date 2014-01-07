@@ -104,7 +104,6 @@ App::error(function(Exception $exception, $code)
 });
 
 
-
 App::error(function(ModelNotFoundException $e)
 {
     return Redirect::to(URL::page('home'));
