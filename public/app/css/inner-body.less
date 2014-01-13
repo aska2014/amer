@@ -90,7 +90,11 @@
         .make-xs-column(12);
         padding:0px;
 
-        img{margin:0px auto; max-width:130px; width:130px; height:120px; border:3px solid @secondary-color;}
+        img{margin:0px auto; width:130px; height:120px; border:3px solid @secondary-color;
+          @media(max-width:@screen-xs) {
+            height:inherit;
+          }
+        }
       }
       .info-div{
         .make-xs-column(12);

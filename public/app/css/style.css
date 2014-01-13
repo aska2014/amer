@@ -6831,7 +6831,7 @@ body {
   color: #FFF;
   font-size: 14px;
 }
-@media (max-width: 480px) {
+@media (max-width: 992px) {
   .latest-news {
     display: none;
   }
@@ -7261,10 +7261,14 @@ body {
 }
 .inner-body .body-specials .special .img-div img {
   margin: 0px auto;
-  max-width: 130px;
   width: 130px;
   height: 120px;
   border: 3px solid #025b89;
+}
+@media (max-width: 480px) {
+  .inner-body .body-specials .special .img-div img {
+    height: inherit;
+  }
 }
 .inner-body .body-specials .special .info-div {
   position: relative;
@@ -7847,6 +7851,11 @@ body {
   background: #706E5C;
   width: 100%;
   z-index: 10000;
+}
+@media (max-width: 992px) {
+  .footer .footer-special {
+    display: none;
+  }
 }
 .footer .footer-special ul.marquee {
   margin-top: 10px;

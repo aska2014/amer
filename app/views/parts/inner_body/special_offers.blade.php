@@ -8,7 +8,8 @@
     <div class="special">
         <div class="img-div">
             @if($image = $special->getImage('main'))
-            <a href="{{ URL::page('estate/show', $special) }}"><img class="img-responsive img-circle" src="{{ $image->getNearest(145, 145) }}" alt="{{ $special->title }}"/></a>
+            <a href="{{ URL::page('estate/show', $special) }}">
+                <img class="img-circle img-responsive" src="{{ $image->getNearest(145, 145) }}" alt="{{ $special->title }}"/></a>
             @endif
         </div>
         <div class="info-div">
