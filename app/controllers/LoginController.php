@@ -50,7 +50,7 @@ class LoginController extends BaseController {
             return Redirect::to($redirectUrl)->with('success', trans('messages.success.login'));
         }
 
-        return Redirect::back()->withErrors(trans('messages.errors.login'))->withInput();
+        return Redirect::to(URL::page('login/show'))->withErrors(trans('messages.errors.login'))->withInput();
     }
 
     /**
