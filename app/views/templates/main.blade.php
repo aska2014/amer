@@ -2,7 +2,7 @@
 <html lang="en" ng-app="amer">
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="initial-scale=1">
+    <meta name="viewport" content="width=device-width, user-scalable=no">
 
     @if(isset($seo))
         {{ $seo->toHtml() }}
