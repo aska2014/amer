@@ -71,7 +71,7 @@ class Price {
      */
     public function formattedValue()
     {
-       return number_format($this->value, 2);
+       return number_format($this->value, 0);
     }
 
     /**
