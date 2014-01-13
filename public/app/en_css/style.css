@@ -7121,6 +7121,9 @@ body {
     left: 50px;
   }
 }
+.inner-body #slider {
+  float: left;
+}
 @media (max-width: 768px) {
   .inner-body #slider {
     display: none;
