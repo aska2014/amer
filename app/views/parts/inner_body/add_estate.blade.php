@@ -23,10 +23,14 @@
     <div class="form-group">
         <label for="image-input">{{ trans('form.estate.image') }}</label>
         <div class="two-inputs">
+            @if($image = $estate->getImage('main'))
+            <img class="img-responsive" src="{{ $image->getNearest(200, 150) }}" alt=""/>
+            @endif
             <input type="file" id="image-input" name="estate-img"/>
         </div>
     </div>
 
+    <div class="clearfix"></div>
 
     <div class="form-group">
         <label for="image-input">{{ trans('form.estate.gallery') }}</label>

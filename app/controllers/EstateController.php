@@ -229,7 +229,7 @@ class EstateController extends BaseController {
         }
 
         // Success redirect to upgrade page with success..
-        return Redirect::back()->with('success', trans('messages.success.estate.update'));
+        return Redirect::to(URL::page('estate/show', $estate))->with('success', trans('messages.success.estate.update'));
     }
 
     /**
