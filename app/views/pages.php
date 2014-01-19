@@ -1,6 +1,7 @@
 <?php
 
 return array(
+    
 
     'default' => array( 'template' => 'main',
                         'header' => 'header.top | header.logo | header.bg_separator',
