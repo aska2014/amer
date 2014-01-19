@@ -30,4 +30,10 @@ App::singleton('DateTime\DateTimeInterface', function()
 });
 
 
+App::singleton('EstatePermission', function()
+{
+    return new EstatePermission(Auth::user());
+});
+
+
 View::share('date', App::make('DateTime\DateTimeInterface'));

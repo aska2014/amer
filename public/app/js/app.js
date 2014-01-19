@@ -26,11 +26,15 @@ angular.module('amer.controllers', []).
         $scope.addImage = function()
         {
             if(no_of_images < 6)
-            {
-                var input = $('<input type="file" id="image-input" name="gallery-imgs[]"/>');
-                $(".add-image").before(input);
-                no_of_images ++;
-            }
+
+                $(".add-image").before('<input type="file" id="image-input' + (++ no_of_images) + '" name="gallery-imgs[]"/>');
+        };
+
+        $scope.initializeAll = function(estate, user, auction)
+        {
+            $scope.estate = estate;
+            $scope.user = user;
+            $scope.auction = auction;
         };
 
         var selectHasValue = function($elem, value)
@@ -38,7 +42,7 @@ angular.module('amer.controllers', []).
             return $elem.find("option[value='" + value + "']").length > 0;
         }
 
-        $scope.$watch('estate.category_id', function(category_id)
+        $scope.$watch('estate.estate_category_id', function(category_id)
         {
             // If it exists in the parent category select then directly set it
             if(selectHasValue($('#category-input'), category_id))
@@ -81,17 +85,8 @@ angular.module('amer.controllers', []).
             }
         };
 
-        var mapper = {
-            1: 'markets',
-            2: 'auctions',
-            4: 'services',
-            6: 'lands'
-        };
-
         $scope.$watch('show', function(show)
         {
-            console.log(show);
-
             $scope.estate.auction = show.auction;
 
             if(! show.number_of_rooms)
@@ -109,28 +104,31 @@ angular.module('amer.controllers', []).
             }
         });
 
+        var formOptions = {
+            // markets
+            1: { auction: false, number_of_rooms:false, area: true  },
+            // auctions
+            2: { auction: true , number_of_rooms:true , area: true  },
+            // villas
+            3: { auction: false, number_of_rooms:true , area: true  },
+            // services
+            4: { auction: false, number_of_rooms:false, area: false },
+            // groves
+            5: { auction: false, number_of_rooms:true, area: true },
+            // lands
+            6: { auction: false, number_of_rooms:false, area: true },
+
+            // furnished apartments
+            7: { auction: false, number_of_rooms:true, area: true },
+            // rent apartments
+            8: { auction: false, number_of_rooms:true, area: true },
+            // owner_apartments
+            9: { auction: false, number_of_rooms:true, area: true }
+        };
+
         var showRightForm = function(category_id)
         {
-            $scope.show = { auction: false, number_of_rooms:false, area: false };
-
-            switch(mapper[category_id])
-            {
-                case 'auctions':
-                    $scope.show = { auction:true, number_of_rooms:true, area:true };
-                    break;
-                case 'services':
-                    // All are already false
-                    break;
-                case 'lands':
-                    // All are already false
-                    break;
-                case 'markets':
-                    $scope.show = { number_of_rooms:true, area:true };
-                    break;
-                default:
-                    $scope.show = { number_of_rooms:true, area:true };
-                    break;
-            }
+            $scope.show = formOptions[category_id];
         }
 
     }]);

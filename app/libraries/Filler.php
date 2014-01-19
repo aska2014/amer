@@ -25,6 +25,15 @@ class Filler {
     }
 
     /**
+     * @param $inputs
+     * @return Filler
+     */
+    public static function fromInput( $inputs )
+    {
+        return new static(new \Helper\EmptyClass(), $inputs);
+    }
+
+    /**
      * @param $key
      * @param $default
      * @return mixed
@@ -44,5 +53,20 @@ class Filler {
         }
 
         return $default;
+    }
+
+    /**
+     * @return string
+     */
+    public function jsObject()
+    {
+        $array = array();
+
+        foreach(func_get_args() as $attribute)
+        {
+            $array[$attribute] = (string) $this->get($attribute);
+        }
+
+        return json_encode($array);
     }
 }

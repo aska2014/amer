@@ -1,5 +1,6 @@
 <?php namespace Kareem3d\Link;
 
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Routing\Controllers\Controller;
 
 class DynamicController extends Controller {
@@ -7,6 +8,7 @@ class DynamicController extends Controller {
     /**
      * @param string $method
      * @param array $arguments
+     * @throws \Illuminate\Database\Eloquent\ModelNotFoundException
      * @return mixed|void
      */
     public function __call($method, $arguments = array())
@@ -22,6 +24,11 @@ class DynamicController extends Controller {
             {
                 // Replace first argument with the models
                 $arguments[0] = $model;
+
+                if(! $model->exists)
+                {
+                    throw new ModelNotFoundException();
+                }
             }
 
             $router->getLink()->getPage()->share(array(

@@ -36,7 +36,7 @@ class LoginController extends BaseController {
         if(Auth::attempt($this->getLoginInputs(), Input::has('Login.remember')))
         {
             // If the previous url is equal to the register-login url
-            if(URL::previous() === URL::page('login-register'))
+            if(URL::previous() === URL::page('login/show'))
             {
                 $redirectUrl = Tracker::instance()->getBefore(URL::previous());
             }

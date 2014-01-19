@@ -72,6 +72,11 @@ class EstateController extends BaseController {
     protected $bookmarks;
 
     /**
+     * @var EstatePermission
+     */
+    protected $permissions;
+
+    /**
      * @param Estate $estates
      * @param EstateCategory $estateCategories
      * @param Auction $auctions
@@ -83,11 +88,12 @@ class EstateController extends BaseController {
      * @param UserAlgorithm $usersAlgorithm
      * @param Comment $comments
      * @param Bookmark $bookmarks
+     * @param EstatePermission $permissions
      */
     public function __construct( Estate $estates, EstateCategory $estateCategories, Auction $auctions,
                                  UserInfo $usersInfo, Image $images, SpecialPayment $specialPayments, SpecialOffer $specialOffers,
                                  EstateAlgorithm $estatesAlgorithm, UserAlgorithm $usersAlgorithm,
-                                 Comment $comments, Bookmark $bookmarks)
+                                 Comment $comments, Bookmark $bookmarks, EstatePermission $permissions)
     {
         $this->estates = $estates;
         $this->estateCategories = $estateCategories;
@@ -100,6 +106,7 @@ class EstateController extends BaseController {
         $this->usersAlgorithm = $usersAlgorithm;
         $this->comments = $comments;
         $this->bookmarks = $bookmarks;
+        $this->permissions = $permissions;
 
         $this->beforeFilter('auth', array(
             'except' => array('amerGroupSpecials', 'specialOffers' ,'all', 'show')
@@ -151,43 +158,43 @@ class EstateController extends BaseController {
     /**
      *
      * @param \Estate\Estate $estate
-     * @throws Kareem3d\Eloquent\Extensions\Acceptable\NotAcceptedException
+     * @throws Kareem3d\Membership\NoAccessException
      * @return mixed
      */
     public function dynamicShow(Estate $estate)
     {
+        // If this user can not display this estate
+        if(! $this->permissions->canDisplay($estate))
+        {
+            // Change this to be more general than a not accepted
+            throw new \Kareem3d\Membership\NoAccessException("You don't have access to see this estate.");
+        }
+
         // Increment number of views
         $estate->incrementViews();
 
-        $isOwnerUser = Auth::user() && Auth::user()->same($estate->user);
+        // If it's auction and this user can add auction offer
+        $showAddAuctionOffer = $estate->auction && $this->permissions->canAddAuctionOffer($estate);
 
-        // If it's not accepted and the authenticated user not the owner then throw not accepted exception
-        if(! $estate->accepted && ! $isOwnerUser)
-        {
-            throw new NotAcceptedException;
-        }
+        // Show not accepted message if estate is not accepted
+        $showNotAcceptedMessage = !$estate->accepted;
 
-        // If it's auction and not the owner user
-        $showAddAuctionOffer = $estate->auction && ! $isOwnerUser;
-
-        // Show not accepted message if estate is not accepted and is the owner user
-        $showNotAcceptedMessage = !$estate->accepted && $isOwnerUser;
-
-        $showAddComment = ! $showAddAuctionOffer && ! Auth::guest();
+        // If it's not an auction and the user can add comment
+        $showAddComment = ! $estate->auction && $this->permissions->canAddComment($estate);
 
         return $this->page()->printMe(compact('estate', 'showAddAuctionOffer', 'showNotAcceptedMessage', 'showAddComment'));
     }
 
     /**
      * @param \Estate\Estate $estate
-     * @throws Exception
+     * @throws Kareem3d\Membership\NoAccessException
      * @return mixed
      */
     public function dynamicEdit($estate)
     {
-        if($estate->exists && ! Auth::user()->same($estate->user))
+        if(! $this->permissions->canEdit($estate))
         {
-            throw new Exception("You can't edit this estate");
+            throw new \Kareem3d\Membership\NoAccessException("You don't have permission to edit this estate.");
         }
 
         $estateCategories = $this->estateCategories->parentCategories();
@@ -201,10 +208,16 @@ class EstateController extends BaseController {
 
     /**
      * @param Estate $estate
+     * @throws Kareem3d\Membership\NoAccessException
      * @return mixed
      */
     public function postEdit(Estate $estate)
     {
+        if($estate->exists && ! $this->permissions->canEdit($estate))
+        {
+            throw new \Kareem3d\Membership\NoAccessException("You don't have permission to edit this estate.");
+        }
+
         $estate->fill($this->getEstateInputs());
         $estate->ownerInfo->fill($this->getUserInfoInputs());
 
@@ -229,22 +242,42 @@ class EstateController extends BaseController {
         }
 
         // Success redirect to upgrade page with success..
-        return Redirect::to(URL::page('estate/show', $estate))->with('success', trans('messages.success.estate.update'));
+        return Redirect::back()->with('success', trans('messages.success.estate.update'));
     }
 
     /**
+     * @throws Kareem3d\Membership\NoAccessException
      * @return mixed
      */
     public function dynamicCreate()
     {
-        return $this->edit($this->estates->newInstance());
+        if(! $this->permissions->canCreate())
+        {
+            throw new \Kareem3d\Membership\NoAccessException("You don't have permissions to create estate");
+        }
+
+        $estate = $this->estates->newInstance();
+
+        $estateCategories = $this->estateCategories->parentCategories();
+
+        $eFiller = Filler::fromInput(Input::old('Estate'));
+        $aFiller = Filler::fromInput(Input::old('Auction'));
+        $uFiller = new Filler( Auth::user()->userInfo ,Input::old('UserInfo'));
+
+        return $this->page()->printMe(compact('estateCategories', 'estate', 'eFiller', 'aFiller', 'uFiller'));
     }
 
     /**
+     * @throws Kareem3d\Membership\NoAccessException
      * @return mixed
      */
     public function postCreate()
     {
+        if(! $this->permissions->canCreate())
+        {
+            throw new \Kareem3d\Membership\NoAccessException("You don't have permissions to create estate");
+        }
+
         // New instance without saving to database yet
         $auction   = $this->newAuction();
         $estate    = $this->newEstate( $auction != null );
@@ -262,11 +295,15 @@ class EstateController extends BaseController {
 
     /**
      * @param \Estate\Estate $estate
+     * @throws Kareem3d\Membership\NoAccessException
      * @return mixed
      */
     public function dynamicUpgrade( Estate $estate )
     {
-        $this->throwIfNotOwner($estate);
+        if(! $this->permissions->canUpgrade($estate))
+        {
+            throw new \Kareem3d\Membership\NoAccessException("You don't have permissions to upgrade this estate");
+        }
 
         $offers = $this->specialOffers->all();
 
@@ -275,11 +312,15 @@ class EstateController extends BaseController {
 
     /**
      * @param \Estate\Estate $estate
+     * @throws Kareem3d\Membership\NoAccessException
      * @return mixed
      */
     public function postUpgrade( Estate $estate )
     {
-        $this->throwIfNotOwner($estate);
+        if(! $this->permissions->canUpgrade($estate))
+        {
+            throw new \Kareem3d\Membership\NoAccessException("You don't have permissions to upgrade this estate");
+        }
 
         $estate->specialPayments()->delete();
 
@@ -296,11 +337,15 @@ class EstateController extends BaseController {
 
     /**
      * @param Estate $estate
-     * @throws Exception
+     * @throws Kareem3d\Membership\NoAccessException
+     * @return
      */
     public function remove(Estate $estate)
     {
-        $this->throwIfNotOwner($estate);
+        if(! $this->permissions->canDelete($estate))
+        {
+            throw new \Kareem3d\Membership\NoAccessException("You don't have permissions to delete this estate");
+        }
 
         $estate->delete();
 
@@ -309,9 +354,16 @@ class EstateController extends BaseController {
 
     /**
      * @param Estate $estate
+     * @throws Kareem3d\Membership\NoAccessException
+     * @return
      */
     public function postAddComment(Estate $estate)
     {
+        if(! $this->permissions->canAddComment($estate))
+        {
+            throw new \Kareem3d\Membership\NoAccessException("You don't have permissions to delete this estate");
+        }
+
         $comment = $this->comments->newInstance(Input::get('Comment'));
 
         $comment->user()->associate(Auth::user());
@@ -473,18 +525,6 @@ class EstateController extends BaseController {
         $this->save($estate, $ownerInfo, Input::file('estate-img', null), Input::file('gallery-imgs', array()), $auction);
 
         return true;
-    }
-
-    /**
-     * @param Estate $estate
-     * @throws Exception
-     */
-    protected function throwIfNotOwner(Estate $estate)
-    {
-        if(! Auth::user()->same($estate->user))
-        {
-            throw new Exception("You can't access this page");
-        }
     }
 
     /**

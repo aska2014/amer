@@ -7,23 +7,26 @@
     <a href="#">{{ trans('titles.add_estate') }}</a>
 </div>
 
-<form action="{{ $estate->exists ? URL::route('estate.update', $estate->id) : URL::route('estate.create') }}" enctype="multipart/form-data" ng-controller="AddEstateController" class="form-horizontal" method="POST">
+<form action="{{ $estate->exists ? URL::route('estate.update', $estate->id) : URL::route('estate.create') }}" enctype="multipart/form-data" ng-controller="AddEstateController" class="form-horizontal" method="POST"
+ ng-init='initializeAll({{$eFiller->jsObject("title", "description", "province_id", "city", "region", "estate_category_id", "number_of_rooms", "area", "auction", "price")}},
+                        {{$aFiller->jsObject("start_price", "end_price")}},
+                        {{$uFiller->jsObject("name", "mobile_number", "telephone_number", "contact_email")}})'>
+
 
     <div class="form-group">
         <label for="title-input">{{ trans('form.estate.title') }}</label>
 
-        <input class="form-control" type="text" id="title-input" name="Estate[title]" value="{{ $eFiller->get('title') }}"
-               placeholder="" required>
+        <input class="form-control" type="text" id="title-input" name="Estate[title]" ng-model="estate.title" required>
     </div>
     <div class="form-group">
         <label for="description-input">{{ trans('form.estate.description') }}</label>
-        <textarea class="form-control" id="description-input" name="Estate[description]">{{ $eFiller->get('description') }}</textarea>
+        <textarea class="form-control" id="description-input" name="Estate[description]" ng-model="estate.description"></textarea>
     </div>
 
     <div class="form-group">
         <label for="image-input">{{ trans('form.estate.image') }}</label>
         <div class="two-inputs">
-            @if($image = $estate->getImage('main'))
+            @if($estate->exists && $image = $estate->getImage('main'))
             <img class="img-responsive" src="{{ $image->getNearest(200, 150) }}" alt=""/>
             @endif
             <input type="file" id="image-input" name="estate-img"/>
@@ -43,29 +46,25 @@
 
     <div class="form-group">
         <label for="city-input">{{ trans('form.estate.province') }}</label>
-        <select class="form-control" name="Estate[province_id]" required>
+        <select class="form-control" name="Estate[province_id]" required ng-model="estate.province_id">
             <option value="">{{ trans('form.estate.choose_province') }}</option>
             @foreach($provinces as $province)
-                @if($eFiller->get('province_id') == $province->id)
-                <option value="{{ $province->id }}" selected="selected">{{ $province->name }}</option>
-                @else
                 <option value="{{ $province->id }}">{{ $province->name }}</option>
-                @endif
             @endforeach
         </select>
     </div>
     <div class="form-group">
         <label for="city-input">{{ trans('form.estate.city') }}</label>
-        <input class="form-control" type="text" id="city-input" name="Estate[city]" value="{{ $eFiller->get('city') }}">
+        <input class="form-control" type="text" id="city-input" name="Estate[city]" ng-model="estate.city" required>
     </div>
     <div class="form-group">
         <label for="region-input">{{ trans('form.estate.region') }}</label>
-        <input class="form-control" type="text" id="region-input" name="Estate[region]" value="{{ $eFiller->get('region') }}" required>
+        <input class="form-control" type="text" id="region-input" name="Estate[region]" ng-model="estate.region" required>
     </div>
 
     <hr/>
 
-    <div class="form-group" ng-init="estate.category_id={{ $eFiller->get('estate_category_id') }}">
+    <div class="form-group">
         <label for="category-input">{{ trans('form.estate.category') }}</label>
         <div class="two-inputs">
 
@@ -92,17 +91,17 @@
     <div class="form-group">
         <label for="price-input">{{ trans('form.estate.price') }}</label>
         <div ng-if="! show.auction">
-            <input class="form-control" type="text" id="price-input" name="Estate[price]" value="{{ $eFiller->get('price') }}" required>
+            <input class="form-control" type="text" id="price-input" name="Estate[price]" ng-model="estate.price" required>
         </div>
         <div class="two-inputs" ng-if="show.auction" ng-cloak>
-            <input class="form-control" type="text" name="Auction[start_price]" value="{{ $aFiller->get('start_price') }}" placeholder="الأدنى" required>
-            <input class="form-control" type="text" name="Auction[end_price]" value="{{ $aFiller->get('end_price') }}" placeholder="الأعلى" required>
+            <input class="form-control" type="text" name="Auction[start_price]" placeholder="الأدنى" required>
+            <input class="form-control" type="text" name="Auction[end_price]" placeholder="الأعلى" required>
         </div>
     </div>
 
     <div class="form-group" ng-show="show.number_of_rooms">
         <label for="number-of-rooms-input">{{ trans('form.estate.number_of_rooms') }}</label>
-        <select class="form-control" id="number-of-rooms-input" name="Estate[number_of_rooms]" ng-init="estate.number_of_rooms={{ $eFiller->get('number_of_rooms', 1) }}" ng-model="estate.number_of_rooms" required>
+        <select class="form-control" id="number-of-rooms-input" name="Estate[number_of_rooms]" ng-model="estate.number_of_rooms" required>
 
             <option value="0">0</option>
             <option value="1">1</option>
@@ -139,7 +138,6 @@
     </div>
 
     <input type="hidden"
-           ng-init="estate.auction={{ (Input::old('estate-has-auction') || $estate->hasAuction()) ? 'true' : 'false' }}"
            name="estate-has-auction" value="{{ angular('estate.auction') }}"/>
 
     <div class="buttons">
