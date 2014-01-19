@@ -49,7 +49,13 @@
                             <a href="{{ freakUrl('element/estate/make-special/'. $estate->id) }}" class="btn btn-info">Make special</a>
                         </td>
 
-                        @include('freak::elements.tools', array('id' => $estate->id))
+                        <td class="action-col" width="10%">
+                            <span class="btn-group">
+                                <a href="{{ freakUrl($element->getUri('show/'.$estate->id)) }}" class="btn btn-small"><i class="icon-search"></i></a>
+                                <a href="{{ URL::page('estate/edit', $estate) }}" class="btn btn-small"><i class="icon-pencil"></i></a>
+                                <a href="{{ freakUrl($element->getUri('delete/'.$estate->id)) }}" class="btn btn-small"><i class="icon-trash"></i></a>
+                            </span>
+                        </td>
                     </tr>
                     @endforeach
                     </tbody>
