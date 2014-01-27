@@ -1,5 +1,5 @@
 <div class="main-title">
-    <a href="#">{{ $estatesTitle }}</a>
+    <h1><a href="#">{{ $estatesTitle }}</a></h1>
 </div>
 
 <div class="all-estates">

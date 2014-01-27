@@ -4,7 +4,7 @@
 </div>
 
 <div class="main-title">
-    <a href="#">{{ trans('titles.add_estate') }}</a>
+    <h1><a href="#">{{ trans('titles.add_estate') }}</a></h1>
 </div>
 
 <form action="{{ $estate->exists ? URL::route('estate.update', $estate->id) : URL::route('estate.create') }}" enctype="multipart/form-data" ng-controller="AddEstateController" class="form-horizontal" method="POST"

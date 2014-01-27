@@ -1,21 +1,20 @@
 <div class="main-title">
-    <a href="{{ URL::page('estate/special-offers') }}">{{ trans('titles.special_offers') }}</a>
+    <h1><a href="{{ URL::page('estate/special-offers') }}">{{ trans('titles.special_offers') }}</a></h1>
 </div>
 
+<div class="clearfix"></div>
 
-<div class="body-specials">
+<ul id="carousel" class="elastislide-list special-slider" dir="ltr">
     @foreach($specials as $special)
-    <div class="special">
-        <div class="img-div">
-            @if($image = $special->getImage('main'))
-            <a href="{{ URL::page('estate/show', $special) }}">
-                <img class="img-circle img-responsive" src="{{ $image->getNearest(145, 145) }}" alt="{{ $special->title }}"/></a>
-            @endif
-        </div>
+    @if($image = $special->getImage('main'))
+    <li>
+        <a href="{{ URL::page('estate/show', $special) }}">
+            <img class="img-circle img-responsive" src="{{ $image->getNearest(145, 145) }}" width="145" height="145" alt="{{ $special->title }}"/>
+        </a>
         <div class="info-div">
 
             <div class="description">
-                <a href="{{ URL::page('estate/show', $special) }}">{{ $special->title }}</a>
+                <a href="{{ URL::page('estate/show', $special) }}">{{ Str::limit($special->title, 25, '') }}</a>
             </div>
 
             <div class="city">
@@ -28,6 +27,9 @@
                 {{ $special->price->format() }}
             </div>
         </div>
-    </div>
+
+        <div class="clearfix"></div>
+    </li>
+    @endif
     @endforeach
-</div>
+</ul>

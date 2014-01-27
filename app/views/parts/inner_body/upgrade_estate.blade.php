@@ -11,7 +11,7 @@
 @else
 
 <div class="main-title">
-    <a href="#">{{ trans('titles.upgrade_estate') }}</a>
+    <h1><a href="#">{{ trans('titles.upgrade_estate') }}</a></h1>
 </div>
 
 <form action="{{ URL::page('estate/upgrade', $estate) }}" method="POST" ng-controller="UpgradeEstateController">

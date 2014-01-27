@@ -6,7 +6,7 @@
 @endif
 
 <div class="main-title">
-    <a href="#">{{ $estate->title }}</a>
+    <h1><a href="#">{{ $estate->title }}</a></h1>
 </div>
 
 <div class="one-estate">

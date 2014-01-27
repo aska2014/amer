@@ -14,6 +14,12 @@ return array(
         'css'  => 'app/lib/news-slider/style.css',
         'js'   => 'app/lib/news-slider/jquery.news-slider.js'),
 
+    array('part' => 'inner_body.special_offers',
+        'css' => 'app/lib/elastislide/elastislide.css',
+        'js' => array(
+            'app/lib/elastislide/modernizr.custom.17475.js',
+            'app/lib/elastislide/jquery.elastislide.js',
+        )),
 
 
     array('part' => 'inner_body.under_construction',

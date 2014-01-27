@@ -7102,7 +7102,7 @@ body {
   padding-left: 15px;
   padding-right: 15px;
   background: #d75803;
-  padding: 7px 20px;
+  padding: 0px 20px 7px 20px;
   text-align: right;
   margin-bottom: 10px;
 }
@@ -7112,8 +7112,14 @@ body {
     width: 100%;
   }
 }
+.main-title h1 {
+  margin: 0px;
+  padding: 0px;
+  line-height: 25px;
+}
 .main-title a {
   color: #FFF;
+  font-size: 16px;
 }
 .main-title-bright {
   position: relative;
@@ -7140,9 +7146,6 @@ body {
   line-height: 24px;
   /**
    * Slider in home page
-   */
-  /**
-   * Special offers
    */
   /**
    * All estates
@@ -7217,72 +7220,6 @@ body {
 }
 .inner-body .latest-news-sm .info-div h3 a {
   font-size: 16px;
-}
-.inner-body .body-specials {
-  position: relative;
-  min-height: 1px;
-  padding-left: 15px;
-  padding-right: 15px;
-}
-@media (min-width: 992px) {
-  .inner-body .body-specials {
-    float: left;
-    width: 100%;
-  }
-}
-.inner-body .body-specials .special {
-  position: relative;
-  float: left;
-  width: 25%;
-  min-height: 1px;
-  padding-left: 15px;
-  padding-right: 15px;
-  margin-bottom: 20px;
-  padding: 0px;
-}
-@media (max-width: 480px) {
-  .inner-body .body-specials .special {
-    position: relative;
-    float: left;
-    width: 50%;
-    min-height: 1px;
-    padding-left: 15px;
-    padding-right: 15px;
-  }
-}
-.inner-body .body-specials .special .img-div {
-  position: relative;
-  float: left;
-  width: 100%;
-  min-height: 1px;
-  padding-left: 15px;
-  padding-right: 15px;
-  padding: 0px;
-}
-.inner-body .body-specials .special .img-div img {
-  margin: 0px auto;
-  width: 130px;
-  height: 120px;
-  border: 3px solid #025b89;
-}
-@media (max-width: 480px) {
-  .inner-body .body-specials .special .img-div img {
-    height: inherit;
-  }
-}
-.inner-body .body-specials .special .info-div {
-  position: relative;
-  float: left;
-  width: 100%;
-  min-height: 1px;
-  padding-left: 15px;
-  padding-right: 15px;
-  padding: 0px;
-  font-size: 12px;
-  color: #025b89;
-}
-.inner-body .body-specials .special .info-div .city {
-  color: #ff0000;
 }
 .inner-body .all-estates {
   position: relative;

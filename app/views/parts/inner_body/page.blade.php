@@ -1,5 +1,5 @@
 <div class="main-title">
-    <a href="#">{{ $page->title }}</a>
+    <h1><a href="#">{{ $page->title }}</a></h1>
 </div>
 
 <div class="pretty-text">

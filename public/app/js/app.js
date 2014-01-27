@@ -15,6 +15,12 @@ angular.module('amer.controllers', []).
     }]).
 
 
+    controller('SpecialSliderController', [function()
+    {
+
+    }]).
+
+
     controller('UpgradeEstateController', ['$scope', function($scope)
     {
     }]).

@@ -1,5 +1,5 @@
 <div class="main-title-bright" id="login-form-title">
-    <a href="#login-form-title">{{ trans('titles.forget_password') }}</a>
+    <h1><a href="#login-form-title">{{ trans('titles.forget_password') }}</a></h1>
 </div>
 
 <form role="form" class="form-horizontal" action="{{ URL::route('password.retrieve') }}" method="POST">

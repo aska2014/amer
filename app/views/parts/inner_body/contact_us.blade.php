@@ -1,5 +1,5 @@
 <div class="main-title" id="login-form-title">
-    <a href="#login-form-title">{{ trans('titles.contact_us') }}</a>
+    <h1><a href="#login-form-title">{{ trans('titles.contact_us') }}</a></h1>
 </div>
 
 <form role="form" class="form-horizontal" action="{{ URL::route('contact-us') }}" method="POST">
