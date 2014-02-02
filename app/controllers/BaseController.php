@@ -43,6 +43,21 @@ class BaseController extends \Kareem3d\Link\DynamicController {
 	}
 
     /**
+     * @param $user
+     * @param $title
+     * @param $description
+     */
+    protected function sendNotificationEmail($user, $title, $description)
+    {
+        $notification = array('title' => $title,'description' => $description);
+
+        Mail::send('emails.notification', compact('notification'), function($message) use($user)
+        {
+            $message->to($user->email, $user->name)->subject('من موقع عامر جروب2');
+        });
+    }
+
+    /**
      * @return \Kareem3d\Link\Link
      */
     public function link()

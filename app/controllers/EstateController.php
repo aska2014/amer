@@ -374,18 +374,16 @@ class EstateController extends BaseController {
         {
             $comment->save();
 
-
-            // Send notification email to the user who owns the estate
-            $notification = array(
-                'title' => 'من موقع عامر جروب2',
-                'description' => 'قام أحد الأعضاء بالتعليق على عقار خاص بك.<br /><br />لمشاهدة التعليق<a href="'.URL::page('estate/show', $estate).'">                من هنا</a>');
-
-            $user = $estate->user;
-
-            Mail::send('emails.notification', compact('notification'), function($message) use($user)
+            if(! $estate->user->same(Auth::user()))
             {
-                $message->to($user->email, $user->name)->subject('شكراً لتسجيلك فى موقع عامر جروب2');
-            });
+                // Send notification email to the user who owns the estate
+                $this->sendNotificationEmail(
+                    $estate->user,
+                    'من موقع عامر جروب2',
+                    'قام أحد الأعضاء بالتعليق على عقار خاص بك.<br /><br />لمشاهدة التعليق<a href="'.URL::page('estate/show', $estate).'">                من هنا</a>');
+
+
+            }
 
             return Redirect::back()->with('success', trans('messages.success.comment'));
         }

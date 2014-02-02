@@ -117,6 +117,13 @@ App::error(function(NotAcceptedException $e)
 });
 
 
+
+App::error(function(\Kareem3d\Membership\NoAccessException $e)
+{
+    return $e->getMessage();
+});
+
+
 App::missing(function($exception)
 {
     return 'Sorry the page you are looking for not found. go to <a href="'.URL::to('').'">Amer Group home page</a>';
