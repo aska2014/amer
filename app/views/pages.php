@@ -13,7 +13,7 @@ return array(
     'home' => array( 'header' => 'header.top | header.logo | header.advanced_search',
                      'upper-body' => 'upper_body.latest_news | upper_body.menu | upper_body.offer',
                      'inner-body' => 'inner_body.advertisement | inner_body.slider | inner_body.special_offers'),
-    
+
 
 
     'slider/show' => array('inner-body' => 'inner_body.one_slider'),

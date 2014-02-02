@@ -160,6 +160,8 @@ class FreakEstateController extends FreakController {
         $from = date('Y-m-d H:i:s', strtotime(Input::get('Special.from')));
         $to = date('Y-m-d H:i:s', strtotime(Input::get('Special.to')));
 
+        dd($from, $to);
+
         $estate->makeSpecial($from, $to);
 
         return Redirect::back()->with('success', 'Estate has been made special successfully.');
