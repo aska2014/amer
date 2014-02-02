@@ -7,6 +7,7 @@
     <link rel="icon"
           type="image/png"
           href="/favicon.ico">
+    
 
     @if(isset($seo))
         {{ $seo->toHtml() }}
