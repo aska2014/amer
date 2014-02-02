@@ -133,7 +133,6 @@ class RegisterController extends BaseController {
 
         $categories = $this->estateCategories->parentCategories();
 
-
         Mail::send('emails.auth.register', compact('user', 'categories'), function($message) use($email, $name)
         {
             $message->to($email, $name)->subject('شكراً لتسجيلك فى موقع عامر جروب2');

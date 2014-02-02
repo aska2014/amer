@@ -361,7 +361,7 @@ class EstateController extends BaseController {
     {
         if(! $this->permissions->canAddComment($estate))
         {
-            throw new \Kareem3d\Membership\NoAccessException("You don't have permissions to delete this estate");
+            throw new \Kareem3d\Membership\NoAccessException("You don't have permissions to add this comment");
         }
 
         $comment = $this->comments->newInstance(Input::get('Comment'));
@@ -373,6 +373,25 @@ class EstateController extends BaseController {
         if($comment->validate())
         {
             $comment->save();
+
+            $notification = array(
+                'title' => 'من موقع عامر جروب2',
+                'description' => 'قام أحد الأعضاء بالتعليق على عقار خاص بك.
+                <br /><br />
+لمشاهدة التعليق
+
+                <a href="'.URL::page('estate/show', $estate).'">
+                من هنا
+                </a>
+                ',
+            );
+
+            $user = $estate->user;
+
+            Mail::send('emails.notification', compact('notification'), function($message) use($user)
+            {
+                $message->to($user->email, $user->name)->subject('شكراً لتسجيلك فى موقع عامر جروب2');
+            });
 
             return Redirect::back()->with('success', trans('messages.success.comment'));
         }
