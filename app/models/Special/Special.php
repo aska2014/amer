@@ -11,5 +11,4 @@ class Special extends \Kareem3d\Eloquent\Model {
     {
         return $this->belongsTo(Estate::getClass());
     }
-
 }
