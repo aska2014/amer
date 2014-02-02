@@ -34,6 +34,7 @@ Route::filter('high-access', function()
     $user = getUser();
 
     if(! $user->hasHighAccess()) throw new NoAccessException;
+    
 });
 
 
