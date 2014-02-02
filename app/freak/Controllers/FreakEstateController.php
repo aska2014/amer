@@ -161,6 +161,7 @@ class FreakEstateController extends FreakController {
         $to = date('Y-m-d H:i:s', strtotime(Input::get('Special.to')));
 
         dd($from, $to);
+        
 
         $estate->makeSpecial($from, $to);
 
