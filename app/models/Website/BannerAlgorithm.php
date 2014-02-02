@@ -13,7 +13,9 @@ class BannerAlgorithm extends Algorithm {
      */
     public function active()
     {
-        $this->getQuery()->where('from', '<', DB::raw('NOW()'))->where('to', '>', DB::raw('NOW()'));
+        $now = date('Y-m-d H:i:s');
+
+        $this->getQuery()->where('from', '<=', $now)->where('to', '>=', $now);
 
         return $this;
     }
