@@ -38,7 +38,7 @@ angular.module('amer.controllers', []).
 
         $scope.initializeAll = function(estate, auction, user)
         {
-            
+
             $scope.estate = estate;
             $scope.user = user;
             $scope.auction = auction;
