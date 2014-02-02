@@ -10,6 +10,6 @@ $(document).ready(function()
     $('#carousel').elastislide({
         autoplay : true,
         autoplayTime: 5000
-        
+
     });
 });

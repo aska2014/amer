@@ -65,6 +65,7 @@
 
 .elastislide-horizontal ul li {
 	display: inline-block;
+    margin-right:35px;
 }
 
 .elastislide-carousel ul li a {
