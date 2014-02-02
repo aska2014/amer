@@ -59,7 +59,7 @@ class EstatePermission {
      */
     public function canAddComment(Estate $estate)
     {
-        return ! $this->isOwner($estate);
+        return $this->user != null;
     }
 
     /**
