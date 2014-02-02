@@ -19,5 +19,8 @@
         <a href="https://twitter.com/amergroup2"><img class="img-responsive" src="{{ URL::asset('app/img/icons/social-twitter.png') }}" alt=""/></a>
 <!--        <a href="https://www.facebook.com/amergroup2"><img class="img-responsive" src="{{ URL::asset('app/img/icons/social-rss.png') }}" alt=""/></a>-->
         <a href="https://www.youtube.com/channel/UC1EnjyMH0-JJtbxVIt9T0QA/videos"><img class="img-responsive" src="{{ URL::asset('app/img/icons/social-youtube.png') }}" alt=""/></a>
+        <div style="margin-top:20px; color:#FFF;">
+        تصميم وبرمجة شركة<a style="color:#FFF600" href="http://www.swaqny.com"> سوقنى</a>
+        </div>
     </div>
 </div>

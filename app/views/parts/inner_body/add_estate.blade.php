@@ -1,8 +1,3 @@
-<div class="alert alert-danger alert-dismissable">
-    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-    {{ trans('words.add_estate_alert') }}
-</div>
-
 <div class="main-title">
     <h1><a href="#">{{ trans('titles.add_estate') }}</a></h1>
 </div>
@@ -127,10 +122,6 @@
     <div class="form-group">
         <label for="user-mobile-input">{{ trans('form.estate.user.mobile') }}</label>
         <input class="form-control" type="text" id="user-mobile-input" name="UserInfo[mobile_number]" value="{{ $uFiller->get('mobile_number', $authUser ? $authUser->mobile_number : '') }}">
-    </div>
-    <div class="form-group">
-        <label for="user-telephone-input">{{ trans('form.estate.user.telephone') }}</label>
-        <input class="form-control" type="text" id="user-telephone-input" name="UserInfo[telephone_number]" value="{{ $uFiller->get('telephone_number', $authUser ? $authUser->telephone_number : '') }}">
     </div>
     <div class="form-group">
         <label for="user-email-input">{{ trans('form.estate.user.email') }}</label>

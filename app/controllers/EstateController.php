@@ -283,6 +283,7 @@ class EstateController extends BaseController {
         $estate    = $this->newEstate( $auction != null );
         $ownerInfo = $this->newOwnerInfo();
 
+
         // Save to database
         if(! $this->validateAndSave($estate, $ownerInfo, $auction))
         {
@@ -290,7 +291,8 @@ class EstateController extends BaseController {
         }
 
         // Success redirect to upgrade page with success..
-        return Redirect::to(URL::page('estate/upgrade', $estate))->with('success', trans('messages.success.estate.create'));
+        return Redirect::to(URL::page('estate/upgrade', $estate))->with('success', trans('messages.success.estate.create'))
+            ->with('errors', trans('words.add_estate_alert'));
     }
 
     /**
