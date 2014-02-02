@@ -217,11 +217,11 @@ class EstateAlgorithm extends \Kareem3d\Eloquent\Algorithm {
     {
         $now = date('Y-m-d H:i:s');
 
-        $this->getQuery()->join('specials', function($join) use($now)
+        $this->getQuery()->join('specials', function($join)
         {
             $join->on('specials.estate_id', '=', 'estates.id')
-                ->on('specials.from', '<', $now)
-                ->on('specials.to', '>', $now);
+                ->on('specials.from', '<', DB::raw('NOW()'))
+                ->on('specials.to', '>', DB::raw('NOW()'));
 
         })->select(array('estate_specs.*', 'estates.*'));
 
