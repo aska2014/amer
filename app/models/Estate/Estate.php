@@ -135,8 +135,7 @@ class Estate extends Model {
     {
         $this->specials()->delete();
 
-
-        dd($this->specials()->create(compact('from' ,'to')));
+        return $this->specials()->create(compact('from' ,'to'));
     }
 
     /**
