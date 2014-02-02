@@ -120,7 +120,7 @@ App::error(function(NotAcceptedException $e)
 
 App::error(function(\Kareem3d\Membership\NoAccessException $e)
 {
-    return $e->getMessage();
+    return 'ليس لديك صلاحيات';
 });
 
 
