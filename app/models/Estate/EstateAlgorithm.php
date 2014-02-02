@@ -81,8 +81,8 @@ class EstateAlgorithm extends \Kareem3d\Eloquent\Algorithm {
         $this->getQuery()->leftJoin('specials', function($join) use($now)
         {
             $join->on('specials.estate_id', '=', 'estates.id')
-                ->on('specials.from', '<=', $now)
-                ->on('specials.to', '>=', $now);
+                ->on('specials.from', '<=', DB::raw("'$now'"))
+                ->on('specials.to', '>=', DB::raw("'$now'"));
 
         })->select(array('estate_specs.*', 'estates.*'))
             ->orderBy('specials.estate_id', 'DESC')

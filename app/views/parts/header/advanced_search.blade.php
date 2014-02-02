@@ -120,9 +120,10 @@
                 </div>
                 <div class="row">
                     <div class="left">
-                        <label for="search-in1">{{ trans('form.search.city') }}</label>
-                        <div class="form-inputs">
-                            <input name="search_city" value="{{ Input::get('search_city') }}" type="text" id="search-in2" class="form-control"/>
+                        <label for="search-in2">{{ trans('form.search.price') }}</label>
+                        <div class="two-inputs form-inputs">
+                            <input name="search_price_low" value="{{ Input::get('search_price_low') }}" type="text" id="search-in2" class="form-control" placeholder="{{ trans('form.search.from') }}"/>
+                            <input name="search_price_high" value="{{ Input::get('search_price_high') }}" type="text" class="form-control" placeholder="{{ trans('form.search.to') }}"/>
                         </div>
                     </div>
                     <div class="right">
@@ -142,19 +143,18 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="left">
-                        <label for="search-in2">{{ trans('form.search.price') }}</label>
-                        <div class="two-inputs form-inputs">
-                            <input name="search_price_low" value="{{ Input::get('search_price_low') }}" type="text" id="search-in2" class="form-control" placeholder="{{ trans('form.search.from') }}"/>
-                            <input name="search_price_high" value="{{ Input::get('search_price_high') }}" type="text" class="form-control" placeholder="{{ trans('form.search.to') }}"/>
-                        </div>
-                    </div>
-                    <div class="right">
-                        <label for="search-in1">{{ trans('form.search.region') }}</label>
-                        <div class="form-inputs">
-                            <input name="search_region" value="{{ Input::get('search_region') }}" type="text" id="search-in2" class="form-control"/>
-                        </div>
-                    </div>
+<!--                    <div class="left">-->
+<!--                        <label for="search-in1">{{ trans('form.search.city') }}</label>-->
+<!--                        <div class="form-inputs">-->
+<!--                            <input name="search_city" value="{{ Input::get('search_city') }}" type="text" id="search-in2" class="form-control"/>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="right">-->
+<!--                        <label for="search-in1">{{ trans('form.search.region') }}</label>-->
+<!--                        <div class="form-inputs">-->
+<!--                            <input name="search_region" value="{{ Input::get('search_region') }}" type="text" id="search-in2" class="form-control"/>-->
+<!--                        </div>-->
+<!--                    </div>-->
                 </div>
 
                 <div class="clearfix"></div>
