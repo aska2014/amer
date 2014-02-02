@@ -27,6 +27,14 @@ class RegisterController extends BaseController {
     }
 
     /**
+     * @return mixed
+     */
+    public function dynamicShow()
+    {
+        return $this->page()->printMe();
+    }
+
+    /**
      * User clicks forgets password
      */
     public function dynamicForgetPassword()

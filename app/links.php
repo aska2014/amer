@@ -33,6 +33,7 @@ return array(
 
     // Login and register show
     array('login/show', 'login-register.html'),
+    array('register/show', 'register.html'),
 
     // Forget password
     array('register/forget-password', 'forget-password.html'),

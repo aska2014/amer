@@ -18,7 +18,7 @@
                 </div>
                 <div class="buttons">
                     <button type="submit" class="blue-btn">{{ trans('form.login.submit') }}</button>
-                    <button type="button" onclick="window.location.href = '{{ URL::page('login/show') }}'" class="blue-btn big-btn">{{ trans('words.new_user') }}</button>
+                    <button type="button" onclick="window.location.href = '{{ URL::page('register/show') }}'" class="blue-btn big-btn">{{ trans('words.new_user') }}</button>
                 </div>
 
                 @if(! $errors->isEmpty())
