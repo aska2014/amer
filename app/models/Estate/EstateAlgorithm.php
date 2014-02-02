@@ -87,6 +87,7 @@ class EstateAlgorithm extends \Kareem3d\Eloquent\Algorithm {
         })->select(array('estate_specs.*', 'estates.*'))
             ->orderBy('specials.estate_id', 'DESC')
             ->orderBy('estates.id', 'DESC');
+        
 
         return $this;
     }
