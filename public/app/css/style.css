@@ -7137,6 +7137,11 @@ body {
     width: 100%;
   }
 }
+.main-title-bright h1 {
+  margin: 0px;
+  padding: 0px;
+  line-height: 25px;
+}
 .main-title-bright a {
   color: #333;
 }
