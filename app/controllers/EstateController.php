@@ -374,17 +374,11 @@ class EstateController extends BaseController {
         {
             $comment->save();
 
+
+            // Send notification email to the user who owns the estate
             $notification = array(
                 'title' => 'من موقع عامر جروب2',
-                'description' => 'قام أحد الأعضاء بالتعليق على عقار خاص بك.
-                <br /><br />
-لمشاهدة التعليق
-
-                <a href="'.URL::page('estate/show', $estate).'">
-                من هنا
-                </a>
-                ',
-            );
+                'description' => 'قام أحد الأعضاء بالتعليق على عقار خاص بك.<br /><br />لمشاهدة التعليق<a href="'.URL::page('estate/show', $estate).'">                من هنا</a>');
 
             $user = $estate->user;
 
