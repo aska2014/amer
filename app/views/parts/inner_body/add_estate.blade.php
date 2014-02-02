@@ -123,7 +123,7 @@
         <label for="user-mobile-input">{{ trans('form.estate.user.mobile') }}</label>
         <input class="form-control" type="text" id="user-mobile-input" name="UserInfo[mobile_number]" value="{{ $uFiller->get('mobile_number', $authUser ? $authUser->mobile_number : '') }}">
     </div>
-    
+
     <div class="form-group">
         <label for="user-email-input">{{ trans('form.estate.user.email') }}</label>
         <input class="form-control" type="email" id="user-email-input" name="UserInfo[contact_email]" value="{{ $uFiller->get('contact_email', $authUser ? $authUser->contact_email : '') }}" required>

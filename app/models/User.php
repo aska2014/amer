@@ -18,6 +18,14 @@ class User extends Kareem3dUser {
     );
 
     /**
+     * @return bool
+     */
+    public function isAdministrator()
+    {
+        return $this->access > 0;
+    }
+
+    /**
      * @param $token
      * @return User
      */
