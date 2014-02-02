@@ -15,13 +15,20 @@ class RegisterController extends BaseController {
     protected $usersInfo;
 
     /**
+     * @var Estate\EstateCategory
+     */
+    protected $estateCategories;
+
+    /**
      * @param User $users
      * @param UserInfo $usersInfo
+     * @param Estate\EstateCategory $estateCategories
      */
-    public function __construct( User $users, UserInfo $usersInfo)
+    public function __construct( User $users, UserInfo $usersInfo, \Estate\EstateCategory $estateCategories)
     {
         $this->users = $users;
         $this->usersInfo = $usersInfo;
+        $this->estateCategories = $estateCategories;
 
         $this->beforeFilter('guest');
     }
@@ -120,6 +127,16 @@ class RegisterController extends BaseController {
         }
 
         $user->setInfo($userInfo);
+
+        $name = $user->name;
+        $email = $user->email;
+
+        $categories = $this->estateCategories->parentCategories();
+
+        Mail::send('emails.auth.register', compact('user', 'categories'), function($message) use($email, $name)
+        {
+            $message->to($email, $name)->subject('شكراً لتسجيلك فى موقع عرابه');
+        });
 
         Auth::login($user, false);
 

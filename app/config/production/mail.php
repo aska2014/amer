@@ -54,7 +54,7 @@ return array(
     |
     */
 
-    'from' => array('address' => 'website@swaqny.com', 'name' => 'Swaqny website'),
+    'from' => array('address' => 'admin@amergroup2.com', 'name' => 'Amergroup2 website'),
 
     /*
     |--------------------------------------------------------------------------
@@ -80,7 +80,7 @@ return array(
     |
     */
 
-    'username' => 'website@swaqny.com',
+    'username' => 'admin@amergroup2.com',
 
     /*
     |--------------------------------------------------------------------------
@@ -93,7 +93,7 @@ return array(
     |
     */
 
-    'password' => 'swaqny2013',
+    'password' => 'amergroup2013',
 
     /*
     |--------------------------------------------------------------------------
