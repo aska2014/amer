@@ -78,11 +78,11 @@ class EstateAlgorithm extends \Kareem3d\Eloquent\Algorithm {
     {
         $now = date('Y-m-d H:i:s');
 
-        $this->getQuery()->leftJoin('specials', function($join)
+        $this->getQuery()->leftJoin('specials', function($join) use($now)
         {
             $join->on('specials.estate_id', '=', 'estates.id')
-                ->on('specials.from', '<', DB::raw('NOW()'))
-                ->on('specials.to', '>', DB::raw('NOW()'));
+                ->on('specials.from', '<=', $now)
+                ->on('specials.to', '>=', $now);
 
         })->select(array('estate_specs.*', 'estates.*'))
             ->orderBy('specials.estate_id', 'DESC')
@@ -215,11 +215,13 @@ class EstateAlgorithm extends \Kareem3d\Eloquent\Algorithm {
      */
     public function specials()
     {
-        $this->getQuery()->join('specials', function($join)
+        $now = date('Y-m-d H:i:s');
+
+        $this->getQuery()->join('specials', function($join) use($now)
         {
             $join->on('specials.estate_id', '=', 'estates.id')
-                ->on('specials.from', '<', DB::raw('NOW()'))
-                ->on('specials.to', '>', DB::raw('NOW()'));
+                ->on('specials.from', '<', DB::raw("'$now'"))
+                ->on('specials.to', '>', DB::raw("'$now'"));
 
         })->select(array('estate_specs.*', 'estates.*'));
 
