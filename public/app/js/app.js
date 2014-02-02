@@ -36,7 +36,7 @@ angular.module('amer.controllers', []).
                 $(".add-image").before('<input type="file" id="image-input' + (++ no_of_images) + '" name="gallery-imgs[]"/>');
         };
 
-        $scope.initializeAll = function(estate, user, auction)
+        $scope.initializeAll = function(estate, auction, user)
         {
             $scope.estate = estate;
             $scope.user = user;
@@ -93,15 +93,19 @@ angular.module('amer.controllers', []).
 
         $scope.$watch('show', function(show)
         {
+            console.log($scope.auction);
             $scope.estate.auction = show.auction;
 
-            if(! show.number_of_rooms)
+            if(! $scope.estate.number_of_rooms)
             {
-                $scope.estate.number_of_rooms = 0;
-            }
-            else
-            {
-                $scope.estate.number_of_rooms = 1;
+                if(! show.number_of_rooms)
+                {
+                    $scope.estate.number_of_rooms = 0;
+                }
+                else
+                {
+                    $scope.estate.number_of_rooms = 1;
+                }
             }
 
             if(! show.area)

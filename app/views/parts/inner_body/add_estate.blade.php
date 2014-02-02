@@ -89,8 +89,8 @@
             <input class="form-control" type="text" id="price-input" name="Estate[price]" ng-model="estate.price" required>
         </div>
         <div class="two-inputs" ng-if="show.auction" ng-cloak>
-            <input class="form-control" type="text" name="Auction[start_price]" placeholder="الأدنى" required>
-            <input class="form-control" type="text" name="Auction[end_price]" placeholder="الأعلى" required>
+            <input class="form-control" type="text" name="Auction[start_price]" ng-model="auction.start_price" placeholder="الأدنى" required>
+            <input class="form-control" type="text" name="Auction[end_price]" ng-model="auction.end_price" placeholder="الأعلى" required>
         </div>
     </div>
 
