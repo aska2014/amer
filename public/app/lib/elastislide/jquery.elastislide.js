@@ -200,6 +200,8 @@
 		minItems : 3,
 		// index of the current item (left most item of the carousel)
 		start : 0,
+        autoplay : false,
+        autoplayTime: 0,
 		// click item callback
 		onClick : function( el, position, evt ) { return false; },
 		onReady : function() { return false; },
@@ -431,6 +433,39 @@
 		_initEvents : function() {
 
 			var self = this;
+
+            if(this.options.autoplay == true){
+                var translation = 0;
+
+                // width/height of an item ( <li> )
+                var itemSpace = this.options.orientation === 'horizontal' ? this.$items.outerWidth( true ) : this.$items.outerHeight( true );
+                // total width/height of the <ul>
+                var totalSpace = this.itemsCount * itemSpace;
+                // visible width/height
+                var visibleSpace = this.options.orientation === 'horizontal' ? this.$carousel.width() : this.$carousel.height();
+                //slide auto
+                window.setInterval(function(){
+                    //test if we should go to next slide or return to first slide
+                    if(totalSpace > translation + visibleSpace)
+                    {
+                        //go to next slide
+                        self._slide('next');
+                        //update translation
+                        translation += visibleSpace;
+                    }
+                    else
+                    {
+                        //return to first slide
+                        self._slideTo(0);
+                        //set translation to 0
+                        translation = 0;
+                    }
+                }, this.options.autoplayTime);
+            }
+
+
+
+
 
 			$window.on( 'debouncedresize.elastislide', function() {
 
