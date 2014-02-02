@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="utf-8">
 	</head>
-	<body>
+	<body dir="rtl">
 		<h2>مرحباً بك فى عامر جروب 2</h2>
 
 		<div>
