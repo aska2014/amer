@@ -23,6 +23,14 @@
             @endforeach
 
             <li><a href="{{ URL::page('contact-us') }}">{{ trans('menu.contact_us') }}</a></li>
+
+            @if($authUser)
+            <li><a href="{{ URL::page('user/estates') }}">{{ $authUser->name }}</a></li>
+            <li><a href="{{ URL::route('logout') }}">{{ trans('menu.logout') }}</a></li>
+            @else
+            <li><a href="{{ URL::page('login/show') }}">{{ trans('menu.login') }}</a></li>
+            <li><a href="{{ URL::page('login/show') }}#register-form-title">{{ trans('menu.new_account') }}</a></li>
+            @endif
         </ul>
 
     </div>

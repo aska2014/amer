@@ -13,3 +13,4 @@
 
 Artisan::add(new WorkbenchMigrateCommand());
 Artisan::add(new DropAllCommand());
+Artisan::add(new BackupDatabaseCommand());

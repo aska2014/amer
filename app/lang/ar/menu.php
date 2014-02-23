@@ -17,6 +17,11 @@ return array(
 
     'contact_us' => 'اتصل بنا',
 
+    'register' => 'التسجيل',
+    'login' => 'تسجيل الدخول',
+    'logout' => 'خروج',
+    'new_account' => 'حساب جديد',
+
 
 
 

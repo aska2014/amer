@@ -17,6 +17,12 @@ return array(
 
     'contact_us' => 'Contact us',
 
+    'register' => 'Register',
+    'login' => 'Login',
+    'logout' => 'Logout',
+
+    'new_account' => 'New account'
+
 
 
 

@@ -4,16 +4,17 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-    <link rel="icon"
-          type="image/png"
-          href="/favicon.ico">
-    
 
     @if(isset($seo))
         {{ $seo->toHtml() }}
     @else
         <title>Amer Group 2</title>
     @endif
+
+
+    <link rel="icon"
+          type="image/png"
+          href="/favicon.ico">
 
     {{ $template->printAssets('css') }}
 

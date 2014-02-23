@@ -4,11 +4,14 @@
 
     <div class="latest-news-text">
         <ul id="news-marquee" class="marquee" dir="rtl">
-            @foreach($latestNews as $latestOneNews)
-            <li onclick="window.location.href = '{{ URL::page('news/show', $latestOneNews) }}'">
-                {{ $latestOneNews->title }}
+            <li>
+                @foreach($latestNews as $latestOneNews)
+                    <a href="'{{ URL::page('news/show', $latestOneNews) }}'">{{ $latestOneNews->title }}</a>
+                    &nbsp&nbsp&nbsp
+                    --------------
+                    &nbsp&nbsp&nbsp
+                @endforeach
             </li>
-            @endforeach
         </ul>
     </div>
 

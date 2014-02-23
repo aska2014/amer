@@ -14,7 +14,19 @@ class User extends Kareem3dUser {
         'email.email' => 'يجب إدخال إيميل صحيح',
         'email.unique' => 'هذا الإيميل موجود من قبل',
         'password.required' => 'يجب إدخال كلمة السر',
-        'password.regex' => 'يجب ان تكون كلمة السر بالحروف الأجنبية وبها على الأقل رقمم.'
+        'password.regex' => 'يجب ان تكون كلمة السر بالحروف الأجنبية وبها على الأقل رقم.'
+    );
+
+    /**
+     * Validation rules
+     *
+     * @var array
+     */
+    protected $rules = array(
+        'username' => 'min:6|unique:ka_user_accounts',
+        'email'    => 'required|email|unique:ka_user_accounts',
+        // Medium password strength is required
+        'password' => 'required|regex:((?=.*\d)(?=.*[a-z]).{6,20})',
     );
 
     /**

@@ -48,7 +48,9 @@ return array(
         'password' => 'كلمة المرور',
         'mobile' => 'رقم الموبيل',
         'telephone' => 'رقم الهاتف',
-        'submit' => 'التسجيل'
+        'submit' => 'التسجيل',
+
+        'password_alert' => '            يجب ان تكون كلمة السر بالحروف العربية وبها على الأقل رقم',
     ),
 
     'offer' => array(

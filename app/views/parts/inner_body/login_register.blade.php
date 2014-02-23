@@ -40,6 +40,9 @@
     <div class="form-group">
         <label for="text">{{ trans('form.register.password') }}</label>
         <input class="form-control" type="password" id="text" name="Register[password]">
+        <small style="float:right; margin-right:130px; font-size:12px; color:#F00;">
+        {{ trans('form.register.password_alert') }}
+        </small>
     </div>
     <div class="form-group">
         <label for="text">{{ trans('form.register.mobile') }}</label>

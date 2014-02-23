@@ -133,7 +133,7 @@ class EstateController extends BaseController {
         $estatesTitle = trans('titles.amer_specials');
 
         // Get amer group user
-        $amerGroupUser = $this->usersAlgorithm->byEmail('info@amergroup2.com')->first(array('id'));
+        $amerGroupUser = $this->usersAlgorithm->byEmail('c_mohamed_maf2010@yahoo.com')->first(array('id'));
 
         if(! $amerGroupUser) return Redirect::to(URL::page('home'));
 

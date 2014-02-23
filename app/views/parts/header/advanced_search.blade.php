@@ -88,7 +88,7 @@
                             <select name="search_category" id="category-input" class="form-control">
                                 <option value="">{{ trans('form.search.choose_category') }}</option>
 
-                                @foreach($estateCategories as $category)
+                                @foreach($estateCategories->reverse() as $category)
 
                                 @if($category->children->isEmpty())
 

@@ -48,7 +48,9 @@ return array(
         'password' => 'Password',
         'mobile' => 'Mobile',
         'telephone' => 'Telephone',
-        'submit' => 'Register'
+        'submit' => 'Register',
+
+        'password_alert' => 'Password must have at least one number',
     ),
 
     'offer' => array(

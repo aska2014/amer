@@ -1,5 +1,6 @@
-NameError: .make-row is undefined in D:\Projects\AmerGroup\www\public\app\en_css\footer.less on line 3, column 3:
-2 
-3   .make-row();
-4   margin:10px -10px 0px -15px;
-
+.footer .footer-special .special-title {
+  float: left;
+}
+.footer .footer-special a {
+  float: left;
+}
