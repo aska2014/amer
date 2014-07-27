@@ -18,6 +18,14 @@ class EstatePermission {
     }
 
     /**
+     * @return bool
+     */
+    public function isAdministrator()
+    {
+        return $this->user && $this->user->isAdministrator();
+    }
+
+    /**
      * @param \Estate\Estate $estate
      * @return bool
      */
@@ -32,7 +40,7 @@ class EstatePermission {
      */
     public function canEdit( Estate $estate )
     {
-        return $this->isOwner($estate) || $this->user->isAdministrator();
+        return $this->isOwner($estate) || $this->isAdministrator();
     }
 
     /**
@@ -41,7 +49,7 @@ class EstatePermission {
      */
     public function canDisplay(Estate $estate)
     {
-        return $estate->accepted || $this->isOwner($estate) || $this->user->isAdministrator();
+        return $estate->accepted || $this->isOwner($estate) || $this->isAdministrator();
     }
 
     /**
@@ -85,6 +93,6 @@ class EstatePermission {
      */
     public function canDelete(Estate $estate)
     {
-        return $this->isOwner($estate) || $this->user->isAdministrator();
+        return $this->isOwner($estate) || $this->isAdministrator();
     }
 }
